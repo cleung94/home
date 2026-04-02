@@ -10,6 +10,218 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+
+			.experience-shell {
+				width: 100%;
+				display: flex;
+				justify-content: center;
+			}
+
+			.experience-section {
+				width: min(100%, 1120px);
+				margin: 0 auto;
+				background: #ffffff;
+				border: 1px solid #e0e0e0;
+				border-radius: 16px;
+				padding: clamp(22px, 2.2vw, 36px);
+				box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+			}
+
+			.experience-title {
+				font-size: clamp(24px, 2vw, 32px);
+				font-weight: 700;
+				color: #0a66c2;
+				margin: 0 0 30px;
+				padding-bottom: 12px;
+				border-bottom: 2px solid #0a66c2;
+			}
+
+			.timeline {
+				position: relative;
+			}
+
+			.timeline::before {
+				content: "";
+				position: absolute;
+				left: 24px;
+				top: 0;
+				bottom: 0;
+				width: 3px;
+				background: linear-gradient(to bottom, #0a66c2 0%, #d0d7de 100%);
+				border-radius: 999px;
+			}
+
+			.job-card {
+				position: relative;
+				display: grid;
+				grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+				gap: clamp(18px, 2vw, 28px);
+				margin-bottom: 32px;
+				align-items: start;
+			}
+
+			.job-card:last-child {
+				margin-bottom: 0;
+			}
+
+			.job-left-wrapper {
+				position: relative;
+				padding-left: 48px;
+				min-width: 0;
+			}
+
+			.job-left {
+				position: relative;
+				background: #f8fafc;
+				border: 1px solid #dce6f1;
+				border-radius: 14px;
+				padding: 22px 20px 22px 34px;
+				min-height: 120px;
+				min-width: 0;
+				transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+			}
+
+			.job-left:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 10px 24px rgba(10, 102, 194, 0.10);
+				border-color: #b9d3ee;
+			}
+
+			.logo-circle {
+				position: absolute;
+				left: 0;
+				top: 18px;
+				width: 50px;
+				height: 50px;
+				background: #ffffff;
+				border: 2px solid #0a66c2;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				overflow: hidden;
+				z-index: 2;
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+				transition: transform 0.25s ease, box-shadow 0.25s ease;
+			}
+
+			.job-left-wrapper:hover .logo-circle {
+				transform: scale(1.06);
+				box-shadow: 0 8px 18px rgba(10, 102, 194, 0.18);
+			}
+
+			.logo-circle img {
+				max-width: 70%;
+				max-height: 70%;
+				width: auto;
+				height: auto;
+				object-fit: contain;
+				display: block;
+			}
+
+			.job-title {
+				font-size: clamp(17px, 1.2vw, 20px);
+				font-weight: 700;
+				margin: 0 0 6px;
+				line-height: 1.35;
+				color: #1d2226;
+			}
+
+			.company {
+				font-size: 15px;
+				font-weight: 600;
+				color: #0a66c2;
+				margin-bottom: 8px;
+			}
+
+			.job-date,
+			.job-location {
+				font-size: 14px;
+				color: #5f6b75;
+				line-height: 1.5;
+			}
+
+			.job-right {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 14px;
+				align-content: flex-start;
+				min-width: 0;
+			}
+
+			.bubble {
+				background: #f4f8fb;
+				border: 1px solid #d6e4f0;
+				border-radius: 12px;
+				padding: 14px 16px;
+				font-size: 14px;
+				line-height: 1.55;
+				color: #1d2226;
+				flex: 1 1 calc(50% - 14px);
+				min-width: 220px;
+				max-width: 100%;
+				overflow-wrap: break-word;
+				word-break: break-word;
+				transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+			}
+
+			.bubble:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 8px 18px rgba(10, 102, 194, 0.10);
+				border-color: #bfd7ef;
+				background: #f8fbfe;
+			}
+
+			.bubble strong {
+				color: #0a66c2;
+			}
+
+			@media screen and (max-width: 1280px) {
+				.experience-section {
+					width: 100%;
+				}
+			}
+
+			@media screen and (max-width: 980px) {
+				.job-card {
+					grid-template-columns: 1fr;
+					gap: 16px;
+				}
+
+				.job-right {
+					padding-left: 48px;
+				}
+
+				.bubble {
+					flex: 1 1 100%;
+					min-width: 0;
+				}
+			}
+
+			@media screen and (max-width: 640px) {
+				.experience-section {
+					padding: 18px;
+				}
+
+				.job-left-wrapper,
+				.job-right {
+					padding-left: 40px;
+				}
+
+				.timeline::before {
+					left: 20px;
+				}
+
+				.logo-circle {
+					width: 44px;
+					height: 44px;
+				}
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 
@@ -35,28 +247,28 @@
 											<h1>Hello! I am Christopher</h1>
 											<p>About Me</p>
 										</header>
-										 <p>
-										    I am a technology and operations professional with experience supporting large-scale
-										    enterprise physical security systems and data-driven quality assurance initiatives.
-										    I specialize in analyzing system performance, developing operational standards,
-										    and building reporting tools that improve efficiency and visibility across complex environments.
-										  </p>
-										  <p>
-										    In my current role, I collaborate with cross-functional teams to monitor system health,
-										    audit device deployments, and develop automation and reporting processes using tools such as
-										    Power BI, Tableau, Excel, and Python. My work has helped streamline workflows,
-										    improve system compliance, and provide actionable insights for operational decision-making.
-										  </p>
-										  <p>
-										    Alongside my technical background, I have also pursued clinical experience as a Certified
-										    Nursing Assistant, where I provide direct patient care and support residents with daily living
-										    activities. This experience has strengthened my communication, situational awareness,
-										    and commitment to work that has a meaningful impact on others.
-										  </p>
-										  <p>
-										    I am passionate about continuous learning and enjoy exploring the intersection of technology,
-										    operations, and real-world problem solving.
-  										</p>
+										<p>
+											I am a technology and operations professional with experience supporting large-scale
+											enterprise physical security systems and data-driven quality assurance initiatives.
+											I specialize in analyzing system performance, developing operational standards,
+											and building reporting tools that improve efficiency and visibility across complex environments.
+										</p>
+										<p>
+											In my current role, I collaborate with cross-functional teams to monitor system health,
+											audit device deployments, and develop automation and reporting processes using tools such as
+											Power BI, Tableau, Excel, and Python. My work has helped streamline workflows,
+											improve system compliance, and provide actionable insights for operational decision-making.
+										</p>
+										<p>
+											Alongside my technical background, I have also pursued clinical experience as a Certified
+											Nursing Assistant, where I provide direct patient care and support residents with daily living
+											activities. This experience has strengthened my communication, situational awareness,
+											and commitment to work that has a meaningful impact on others.
+										</p>
+										<p>
+											I am passionate about continuous learning and enjoy exploring the intersection of technology,
+											operations, and real-world problem solving.
+										</p>
 										<ul class="actions">
 											<li><a href="#" class="button big">Learn More</a></li>
 										</ul>
@@ -64,6 +276,61 @@
 									<span class="image object">
 										<img src="images/professionalpic.jpg" alt="" />
 									</span>
+								</section>
+
+							<!-- Work Experience -->
+								<section>
+									<div class="experience-shell">
+										<div class="experience-section">
+											<h2 class="experience-title">Work Experience</h2>
+
+											<div class="timeline">
+												<div class="job-card">
+													<div class="job-left-wrapper">
+														<div class="logo-circle">
+															<img src="images/meta-logo.png" alt="Meta logo" />
+														</div>
+
+														<div class="job-left">
+															<h3 class="job-title">Physical Security QA Data Analyst II</h3>
+															<div class="company">TEKsystems @ Meta</div>
+															<div class="job-date">Jan 2020 – Present</div>
+															<div class="job-location">Fremont, CA</div>
+														</div>
+													</div>
+
+													<div class="job-right">
+														<div class="bubble">Developed <strong>interactive dashboards</strong> using Power BI, Tableau, and Excel to track enterprise KPIs and performance metrics.</div>
+														<div class="bubble">Automated recurring reporting workflows, saving an estimated <strong>280+ hours per month</strong>.</div>
+														<div class="bubble">Improved security and safety standards by increasing efficiency and reducing costs by at least <strong>27%</strong>.</div>
+														<div class="bubble">Collaborated with cross-functional stakeholders to identify issues, streamline workflows, and improve operations.</div>
+													</div>
+												</div>
+
+												<div class="job-card">
+													<div class="job-left-wrapper">
+														<div class="logo-circle">
+															<img src="images/creekview-logo.png" alt="Creekview logo" />
+														</div>
+
+														<div class="job-left">
+															<h3 class="job-title">Certified Nursing Assistant</h3>
+															<div class="company">Creekview Health Center</div>
+															<div class="job-date">Current</div>
+															<div class="job-location">Pleasanton, CA</div>
+														</div>
+													</div>
+
+													<div class="job-right">
+														<div class="bubble">Delivered bedside care for up to <strong>21 residents</strong> during overnight shifts.</div>
+														<div class="bubble">Assisted residents with <strong>ADLs</strong> including repositioning, toileting, ambulation, and routine care.</div>
+														<div class="bubble">Recorded and reported <strong>vital signs, intake/output, and patient observations</strong> to licensed nurses.</div>
+														<div class="bubble">Prepared rooms and equipment for admissions, transfers, and returning residents while maintaining readiness.</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
 								</section>
 
 							<!-- Section -->
@@ -264,281 +531,5 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 
-	</body>
-</html>
-
-<!-- Work Experience (LinkedIn style) -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-<style>
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    font-family: "Open Sans", sans-serif;
-    background: #f3f2ef;
-    margin: 0;
-    padding: 2vw;
-    color: #7f888f;
-  }
-
-  .experience-section {
-    width: min(96vw, 1600px);
-    margin: 0 auto;
-    background: #ffffff;
-    border: 1px solid #e0e0e0;
-    border-radius: 14px;
-    padding: clamp(20px, 2vw, 36px);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
-  }
-
-  .section-title {
-    font-size: clamp(24px, 2vw, 32px);
-    font-weight: 700;
-    color: #0a66c2;
-    margin: 0 0 30px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid #0a66c2;
-  }
-
-  .timeline {
-    position: relative;
-  }
-
-  .timeline::before {
-    content: "";
-    position: absolute;
-    left: 23px;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: linear-gradient(to bottom, #0a66c2 0%, #d0d7de 100%);
-    border-radius: 999px;
-  }
-
-  .job-card {
-    position: relative;
-    display: grid;
-    grid-template-columns: minmax(260px, 28%) minmax(0, 1fr);
-    gap: clamp(18px, 2vw, 28px);
-    margin-bottom: 30px;
-    align-items: start;
-  }
-
-  .job-card:last-child {
-    margin-bottom: 0;
-  }
-
-  .job-left-wrapper {
-    position: relative;
-    padding-left: 44px;
-  }
-
-  .job-left {
-    position: relative;
-    background: #f8fafc;
-    border: 1px solid #dce6f1;
-    border-radius: 14px;
-    padding: 22px 20px 22px 34px;
-    min-height: 120px;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-  }
-
-  .job-left:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 24px rgba(10, 102, 194, 0.10);
-    border-color: #b9d3ee;
-  }
-
-  .logo-circle {
-    position: absolute;
-    left: 0;
-    top: 18px;
-    width: 48px;
-    height: 48px;
-    background: #ffffff;
-    border: 2px solid #0a66c2;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    z-index: 2;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-  }
-
-  .job-left-wrapper:hover .logo-circle {
-    transform: scale(1.06);
-    box-shadow: 0 8px 18px rgba(10, 102, 194, 0.18);
-  }
-
-  .logo-circle img {
-    max-width: 70%;
-    max-height: 70%;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    display: block;
-  }
-
-  .job-title {
-    font-size: clamp(17px, 1.2vw, 20px);
-    font-weight: 700;
-    margin: 0 0 6px;
-    line-height: 1.35;
-  }
-
-  .company {
-    font-size: 15px;
-    font-weight: 600;
-    color: #0a66c2;
-    margin-bottom: 8px;
-  }
-
-  .job-date,
-  .job-location {
-    font-size: 14px;
-    color: #5f6b75;
-    line-height: 1.5;
-  }
-
-  .job-right {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-    align-content: flex-start;
-  }
-
-  .bubble {
-    background: #f4f8fb;
-    border: 1px solid #d6e4f0;
-    border-radius: 10px;
-    padding: 14px 16px;
-    font-size: 14px;
-    line-height: 1.55;
-    color: #1d2226;
-    flex: 1 1 calc(50% - 14px);
-    min-width: min(280px, 100%);
-    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease;
-  }
-
-  .bubble:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 18px rgba(10, 102, 194, 0.10);
-    border-color: #bfd7ef;
-    background: #f8fbfe;
-  }
-
-  .bubble strong {
-    color: #0a66c2;
-  }
-
-  @media (max-width: 920px) {
-    .job-card {
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
-
-    .job-right {
-      padding-left: 44px;
-    }
-
-    .bubble {
-      flex: 1 1 100%;
-    }
-  }
-
-  @media (max-width: 640px) {
-    body {
-      padding: 12px;
-    }
-
-    .experience-section {
-      width: 100%;
-      padding: 18px;
-    }
-
-    .job-right {
-      padding-left: 44px;
-    }
-  }
-</style>
-</head>
-<body>
-  <section class="experience-section">
-    <h2 class="section-title">Work Experience</h2>
-
-    <div class="timeline">
-
-      <div class="job-card">
-        <div class="job-left-wrapper">
-          <div class="logo-circle">
-            <img src="meta-logo.png" alt="Meta logo">
-          </div>
-
-          <div class="job-left">
-            <h3 class="job-title">Physical Security QA Data Analyst II</h3>
-            <div class="company">TEKsystems @ Meta</div>
-            <div class="job-date">Jan 2020 – Present</div>
-            <div class="job-location">Fremont, CA</div>
-          </div>
-        </div>
-
-        <div class="job-right">
-          <div class="bubble">
-            Developed <strong>interactive dashboards</strong> using Power BI, Tableau, and Excel to track enterprise KPIs and performance metrics.
-          </div>
-          <div class="bubble">
-            Automated recurring reporting workflows, saving an estimated <strong>280+ hours per month</strong>.
-          </div>
-          <div class="bubble">
-            Improved security and safety standards by increasing efficiency and reducing costs by at least <strong>27%</strong>.
-          </div>
-          <div class="bubble">
-            Collaborated with cross-functional stakeholders to identify issues, streamline workflows, and improve operations.
-          </div>
-        </div>
-      </div>
-
-      <div class="job-card">
-        <div class="job-left-wrapper">
-          <div class="logo-circle">
-            <img src="creekview-logo.png" alt="Creekview logo">
-          </div>
-
-          <div class="job-left">
-            <h3 class="job-title">Certified Nursing Assistant</h3>
-            <div class="company">Creekview Health Center</div>
-            <div class="job-date">Current</div>
-            <div class="job-location">Pleasanton, CA</div>
-          </div>
-        </div>
-
-        <div class="job-right">
-          <div class="bubble">
-            Delivered bedside care for up to <strong>21 residents</strong> during overnight shifts.
-          </div>
-          <div class="bubble">
-            Assisted residents with <strong>ADLs</strong> including repositioning, toileting, ambulation, and routine care.
-          </div>
-          <div class="bubble">
-            Recorded and reported <strong>vital signs, intake/output, and patient observations</strong> to licensed nurses.
-          </div>
-          <div class="bubble">
-            Prepared rooms and equipment for admissions, transfers, and returning residents while maintaining readiness.
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-</body>
-</html>
 	</body>
 </html>
