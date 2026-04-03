@@ -278,7 +278,111 @@
 									</span>
 								</section>
 
-							<!-- Work Experience -->
+<!-- Work Experience New -->
+<section id="work-experience">
+  <div class="experience-shell">
+    <div class="experience-section">
+      <div class="experience-top">
+        <p class="experience-kicker">Professional Background</p>
+        <h2 class="experience-title">Work Experience</h2>
+        <p class="experience-subtitle">
+          Explore my background across technology and healthcare, with experience in operations,
+          analytics, quality assurance, and direct patient support.
+        </p>
+      </div>
+
+      <div class="experience-tabs" role="tablist" aria-label="Work Experience Tabs">
+        <button class="tab-button active" data-tab="tech" role="tab" aria-selected="true">
+          <span class="tab-label">Tech</span>
+          <span class="tab-desc">Analytics, systems, operations</span>
+        </button>
+
+        <button class="tab-button" data-tab="healthcare" role="tab" aria-selected="false">
+          <span class="tab-label">Healthcare</span>
+          <span class="tab-desc">Patient care, clinical support</span>
+        </button>
+      </div>
+
+      <div class="tab-panel active" id="tech-panel">
+        <div class="timeline">
+          <div class="job-card">
+            <div class="job-left-wrapper">
+              <div class="logo-circle">
+                <img src="images/meta-logo.png" alt="Meta logo" />
+              </div>
+
+              <div class="job-left">
+                <h3 class="job-title">Physical Security QA Data Analyst II</h3>
+                <div class="company">TEKsystems @ Meta</div>
+                <div class="job-date">Jan 2020 – Present</div>
+                <div class="job-location">Fremont, CA</div>
+              </div>
+            </div>
+
+            <div class="job-right">
+              <div class="bubble">Developed <strong>interactive dashboards</strong> using Power BI, Tableau, and Excel to monitor enterprise KPIs and system performance.</div>
+              <div class="bubble">Automated recurring reporting workflows, saving an estimated <strong>280+ hours per month</strong>.</div>
+              <div class="bubble">Improved security and safety standards by increasing efficiency and reducing costs by at least <strong>27%</strong>.</div>
+              <div class="bubble">Partnered with cross-functional stakeholders to identify issues, streamline workflows, and strengthen operational visibility.</div>
+            </div>
+          </div>
+
+          <div class="job-card">
+            <div class="job-left-wrapper">
+              <div class="logo-circle">
+                <img src="images/sjsu-logo.png" alt="San Jose State University logo" />
+              </div>
+
+              <div class="job-left">
+                <h3 class="job-title">Systems Administrator</h3>
+                <div class="company">San Jose State University</div>
+                <div class="job-date">Previous Role</div>
+                <div class="job-location">San Jose, CA</div>
+              </div>
+            </div>
+
+            <div class="job-right">
+              <div class="bubble">Provided <strong>technical support</strong> for hardware, software, and workstation issues in a user-facing environment.</div>
+              <div class="bubble">Supported <strong>setup, troubleshooting, and maintenance</strong> of systems and devices across campus operations.</div>
+              <div class="bubble">Delivered customer-focused issue resolution while maintaining reliability and responsiveness.</div>
+              <div class="bubble">Contributed to stable day-to-day technical operations in a fast-paced support setting.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="healthcare-panel">
+        <div class="timeline">
+          <div class="job-card">
+            <div class="job-left-wrapper">
+              <div class="logo-circle">
+                <img src="images/creekview-logo.png" alt="Creekview logo" />
+              </div>
+
+              <div class="job-left">
+                <h3 class="job-title">Certified Nursing Assistant</h3>
+                <div class="company">Creekview Health Center</div>
+                <div class="job-date">Current</div>
+                <div class="job-location">Pleasanton, CA</div>
+              </div>
+            </div>
+
+            <div class="job-right">
+              <div class="bubble">Delivered bedside care for up to <strong>21 residents</strong> during overnight shifts.</div>
+              <div class="bubble">Assisted residents with <strong>ADLs</strong> including repositioning, toileting, ambulation, and routine care.</div>
+              <div class="bubble">Recorded and reported <strong>vital signs, intake/output, and patient observations</strong> to licensed nurses.</div>
+              <div class="bubble">Prepared rooms and equipment for admissions, transfers, and returning residents while maintaining readiness.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+							
+
+							
+							<!-- Work Experience OLD -->
 								<section>
 									<div class="experience-shell">
 										<div class="experience-section">
@@ -529,6 +633,27 @@
 			</div>
 
 		<!-- Scripts -->
+				<script>
+			  const tabButtons = document.querySelectorAll('.tab-button');
+			  const tabPanels = document.querySelectorAll('.tab-panel');
+			
+			  tabButtons.forEach(button => {
+			    button.addEventListener('click', () => {
+			      const selectedTab = button.dataset.tab;
+			
+			      tabButtons.forEach(btn => {
+			        btn.classList.remove('active');
+			        btn.setAttribute('aria-selected', 'false');
+			      });
+			
+			      tabPanels.forEach(panel => panel.classList.remove('active'));
+			
+			      button.classList.add('active');
+			      button.setAttribute('aria-selected', 'true');
+			      document.getElementById(selectedTab + '-panel').classList.add('active');
+			    });
+			  });
+			</script>
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
