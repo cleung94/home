@@ -2572,3 +2572,18 @@ button,
     border-radius: 14px;
   }
 }
+
+.tab-button {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+}
+
+.tab-button span {
+  width: 100%;
+  text-align: center;
+}
