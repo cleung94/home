@@ -5,7 +5,12 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+
 		<style>
+			#contact-page {
+				padding-top: 1.5em;
+			}
+
 			.contact-shell {
 				width: 100%;
 				display: flex;
@@ -95,15 +100,16 @@
 			.contact-card textarea {
 				background: rgba(255, 255, 255, 0.65);
 				border: 1px solid rgba(182, 199, 212, 0.75);
-				box-shadow: inset 0 1px 2px rgba(255,255,255,0.35);
+				box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.35);
 				color: #44515a;
+				border-radius: 12px;
 			}
 
 			.contact-card input[type="text"]:focus,
 			.contact-card input[type="email"]:focus,
 			.contact-card textarea:focus {
-				border-color: #4a6f86;
-				box-shadow: 0 0 0 3px rgba(74, 111, 134, 0.12);
+				border-color: #6b92ab;
+				box-shadow: 0 0 0 3px rgba(107, 146, 171, 0.16);
 			}
 
 			.contact-card textarea {
@@ -127,16 +133,13 @@
 				color: #70808a;
 			}
 
-			.contact-note strong {
-				color: #4a6f86;
-			}
-
 			.contact-card .button.primary,
 			.contact-card input[type="submit"].primary {
 				background: linear-gradient(135deg, #4a6f86 0%, #6b92ab 100%);
 				box-shadow: none;
 				color: #ffffff !important;
 				border: none;
+				border-radius: 12px;
 			}
 
 			.contact-card .button.primary:hover,
@@ -171,17 +174,26 @@
 			}
 		</style>
 	</head>
-	<body class="is-preload">
 
+	<body class="is-preload">
 		<div id="wrapper">
+
 			<div id="main">
 				<div class="inner">
 
 					<header id="header">
 						<a href="index.html" class="logo"><strong>CHRISTOPHER LEUNG</strong></a>
 						<ul class="icons">
-							<li><a href="https://github.com/cleung94" class="icon brands fa-github"><span class="label">Github</span></a></li>
-							<li><a href="https://www.linkedin.com/in/christopher-km-leung/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li>
+								<a href="https://github.com/cleung94" class="icon brands fa-github">
+									<span class="label">Github</span>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.linkedin.com/in/christopher-km-leung/" class="icon brands fa-linkedin">
+									<span class="label">LinkedIn</span>
+								</a>
+							</li>
 						</ul>
 					</header>
 
@@ -248,65 +260,46 @@
 
 				</div>
 			</div>
-		</div>
-		
-			<!-- Sidebar -->
-					<div id="sidebar">
-						<div class="inner">
 
-							<!-- Search -->
-								<section id="search" class="alt">
-									<form method="post" action="#">
-										<input type="text" name="query" id="query" placeholder="Search" />
-									</form>
-								</section>
+			<div id="sidebar">
+				<div class="inner">
 
-							<!-- Menu -->
-								<nav id="menu">
-									<header class="major">
-										<h2>Menu</h2>
-									</header>
-									<ul>
-										<li><a href="index.html">Homepage</a></li>
-										<li><a href="projects.html">Project Showcase</a></li>
-										<li><a href="elements.html">Elements</a></li>
-										<li>
-											<span class="opener">Blog</span>
-											<ul>
-												<li><a href="#">Lorem Dolor</a></li>
-												<li><a href="#">Ipsum Adipiscing</a></li>
-												<li><a href="#">Tempus Magna</a></li>
-												<li><a href="#">Feugiat Veroeros</a></li>
-											</ul>
-										</li>
-										<li><a href="contact-form.html">Contact Me</a></li>
-										<li><a href="#">Adipiscing</a></li>
-										<li>
-											<span class="opener">Another Submenu</span>
-											<ul>
-												<li><a href="#">Lorem Dolor</a></li>
-												<li><a href="#">Ipsum Adipiscing</a></li>
-												<li><a href="#">Tempus Magna</a></li>
-												<li><a href="#">Feugiat Veroeros</a></li>
-											</ul>
-										</li>
-										<li><a href="#">Maximus Erat</a></li>
-										<li><a href="#">Sapien Mauris</a></li>
-										<li><a href="#">Amet Lacinia</a></li>
-									</ul>
-								</nav>
+					<section id="search" class="alt">
+						<form method="post" action="#">
+							<input type="text" name="query" id="query" placeholder="Search" />
+						</form>
+					</section>
 
-							<!-- Footer -->
-								<footer id="footer">
-									<p class="copyright">&copy; © 2026 Christopher Leung. All rights reserved.</p>
-								</footer>
+					<nav id="menu">
+						<header class="major">
+							<h2>Menu</h2>
+						</header>
+						<ul>
+							<li><a href="index.html">Homepage</a></li>
+							<li><a href="projects.html">Project Showcase</a></li>
+							<li><a href="elements.html">Elements</a></li>
+							<li>
+								<span class="opener">Blog</span>
+								<ul>
+									<li><a href="#">Lorem Dolor</a></li>
+									<li><a href="#">Ipsum Adipiscing</a></li>
+									<li><a href="#">Tempus Magna</a></li>
+									<li><a href="#">Feugiat Veroeros</a></li>
+								</ul>
+							</li>
+							<li><a href="contact-form.html">Contact Me</a></li>
+						</ul>
+					</nav>
 
-						</div>
-					</div>
+					<footer id="footer">
+						<p class="copyright">&copy; © 2026 Christopher Leung. All rights reserved.</p>
+					</footer>
 
+				</div>
 			</div>
 
-		<!-- Scripts -->
+		</div>
+
 		<script src="assets/js/jquery.min.js"></script>
 		<script src="assets/js/browser.min.js"></script>
 		<script src="assets/js/breakpoints.min.js"></script>
