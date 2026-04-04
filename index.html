@@ -966,7 +966,7 @@
 <script>
   document.querySelectorAll('[data-tabs-root]').forEach((tabRoot) => {
     const buttons = tabRoot.querySelectorAll('[data-tab]');
-    const panels = tabRoot.querySelectorAll('.tab-panel');
+    const panels = tabRoot.querySelectorAll('.tab-panel, .credentials-tab-panel');
 
     buttons.forEach((button) => {
       button.addEventListener('click', () => {
@@ -984,7 +984,13 @@
         button.classList.add('active');
         button.setAttribute('aria-selected', 'true');
 
-        tabRoot.querySelector(`#${selected}-panel`)?.classList.add('active');
+        let targetPanel =
+          tabRoot.querySelector(`#${selected}-panel`) ||
+          tabRoot.querySelector(`#${selected}-panel-credentials`);
+
+        if (targetPanel) {
+          targetPanel.classList.add('active');
+        }
       });
     });
   });
