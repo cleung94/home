@@ -279,7 +279,7 @@
 								</section>
 
 <!-- Work Experience -->
-<section id="work-experience">
+<section id="work-experience" data-tabs-root>
   <div class="experience-shell">
     <div class="experience-section">
       <div class="experience-top">
@@ -306,7 +306,7 @@
       </div>
 
       <!-- Tech Work Experience -->
-      <div class="tab-panel active" id="tech-panel">
+     <div class="tab-panel active" id="tech-panel" role="tabpanel">
         <div class="timeline">
 
           <!-- Data Analyst II -->
@@ -398,7 +398,7 @@
       </div>
 
       <!-- Healthcare -->
-      <div class="tab-panel" id="healthcare-panel">
+     <div class="tab-panel" id="healthcare-panel" role="tabpanel">
         <div class="timeline">
 			
 			<!-- Creekview NOC Shift CNA -->
@@ -466,7 +466,7 @@
       </div>
 
       <!-- Other -->
-      <div class="tab-panel" id="other-panel">
+      <div class="tab-panel" id="other-panel" role="tabpanel">
         <div class="timeline">
           <div class="job-card">
             <div class="job-left-wrapper">
@@ -966,7 +966,7 @@
 <script>
   document.querySelectorAll('[data-tabs-root]').forEach((tabRoot) => {
     const buttons = tabRoot.querySelectorAll('[data-tab]');
-    const panels = tabRoot.querySelectorAll('[role="tabpanel"]');
+    const panels = tabRoot.querySelectorAll('.tab-panel');
 
     buttons.forEach((button) => {
       button.addEventListener('click', () => {
@@ -984,15 +984,7 @@
         button.classList.add('active');
         button.setAttribute('aria-selected', 'true');
 
-        if (selected === 'technology') {
-          tabRoot.querySelector('#technology-panel')?.classList.add('active');
-        } else if (selected === 'healthcare') {
-          tabRoot.querySelector('#healthcare-panel-credentials')?.classList.add('active');
-        } else if (selected === 'other') {
-          tabRoot.querySelector('#other-panel')?.classList.add('active');
-        } else if (selected === 'tech') {
-          tabRoot.querySelector('#tech-panel')?.classList.add('active');
-        }
+        tabRoot.querySelector(`#${selected}-panel`)?.classList.add('active');
       });
     });
   });
