@@ -1,197 +1,259 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-<title>Contact | Christopher Leung</title>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" href="assets/css/main.css" />
+	<head>
+		<title>Contact | Christopher Leung</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<style>
+			.contact-shell {
+				width: 100%;
+				display: flex;
+				justify-content: center;
+			}
 
-<style>
+			.contact-card {
+				width: min(100%, 980px);
+				margin: 0 auto;
+				padding: clamp(24px, 2.4vw, 40px);
+				border-radius: 24px;
+				background: rgba(255, 255, 255, 0.58);
+				backdrop-filter: blur(18px);
+				-webkit-backdrop-filter: blur(18px);
+				border: 1px solid rgba(255, 255, 255, 0.55);
+				box-shadow:
+					0 20px 45px rgba(74, 111, 134, 0.10),
+					inset 0 1px 0 rgba(255, 255, 255, 0.65);
+				position: relative;
+				overflow: hidden;
+			}
 
-.contact-wrapper{
-display:flex;
-justify-content:center;
-margin-top:40px;
-}
+			.contact-card::before {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background:
+					radial-gradient(circle at top left, rgba(74, 111, 134, 0.10), transparent 32%),
+					radial-gradient(circle at bottom right, rgba(111, 146, 168, 0.10), transparent 28%);
+				pointer-events: none;
+			}
 
-.contact-card{
+			.contact-card > * {
+				position: relative;
+				z-index: 1;
+			}
 
-width:min(900px,100%);
-padding:40px;
+			.contact-header {
+				text-align: center;
+				margin-bottom: 2.25em;
+			}
 
-border-radius:20px;
+			.contact-kicker {
+				margin: 0 0 0.6em 0;
+				font-size: 0.82em;
+				font-weight: 700;
+				letter-spacing: 0.16em;
+				text-transform: uppercase;
+				color: #5f7f93;
+			}
 
-background:rgba(255,255,255,0.6);
+			.contact-header h1 {
+				margin: 0 0 0.3em 0;
+				font-size: clamp(2.1rem, 4vw, 3rem);
+				color: #3d4449;
+			}
 
-backdrop-filter:blur(18px);
--webkit-backdrop-filter:blur(18px);
+			.contact-header p {
+				max-width: 680px;
+				margin: 0 auto;
+				color: #6f7e88;
+			}
 
-border:1px solid rgba(255,255,255,0.7);
+			.contact-form-grid {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 1.25em;
+			}
 
-box-shadow:
-0 15px 35px rgba(74,111,134,0.15);
+			.contact-field {
+				display: flex;
+				flex-direction: column;
+			}
 
-}
+			.contact-field.full {
+				grid-column: 1 / -1;
+			}
 
-.contact-title{
-text-align:center;
-margin-bottom:35px;
-}
+			.contact-field label {
+				margin-bottom: 0.7em;
+				font-weight: 700;
+				color: #4a5963;
+			}
 
-.contact-title h1{
-color:#4a6f86;
-margin-bottom:10px;
-}
+			.contact-card input[type="text"],
+			.contact-card input[type="email"],
+			.contact-card textarea {
+				background: rgba(255, 255, 255, 0.65);
+				border: 1px solid rgba(182, 199, 212, 0.75);
+				box-shadow: inset 0 1px 2px rgba(255,255,255,0.35);
+				color: #44515a;
+			}
 
-.contact-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
-}
+			.contact-card input[type="text"]:focus,
+			.contact-card input[type="email"]:focus,
+			.contact-card textarea:focus {
+				border-color: #4a6f86;
+				box-shadow: 0 0 0 3px rgba(74, 111, 134, 0.12);
+			}
 
-.contact-field{
-display:flex;
-flex-direction:column;
-}
+			.contact-card textarea {
+				min-height: 220px;
+				padding-top: 0.9em;
+				resize: vertical;
+			}
 
-.contact-field.full{
-grid-column:1 / -1;
-}
+			.contact-actions {
+				margin-top: 1.75em;
+				display: flex;
+				flex-wrap: wrap;
+				gap: 1em;
+				align-items: center;
+				justify-content: space-between;
+			}
 
-.contact-field label{
-font-weight:600;
-margin-bottom:6px;
-}
+			.contact-note {
+				margin: 0;
+				font-size: 0.95em;
+				color: #70808a;
+			}
 
-.contact-field input,
-.contact-field textarea{
+			.contact-note strong {
+				color: #4a6f86;
+			}
 
-background:rgba(255,255,255,0.7);
-border:1px solid #d9e2e8;
+			.contact-card .button.primary,
+			.contact-card input[type="submit"].primary {
+				background: linear-gradient(135deg, #4a6f86 0%, #6b92ab 100%);
+				box-shadow: none;
+				color: #ffffff !important;
+				border: none;
+			}
 
-padding:10px;
-border-radius:6px;
+			.contact-card .button.primary:hover,
+			.contact-card input[type="submit"].primary:hover {
+				background: linear-gradient(135deg, #43667b 0%, #6187a0 100%);
+			}
 
-}
+			@media screen and (max-width: 736px) {
+				.contact-form-grid {
+					grid-template-columns: 1fr;
+				}
 
-.contact-field textarea{
-min-height:180px;
-resize:vertical;
-}
+				.contact-actions {
+					flex-direction: column;
+					align-items: stretch;
+				}
 
-.send-btn{
+				.contact-actions .actions {
+					width: 100%;
+					margin: 0;
+				}
 
-margin-top:25px;
-display:flex;
-justify-content:center;
+				.contact-actions .actions li {
+					width: 100%;
+				}
 
-}
+				.contact-actions .button,
+				.contact-actions input[type="submit"] {
+					width: 100%;
+					text-align: center;
+				}
+			}
+		</style>
+	</head>
+	<body class="is-preload">
 
-.send-btn button{
+		<div id="wrapper">
+			<div id="main">
+				<div class="inner">
 
-background:#4a6f86;
-color:white;
+					<header id="header">
+						<a href="index.html" class="logo"><strong>CHRISTOPHER LEUNG</strong></a>
+						<ul class="icons">
+							<li><a href="https://github.com/cleung94" class="icon brands fa-github"><span class="label">Github</span></a></li>
+							<li><a href="https://www.linkedin.com/in/christopher-km-leung/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+						</ul>
+					</header>
 
-border:none;
-padding:12px 30px;
+					<section id="contact-page">
+						<div class="contact-shell">
+							<div class="contact-card">
+								<div class="contact-header">
+									<p class="contact-kicker">Get In Touch</p>
+									<h1>Contact Me</h1>
+									<p>
+										If you would like to connect for personal purposes, professional opportunities,
+										or questions about my resume, feel free to send me a message below.
+									</p>
+								</div>
 
-border-radius:25px;
+								<form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+									<input type="hidden" name="_subject" value="New Portfolio Contact Form Submission" />
 
-font-size:16px;
+									<div class="contact-form-grid">
+										<div class="contact-field">
+											<label for="first-name">First Name</label>
+											<input type="text" name="First Name" id="first-name" placeholder="Your first name" required />
+										</div>
 
-cursor:pointer;
+										<div class="contact-field">
+											<label for="last-name">Last Name</label>
+											<input type="text" name="Last Name" id="last-name" placeholder="Your last name" required />
+										</div>
 
-transition:all .25s ease;
+										<div class="contact-field full">
+											<label for="email-address">Email Address</label>
+											<input type="email" name="Email Address" id="email-address" placeholder="you@example.com" required />
+										</div>
 
-}
+										<div class="contact-field full">
+											<label for="company">Company</label>
+											<input type="text" name="Company" id="company" placeholder="Your company or organization" />
+										</div>
 
-.send-btn button:hover{
-background:#3e5e71;
-}
+										<div class="contact-field full">
+											<label for="message">Body of Text</label>
+											<textarea
+												name="Message"
+												id="message"
+												placeholder="Write your message here..."
+												required
+											></textarea>
+										</div>
+									</div>
 
-@media(max-width:700px){
+									<div class="contact-actions">
+										<p class="contact-note">
+											Submit your message here and I’ll receive it privately.
+										</p>
 
-.contact-grid{
-grid-template-columns:1fr;
-}
+										<ul class="actions">
+											<li><input type="submit" value="Send Message" class="primary" /></li>
+										</ul>
+									</div>
+								</form>
+							</div>
+						</div>
+					</section>
 
-}
+				</div>
+			</div>
+		</div>
 
-</style>
-
-</head>
-
-<body>
-
-<div id="wrapper">
-
-<div id="main">
-<div class="inner">
-
-<header id="header">
-<a href="index.html" class="logo"><strong>Christopher Leung</strong></a>
-</header>
-
-<section>
-
-<div class="contact-wrapper">
-
-<div class="contact-card">
-
-<div class="contact-title">
-<h1>Contact Me</h1>
-<p>If you'd like to reach out regarding opportunities, collaborations, or questions about my work.</p>
-</div>
-
-<form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-
-<div class="contact-grid">
-
-<div class="contact-field">
-<label>First Name</label>
-<input type="text" name="firstName" required>
-</div>
-
-<div class="contact-field">
-<label>Last Name</label>
-<input type="text" name="lastName" required>
-</div>
-
-<div class="contact-field full">
-<label>Email Address</label>
-<input type="email" name="email" required>
-</div>
-
-<div class="contact-field full">
-<label>Company</label>
-<input type="text" name="company">
-</div>
-
-<div class="contact-field full">
-<label>Message</label>
-<textarea name="message" required></textarea>
-</div>
-
-</div>
-
-<input type="hidden" name="_subject" value="New Portfolio Contact Message">
-
-<div class="send-btn">
-<button type="submit">Send Message</button>
-</div>
-
-</form>
-
-</div>
-
-</div>
-
-</section>
-
-</div>
-</div>
-
-</div>
-
-</body>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+	</body>
 </html>
