@@ -3467,3 +3467,140 @@ body.blog-tone #main {
     line-height: 1.8;
   }
 }
+
+/* =========================================
+   Luxe Blog Post Template
+========================================= */
+
+.blog-post-luxe {
+  display: grid;
+  grid-template-columns: 1.2fr 0.9fr;
+  align-items: stretch;
+  margin: 0 0 3.5em 0;
+  background: #ece6de;
+  overflow: hidden;
+}
+
+.blog-post-luxe-media {
+  min-height: 34em;
+}
+
+.blog-post-luxe-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.93) contrast(0.98) brightness(0.96);
+}
+
+.blog-post-luxe-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4em 4em 3.5em 4em;
+  background: #e9e1d7;
+  color: #2e2a27;
+}
+
+.blog-post-luxe-panel h1 {
+  margin: 0 0 0.4em 0;
+  font-size: clamp(2.6rem, 4.5vw, 4.8rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #231f1c;
+}
+
+.blog-post-meta-luxe {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2em;
+  margin-top: 1.5em;
+  padding-top: 1.2em;
+  border-top: 1px solid rgba(46, 42, 39, 0.15);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.72em;
+  font-weight: 700;
+  color: #6c6259;
+}
+
+.blog-post-content-luxe {
+  max-width: 52em;
+  margin: 0 auto 2em auto;
+  padding: 0;
+}
+
+.blog-post-content-luxe p,
+.blog-post-content-luxe ul,
+.blog-post-content-luxe ol {
+  line-height: 1.95;
+  color: #5d554e;
+  font-size: 1rem;
+}
+
+.blog-post-content-luxe h2,
+.blog-post-content-luxe h3 {
+  margin-top: 2.4em;
+  margin-bottom: 0.8em;
+  color: #231f1c;
+}
+
+.blog-post-content-luxe blockquote {
+  margin: 2em 0;
+  padding: 1.25em 1.5em;
+  border-left: 2px solid #8d8175;
+  background: #f2ece5;
+  color: #4f4740;
+}
+
+.blog-post-nav-luxe {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  margin-top: 2.5em;
+}
+
+.blog-post-nav-luxe .button {
+  background: #f5f1eb;
+  box-shadow: none;
+}
+
+.blog-post-nav-luxe .button:hover {
+  background: #2e2a27;
+  color: #f5f1eb !important;
+}
+
+@media screen and (max-width: 1100px) {
+  .blog-post-luxe {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-post-luxe-media {
+    min-height: 22em;
+  }
+
+  .blog-post-luxe-panel {
+    padding: 3em 2.25em;
+  }
+}
+
+@media screen and (max-width: 736px) {
+  .blog-post-luxe-media {
+    min-height: 17em;
+  }
+
+  .blog-post-luxe-panel {
+    padding: 2.25em 1.5em;
+  }
+
+  .blog-post-luxe-panel h1 {
+    font-size: 2.3rem;
+  }
+
+  .blog-post-content-luxe p,
+  .blog-post-content-luxe ul,
+  .blog-post-content-luxe ol {
+    font-size: 0.98rem;
+    line-height: 1.85;
+  }
+}
