@@ -3604,3 +3604,38 @@ body.blog-tone #main {
     line-height: 1.85;
   }
 }
+
+.pagination{
+display:flex;
+justify-content:center;
+gap:0.8em;
+margin-top:3em;
+flex-wrap:wrap;
+}
+
+.page-btn{
+padding:0.7em 1em;
+border:1px solid rgba(46,42,39,0.2);
+background:#f7f9fb;
+text-decoration:none;
+font-size:0.8em;
+letter-spacing:0.1em;
+text-transform:uppercase;
+color:#2e2a27;
+transition:all 0.2s ease;
+}
+
+.page-btn:hover{
+background:#2e2a27;
+color:#fff;
+}
+
+.page-btn.active{
+background:#2e2a27;
+color:#fff;
+}
+
+.prev-btn,
+.next-btn{
+font-weight:600;
+}
