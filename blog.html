@@ -1,190 +1,82 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>Blog | Christopher Leung</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="is-preload">
+  <head>
+    <title>Blog | Christopher Leung</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body class="is-preload" data-blog-tag="all">
 
-		<div id="wrapper">
+    <div id="wrapper">
+      <div id="main">
+        <div class="inner">
 
-			<div id="main">
-				<div class="inner">
+          <header id="header">
+            <a href="index.html" class="logo"><strong>Christopher Leung</strong> Blog</a>
+            <ul class="icons">
+              <li><a href="https://github.com/cleung94" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+              <li><a href="https://www.linkedin.com/in/christopher-km-leung/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+            </ul>
+          </header>
 
-					<header id="header">
-						<a href="index.html" class="logo"><strong>Christopher Leung</strong> Blog</a>
-						<ul class="icons">
-							<li><a href="https://github.com/cleung94" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-							<li><a href="https://www.linkedin.com/in/christopher-km-leung/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-						</ul>
-					</header>
+          <section class="blog-hero">
+            <span class="blog-kicker">Personal / Professional Writing</span>
+            <h1 data-blog-title>My Blog</h1>
+            <p class="blog-subtitle" data-blog-subtitle>
+              A collection of posts about technology, healthcare, restaurants, and hobbies.
+            </p>
+          </section>
 
-					<section class="blog-hero">
-						<span class="blog-kicker">Personal / Professional Writing</span>
-						<h1>My Blog</h1>
-						<p class="blog-subtitle">
-							A collection of posts about technology, healthcare, restaurants, and hobbies.
-							Browse everything here, or jump into a category from the sidebar.
-						</p>
-					</section>
+          <section>
+            <div class="blog-toolbar">
+              <div class="blog-filter-group">
+                <a href="#" class="blog-chip active" data-filter="all">All Posts</a>
+                <a href="#" class="blog-chip" data-filter="technology">Technology</a>
+                <a href="#" class="blog-chip" data-filter="healthcare">Healthcare</a>
+                <a href="#" class="blog-chip" data-filter="restaurant">Restaurant</a>
+                <a href="#" class="blog-chip" data-filter="hobbies">Hobbies</a>
+              </div>
+            </div>
 
-					<section>
-						<div class="blog-toolbar">
-							<div class="blog-filter-group">
-								<a href="#" class="blog-chip active" data-filter="all">All Posts</a>
-								<a href="#" class="blog-chip" data-filter="technology">Technology</a>
-								<a href="#" class="blog-chip" data-filter="healthcare">Healthcare</a>
-								<a href="#" class="blog-chip" data-filter="restaurant">Restaurant</a>
-								<a href="#" class="blog-chip" data-filter="hobbies">Hobbies</a>
-							</div>
-						</div>
+            <div class="blog-grid" id="blogGrid"></div>
 
-						<div class="blog-grid" id="blogGrid">
+            <div class="blog-empty" id="blogEmpty">
+              No posts match that tag yet.
+            </div>
+          </section>
 
-							<a href="blog-post-enterprise-security.html" class="blog-card" data-category="technology">
-								<div class="blog-card-image">
-									<img src="images/blog-tech-1.jpg" alt="Technology blog cover">
-									<span class="blog-tag-badge">Technology</span>
-								</div>
-								<div class="blog-card-body">
-									<div class="blog-card-meta">April 2026</div>
-									<h3 class="blog-card-title">What Enterprise Security Work Taught Me About Problem Solving</h3>
-									<p class="blog-card-excerpt">
-										A reflection on technical systems, troubleshooting, standards, and learning from large-scale environments.
-									</p>
-									<span class="blog-card-link">Read Post →</span>
-								</div>
-							</a>
+        </div>
+      </div>
 
-							<a href="blog-post-cna-nights.html" class="blog-card" data-category="healthcare">
-								<div class="blog-card-image">
-									<img src="images/blog-healthcare-1.jpg" alt="Healthcare blog cover">
-									<span class="blog-tag-badge">Healthcare</span>
-								</div>
-								<div class="blog-card-body">
-									<div class="blog-card-meta">April 2026</div>
-									<h3 class="blog-card-title">Working Nights as a CNA: What I Learned</h3>
-									<p class="blog-card-excerpt">
-										A post about observation, patience, teamwork, and the meaning I found in patient care.
-									</p>
-									<span class="blog-card-link">Read Post →</span>
-								</div>
-							</a>
+      <div id="sidebar">
+        <div class="inner">
+          <nav id="menu">
+            <header class="major"><h2>Menu</h2></header>
+            <ul>
+              <li><a href="index.html">Homepage</a></li>
+              <li>
+                <span class="opener active">Blog</span>
+                <ul>
+                  <li><a href="blog.html">All Blog Posts</a></li>
+                  <li><a href="blog-technology.html">Technology</a></li>
+                  <li><a href="blog-healthcare.html">Healthcare</a></li>
+                  <li><a href="blog-restaurant.html">Restaurant</a></li>
+                  <li><a href="blog-hobbies.html">Hobbies</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
 
-							<a href="blog-post-restaurant-review-template.html" class="blog-card" data-category="restaurant">
-								<div class="blog-card-image">
-									<img src="images/blog-restaurant-1.jpg" alt="Restaurant blog cover">
-									<span class="blog-tag-badge">Restaurant</span>
-								</div>
-								<div class="blog-card-body">
-									<div class="blog-card-meta">April 2026</div>
-									<h3 class="blog-card-title">How I Like to Write Restaurant Reviews</h3>
-									<p class="blog-card-excerpt">
-										A clean format for reviewing food, service, atmosphere, and overall experience.
-									</p>
-									<span class="blog-card-link">Read Post →</span>
-								</div>
-							</a>
-
-							<a href="blog-post-hobbies-balance.html" class="blog-card" data-category="hobbies">
-								<div class="blog-card-image">
-									<img src="images/blog-hobbies-1.jpg" alt="Hobbies blog cover">
-									<span class="blog-tag-badge">Hobbies</span>
-								</div>
-								<div class="blog-card-body">
-									<div class="blog-card-meta">April 2026</div>
-									<h3 class="blog-card-title">Why Hobbies Matter More Than People Think</h3>
-									<p class="blog-card-excerpt">
-										A personal piece on games, interests, and why hobbies help keep life balanced and meaningful.
-									</p>
-									<span class="blog-card-link">Read Post →</span>
-								</div>
-							</a>
-
-						</div>
-
-						<div class="blog-empty" id="blogEmpty">
-							No posts match that tag yet.
-						</div>
-					</section>
-
-				</div>
-			</div>
-
-			<div id="sidebar">
-				<div class="inner">
-
-					<section id="search" class="alt">
-						<form method="post" action="#">
-							<input type="text" name="query" id="query" placeholder="Search" />
-						</form>
-					</section>
-
-					<nav id="menu">
-						<header class="major">
-							<h2>Menu</h2>
-						</header>
-						<ul>
-							<li><a href="index.html">Homepage</a></li>
-							<li><a href="projects.html">Project Showcase</a></li>
-							<li>
-								<span class="opener active">Blog</span>
-								<ul>
-									<li><a href="blog.html">All Blog Posts</a></li>
-									<li><a href="blog-technology.html">Technology</a></li>
-									<li><a href="blog-healthcare.html">Healthcare</a></li>
-									<li><a href="blog-restaurant.html">Restaurant</a></li>
-									<li><a href="blog-hobbies.html">Hobbies</a></li>
-								</ul>
-							</li>
-							<li><a href="contact-form.html">Contact</a></li>
-						</ul>
-					</nav>
-
-					<footer id="footer">
-						<p class="copyright">&copy; Christopher Leung. All rights reserved.</p>
-					</footer>
-
-				</div>
-			</div>
-
-		</div>
-
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/browser.min.js"></script>
-		<script src="assets/js/breakpoints.min.js"></script>
-		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js"></script>
-
-		<script>
-			const filterButtons = document.querySelectorAll('.blog-chip');
-			const cards = document.querySelectorAll('.blog-card');
-			const emptyState = document.getElementById('blogEmpty');
-
-			filterButtons.forEach((button) => {
-				button.addEventListener('click', function (e) {
-					e.preventDefault();
-
-					const filter = this.dataset.filter;
-					let visible = 0;
-
-					filterButtons.forEach((btn) => btn.classList.remove('active'));
-					this.classList.add('active');
-
-					cards.forEach((card) => {
-						const category = card.dataset.category;
-						const show = filter === 'all' || filter === category;
-
-						card.style.display = show ? 'flex' : 'none';
-						if (show) visible++;
-					});
-
-					emptyState.style.display = visible === 0 ? 'block' : 'none';
-				});
-			});
-		</script>
-
-	</body>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/blog-data.js"></script>
+    <script src="assets/js/blog-render.js"></script>
+  </body>
 </html>
