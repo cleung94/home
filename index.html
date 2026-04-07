@@ -1,277 +1,886 @@
 <!DOCTYPE HTML>
+<!--
+    Editorial by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html>
-	<head>
-		<title>Christopher Leung</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="is-preload">
+    <head>
+        <title>Christopher Leung</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <style>
+            * {
+                box-sizing: border-box;
+            }
 
-		<div id="wrapper">
+            .experience-shell {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+            }
 
-			<div id="main">
-				<div class="inner">
+            .experience-section {
+                width: min(100%, 1120px);
+                margin: 0 auto;
+                background: #ffffff;
+                border: 1px solid #e0e0e0;
+                border-radius: 16px;
+                padding: clamp(22px, 2.2vw, 36px);
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+            }
 
-					<header id="header">
-						<a href="index.html" class="logo"><strong>Christopher Leung</strong> Portfolio</a>
-						<ul class="icons">
-							<li><a href="https://github.com/cleung94" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-							<li><a href="https://www.linkedin.com/in/christopher-km-leung/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-						</ul>
-					</header>
+            .experience-title {
+                font-size: clamp(24px, 2vw, 32px);
+                font-weight: 700;
+                color: #0a66c2;
+                margin: 0 0 30px;
+                padding-bottom: 12px;
+                border-bottom: 2px solid #0a66c2;
+            }
 
-					<section class="blog-hero">
-						<div class="row gtr-200">
-							<div class="col-7 col-12-medium">
-								<header class="main">
-									<h1>Christopher Leung</h1>
-									<p>
-										A portfolio blending technology, healthcare, personal growth, and creative work.
-									</p>
-								</header>
+            .timeline {
+                position: relative;
+            }
 
-								<p>
-									I’m a professional with experience across physical security systems, technical operations,
-									data-driven process improvement, and healthcare support. This site is a place to share
-									my work experience, projects, writing, and the different paths that have shaped how I
-									approach meaningful work.
-								</p>
+            .timeline::before {
+                content: "";
+                position: absolute;
+                left: 24px;
+                top: 0;
+                bottom: 0;
+                width: 3px;
+                background: linear-gradient(to bottom, #0a66c2 0%, #d0d7de 100%);
+                border-radius: 999px;
+            }
 
-								<ul class="actions">
-									<li><a href="projects.html" class="button big">View Projects</a></li>
-									<li><a href="blog.html" class="button big">Visit Blog</a></li>
-								</ul>
-							</div>
+            .job-card {
+                position: relative;
+                display: grid;
+                grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+                gap: clamp(18px, 2vw, 28px);
+                margin-bottom: 32px;
+                align-items: start;
+            }
 
-							<div class="col-5 col-12-medium">
-								<span class="image fit">
-									<img src="images/professionalpic.jpg" alt="Christopher Leung" />
-								</span>
-							</div>
-						</div>
-					</section>
+            .job-card:last-child {
+                margin-bottom: 0;
+            }
 
-					<section>
-						<header class="major">
-							<h2>Work Experience</h2>
-						</header>
+            .job-left-wrapper {
+                position: relative;
+                padding-left: 48px;
+                min-width: 0;
+            }
 
-						<div data-tabs-root>
-							<div style="display:flex; flex-wrap:wrap; gap:0.75em; margin-bottom:1.5em;">
-								<button class="button small active" type="button" data-tab="tech-experience">Technology</button>
-								<button class="button small" type="button" data-tab="healthcare-experience">Healthcare</button>
-							</div>
+            .job-left {
+                position: relative;
+                background: #f8fafc;
+                border: 1px solid #dce6f1;
+                border-radius: 14px;
+                padding: 22px 20px 22px 34px;
+                min-height: 120px;
+                min-width: 0;
+                transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+            }
 
-							<div id="tech-experience" role="tabpanel">
-								<div class="posts">
+            .job-left:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 24px rgba(10, 102, 194, 0.10);
+                border-color: #b9d3ee;
+            }
 
-									<article class="blog-card" style="padding: 1.5em;">
-										<h3>Meta</h3>
-										<p><strong>Data Analyst II / Physical Security QA</strong></p>
-										<p>
-											Analyzed physical security system performance, installation quality, device health,
-											and compliance across enterprise environments.
-										</p>
-										<ul>
-											<li>Supported commissioning validation and post-deployment quality review.</li>
-											<li>Created reporting tools, documentation, and standards updates.</li>
-											<li>Worked across teams to improve operational consistency and technical quality.</li>
-										</ul>
-									</article>
+            .logo-circle {
+                position: absolute;
+                left: 0;
+                top: 18px;
+                width: 50px;
+                height: 50px;
+                background: #ffffff;
+                border: 2px solid #0a66c2;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+                z-index: 2;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+                transition: transform 0.25s ease, box-shadow 0.25s ease;
+            }
 
-									<article class="blog-card" style="padding: 1.5em;">
-										<h3>Security Systems / Technical Operations</h3>
-										<p><strong>Systems, QA, and Cross-Functional Support</strong></p>
-										<p>
-											Worked with enterprise security platforms and field hardware in technical,
-											quality-focused, and documentation-heavy environments.
-										</p>
-										<ul>
-											<li>Experience around CCURE 9000, Genetec, and operational workflows.</li>
-											<li>Reviewed installations, troubleshooting paths, and process improvements.</li>
-											<li>Translated technical needs into practical and scalable documentation.</li>
-										</ul>
-									</article>
+            .job-left-wrapper:hover .logo-circle {
+                transform: scale(1.06);
+                box-shadow: 0 8px 18px rgba(10, 102, 194, 0.18);
+            }
 
-								</div>
-							</div>
+            .logo-circle img {
+                max-width: 70%;
+                max-height: 70%;
+                width: auto;
+                height: auto;
+                object-fit: contain;
+                display: block;
+            }
 
-							<div id="healthcare-experience" role="tabpanel" hidden>
-								<div class="posts">
+            .job-title {
+                font-size: clamp(17px, 1.2vw, 20px);
+                font-weight: 700;
+                margin: 0 0 6px;
+                line-height: 1.35;
+                color: #1d2226;
+            }
 
-									<article class="blog-card" style="padding: 1.5em;">
-										<h3>Creekview Health Care Center</h3>
-										<p><strong>Certified Nursing Assistant</strong></p>
-										<p>
-											Supported residents with daily care needs while helping maintain a safe,
-											respectful, and patient-centered environment.
-										</p>
-										<ul>
-											<li>Assisted with ADLs including hygiene, dressing, grooming, toileting, and feeding.</li>
-											<li>Performed safety rounding, answered call lights, and reported observations.</li>
-											<li>Recorded vital signs, intake/output, and care-related updates.</li>
-										</ul>
-									</article>
+            .company {
+                font-size: 15px;
+                font-weight: 600;
+                color: #0a66c2;
+                margin-bottom: 8px;
+            }
 
-									<article class="blog-card" style="padding: 1.5em;">
-										<h3>Healthcare Transition</h3>
-										<p><strong>Service-Oriented Growth</strong></p>
-										<p>
-											Transitioned from technical operations into healthcare with a focus on meaningful work,
-											patient support, and continued professional growth.
-										</p>
-										<ul>
-											<li>Brought observation, communication, and workflow discipline into clinical support.</li>
-											<li>Developed hands-on experience in direct resident care.</li>
-											<li>Built a stronger foundation for broader healthcare opportunities.</li>
-										</ul>
-									</article>
+            .job-date,
+            .job-location {
+                font-size: 14px;
+                color: #5f6b75;
+                line-height: 1.5;
+            }
 
-								</div>
-							</div>
-						</div>
-					</section>
+            .job-right {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 14px;
+                align-content: flex-start;
+                min-width: 0;
+            }
 
-					<section>
-						<header class="major">
-							<h2>Licenses, Certifications & Skills</h2>
-						</header>
+            .bubble {
+                background: #f4f8fb;
+                border: 1px solid #d6e4f0;
+                border-radius: 12px;
+                padding: 14px 16px;
+                font-size: 14px;
+                line-height: 1.55;
+                color: #1d2226;
+                flex: 1 1 calc(50% - 14px);
+                min-width: 220px;
+                max-width: 100%;
+                overflow-wrap: break-word;
+                word-break: break-word;
+                transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+            }
 
-						<div data-tabs-root>
-							<div style="display:flex; flex-wrap:wrap; gap:0.75em; margin-bottom:1.5em;">
-								<button class="button small active" type="button" data-tab="technology-panel">Technology</button>
-								<button class="button small" type="button" data-tab="healthcare-panel">Healthcare</button>
-								<button class="button small" type="button" data-tab="other-panel">Other</button>
-							</div>
+            .bubble:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 18px rgba(10, 102, 194, 0.10);
+                border-color: #bfd7ef;
+                background: #f8fbfe;
+            }
 
-							<div id="technology-panel" role="tabpanel">
-								<div class="features">
-									<article class="blog-card" style="padding:1.5em;">
-										<h3>Platforms</h3>
-										<p>Experience around CCURE 9000, Genetec, Traka, and enterprise physical security workflows.</p>
-									</article>
+            .bubble strong {
+                color: #0a66c2;
+            }
 
-									<article class="blog-card" style="padding:1.5em;">
-										<h3>Technical Focus</h3>
-										<p>Commissioning support, QA validation, troubleshooting, reporting, and process documentation.</p>
-									</article>
+            @media screen and (max-width: 1280px) {
+                .experience-section {
+                    width: 100%;
+                }
+            }
 
-									<article class="blog-card" style="padding:1.5em;">
-										<h3>Workflow Tools</h3>
-										<p>Operational resources, standards updates, cross-functional communication, and structured reporting.</p>
-									</article>
-								</div>
-							</div>
+            @media screen and (max-width: 980px) {
+                .job-card {
+                    grid-template-columns: 1fr;
+                    gap: 16px;
+                }
 
-							<div id="healthcare-panel" role="tabpanel" hidden>
-								<div class="features">
-									<article class="blog-card" style="padding:1.5em;">
-										<h3>Certifications</h3>
-										<p>Certified Nursing Assistant with hands-on resident care experience.</p>
-										<p><strong>CNA • BLS</strong></p>
-									</article>
+                .job-right {
+                    padding-left: 48px;
+                }
 
-									<article class="blog-card" style="padding:1.5em;">
-										<h3>Care Skills</h3>
-										<p>ADLs, vitals, repositioning, ambulation support, safety rounding, and charting support.</p>
-									</article>
+                .bubble {
+                    flex: 1 1 100%;
+                    min-width: 0;
+                }
+            }
 
-									<article class="blog-card" style="padding:1.5em;">
-										<h3>Workflow Strengths</h3>
-										<p>Calm communication, observation, documentation, teamwork, and dependable patient support.</p>
-									</article>
-								</div>
-							</div>
+            @media screen and (max-width: 640px) {
+                .experience-section {
+                    padding: 18px;
+                }
 
-							<div id="other-panel" role="tabpanel" hidden>
-								<div class="features">
-									<article class="blog-card" style="padding:1.5em;">
-										<h3>Communication</h3>
-										<p>Professional writing, documentation polish, concise follow-up, and thoughtful messaging.</p>
-									</article>
+                .job-left-wrapper,
+                .job-right {
+                    padding-left: 40px;
+                }
 
-									<article class="blog-card" style="padding:1.5em;">
-										<h3>Interests</h3>
-										<p>Gaming, photography, writing, portfolio building, and personal creative projects.</p>
-									</article>
+                .timeline::before {
+                    left: 20px;
+                }
 
-									<article class="blog-card" style="padding:1.5em;">
-										<h3>Approach</h3>
-										<p>I value meaningful work, practical problem solving, and creating things that help people.</p>
-									</article>
-								</div>
-							</div>
-						</div>
-					</section>
+                .logo-circle {
+                    width: 44px;
+                    height: 44px;
+                }
+            }
+        </style>
+    </head>
+    <body class="is-preload">
 
-				</div>
-			</div>
+        <!-- Wrapper -->
+            <div id="wrapper">
 
-			<div id="sidebar">
-				<div class="inner">
+                <!-- Main -->
+                    <div id="main">
+                        <div class="inner">
 
-					<section id="search" class="alt">
-						<form method="post" action="#">
-							<input type="text" name="query" id="query" placeholder="Search" />
-						</form>
-					</section>
+                            <!-- Header -->
+                                <header id="header">
+                                    <ul class="icons">
+                                        <li><a href="https://github.com/cleung94" class="icon brands fa-github"><span class="label">Github</span></a></li>
+                                        <li><a href="https://www.linkedin.com/in/christopher-km-leung/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+                                    </ul>
+                                </header>
 
-					<nav id="menu">
-						<header class="major">
-							<h2>Menu</h2>
-						</header>
-						<ul>
-							<li><a href="index.html">Homepage</a></li>
-							<li><a href="projects.html">Project Showcase</a></li>
-							<li>
-								<span class="opener">Blog</span>
-								<ul>
-									<li><a href="blog.html">All Blog Posts</a></li>
-									<li><a href="blog-technology.html">Technology</a></li>
-									<li><a href="blog-healthcare.html">Healthcare</a></li>
-									<li><a href="blog-restaurant.html">Restaurant</a></li>
-									<li><a href="blog-hobbies.html">Hobbies</a></li>
-								</ul>
-							</li>
-							<li><a href="contact-form.html">Contact</a></li>
-						</ul>
-					</nav>
+                            <!-- Banner -->
+                                <section id="banner">
+                                    <div class="content">
+                                        <header>
+                                            <h1>Hello! I am Christopher</h1>
+                                            <p>About Me</p>
+                                        </header>
+                                        <p>
+                                            I am a technology and operations professional with experience supporting large-scale
+                                            enterprise physical security systems and data-driven quality assurance initiatives.
+                                            I specialize in analyzing system performance, developing operational standards,
+                                            and building reporting tools that improve efficiency and visibility across complex environments.
+                                        </p>
+                                        <p>
+                                            In my current role, I collaborate with cross-functional teams to monitor system health,
+                                            audit device deployments, and develop automation and reporting processes using tools such as
+                                            Power BI, Tableau, Excel, and Python. My work has helped streamline workflows,
+                                            improve system compliance, and provide actionable insights for operational decision-making.
+                                        </p>
+                                        <p>
+                                            Alongside my technical background, I have also pursued clinical experience as a Certified
+                                            Nursing Assistant, where I provide direct patient care and support residents with daily living
+                                            activities. This experience has strengthened my communication, situational awareness,
+                                            and commitment to work that has a meaningful impact on others.
+                                        </p>
+                                        <p>
+                                            I am passionate about continuous learning and enjoy exploring the intersection of technology,
+                                            operations, and real-world problem solving.
+                                        </p>
+                                        <ul class="actions">
+                                            <li><a href="#" class="button big">Contact Me</a></li>
+                                        </ul>
+                                    </div>
+                                    <span class="image object">
+                                        <img src="images/professionalpic.jpg" alt="" />
+                                    </span>
+                                </section>
 
-					<footer id="footer">
-						<p class="copyright">&copy; Christopher Leung. All rights reserved.</p>
-					</footer>
+<!-- Work Experience -->
+<section id="work-experience" data-tabs-root>
+  <div class="experience-shell">
+    <div class="experience-section">
+      <div class="experience-top">
+        <p class="experience-kicker">Professional Background</p>
+        <h2 class="experience-title" style="color:#4a6f86;">Work Experience</h2>
+        <p class="experience-subtitle">
+          Explore my background across technology and healthcare, with experience in operations,
+          analytics, quality assurance, and direct patient support.
+        </p>
+      </div>
 
-				</div>
-			</div>
+      <div class="experience-tabs" role="tablist" aria-label="Work Experience Tabs">
+        <button class="tab-button active" data-tab="tech" role="tab" aria-selected="true" type="button">
+          <span class="tab-label">Technology</span>
+        </button>
 
-		</div>
+        <button class="tab-button" data-tab="healthcare" role="tab" aria-selected="false" type="button">
+          <span class="tab-label">Healthcare</span>
+        </button>
 
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/browser.min.js"></script>
-		<script src="assets/js/breakpoints.min.js"></script>
-		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js"></script>
+        <button class="tab-button" data-tab="other" role="tab" aria-selected="false" type="button">
+          <span class="tab-label">Other</span>
+        </button>
+      </div>
 
-		<script>
-			document.querySelectorAll('[data-tabs-root]').forEach((tabRoot) => {
-				const buttons = tabRoot.querySelectorAll('[data-tab]');
-				const panels = tabRoot.querySelectorAll('[role="tabpanel"]');
+      <!-- Tech Work Experience -->
+     <div class="tab-panel active" id="tech-panel" role="tabpanel">
+        <div class="timeline">
 
-				buttons.forEach((button) => {
-					button.addEventListener('click', () => {
-						const targetId = button.getAttribute('data-tab');
+          <!-- Data Analyst II -->
+          <div class="job-card">
+            <div class="job-left-wrapper">
+              <div class="logo-circle">
+                <img src="images/meta-icon.png" alt="Meta Icon" />
+              </div>
 
-						buttons.forEach((btn) => btn.classList.remove('active'));
-						button.classList.add('active');
+              <div class="job-left">
+                <h3 class="job-title">Quality Assurance Data Analyst II</h3>
+                <div class="company">TEKsystems at Meta</div>
+                <div class="job-date">Jan 2020 - Apr 2026</div>
+                <div class="job-location">Fremont, CA</div>
+              </div>
+            </div>
 
-						panels.forEach((panel) => {
-							panel.hidden = panel.id !== targetId;
-						});
-					});
-				});
-			});
-		</script>
+            <div class="job-right">
+              <div class="bubble">Supported <strong>enterprise physical security deployments</strong> across multiple global projects, ensuring <strong>150,000+</strong> access control and surveillance devices were programmed, configured, and validated according to technical standards.</div>
+              <div class="bubble">Developed automated reporting tools and dashboards using <strong>Power BI</strong>, <strong>Tableau</strong>, <strong>Python</strong>, and <strong>Excel</strong>, reducing manual reporting efforts by <strong>280+ hours per month</strong> while improving visibility into system health and deployment progress.</div>
+              <div class="bubble">Monitored performance and compliance of <strong>80,000+</strong> security devices across global facilities, identifying configuration discrepancies and improving operational reliability.</div>
+              <div class="bubble">Conducted <strong>technical system audits</strong> and <strong>commissioning validation checks</strong> for enterprise security platforms to ensure devices met engineering and operational readiness standards for access control panels, card readers, cameras, and alarm devices.</div>
+              <div class="bubble">Collaborated with <strong>security engineers</strong>, <strong>commissioning teams</strong>, and <strong>project managers</strong> to troubleshoot configuration issues and validate system functionality across active deployments.</div>
+              <div class="bubble">Designed and implemented enterprise security system audit frameworks, reducing project validation timelines from <strong>4 months to 1 month</strong>.</div>
+              <div class="bubble">Led a cross-functional team of <strong>3 analysts and inspectors</strong> responsible for developing system validation procedures and improving deployment quality assurance processes.</div>
+              <div class="bubble">Authored <strong>technical standards</strong>, <strong>inspection playbooks</strong>, and <strong>operational procedures</strong>, helping standardize QA processes across multiple security infrastructure projects.</div>
+              <div class="bubble">Provided <strong>technical guidance and training</strong> to project teams and integrators on system validation processes, device configuration standards, and QA inspection protocols.</div>
+              <div class="bubble">Contributed to the migration of reporting workflows from <strong>Excel to Google Workspace</strong>, converting and validating formulas to ensure reporting accuracy during a company-wide platform transition.</div>
+            </div>
+          </div>
 
-	</body>
-</html>
+          <!-- Data Analyst I -->
+          <div class="job-card">
+            <div class="job-left-wrapper">
+              <div class="logo-circle">
+                <img src="images/meta-icon.png" alt="Meta Icon" />
+              </div>
+
+              <div class="job-left">
+                <h3 class="job-title">Quality Assurance Data Analyst I</h3>
+                <div class="company">TEKsystems at Meta</div>
+                <div class="job-date">Oct 2019 - Jan 2020</div>
+                <div class="job-location">Fremont, CA</div>
+              </div>
+            </div>
+
+            <div class="job-right">
+              <div class="bubble">Supported <strong>enterprise physical security deployments</strong> across <strong>75+</strong> global projects, performing QA inspections, commissioning validation, and installation verification for <strong>80,000+</strong> access control, CCTV, and alarm devices to ensure systems met technical and security standards.</div>
+              <div class="bubble">Conducted <strong>field site walks and construction inspections</strong> to verify installation of security infrastructure and confirm compliance with engineering specifications, safety requirements, and project standards.</div>
+              <div class="bubble">Reviewed hundreds of construction and installation records using <strong>PlanGrid</strong>, <strong>BIM 360</strong>, and <strong>ACC Build</strong> to ensure security infrastructure deployments aligned with engineering drawings and approved project documentation.</div>
+              <div class="bubble">Performed <strong>technical audits</strong> of enterprise security platforms, validating device installation, wiring, and configuration for access panels, card readers, cameras, and alarm devices.</div>
+              <div class="bubble">Documented inspection findings, non-conformance reports, and corrective actions, improving traceability and enabling faster issue resolution across project teams.</div>
+              <div class="bubble">Partnered with engineers, project managers, and security integrators to troubleshoot installation discrepancies and maintain reliability across large-scale deployments.</div>
+              <div class="bubble">Developed <strong>security system audit processes</strong> and <strong>validation tools</strong>, improving quality assurance workflows and identifying installation inconsistencies across projects.</div>
+              <div class="bubble">Trained <strong>security integrators</strong>, <strong>project managers</strong>, and <strong>new QA inspectors</strong> on inspection protocols, security standards, and device validation procedures to improve team consistency and inspection accuracy.</div>
+            </div>
+          </div>
+
+          <!-- Systems Administrator -->
+          <div class="job-card">
+            <div class="job-left-wrapper">
+              <div class="logo-circle">
+                <img src="images/meta-icon.png" alt="Meta Icon" />
+              </div>
+
+              <div class="job-left">
+                <h3 class="job-title">Physical Security Systems Administrator</h3>
+                <div class="company">TEKsystems at Meta</div>
+                <div class="job-date">Sep 2017 - Sep 2019</div>
+                <div class="job-location">Menlo Park, CA</div>
+              </div>
+            </div>
+
+            <div class="job-right">
+              <div class="bubble">Commissioned and <strong>configured Level 3 and Level 4</strong> physical security devices, including access control panels, card readers, surveillance cameras, and alarm systems to ensure systems met technical and security standards prior to deployment.</div>
+              <div class="bubble">Executed <strong>post-deployment lifecycle projects</strong>, including firmware upgrades, configuration updates, and global system standardization initiatives across enterprise physical security environments.</div>
+              <div class="bubble">Performed <strong>technical diagnostics and system health audits</strong> to identify configuration discrepancies, device failures, and performance issues across enterprise security platforms.</div>
+              <div class="bubble">Maintained enterprise physical security server environments and supporting network infrastructure, ensuring reliable communication between controllers, field devices (card readers, cameras, alarm inputs), and centralized security management platforms.</div>
+              <div class="bubble">Responded to <strong>critical system outages</strong> and <strong>security incidents</strong>, troubleshooting hardware, software, and connectivity issues to restore operational security systems with minimal downtime.</div>
+              <div class="bubble">Coordinated with security integrators, field technicians, and vendors to support device replacements, system repairs, and infrastructure upgrades across multiple facilities.</div>
+              <div class="bubble">Led an <strong>8-member team</strong> to develop and deploy a new system auditing framework, reducing project validation timelines from <strong>9 months to 3 months</strong>.</div>
+              <div class="bubble">Developed automation tools using <strong>Python</strong> and <strong>Excel</strong>, streamlining data collection and reporting workflows while improving accuracy and efficiency.</div>
+              <div class="bubble">Created <strong>project tracking dashboards</strong> and <strong>KPI metrics</strong> to monitor deployment progress, system health, and operational performance across enterprise security environments.</div>
+              <div class="bubble">Authored technical documentation, configuration standards, and operational procedures, establishing a centralized knowledge base for consistent system management and future deployments.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Healthcare -->
+     <div class="tab-panel" id="healthcare-panel" role="tabpanel">
+        <div class="timeline">
+            
+            <!-- Creekview NOC Shift CNA -->
+          <div class="job-card">
+            <div class="job-left-wrapper">
+              <div class="logo-circle">
+                <img src="images/creekview-health-center-icon.png" alt="Creekview logo" />
+              </div>
+
+              <div class="job-left">
+                <h3 class="job-title">Certified Nursing Assistant - NOC Shift</h3>
+                <div class="company">CreekView Health Center</div>
+                <div class="job-date">Aug 2025 - Current</div>
+                <div class="job-location">Pleasanton, CA</div>
+              </div>
+            </div>
+
+            <div class="job-right">
+                <div class="bubble">Provide overnight patient care for up to <strong>20 patients</strong> while ensuring safety, comfort, and timely response to patient needs.</div>
+                <div class="bubble">Perform routine hourly safety rounding and fall prevention monitoring to maintain a safe patient environment.</div>
+                <div class="bubble">Obtain and record <strong>vital signs, intake/output, and patient observations</strong>, reporting abnormal findings to RN/LVN staff.</div>
+                <div class="bubble">Monitor and assist with <strong>skin integrity checks and pressure injury prevention</strong>, including routine repositioning and reporting concerns to nursing staff.</div>
+                <div class="bubble">Respond promptyly to <strong>patient call lights</strong>, assisting with toileting, repositioning, and mobility.</div>
+                <div class="bubble">Assist patients with <strong>activities of daily living</strong>(ADLs) including hygiene dressing, grooming, and feeding.</div>
+                <div class="bubble">Support safe patient mobility through <strong>transfers, ambulation, turning, and repositioning</strong>, using gait belts and hoyer lifts.</div>
+                <div class="bubble">Provide continuous observation (1:1 sitter duties) for high-risk patients including <strong>dementia</strong> and <strong>fall risk</strong> patients.</div>
+                <div class="bubble">Collaborate with RN/LVN staff and interdisciplinary care teams to support coordinated patient care and timely response to patient needs.</div>
+                <div class="bubble">Assist with patient transport, ensuring safe movement between beds, wheelchairs, and care areas.</div>
+                <div class="bubble">Maintain <strong>infection control standards</strong>, clean patient environments, and proper <strong>PPE</strong> use.</div>
+                <div class="bubble">Prepare patient rooms and beds for admissions, post-surgical returns, transfers, and discharges to ensure readiness and support patient flow.</div>
+                <div class="bubble">Document all care activities and patient interactions using facility charting systems (<strong>PointClickCare</strong>) with accuracy and timeliness.</div>
+                <div class="bubble">Maintain patient care readiness by <strong>monitoring, organizing, and restocking unit supplies</strong> including PPE, linens, and hygiene materials to support efficient overnight operations.</div>
+            </div>
+          </div>
+            
+            <!-- Bay Area CNA Student -->
+          <div class="job-card">
+            <div class="job-left-wrapper">
+              <div class="logo-circle">
+                <img src="images/bay-area-cna-icon.png" alt="Bay Area CNA logo" />
+              </div>
+
+              <div class="job-left">
+                <h3 class="job-title">Student Nursing Assistant</h3>
+                <div class="company">Bay Area CNA School</div>
+                <div class="job-date">May 2025 - Jun 2025</div>
+                <div class="job-location">Pleasanton, CA</div>
+              </div>
+            </div>
+
+            <div class="job-right">
+                <div class="bubble">Assisted 11 to 14 residents on a daily basis with activities of daily living (ADLs) including bathing, dressing, grooming, and feeding as assigned.</div>
+                <div class="bubble">Performed routin patient care, including hygiene, nutrition, elimination and monitoring intake and output(I/Os), while adhering to universal precautions to ensure patient safety and infection control.</div>
+                <div class="bubble">Assisted fall risk patients with mobility using transfer techniques, gait belts, and mechanical lifts to ensure safety.</div>
+                <div class="bubble">Demonstrated effective communication skills in high-stress situations, using compassion, patience, and active listening to support patients while maintaining a calm and quiet care environment.</div>
+                <div class="bubble">Performed one-on-one sitter duties for high-risk residents, including those with dementia, ensuring continuous safety monitoring, fall prevention, and maintaining a calm, therapeutic environment.</div>
+                <div class="bubble">Facilitated patient flow by preparing rooms, transporting patients, and coordinating admissions, transfers, and discharges.</div>
+                <div class="bubble">Maintained awareness of multiple patient needs by answering call lights quickly, prioritizing care tasks to ensure patient safety, comfort, and satisfaction.</div>
+                <div class="bubble">Proactively maintained cleanliness and supply readiness in patient rooms to promote a safe, efficient, and infection-free care environment.</div>
+                <div class="bubble">Complied with HIPAA and SNF policies to maintain confidentiality, safety, and high standards of care.</div>
+            </div>
+          </div>
+            
+        </div>
+      </div>
+
+      <!-- Other -->
+      <div class="tab-panel" id="other-panel" role="tabpanel">
+        <div class="timeline">
+          <div class="job-card">
+            <div class="job-left-wrapper">
+                              <div class="logo-circle">
+                <img src="images/sjsu-icon.png" alt="SJSU logo" />
+              </div>
+              <div class="job-left">
+                <h3 class="job-title">Administrative Assistant</h3>
+                <div class="company">San Jose State University</div>
+                <div class="job-date">Jun 2014 - Jun 2017</div>
+                <div class="job-location">San Jose, CA</div>
+              </div>
+            </div>
+
+            <div class="job-right">
+                <div class="bubble">Provided front-line customer service to students, faculty, and staff, addressing inquiries related to campus resources, academic programs, and administrative processes.</div>
+                <div class="bubble">Assisted students with registration, course selection, and navigating campus services, ensuring a smooth and supportive experience.</div>
+                <div class="bubble">Responded to phone, email, and in-person inquiries, delivering acurate information in a professional and courteous manner.</div>
+                <div class="bubble">Resolved student and facility concerns efficiently, offering solutions and guidance on policies, procedures, and administrative tasks.</div>
+                <div class="bubble">Processed paperwork, maintained student records, and handled confidential information in accordance with university policies and privacy regulations.</div>
+                <div class="bubble">Fostered positive relationship with campus stakeholders by offering compassionate support and ensuring their needs were met in a timely manner.</div>
+                <div class="bubble">Developed and maintained databases to store student information, generating detailed reports for department use.</div>
+                <div class="bubble">Trained and supervised new employees each semester, ensuring consistent delivery of high-quality customer service.</div>
+                <div class="bubble">Redesigned and managed the department website, improving user experience and accessibility.</div>
+                <div class="bubble">Automated data entry processes by creating advanced Microsoft Excel spreadsheets with macros and Visual Basic, increasing efficiency and accuracy.</div>
+                <div class="bubble">Collaborated with team members to implement strategies that improved operational efficiency and workflow.</div>
+                <div class="bubble">Updated and enforced office policies and procedures, ensuring alignment with organizational standards.</div>
+                <div class="bubble">Installed and configured computer hardware, software, and networks to support daily operations and enhance system performance.</div>
+                <div class="bubble">Diagnosed and resolved software and hardware issues, providing timely solutions to minimize downtime.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+                            <!-- Credentials & Skills -->
+<section id="credentials-skills">
+  <div class="credentials-shell">
+    <div class="credentials-section" data-tabs-root>
+      <div class="credentials-top">
+        <p class="credentials-kicker">Qualifications & Strengths</p>
+        <h2 class="credentials-title">Licenses, Certifications & Skills</h2>
+        <p class="credentials-subtitle">
+          A quick overview of my credentials, technical tools, healthcare competencies,
+          and transferable strengths across different environments.
+        </p>
+      </div>
+
+      <div class="credentials-tabs-wrap">
+        <div class="credentials-tabs" role="tablist" aria-label="Credentials Tabs">
+          <button class="credentials-tab-button active" data-tab="technology" role="tab" aria-selected="true" type="button">
+            <span class="credentials-tab-label">Technology</span>
+            <span class="credentials-tab-desc">Systems, analytics, platforms</span>
+          </button>
+
+          <button class="credentials-tab-button" data-tab="healthcare" role="tab" aria-selected="false" type="button">
+            <span class="credentials-tab-label">Healthcare</span>
+            <span class="credentials-tab-desc">Clinical support and patient care</span>
+          </button>
+
+          <button class="credentials-tab-button" data-tab="other" role="tab" aria-selected="false" type="button">
+            <span class="credentials-tab-label">Other</span>
+            <span class="credentials-tab-desc">Transferable and professional skills</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Technology -->
+      <div class="credentials-tab-panel active" id="technology-panel" role="tabpanel">
+        <div class="credentials-grid">
+          <div class="info-card">
+            <h3>Licenses & Certifications</h3>
+            <div class="badge-list">
+                <span class="info-badge">Security Center - Omnicast Technical Certification</span>
+                <span class="info-badge">CCURE 9000 System Installer/Maintainer Certification</span>
+                <span class="info-badge">CCURE 9000 System Advanced Integrator Certification</span>
+                <span class="info-badge">AXIS Certification (46874422)</span>
+                <span class="info-badge">SQL Certification (RS57LFVSV5WP)</span>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <h3>Platforms & Systems</h3>
+            <div class="badge-list">
+                <span class="info-badge">CCURE 9000</span>
+                <span class="info-badge">Genetec</span>
+                <span class="info-badge">PlanGrid</span>
+                <span class="info-badge">BIM 360</span>
+                <span class="info-badge">ACC Build</span>
+                <span class="info-badge">Google Workspace</span>
+                <span class="info-badge">Tableau</span>
+                <span class="info-badge">Power BI</span>
+                <span class="info-badge">Python</span>
+                <span class="info-badge">Java</span>
+                <span class="info-badge">C/C++</span>
+                <span class="info-badge">SQL</span>
+                <span class="info-badge">MSSQL</span>
+                <span class="info-badge">HTML/CSS</span>
+                <span class="info-badge">BlueBeam</span>
+            </div>
+          </div>
+
+          <div class="info-card info-card-full">
+            <h3>Skills & Proficiency</h3>
+
+            <div class="skill-group">
+              <div class="skill-header">
+                <span>Excel / Reporting Automation</span>
+                <span>Advanced</span>
+              </div>
+              <div class="skill-bar"><span style="width: 95%;"></span></div>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-header">
+                <span>Power BI</span>
+                <span>Advanced</span>
+              </div>
+              <div class="skill-bar"><span style="width: 90%;"></span></div>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-header">
+                <span>Tableau</span>
+                <span>Advanced</span>
+              </div>
+              <div class="skill-bar"><span style="width: 88%;"></span></div>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-header">
+                <span>Python</span>
+                <span>Intermediate</span>
+              </div>
+              <div class="skill-bar"><span style="width: 72%;"></span></div>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-header">
+                <span>Physical Security Systems</span>
+                <span>Advanced</span>
+              </div>
+              <div class="skill-bar"><span style="width: 92%;"></span></div>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-header">
+                <span>Technical Documentation</span>
+                <span>Advanced</span>
+              </div>
+              <div class="skill-bar"><span style="width: 89%;"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Healthcare -->
+      <div class="credentials-tab-panel" id="healthcare-panel-credentials" role="tabpanel">
+        <div class="credentials-grid">
+          <div class="info-card">
+            <h3>Licenses & Certifications</h3>
+            <div class="badge-list">
+              <span class="info-badge">Certified Nursing Assistant (01334023)</span>
+              <span class="info-badge">BLS Certified (vbhxda5w9uuejeqognvfmxdj)</span>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <h3>Clinical Familiarity</h3>
+            <div class="badge-list">
+                <span class="info-badge">Vital Signs</span>
+                <span class="info-badge">Intake & Output</span>
+                <span class="info-badge">ADLs</span>
+                <span class="info-badge">Patient Transfers</span>
+                <span class="info-badge">Fall Prevention</span>
+                <span class="info-badge">Infection Control</span>
+                <span class="info-badge">PointClickCare</span>
+                <span class="info-badge">1:1 Observation</span>
+                <span class="info-badge">Medical Coding</span>
+                <span class="info-badge">HIPAA Compliance</span>
+                <span class="info-badge">Medical Terminology</span>
+                <span class="info-badge">Dementia</span>
+                <span class="info-badge">Memory Care</span>
+                <span class="info-badge">Charting and Documentation (EHR)</span>
+                <span class="info-badge">Hoyer Lift</span>
+            </div>
+          </div>
+
+          <div class="info-card info-card-full">
+            <h3>Skills & Proficiency</h3>
+
+            <div class="skill-group">
+              <div class="skill-header">
+                <span>Patient Safety & Rounding</span>
+                <span>Advanced</span>
+              </div>
+              <div class="skill-bar"><span style="width: 92%;"></span></div>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-header">
+                <span>Activities of Daily Living (ADLs)</span>
+                <span>Advanced</span>
+              </div>
+              <div class="skill-bar"><span style="width: 90%;"></span></div>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-header">
+                <span>Vital Signs & Observation Reporting</span>
+                <span>Advanced</span>
+              </div>
+              <div class="skill-bar"><span style="width: 100%;"></span></div>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-header">
+                <span>Infection Prevention / PPE</span>
+                <span>Advanced</span>
+              </div>
+              <div class="skill-bar"><span style="width: 95%;"></span></div>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-header">
+                <span>Patient Mobility & Transfers</span>
+                <span>Intermediate</span>
+              </div>
+              <div class="skill-bar"><span style="width: 95%;"></span></div>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-header">
+                <span>Charting / PointClickCare</span>
+                <span>Intermediate</span>
+              </div>
+              <div class="skill-bar"><span style="width: 100%;"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Other -->
+      <div class="credentials-tab-panel" id="other-panel" role="tabpanel">
+        <div class="credentials-grid">
+          <div class="info-card">
+            <h3>Professional Strengths</h3>
+            <div class="badge-list">
+              <span class="info-badge">Cross-Functional Collaboration</span>
+              <span class="info-badge">Process Improvement</span>
+              <span class="info-badge">Training & Guidance</span>
+              <span class="info-badge">Problem Solving</span>
+              <span class="info-badge">Attention to Detail</span>
+              <span class="info-badge">Adaptability</span>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <h3>Familiar With</h3>
+            <div class="badge-list">
+              <span class="info-badge">Project Coordination</span>
+              <span class="info-badge">Stakeholder Communication</span>
+              <span class="info-badge">Quality Assurance</span>
+              <span class="info-badge">Audit Readiness</span>
+              <span class="info-badge">Customer Support</span>
+              <span class="info-badge">Documentation Standards</span>
+            </div>
+          </div>
+
+          <div class="info-card info-card-full">
+            <h3>Skills & Proficiency</h3>
+
+            <div class="skill-group">
+              <div class="skill-header">
+                <span>Communication</span>
+                <span>Advanced</span>
+              </div>
+              <div class="skill-bar"><span style="width: 95%;"></span></div>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-header">
+                <span>Organization</span>
+                <span>Advanced</span>
+              </div>
+              <div class="skill-bar"><span style="width: 100%;"></span></div>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-header">
+                <span>Time Management</span>
+                <span>Advanced</span>
+              </div>
+              <div class="skill-bar"><span style="width: 90%;"></span></div>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-header">
+                <span>Leadership / Team Support</span>
+                <span>Intermediate to Advanced</span>
+              </div>
+              <div class="skill-bar"><span style="width: 85%;"></span></div>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-header">
+                <span>Process Improvement</span>
+                <span>Advanced</span>
+              </div>
+              <div class="skill-bar"><span style="width: 90%;"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+                        </div>
+                    </div>
+                <!-- Sidebar -->
+                    <div id="sidebar">
+                        <div class="inner">
+
+                            <!-- Search -->
+                                <section id="search" class="alt">
+                                    <form method="post" action="#">
+                                        <input type="text" name="query" id="query" placeholder="Search" />
+                                    </form>
+                                </section>
+
+                            <!-- Menu -->
+                                <nav id="menu">
+                                    <header class="major">
+                                        <h2>Menu</h2>
+                                    </header>
+                                    <ul>
+                                        <li><a href="index.html">Homepage</a></li>
+                                        <li><a href="projects.html">Project Showcase</a></li>
+                                        <li><a href="elements.html">Elements</a></li>
+                                        <li>
+                                            <span class="opener">Blog</span>
+                                            <ul>
+                                                <li><a href="#">Lorem Dolor</a></li>
+                                                <li><a href="#">Ipsum Adipiscing</a></li>
+                                                <li><a href="#">Tempus Magna</a></li>
+                                                <li><a href="#">Feugiat Veroeros</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="contact-form.html">Contact Me</a></li>
+                                        <li><a href="#">Adipiscing</a></li>
+                                        <li>
+                                            <span class="opener">Another Submenu</span>
+                                            <ul>
+                                                <li><a href="#">Lorem Dolor</a></li>
+                                                <li><a href="#">Ipsum Adipiscing</a></li>
+                                                <li><a href="#">Tempus Magna</a></li>
+                                                <li><a href="#">Feugiat Veroeros</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Maximus Erat</a></li>
+                                        <li><a href="#">Sapien Mauris</a></li>
+                                        <li><a href="#">Amet Lacinia</a></li>
+                                    </ul>
+                                </nav>
+
+                            <!-- Footer -->
+                                <footer id="footer">
+                                    <p class="copyright">&copy; © 2026 Christopher Leung. All rights reserved.</p>
+                                </footer>
+
+                        </div>
+                    </div>
+
+            </div>
+
+        <!-- Scripts -->
+            <script src="assets/js/jquery.min.js"></script>
+            <script src="assets/js/browser.min.js"></script>
+            <script src="assets/js/breakpoints.min.js"></script>
+            <script src="assets/js/util.js"></script>
+            <script src="assets/js/main.js"></script>
+        
+<script>
+  document.querySelectorAll('[data-tabs-root]').forEach((tabRoot) => {
+    const buttons = tabRoot.querySelectorAll('[data-tab]');
+    const panels = tabRoot.querySelectorAll('.tab-panel, .credentials-tab-panel');
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const selected = button.dataset.tab;
+
+        buttons.forEach((btn) => {
+          btn.classList.remove('active');
+          btn.setAttribute('aria-selected', 'false');
+        });
+
+        panels.forEach((panel) => {
+          panel.classList.remove('active');
+        });
+
+        button.classList.add('active');
+        button.setAttribute('aria-selected', 'true');
+
+        let targetPanel =
+          tabRoot.querySelector(`#${selected}-panel`) ||
+          tabRoot.querySelector(`#${selected}-panel-credentials`);
+
+        if (targetPanel) {
+          targetPanel.classList.add('active');
+        }
+      });
+    });
+  });
+</script>
