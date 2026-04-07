@@ -1,100 +1,72 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>Technology Blog | Christopher Leung</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="is-preload">
+  <head>
+    <title>Technology Blog | Christopher Leung</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body class="is-preload" data-blog-tag="technology">
 
-		<div id="wrapper">
+    <div id="wrapper">
+      <div id="main">
+        <div class="inner">
 
-			<div id="main">
-				<div class="inner">
+          <header id="header">
+            <a href="index.html" class="logo"><strong>Christopher Leung</strong> Blog</a>
+            <ul class="icons">
+              <li><a href="https://github.com/cleung94" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+              <li><a href="https://www.linkedin.com/in/christopher-km-leung/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+            </ul>
+          </header>
 
-					<header id="header">
-						<a href="index.html" class="logo"><strong>Christopher Leung</strong> Blog</a>
-						<ul class="icons">
-							<li><a href="https://github.com/cleung94" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-							<li><a href="https://www.linkedin.com/in/christopher-km-leung/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-						</ul>
-					</header>
+          <section class="blog-hero">
+            <span class="blog-kicker">Category</span>
+            <h1 data-blog-title>Technology</h1>
+            <p class="blog-subtitle" data-blog-subtitle>
+              Posts about systems, troubleshooting, projects, and technical growth.
+            </p>
+          </section>
 
-					<section class="blog-hero">
-						<span class="blog-kicker">Category</span>
-						<h1>Technology</h1>
-						<p class="blog-subtitle">
-							Posts about systems, technical learning, troubleshooting, projects, and professional growth.
-						</p>
-					</section>
+          <section>
+            <div class="blog-grid" id="tagBlogGrid"></div>
 
-					<section>
-						<div class="blog-grid">
-							<a href="blog-post-enterprise-security.html" class="blog-card">
-								<div class="blog-card-image">
-									<img src="images/blog-tech-1.jpg" alt="Technology post cover">
-									<span class="blog-tag-badge">Technology</span>
-								</div>
-								<div class="blog-card-body">
-									<div class="blog-card-meta">April 2026</div>
-									<h3 class="blog-card-title">What Enterprise Security Work Taught Me About Problem Solving</h3>
-									<p class="blog-card-excerpt">
-										A reflection on standards, troubleshooting, and solving technical issues at scale.
-									</p>
-									<span class="blog-card-link">Read Post →</span>
-								</div>
-							</a>
-						</div>
-					</section>
+            <div class="blog-empty" id="tagBlogEmpty">
+              No posts in this category yet.
+            </div>
+          </section>
 
-				</div>
-			</div>
+        </div>
+      </div>
 
-			<div id="sidebar">
-				<div class="inner">
+      <div id="sidebar">
+        <div class="inner">
+          <nav id="menu">
+            <header class="major"><h2>Menu</h2></header>
+            <ul>
+              <li><a href="index.html">Homepage</a></li>
+              <li>
+                <span class="opener active">Blog</span>
+                <ul>
+                  <li><a href="blog.html">All Blog Posts</a></li>
+                  <li><a href="blog-technology.html">Technology</a></li>
+                  <li><a href="blog-healthcare.html">Healthcare</a></li>
+                  <li><a href="blog-restaurant.html">Restaurant</a></li>
+                  <li><a href="blog-hobbies.html">Hobbies</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
 
-					<section id="search" class="alt">
-						<form method="post" action="#">
-							<input type="text" name="query" id="query" placeholder="Search" />
-						</form>
-					</section>
-
-					<nav id="menu">
-						<header class="major">
-							<h2>Menu</h2>
-						</header>
-						<ul>
-							<li><a href="index.html">Homepage</a></li>
-							<li><a href="projects.html">Project Showcase</a></li>
-							<li>
-								<span class="opener active">Blog</span>
-								<ul>
-									<li><a href="blog.html">All Blog Posts</a></li>
-									<li><a href="blog-technology.html">Technology</a></li>
-									<li><a href="blog-healthcare.html">Healthcare</a></li>
-									<li><a href="blog-restaurant.html">Restaurant</a></li>
-									<li><a href="blog-hobbies.html">Hobbies</a></li>
-								</ul>
-							</li>
-							<li><a href="contact-form.html">Contact</a></li>
-						</ul>
-					</nav>
-
-					<footer id="footer">
-						<p class="copyright">&copy; Christopher Leung. All rights reserved.</p>
-					</footer>
-
-				</div>
-			</div>
-
-		</div>
-
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/browser.min.js"></script>
-		<script src="assets/js/breakpoints.min.js"></script>
-		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js"></script>
-
-	</body>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/blog-data.js"></script>
+    <script src="assets/js/blog-render.js"></script>
+  </body>
 </html>
