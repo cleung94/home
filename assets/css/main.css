@@ -1,1790 +1,228 @@
-<!DOCTYPE HTML>
-<!--
-	Editorial by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Christopher Leung</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<style>
-			* {
-				box-sizing: border-box;
-			}
-
-			.experience-shell {
-				width: 100%;
-				display: flex;
-				justify-content: center;
-			}
-
-			.experience-section {
-				width: min(100%, 1120px);
-				margin: 0 auto;
-				background: #ffffff;
-				border: 1px solid #e0e0e0;
-				border-radius: 16px;
-				padding: clamp(22px, 2.2vw, 36px);
-				box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-			}
-
-			.experience-title {
-				font-size: clamp(24px, 2vw, 32px);
-				font-weight: 700;
-				color: #0a66c2;
-				margin: 0 0 30px;
-				padding-bottom: 12px;
-				border-bottom: 2px solid #0a66c2;
-			}
-
-			.timeline {
-				position: relative;
-			}
-
-			.timeline::before {
-				content: "";
-				position: absolute;
-				left: 24px;
-				top: 0;
-				bottom: 0;
-				width: 3px;
-				background: linear-gradient(to bottom, #0a66c2 0%, #d0d7de 100%);
-				border-radius: 999px;
-			}
-
-			.job-card {
-				position: relative;
-				display: grid;
-				grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
-				gap: clamp(18px, 2vw, 28px);
-				margin-bottom: 32px;
-				align-items: start;
-			}
-
-			.job-card:last-child {
-				margin-bottom: 0;
-			}
-
-			.job-left-wrapper {
-				position: relative;
-				padding-left: 48px;
-				min-width: 0;
-			}
-
-			.job-left {
-				position: relative;
-				background: #f8fafc;
-				border: 1px solid #dce6f1;
-				border-radius: 14px;
-				padding: 22px 20px 22px 34px;
-				min-height: 120px;
-				min-width: 0;
-				transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-			}
-
-			.job-left:hover {
-				transform: translateY(-3px);
-				box-shadow: 0 10px 24px rgba(10, 102, 194, 0.10);
-				border-color: #b9d3ee;
-			}
-
-			.logo-circle {
-				position: absolute;
-				left: 0;
-				top: 18px;
-				width: 50px;
-				height: 50px;
-				background: #ffffff;
-				border: 2px solid #0a66c2;
-				border-radius: 50%;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				overflow: hidden;
-				z-index: 2;
-				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
-				transition: transform 0.25s ease, box-shadow 0.25s ease;
-			}
-
-			.job-left-wrapper:hover .logo-circle {
-				transform: scale(1.06);
-				box-shadow: 0 8px 18px rgba(10, 102, 194, 0.18);
-			}
-
-			.logo-circle img {
-				max-width: 70%;
-				max-height: 70%;
-				width: auto;
-				height: auto;
-				object-fit: contain;
-				display: block;
-			}
-
-			.job-title {
-				font-size: clamp(17px, 1.2vw, 20px);
-				font-weight: 700;
-				margin: 0 0 6px;
-				line-height: 1.35;
-				color: #1d2226;
-			}
-
-			.company {
-				font-size: 15px;
-				font-weight: 600;
-				color: #0a66c2;
-				margin-bottom: 8px;
-			}
-
-			.job-date,
-			.job-location {
-				font-size: 14px;
-				color: #5f6b75;
-				line-height: 1.5;
-			}
-
-			.job-right {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 14px;
-				align-content: flex-start;
-				min-width: 0;
-			}
-
-			.bubble {
-				background: #f4f8fb;
-				border: 1px solid #d6e4f0;
-				border-radius: 12px;
-				padding: 14px 16px;
-				font-size: 14px;
-				line-height: 1.55;
-				color: #1d2226;
-				flex: 1 1 calc(50% - 14px);
-				min-width: 220px;
-				max-width: 100%;
-				overflow-wrap: break-word;
-				word-break: break-word;
-				transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease;
-			}
-
-			.bubble:hover {
-				transform: translateY(-3px);
-				box-shadow: 0 8px 18px rgba(10, 102, 194, 0.10);
-				border-color: #bfd7ef;
-				background: #f8fbfe;
-			}
-
-			.bubble strong {
-				color: #0a66c2;
-			}
-
-			@media screen and (max-width: 1280px) {
-				.experience-section {
-					width: 100%;
-				}
-			}
-
-			@media screen and (max-width: 980px) {
-				.job-card {
-					grid-template-columns: 1fr;
-					gap: 16px;
-				}
-
-				.job-right {
-					padding-left: 48px;
-				}
-
-				.bubble {
-					flex: 1 1 100%;
-					min-width: 0;
-				}
-			}
-
-			@media screen and (max-width: 640px) {
-				.experience-section {
-					padding: 18px;
-				}
-
-				.job-left-wrapper,
-				.job-right {
-					padding-left: 40px;
-				}
-
-				.timeline::before {
-					left: 20px;
-				}
-
-				.logo-circle {
-					width: 44px;
-					height: 44px;
-				}
-			}
-		</style>
-	</head>
-	<body class="is-preload">
-
-		<!-- Wrapper -->
-			<div id="wrapper">
-
-				<!-- Main -->
-					<div id="main">
-						<div class="inner">
-
-							<!-- Header -->
-								<header id="header">
-									<ul class="icons">
-										<li><a href="https://github.com/cleung94" class="icon brands fa-github"><span class="label">Github</span></a></li>
-										<li><a href="https://www.linkedin.com/in/christopher-km-leung/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-									</ul>
-								</header>
-
-							<!-- Banner -->
-								<section id="banner">
-									<div class="content">
-										<header>
-											<h1>Hello! I am Christopher</h1>
-											<p>About Me</p>
-										</header>
-										<p>
-											I am a technology and operations professional with experience supporting large-scale
-											enterprise physical security systems and data-driven quality assurance initiatives.
-											I specialize in analyzing system performance, developing operational standards,
-											and building reporting tools that improve efficiency and visibility across complex environments.
-										</p>
-										<p>
-											In my current role, I collaborate with cross-functional teams to monitor system health,
-											audit device deployments, and develop automation and reporting processes using tools such as
-											Power BI, Tableau, Excel, and Python. My work has helped streamline workflows,
-											improve system compliance, and provide actionable insights for operational decision-making.
-										</p>
-										<p>
-											Alongside my technical background, I have also pursued clinical experience as a Certified
-											Nursing Assistant, where I provide direct patient care and support residents with daily living
-											activities. This experience has strengthened my communication, situational awareness,
-											and commitment to work that has a meaningful impact on others.
-										</p>
-										<p>
-											I am passionate about continuous learning and enjoy exploring the intersection of technology,
-											operations, and real-world problem solving.
-										</p>
-										<ul class="actions">
-											<li><a href="#" class="button big">Contact Me</a></li>
-										</ul>
-									</div>
-									<span class="image object">
-										<img src="images/professionalpic.jpg" alt="" />
-									</span>
-								</section>
-
-<!-- Work Experience -->
-<section id="work-experience" data-tabs-root>
-  <div class="experience-shell">
-    <div class="experience-section">
-      <div class="experience-top">
-        <p class="experience-kicker">Professional Background</p>
-        <h2 class="experience-title" style="color:#4a6f86;">Work Experience</h2>
-        <p class="experience-subtitle">
-          Explore my background across technology and healthcare, with experience in operations,
-          analytics, quality assurance, and direct patient support.
-        </p>
-      </div>
-
-      <div class="experience-tabs" role="tablist" aria-label="Work Experience Tabs">
-        <button class="tab-button active" data-tab="tech" role="tab" aria-selected="true" type="button">
-          <span class="tab-label">Technology</span>
-        </button>
-
-        <button class="tab-button" data-tab="healthcare" role="tab" aria-selected="false" type="button">
-          <span class="tab-label">Healthcare</span>
-        </button>
-
-        <button class="tab-button" data-tab="other" role="tab" aria-selected="false" type="button">
-          <span class="tab-label">Other</span>
-        </button>
-      </div>
-
-      <!-- Tech Work Experience -->
-     <div class="tab-panel active" id="tech-panel" role="tabpanel">
-        <div class="timeline">
-
-          <!-- Data Analyst II -->
-          <div class="job-card">
-            <div class="job-left-wrapper">
-              <div class="logo-circle">
-                <img src="images/meta-icon.png" alt="Meta Icon" />
-              </div>
-
-              <div class="job-left">
-                <h3 class="job-title">Quality Assurance Data Analyst II</h3>
-                <div class="company">TEKsystems at Meta</div>
-                <div class="job-date">Jan 2020 - Apr 2026</div>
-                <div class="job-location">Fremont, CA</div>
-              </div>
-            </div>
-
-            <div class="job-right">
-              <div class="bubble">Supported <strong>enterprise physical security deployments</strong> across multiple global projects, ensuring <strong>150,000+</strong> access control and surveillance devices were programmed, configured, and validated according to technical standards.</div>
-              <div class="bubble">Developed automated reporting tools and dashboards using <strong>Power BI</strong>, <strong>Tableau</strong>, <strong>Python</strong>, and <strong>Excel</strong>, reducing manual reporting efforts by <strong>280+ hours per month</strong> while improving visibility into system health and deployment progress.</div>
-              <div class="bubble">Monitored performance and compliance of <strong>80,000+</strong> security devices across global facilities, identifying configuration discrepancies and improving operational reliability.</div>
-              <div class="bubble">Conducted <strong>technical system audits</strong> and <strong>commissioning validation checks</strong> for enterprise security platforms to ensure devices met engineering and operational readiness standards for access control panels, card readers, cameras, and alarm devices.</div>
-              <div class="bubble">Collaborated with <strong>security engineers</strong>, <strong>commissioning teams</strong>, and <strong>project managers</strong> to troubleshoot configuration issues and validate system functionality across active deployments.</div>
-              <div class="bubble">Designed and implemented enterprise security system audit frameworks, reducing project validation timelines from <strong>4 months to 1 month</strong>.</div>
-              <div class="bubble">Led a cross-functional team of <strong>3 analysts and inspectors</strong> responsible for developing system validation procedures and improving deployment quality assurance processes.</div>
-              <div class="bubble">Authored <strong>technical standards</strong>, <strong>inspection playbooks</strong>, and <strong>operational procedures</strong>, helping standardize QA processes across multiple security infrastructure projects.</div>
-              <div class="bubble">Provided <strong>technical guidance and training</strong> to project teams and integrators on system validation processes, device configuration standards, and QA inspection protocols.</div>
-              <div class="bubble">Contributed to the migration of reporting workflows from <strong>Excel to Google Workspace</strong>, converting and validating formulas to ensure reporting accuracy during a company-wide platform transition.</div>
-            </div>
-          </div>
-
-          <!-- Data Analyst I -->
-          <div class="job-card">
-            <div class="job-left-wrapper">
-              <div class="logo-circle">
-                <img src="images/meta-icon.png" alt="Meta Icon" />
-              </div>
-
-              <div class="job-left">
-                <h3 class="job-title">Quality Assurance Data Analyst I</h3>
-                <div class="company">TEKsystems at Meta</div>
-                <div class="job-date">Oct 2019 - Jan 2020</div>
-                <div class="job-location">Fremont, CA</div>
-              </div>
-            </div>
-
-            <div class="job-right">
-              <div class="bubble">Supported <strong>enterprise physical security deployments</strong> across <strong>75+</strong> global projects, performing QA inspections, commissioning validation, and installation verification for <strong>80,000+</strong> access control, CCTV, and alarm devices to ensure systems met technical and security standards.</div>
-              <div class="bubble">Conducted <strong>field site walks and construction inspections</strong> to verify installation of security infrastructure and confirm compliance with engineering specifications, safety requirements, and project standards.</div>
-              <div class="bubble">Reviewed hundreds of construction and installation records using <strong>PlanGrid</strong>, <strong>BIM 360</strong>, and <strong>ACC Build</strong> to ensure security infrastructure deployments aligned with engineering drawings and approved project documentation.</div>
-              <div class="bubble">Performed <strong>technical audits</strong> of enterprise security platforms, validating device installation, wiring, and configuration for access panels, card readers, cameras, and alarm devices.</div>
-              <div class="bubble">Documented inspection findings, non-conformance reports, and corrective actions, improving traceability and enabling faster issue resolution across project teams.</div>
-              <div class="bubble">Partnered with engineers, project managers, and security integrators to troubleshoot installation discrepancies and maintain reliability across large-scale deployments.</div>
-              <div class="bubble">Developed <strong>security system audit processes</strong> and <strong>validation tools</strong>, improving quality assurance workflows and identifying installation inconsistencies across projects.</div>
-              <div class="bubble">Trained <strong>security integrators</strong>, <strong>project managers</strong>, and <strong>new QA inspectors</strong> on inspection protocols, security standards, and device validation procedures to improve team consistency and inspection accuracy.</div>
-            </div>
-          </div>
-
-          <!-- Systems Administrator -->
-          <div class="job-card">
-            <div class="job-left-wrapper">
-              <div class="logo-circle">
-                <img src="images/meta-icon.png" alt="Meta Icon" />
-              </div>
-
-              <div class="job-left">
-                <h3 class="job-title">Physical Security Systems Administrator</h3>
-                <div class="company">TEKsystems at Meta</div>
-                <div class="job-date">Sep 2017 - Sep 2019</div>
-                <div class="job-location">Menlo Park, CA</div>
-              </div>
-            </div>
-
-            <div class="job-right">
-              <div class="bubble">Commissioned and <strong>configured Level 3 and Level 4</strong> physical security devices, including access control panels, card readers, surveillance cameras, and alarm systems to ensure systems met technical and security standards prior to deployment.</div>
-              <div class="bubble">Executed <strong>post-deployment lifecycle projects</strong>, including firmware upgrades, configuration updates, and global system standardization initiatives across enterprise physical security environments.</div>
-              <div class="bubble">Performed <strong>technical diagnostics and system health audits</strong> to identify configuration discrepancies, device failures, and performance issues across enterprise security platforms.</div>
-              <div class="bubble">Maintained enterprise physical security server environments and supporting network infrastructure, ensuring reliable communication between controllers, field devices (card readers, cameras, alarm inputs), and centralized security management platforms.</div>
-              <div class="bubble">Responded to <strong>critical system outages</strong> and <strong>security incidents</strong>, troubleshooting hardware, software, and connectivity issues to restore operational security systems with minimal downtime.</div>
-              <div class="bubble">Coordinated with security integrators, field technicians, and vendors to support device replacements, system repairs, and infrastructure upgrades across multiple facilities.</div>
-              <div class="bubble">Led an <strong>8-member team</strong> to develop and deploy a new system auditing framework, reducing project validation timelines from <strong>9 months to 3 months</strong>.</div>
-              <div class="bubble">Developed automation tools using <strong>Python</strong> and <strong>Excel</strong>, streamlining data collection and reporting workflows while improving accuracy and efficiency.</div>
-              <div class="bubble">Created <strong>project tracking dashboards</strong> and <strong>KPI metrics</strong> to monitor deployment progress, system health, and operational performance across enterprise security environments.</div>
-              <div class="bubble">Authored technical documentation, configuration standards, and operational procedures, establishing a centralized knowledge base for consistent system management and future deployments.</div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Healthcare -->
-     <div class="tab-panel" id="healthcare-panel" role="tabpanel">
-        <div class="timeline">
-			
-			<!-- Creekview NOC Shift CNA -->
-          <div class="job-card">
-            <div class="job-left-wrapper">
-              <div class="logo-circle">
-                <img src="images/creekview-health-center-icon.png" alt="Creekview logo" />
-              </div>
-
-              <div class="job-left">
-                <h3 class="job-title">Certified Nursing Assistant - NOC Shift</h3>
-                <div class="company">CreekView Health Center</div>
-                <div class="job-date">Aug 2025 - Current</div>
-                <div class="job-location">Pleasanton, CA</div>
-              </div>
-            </div>
-
-            <div class="job-right">
-				<div class="bubble">Provide overnight patient care for up to <strong>20 patients</strong> while ensuring safety, comfort, and timely response to patient needs.</div>
-				<div class="bubble">Perform routine hourly safety rounding and fall prevention monitoring to maintain a safe patient environment.</div>
-				<div class="bubble">Obtain and record <strong>vital signs, intake/output, and patient observations</strong>, reporting abnormal findings to RN/LVN staff.</div>
-				<div class="bubble">Monitor and assist with <strong>skin integrity checks and pressure injury prevention</strong>, including routine repositioning and reporting concerns to nursing staff.</div>
-				<div class="bubble">Respond promptyly to <strong>patient call lights</strong>, assisting with toileting, repositioning, and mobility.</div>
-				<div class="bubble">Assist patients with <strong>activities of daily living</strong>(ADLs) including hygiene dressing, grooming, and feeding.</div>
-				<div class="bubble">Support safe patient mobility through <strong>transfers, ambulation, turning, and repositioning</strong>, using gait belts and hoyer lifts.</div>
-				<div class="bubble">Provide continuous observation (1:1 sitter duties) for high-risk patients including <strong>dementia</strong> and <strong>fall risk</strong> patients.</div>
-				<div class="bubble">Collaborate with RN/LVN staff and interdisciplinary care teams to support coordinated patient care and timely response to patient needs.</div>
-				<div class="bubble">Assist with patient transport, ensuring safe movement between beds, wheelchairs, and care areas.</div>
-				<div class="bubble">Maintain <strong>infection control standards</strong>, clean patient environments, and proper <strong>PPE</strong> use.</div>
-				<div class="bubble">Prepare patient rooms and beds for admissions, post-surgical returns, transfers, and discharges to ensure readiness and support patient flow.</div>
-				<div class="bubble">Document all care activities and patient interactions using facility charting systems (<strong>PointClickCare</strong>) with accuracy and timeliness.</div>
-				<div class="bubble">Maintain patient care readiness by <strong>monitoring, organizing, and restocking unit supplies</strong> including PPE, linens, and hygiene materials to support efficient overnight operations.</div>
-            </div>
-          </div>
-			
-			<!-- Bay Area CNA Student -->
-          <div class="job-card">
-            <div class="job-left-wrapper">
-              <div class="logo-circle">
-                <img src="images/bay-area-cna-icon.png" alt="Bay Area CNA logo" />
-              </div>
-
-              <div class="job-left">
-                <h3 class="job-title">Student Nursing Assistant</h3>
-                <div class="company">Bay Area CNA School</div>
-                <div class="job-date">May 2025 - Jun 2025</div>
-                <div class="job-location">Pleasanton, CA</div>
-              </div>
-            </div>
-
-            <div class="job-right">
-				<div class="bubble">Assisted 11 to 14 residents on a daily basis with activities of daily living (ADLs) including bathing, dressing, grooming, and feeding as assigned.</div>
-				<div class="bubble">Performed routin patient care, including hygiene, nutrition, elimination and monitoring intake and output(I/Os), while adhering to universal precautions to ensure patient safety and infection control.</div>
-				<div class="bubble">Assisted fall risk patients with mobility using transfer techniques, gait belts, and mechanical lifts to ensure safety.</div>
-				<div class="bubble">Demonstrated effective communication skills in high-stress situations, using compassion, patience, and active listening to support patients while maintaining a calm and quiet care environment.</div>
-				<div class="bubble">Performed one-on-one sitter duties for high-risk residents, including those with dementia, ensuring continuous safety monitoring, fall prevention, and maintaining a calm, therapeutic environment.</div>
-				<div class="bubble">Facilitated patient flow by preparing rooms, transporting patients, and coordinating admissions, transfers, and discharges.</div>
-				<div class="bubble">Maintained awareness of multiple patient needs by answering call lights quickly, prioritizing care tasks to ensure patient safety, comfort, and satisfaction.</div>
-				<div class="bubble">Proactively maintained cleanliness and supply readiness in patient rooms to promote a safe, efficient, and infection-free care environment.</div>
-				<div class="bubble">Complied with HIPAA and SNF policies to maintain confidentiality, safety, and high standards of care.</div>
-            </div>
-          </div>
-			
-        </div>
-      </div>
-
-      <!-- Other -->
-      <div class="tab-panel" id="other-panel" role="tabpanel">
-        <div class="timeline">
-          <div class="job-card">
-            <div class="job-left-wrapper">
-				              <div class="logo-circle">
-                <img src="images/sjsu-icon.png" alt="SJSU logo" />
-              </div>
-              <div class="job-left">
-                <h3 class="job-title">Administrative Assistant</h3>
-                <div class="company">San Jose State University</div>
-                <div class="job-date">Jun 2014 - Jun 2017</div>
-                <div class="job-location">San Jose, CA</div>
-              </div>
-            </div>
-
-            <div class="job-right">
-				<div class="bubble">Provided front-line customer service to students, faculty, and staff, addressing inquiries related to campus resources, academic programs, and administrative processes.</div>
-				<div class="bubble">Assisted students with registration, course selection, and navigating campus services, ensuring a smooth and supportive experience.</div>
-				<div class="bubble">Responded to phone, email, and in-person inquiries, delivering acurate information in a professional and courteous manner.</div>
-				<div class="bubble">Resolved student and facility concerns efficiently, offering solutions and guidance on policies, procedures, and administrative tasks.</div>
-				<div class="bubble">Processed paperwork, maintained student records, and handled confidential information in accordance with university policies and privacy regulations.</div>
-				<div class="bubble">Fostered positive relationship with campus stakeholders by offering compassionate support and ensuring their needs were met in a timely manner.</div>
-				<div class="bubble">Developed and maintained databases to store student information, generating detailed reports for department use.</div>
-				<div class="bubble">Trained and supervised new employees each semester, ensuring consistent delivery of high-quality customer service.</div>
-				<div class="bubble">Redesigned and managed the department website, improving user experience and accessibility.</div>
-				<div class="bubble">Automated data entry processes by creating advanced Microsoft Excel spreadsheets with macros and Visual Basic, increasing efficiency and accuracy.</div>
-				<div class="bubble">Collaborated with team members to implement strategies that improved operational efficiency and workflow.</div>
-				<div class="bubble">Updated and enforced office policies and procedures, ensuring alignment with organizational standards.</div>
-				<div class="bubble">Installed and configured computer hardware, software, and networks to support daily operations and enhance system performance.</div>
-				<div class="bubble">Diagnosed and resolved software and hardware issues, providing timely solutions to minimize downtime.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-							<!-- Credentials & Skills -->
-<section id="credentials-skills">
-  <div class="credentials-shell">
-    <div class="credentials-section" data-tabs-root>
-      <div class="credentials-top">
-        <p class="credentials-kicker">Qualifications & Strengths</p>
-        <h2 class="credentials-title">Licenses, Certifications & Skills</h2>
-        <p class="credentials-subtitle">
-          A quick overview of my credentials, technical tools, healthcare competencies,
-          and transferable strengths across different environments.
-        </p>
-      </div>
-
-      <div class="credentials-tabs-wrap">
-        <div class="credentials-tabs" role="tablist" aria-label="Credentials Tabs">
-          <button class="credentials-tab-button active" data-tab="technology" role="tab" aria-selected="true" type="button">
-            <span class="credentials-tab-label">Technology</span>
-            <span class="credentials-tab-desc">Systems, analytics, platforms</span>
-          </button>
-
-          <button class="credentials-tab-button" data-tab="healthcare" role="tab" aria-selected="false" type="button">
-            <span class="credentials-tab-label">Healthcare</span>
-            <span class="credentials-tab-desc">Clinical support and patient care</span>
-          </button>
-
-          <button class="credentials-tab-button" data-tab="other" role="tab" aria-selected="false" type="button">
-            <span class="credentials-tab-label">Other</span>
-            <span class="credentials-tab-desc">Transferable and professional skills</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Technology -->
-      <div class="credentials-tab-panel active" id="technology-panel" role="tabpanel">
-        <div class="credentials-grid">
-          <div class="info-card">
-            <h3>Licenses & Certifications</h3>
-            <div class="badge-list">
-				<span class="info-badge">Security Center - Omnicast Technical Certification</span>
-				<span class="info-badge">CCURE 9000 System Installer/Maintainer Certification</span>
-				<span class="info-badge">CCURE 9000 System Advanced Integrator Certification</span>
-				<span class="info-badge">AXIS Certification (46874422)</span>
-				<span class="info-badge">SQL Certification (RS57LFVSV5WP)</span>
-            </div>
-          </div>
-
-          <div class="info-card">
-            <h3>Platforms & Systems</h3>
-            <div class="badge-list">
-				<span class="info-badge">CCURE 9000</span>
-				<span class="info-badge">Genetec</span>
-				<span class="info-badge">PlanGrid</span>
-				<span class="info-badge">BIM 360</span>
-				<span class="info-badge">ACC Build</span>
-				<span class="info-badge">Google Workspace</span>
-				<span class="info-badge">Tableau</span>
-				<span class="info-badge">Power BI</span>
-				<span class="info-badge">Python</span>
-				<span class="info-badge">Java</span>
-				<span class="info-badge">C/C++</span>
-				<span class="info-badge">SQL</span>
-				<span class="info-badge">MSSQL</span>
-				<span class="info-badge">HTML/CSS</span>
-				<span class="info-badge">BlueBeam</span>
-            </div>
-          </div>
-
-          <div class="info-card info-card-full">
-            <h3>Skills & Proficiency</h3>
-
-            <div class="skill-group">
-              <div class="skill-header">
-                <span>Excel / Reporting Automation</span>
-                <span>Advanced</span>
-              </div>
-              <div class="skill-bar"><span style="width: 95%;"></span></div>
-            </div>
-
-            <div class="skill-group">
-              <div class="skill-header">
-                <span>Power BI</span>
-                <span>Advanced</span>
-              </div>
-              <div class="skill-bar"><span style="width: 90%;"></span></div>
-            </div>
-
-            <div class="skill-group">
-              <div class="skill-header">
-                <span>Tableau</span>
-                <span>Advanced</span>
-              </div>
-              <div class="skill-bar"><span style="width: 88%;"></span></div>
-            </div>
-
-            <div class="skill-group">
-              <div class="skill-header">
-                <span>Python</span>
-                <span>Intermediate</span>
-              </div>
-              <div class="skill-bar"><span style="width: 72%;"></span></div>
-            </div>
-
-            <div class="skill-group">
-              <div class="skill-header">
-                <span>Physical Security Systems</span>
-                <span>Advanced</span>
-              </div>
-              <div class="skill-bar"><span style="width: 92%;"></span></div>
-            </div>
-
-            <div class="skill-group">
-              <div class="skill-header">
-                <span>Technical Documentation</span>
-                <span>Advanced</span>
-              </div>
-              <div class="skill-bar"><span style="width: 89%;"></span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Healthcare -->
-      <div class="credentials-tab-panel" id="healthcare-panel-credentials" role="tabpanel">
-        <div class="credentials-grid">
-          <div class="info-card">
-            <h3>Licenses & Certifications</h3>
-            <div class="badge-list">
-              <span class="info-badge">Certified Nursing Assistant (01334023)</span>
-              <span class="info-badge">BLS Certified (vbhxda5w9uuejeqognvfmxdj)</span>
-            </div>
-          </div>
-
-          <div class="info-card">
-            <h3>Clinical Familiarity</h3>
-            <div class="badge-list">
-				<span class="info-badge">Vital Signs</span>
-				<span class="info-badge">Intake & Output</span>
-				<span class="info-badge">ADLs</span>
-				<span class="info-badge">Patient Transfers</span>
-				<span class="info-badge">Fall Prevention</span>
-				<span class="info-badge">Infection Control</span>
-				<span class="info-badge">PointClickCare</span>
-				<span class="info-badge">1:1 Observation</span>
-				<span class="info-badge">Medical Coding</span>
-				<span class="info-badge">HIPAA Compliance</span>
-				<span class="info-badge">Medical Terminology</span>
-				<span class="info-badge">Dementia</span>
-				<span class="info-badge">Memory Care</span>
-				<span class="info-badge">Charting and Documentation (EHR)</span>
-				<span class="info-badge">Hoyer Lift</span>
-            </div>
-          </div>
-
-          <div class="info-card info-card-full">
-            <h3>Skills & Proficiency</h3>
-
-            <div class="skill-group">
-              <div class="skill-header">
-                <span>Patient Safety & Rounding</span>
-                <span>Advanced</span>
-              </div>
-              <div class="skill-bar"><span style="width: 92%;"></span></div>
-            </div>
-
-            <div class="skill-group">
-              <div class="skill-header">
-                <span>Activities of Daily Living (ADLs)</span>
-                <span>Advanced</span>
-              </div>
-              <div class="skill-bar"><span style="width: 90%;"></span></div>
-            </div>
-
-            <div class="skill-group">
-              <div class="skill-header">
-                <span>Vital Signs & Observation Reporting</span>
-                <span>Advanced</span>
-              </div>
-              <div class="skill-bar"><span style="width: 100%;"></span></div>
-            </div>
-
-            <div class="skill-group">
-              <div class="skill-header">
-                <span>Infection Prevention / PPE</span>
-                <span>Advanced</span>
-              </div>
-              <div class="skill-bar"><span style="width: 95%;"></span></div>
-            </div>
-
-            <div class="skill-group">
-              <div class="skill-header">
-                <span>Patient Mobility & Transfers</span>
-                <span>Intermediate</span>
-              </div>
-              <div class="skill-bar"><span style="width: 95%;"></span></div>
-            </div>
-
-            <div class="skill-group">
-              <div class="skill-header">
-                <span>Charting / PointClickCare</span>
-                <span>Intermediate</span>
-              </div>
-              <div class="skill-bar"><span style="width: 100%;"></span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Other -->
-      <div class="credentials-tab-panel" id="other-panel" role="tabpanel">
-        <div class="credentials-grid">
-          <div class="info-card">
-            <h3>Professional Strengths</h3>
-            <div class="badge-list">
-              <span class="info-badge">Cross-Functional Collaboration</span>
-              <span class="info-badge">Process Improvement</span>
-              <span class="info-badge">Training & Guidance</span>
-              <span class="info-badge">Problem Solving</span>
-              <span class="info-badge">Attention to Detail</span>
-              <span class="info-badge">Adaptability</span>
-            </div>
-          </div>
-
-          <div class="info-card">
-            <h3>Familiar With</h3>
-            <div class="badge-list">
-              <span class="info-badge">Project Coordination</span>
-              <span class="info-badge">Stakeholder Communication</span>
-              <span class="info-badge">Quality Assurance</span>
-              <span class="info-badge">Audit Readiness</span>
-              <span class="info-badge">Customer Support</span>
-              <span class="info-badge">Documentation Standards</span>
-            </div>
-          </div>
-
-          <div class="info-card info-card-full">
-            <h3>Skills & Proficiency</h3>
-
-            <div class="skill-group">
-              <div class="skill-header">
-                <span>Communication</span>
-                <span>Advanced</span>
-              </div>
-              <div class="skill-bar"><span style="width: 95%;"></span></div>
-            </div>
-
-            <div class="skill-group">
-              <div class="skill-header">
-                <span>Organization</span>
-                <span>Advanced</span>
-              </div>
-              <div class="skill-bar"><span style="width: 100%;"></span></div>
-            </div>
-
-            <div class="skill-group">
-              <div class="skill-header">
-                <span>Time Management</span>
-                <span>Advanced</span>
-              </div>
-              <div class="skill-bar"><span style="width: 90%;"></span></div>
-            </div>
-
-            <div class="skill-group">
-              <div class="skill-header">
-                <span>Leadership / Team Support</span>
-                <span>Intermediate to Advanced</span>
-              </div>
-              <div class="skill-bar"><span style="width: 85%;"></span></div>
-            </div>
-
-            <div class="skill-group">
-              <div class="skill-header">
-                <span>Process Improvement</span>
-                <span>Advanced</span>
-              </div>
-              <div class="skill-bar"><span style="width: 90%;"></span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-						</div>
-					</div>
-				<!-- Sidebar -->
-					<div id="sidebar">
-						<div class="inner">
-
-							<!-- Search -->
-								<section id="search" class="alt">
-									<form method="post" action="#">
-										<input type="text" name="query" id="query" placeholder="Search" />
-									</form>
-								</section>
-
-							<!-- Menu -->
-								<nav id="menu">
-									<header class="major">
-										<h2>Menu</h2>
-									</header>
-									<ul>
-										<li><a href="index.html">Homepage</a></li>
-										<li><a href="projects.html">Project Showcase</a></li>
-										<li><a href="elements.html">Elements</a></li>
-										<li>
-											<span class="opener">Blog</span>
-											<ul>
-												<li><a href="#">Lorem Dolor</a></li>
-												<li><a href="#">Ipsum Adipiscing</a></li>
-												<li><a href="#">Tempus Magna</a></li>
-												<li><a href="#">Feugiat Veroeros</a></li>
-											</ul>
-										</li>
-										<li><a href="contact-form.html">Contact Me</a></li>
-										<li><a href="#">Adipiscing</a></li>
-										<li>
-											<span class="opener">Another Submenu</span>
-											<ul>
-												<li><a href="#">Lorem Dolor</a></li>
-												<li><a href="#">Ipsum Adipiscing</a></li>
-												<li><a href="#">Tempus Magna</a></li>
-												<li><a href="#">Feugiat Veroeros</a></li>
-											</ul>
-										</li>
-										<li><a href="#">Maximus Erat</a></li>
-										<li><a href="#">Sapien Mauris</a></li>
-										<li><a href="#">Amet Lacinia</a></li>
-									</ul>
-								</nav>
-
-							<!-- Footer -->
-								<footer id="footer">
-									<p class="copyright">&copy; © 2026 Christopher Leung. All rights reserved.</p>
-								</footer>
-
-						</div>
-					</div>
-
-			</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-		
-<script>
-  document.querySelectorAll('[data-tabs-root]').forEach((tabRoot) => {
-    const buttons = tabRoot.querySelectorAll('[data-tab]');
-    const panels = tabRoot.querySelectorAll('.tab-panel, .credentials-tab-panel');
-
-    buttons.forEach((button) => {
-      button.addEventListener('click', () => {
-        const selected = button.dataset.tab;
-
-        buttons.forEach((btn) => {
-          btn.classList.remove('active');
-          btn.setAttribute('aria-selected', 'false');
-        });
-
-        panels.forEach((panel) => {
-          panel.classList.remove('active');
-        });
-
-        button.classList.add('active');
-        button.setAttribute('aria-selected', 'true');
-
-        let targetPanel =
-          tabRoot.querySelector(`#${selected}-panel`) ||
-          tabRoot.querySelector(`#${selected}-panel-credentials`);
-
-        if (targetPanel) {
-          targetPanel.classList.add('active');
-        }
-      });
-    });
-  });
-</script>
-/* =========================================
-   KH2 Final Form Inspired Theme Override
-   White / Silver / Pale Blue / Faded Glow
-   Rounded edges + cool blue accents
-========================================= */
+/* ======================================
+   CLEAN PORTFOLIO THEME
+   White / Grey / Blue
+====================================== */
 
 :root {
-  --kh-white: #f7f9fb;
-  --kh-mist: #edf3f8;
-  --kh-silver: #dfe6ee;
-  --kh-blue-soft: #cfe4ff;
-  --kh-blue: #9ecbff;
-  --kh-blue-deep: #6eaeea;
-  --kh-border: rgba(110, 174, 234, 0.18);
-  --kh-border-soft: rgba(95, 111, 127, 0.12);
-  --kh-shadow: rgba(110, 174, 234, 0.10);
-  --kh-text: #627384;
-  --kh-text-strong: #2f4458;
-  --kh-text-soft: #8092a4;
+  --site-bg: #f7f9fb;
+  --card-bg: #ffffff;
+  --accent: #4a6f86;
+  --accent-soft: #e6f0f6;
+  --border-soft: rgba(0,0,0,0.08);
+  --text-main: #3c4a55;
+  --text-muted: #7a8b97;
 }
+
+/* ===== Background ===== */
 
 body,
 #wrapper,
-#main,
-#sidebar,
-body.blog-tone,
-body.blog-tone #main {
-  background: var(--kh-white);
+#main {
+  background: var(--site-bg);
 }
 
 body {
-  background:
-    radial-gradient(circle at 18% 18%, rgba(207, 228, 255, 0.38), transparent 28%),
-    radial-gradient(circle at 82% 24%, rgba(158, 203, 255, 0.20), transparent 28%),
-    radial-gradient(circle at 76% 80%, rgba(223, 230, 238, 0.42), transparent 26%),
-    linear-gradient(135deg, #f7f9fb 0%, #edf3f8 45%, #f7f9fb 100%) !important;
-  color: var(--kh-text);
+  color: var(--text-main);
 }
 
-body,
-input,
-select,
-textarea {
-  color: var(--kh-text);
-}
+/* ===== Links ===== */
 
 a {
-  color: var(--kh-blue-deep);
+  color: var(--accent);
 }
 
 a:hover {
-  color: #4c97e0 !important;
-  border-bottom-color: #4c97e0;
+  color: #2c566f !important;
 }
 
-strong,
-b,
-h1, h2, h3, h4, h5, h6 {
-  color: var(--kh-text-strong);
-}
+/* ===== Header ===== */
 
 #header {
-  border-bottom: solid 2px rgba(158, 203, 255, 0.25);
+  border-bottom: 1px solid var(--border-soft);
 }
 
 #header .logo {
-  color: var(--kh-text-strong);
+  color: var(--text-main);
 }
 
-#header .icons a {
-  color: #87a8c6;
-}
-
-#header .icons a:hover {
-  color: var(--kh-blue-deep) !important;
-}
+/* ===== Sidebar ===== */
 
 #sidebar {
-  background: linear-gradient(180deg, rgba(247, 249, 251, 0.98), rgba(237, 243, 248, 0.96)) !important;
-  border-right: 1px solid rgba(110, 174, 234, 0.10);
+  background: #ffffff;
+  border-right: 1px solid var(--border-soft);
 }
 
-#sidebar > .inner {
-  background: transparent;
+#menu ul a {
+  color: var(--text-main);
 }
 
-#menu ul a,
-#menu ul span {
-  color: var(--kh-text);
-  border-bottom-color: rgba(110, 174, 234, 0.10);
+#menu ul a:hover {
+  color: var(--accent);
 }
 
-#menu ul a:hover,
-#menu ul span:hover {
-  color: var(--kh-blue-deep);
-}
-
-#menu > ul > li {
-  border-top-color: rgba(110, 174, 234, 0.10);
-}
-
-#menu .opener:before {
-  color: #9ab7d4;
-}
-
-#footer .copyright {
-  color: var(--kh-text-soft);
-}
+/* ===== Buttons ===== */
 
 .button,
 button,
-input[type="submit"],
-input[type="reset"],
-input[type="button"] {
-  border-radius: 999px !important;
-  box-shadow: 0 8px 22px rgba(110, 174, 234, 0.10);
-  border: solid 1px rgba(110, 174, 234, 0.20) !important;
-  color: var(--kh-blue-deep) !important;
-  background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(207,228,255,0.45));
+input[type="submit"] {
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  background: var(--card-bg);
+  color: var(--accent) !important;
 }
 
-.button:hover,
-button:hover,
-input[type="submit"]:hover,
-input[type="reset"]:hover,
-input[type="button"]:hover {
-  background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(158,203,255,0.55));
-  color: #3f89d0 !important;
+.button:hover {
+  background: var(--accent-soft);
 }
 
-input[type="text"],
-input[type="password"],
-input[type="email"],
-input[type="tel"],
-input[type="search"],
-input[type="url"],
-select,
-textarea {
-  border-radius: 1em;
-  border: solid 1px rgba(110, 174, 234, 0.16);
-  background: rgba(255,255,255,0.78);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.65);
-}
+/* ===== Cards ===== */
 
-input[type="text"]:focus,
-input[type="password"]:focus,
-input[type="email"]:focus,
-input[type="tel"]:focus,
-input[type="search"]:focus,
-input[type="url"]:focus,
-select:focus,
-textarea:focus {
-  border-color: rgba(110, 174, 234, 0.35);
-  box-shadow: 0 0 0 1px rgba(110, 174, 234, 0.18);
-}
-
-.box,
-.image img,
-.image.fit img,
-.image.main img {
-  border-radius: 1.25em;
-}
-
-.box {
-  border: solid 1px rgba(110, 174, 234, 0.14);
-  background: rgba(255,255,255,0.74);
-}
-
-hr {
-  border-bottom-color: rgba(110, 174, 234, 0.14);
-}
-
-.kh-shell,
-.kh-panel,
+.card,
+.blog-card,
 .kh-card,
-.kh-soft-card {
-  position: relative;
-  overflow: hidden;
-  border-radius: 1.6em;
-  background: linear-gradient(135deg, rgba(255,255,255,0.88), rgba(237,243,248,0.72));
-  border: 1px solid rgba(110, 174, 234, 0.16);
-  box-shadow: 0 14px 34px rgba(110, 174, 234, 0.08), inset 0 1px 0 rgba(255,255,255,0.72);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+.box {
+  background: var(--card-bg);
+  border: 1px solid var(--border-soft);
+  border-radius: 16px;
 }
 
-.kh-shell:before,
-.kh-panel:before,
-.kh-card:before,
-.kh-soft-card:before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 15% 20%, rgba(207,228,255,0.26), transparent 25%),
-    radial-gradient(circle at 85% 25%, rgba(158,203,255,0.14), transparent 28%),
-    radial-gradient(circle at 70% 85%, rgba(223,230,238,0.24), transparent 26%);
+/* ===== Images ===== */
+
+.image img {
+  border-radius: 12px;
 }
 
-.kh-banner {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 2em;
-  align-items: center;
-  padding: 2.5em;
-  margin-bottom: 2.5em;
+/* ===== Blog Hero ===== */
+
+.blog-hero {
+  background: var(--site-bg);
+  border: 1px solid var(--border-soft);
+  border-radius: 18px;
+  padding: 3em;
 }
 
-.kh-kicker {
-  display: inline-block;
-  margin-bottom: 1.2em;
-  font-size: 0.74em;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: #84a1bf;
-  font-weight: 700;
-}
-
-.kh-title {
-  font-size: clamp(2.6rem, 5vw, 4.7rem);
-  line-height: 0.98;
-  letter-spacing: -0.03em;
-  margin: 0 0 0.35em 0;
-  color: var(--kh-text-strong);
-}
-
-.kh-subtitle {
-  max-width: 36em;
-  line-height: 1.9;
-  color: var(--kh-text);
-  margin-bottom: 1.75em;
-}
-
-.kh-menu-stack {
-  display: grid;
-  gap: 0.85em;
-  max-width: 28em;
-  margin-top: 1.5em;
-}
-
-.kh-menu-stack .kh-menu-item {
-  position: relative;
-  display: block;
-  padding: 0.95em 1.25em 0.95em 3.1em;
-  border-radius: 1em;
-  text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-weight: 700;
-  color: #6d8195;
-  background: linear-gradient(90deg, rgba(255,255,255,0.90), rgba(207,228,255,0.42));
-  border: 1px solid rgba(110, 174, 234, 0.16);
-  box-shadow: 0 8px 18px rgba(110, 174, 234, 0.06);
-  transition: all 0.2s ease;
-}
-
-.kh-menu-stack .kh-menu-item:before {
-  content: "";
-  position: absolute;
-  left: 1em;
-  top: 50%;
-  width: 0.95em;
-  height: 0.95em;
-  transform: translateY(-50%);
-  border-radius: 0.25em;
-  background: linear-gradient(135deg, #dff0ff, #8cc5ff);
-  box-shadow: 0 0 12px rgba(158,203,255,0.55);
-}
-
-.kh-menu-stack .kh-menu-item:hover {
-  transform: translateX(4px);
-  color: #3b5874;
-}
-
-.kh-portrait-wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.kh-portrait {
-  width: min(100%, 340px);
-  aspect-ratio: 1 / 1.1;
-  padding: 1.1em;
-  border-radius: 2em;
-  background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(207,228,255,0.35));
-  border: 1px solid rgba(110, 174, 234, 0.18);
-  box-shadow: 0 18px 38px rgba(110, 174, 234, 0.10);
-}
-
-.kh-portrait img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 1.4em;
-  filter: brightness(1.02) saturate(0.92) contrast(0.96);
-}
-
-.kh-section {
-  margin-bottom: 3em;
-}
-
-.kh-section-header {
-  margin-bottom: 1.4em;
-}
-
-.kh-tab-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.85em;
-  margin-bottom: 1.5em;
-}
-
-.kh-tab-button {
-  appearance: none;
-  border: 1px solid rgba(110, 174, 234, 0.16);
-  background: linear-gradient(135deg, rgba(255,255,255,0.88), rgba(207,228,255,0.36));
-  color: #6a7f94;
-  border-radius: 999px;
-  padding: 0.8em 1.2em;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.kh-tab-button:hover,
-.kh-tab-button.active {
-  color: #fff;
-  background: linear-gradient(135deg, #7cb8f2, #5aa3ea);
-  border-color: #7cb8f2;
-  box-shadow: 0 10px 22px rgba(90, 163, 234, 0.20);
-}
-
-.kh-entry-list {
-  display: grid;
-  gap: 1.25em;
-}
-
-.kh-entry {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 1.25em;
-  padding: 1.25em;
-  border-radius: 1.45em;
-  background: rgba(255,255,255,0.82);
-  border: 1px solid rgba(110, 174, 234, 0.14);
-  box-shadow: 0 10px 24px rgba(110, 174, 234, 0.06);
-}
-
-.kh-entry-left {
-  padding: 1.1em;
-  border-radius: 1.2em;
-  background: linear-gradient(135deg, rgba(255,255,255,0.88), rgba(207,228,255,0.30));
-  border: 1px solid rgba(110, 174, 234, 0.12);
-}
-
-.kh-entry-role {
-  color: #6f8396;
-  font-weight: 700;
-  margin-bottom: 0.35em;
-}
-
-.kh-entry-date {
-  color: #8ea0b1;
-  font-size: 0.92em;
-}
-
-.kh-entry-right {
-  padding: 0.4em 0.4em 0.4em 0;
-}
-
-.kh-bullets {
-  margin: 0;
-  padding-left: 1.25em;
-}
-
-.kh-bullets li {
-  margin-bottom: 0.65em;
-  color: var(--kh-text);
-}
-
-.kh-card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.2em;
-}
-
-.kh-mini-card {
-  padding: 1.25em;
-  border-radius: 1.35em;
-  background: rgba(255,255,255,0.82);
-  border: 1px solid rgba(110, 174, 234, 0.14);
-  box-shadow: 0 10px 22px rgba(110, 174, 234, 0.06);
-}
-
-.kh-tag-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6em;
-  margin-top: 0.8em;
-}
-
-.kh-tag {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.55em 0.85em;
-  border-radius: 999px;
-  background: rgba(207, 228, 255, 0.36);
-  border: 1px solid rgba(110, 174, 234, 0.12);
-  color: #587086;
-  font-size: 0.84em;
-  font-weight: 700;
-}
-
-.kh-project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-  gap: 1.5em;
-}
-
-.kh-project-card {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  border-radius: 1.5em;
-  background: rgba(255,255,255,0.84);
-  border: 1px solid rgba(110, 174, 234, 0.14);
-  box-shadow: 0 12px 28px rgba(110, 174, 234, 0.06);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.kh-project-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 34px rgba(110, 174, 234, 0.10);
-}
-
-.kh-project-card .image img {
-  border-radius: 0;
-  height: 220px;
-  object-fit: cover;
-  filter: brightness(1.02) saturate(0.90) contrast(0.96);
-}
-
-.kh-project-body {
-  padding: 1.35em;
-}
-
-.kh-contact-shell {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2em;
-}
-
-.kh-contact-card {
-  padding: 2em;
-  border-radius: 1.6em;
-  background: linear-gradient(135deg, rgba(255,255,255,0.90), rgba(237,243,248,0.76));
-  border: 1px solid rgba(110, 174, 234, 0.14);
-  box-shadow: 0 16px 36px rgba(110, 174, 234, 0.08);
-}
-
-.blog-hero-luxe {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1.3fr 0.95fr;
-  align-items: stretch;
-  min-height: 34em;
-  margin: 0 0 3em 0;
-  overflow: hidden;
-  border-radius: 1.75em;
-  background: #f7f9fb;
-  border: 1px solid rgba(110, 174, 234, 0.16);
-  box-shadow: 0 18px 40px rgba(110, 174, 234, 0.08);
-}
-
-.blog-hero-media {
-  min-height: 34em;
-  overflow: hidden;
-}
-
-.blog-hero-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  filter: saturate(0.90) contrast(0.95) brightness(1.02);
-}
-
-.blog-hero-media:after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to right, rgba(158,203,255,0.04), rgba(95,111,127,0.08));
-}
-
-.blog-hero-panel {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 4em 3.25em;
-  background: rgba(247, 249, 251, 0.96);
-  color: var(--kh-text-strong);
-  border-left: 1px solid rgba(110, 174, 234, 0.12);
-}
-
-.blog-kicker-luxe {
-  display: inline-block;
-  margin-bottom: 1.4em;
-  font-size: 0.74em;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: #84a1bf;
-  font-weight: 700;
-}
-
-.blog-hero-panel h1 {
-  margin: 0 0 0.35em 0;
-  font-size: clamp(2.8rem, 5vw, 4.8rem);
-  line-height: 0.98;
-  letter-spacing: -0.03em;
-  color: var(--kh-text-strong);
-}
-
-.blog-subtitle-luxe {
-  max-width: 30em;
-  margin: 0 0 2em 0;
-  font-size: 1rem;
-  line-height: 1.9;
-  color: var(--kh-text);
-}
-
-.blog-tag-nav-luxe {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1em 1.4em;
-  padding-top: 1.2em;
-  border-top: 1px solid rgba(110, 174, 234, 0.14);
-}
-
-.blog-tag-nav-luxe a {
-  position: relative;
-  text-decoration: none;
-  border-bottom: 0;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-size: 0.72em;
-  font-weight: 700;
-  color: #64778a;
-}
-
-.blog-tag-nav-luxe a:after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -0.45em;
-  width: 100%;
-  height: 2px;
-  border-radius: 999px;
-  background: var(--kh-blue-deep);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.22s ease;
-}
-
-.blog-tag-nav-luxe a:hover,
-.blog-tag-nav-luxe a.active {
-  color: var(--kh-blue-deep);
-}
-
-.blog-tag-nav-luxe a:hover:after,
-.blog-tag-nav-luxe a.active:after {
-  transform: scaleX(1);
-}
-
-.blog-toolbar {
-  margin-bottom: 2em;
-}
-
-.blog-filter-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8em;
-}
-
-.blog-chip,
-.page-btn {
-  border: 1px solid rgba(110, 174, 234, 0.16);
-  border-radius: 999px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.88), rgba(207,228,255,0.36));
-  box-shadow: 0 8px 18px rgba(110, 174, 234, 0.04);
-  transition: all 0.2s ease-in-out;
-}
-
-.blog-chip {
-  padding: 0.72em 1.1em;
-  color: #688097;
-  font-size: 0.8em;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.blog-chip:hover,
-.blog-chip.active,
-.page-btn:hover,
-.page-btn.active {
-  background: linear-gradient(135deg, #8cc5ff, #69aeea);
-  border-color: #8cc5ff;
-  color: #ffffff !important;
-  transform: translateY(-1px);
-  box-shadow: 0 14px 24px rgba(110, 174, 234, 0.18);
-}
+/* ===== Blog Grid ===== */
 
 .blog-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-  gap: 1.75em;
+  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+  gap: 2em;
 }
 
 .blog-card {
-  min-height: 29em;
-  background: rgba(255,255,255,0.92);
-  border: 1px solid rgba(110, 174, 234, 0.12);
-  border-radius: 1.4em;
   overflow: hidden;
-  box-shadow: 0 14px 30px rgba(110, 174, 234, 0.06);
-  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
-  text-decoration: none;
-  border-bottom: 0;
+  transition: transform .25s ease, box-shadow .25s ease;
 }
 
 .blog-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(110, 174, 234, 0.10);
-  border-color: rgba(110, 174, 234, 0.22);
-}
-
-.blog-card-image {
-  position: relative;
-  height: 18.5em;
-  overflow: hidden;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.06);
 }
 
 .blog-card-image img {
   width: 100%;
-  height: 100%;
+  height: 220px;
   object-fit: cover;
-  display: block;
-  filter: brightness(1.03) saturate(0.90) contrast(0.95);
-  transition: transform 0.3s ease;
-}
-
-.blog-card:hover .blog-card-image img {
-  transform: scale(1.04);
-}
-
-.blog-card-image:after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(47,68,88,0.16), rgba(47,68,88,0.02));
-}
-
-.blog-tag-badge {
-  position: absolute;
-  top: 1.2em;
-  left: 1.2em;
-  z-index: 2;
-  background: rgba(247, 249, 251, 0.94);
-  color: #35506b;
-  border: 1px solid rgba(110, 174, 234, 0.12);
-  border-radius: 999px;
-  padding: 0.55em 0.85em;
-  font-size: 0.68em;
-  letter-spacing: 0.14em;
-  font-weight: 700;
-  text-transform: uppercase;
 }
 
 .blog-card-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 10.5em;
-  padding: 1.4em 1.4em 1.6em 1.4em;
-}
-
-.blog-card-meta {
-  color: #89a0b5;
-  font-size: 0.74em;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  font-weight: 700;
-  margin-bottom: 0.9em;
+  padding: 1.4em;
 }
 
 .blog-card-title {
-  margin: 0 0 0.6em 0;
-  font-size: 1.28em;
-  line-height: 1.35;
-  color: var(--kh-text-strong);
+  margin-bottom: .4em;
 }
 
 .blog-card-excerpt {
-  color: var(--kh-text);
-  line-height: 1.8;
-  margin: 0 0 1.1em 0;
+  color: var(--text-muted);
 }
 
-.blog-card-link {
-  margin-top: auto;
-  color: var(--kh-blue-deep);
+/* ===== Blog Tags ===== */
+
+.blog-tag-badge {
+  background: var(--accent-soft);
+  border-radius: 999px;
+  padding: .3em .8em;
+  font-size: .7rem;
+  color: var(--accent);
+}
+
+/* ===== Tag Navigation ===== */
+
+.blog-tag-nav a {
   text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-size: 0.72em;
-  font-weight: 700;
+  letter-spacing: .08em;
+  font-size: .8rem;
+  color: var(--text-muted);
 }
 
-.blog-empty {
-  display: none;
-  margin-top: 1.5em;
-  padding: 1.2em 1.35em;
-  border: 1px solid rgba(110, 174, 234, 0.12);
-  border-radius: 1em;
-  background: rgba(255, 255, 255, 0.8);
-  color: var(--kh-text);
+.blog-tag-nav a.active {
+  color: var(--accent);
 }
+
+/* ===== Pagination ===== */
 
 .pagination {
   display: flex;
   justify-content: center;
-  gap: 0.75em;
-  margin-top: 2.5em;
-  flex-wrap: wrap;
+  gap: .5em;
+  margin-top: 2em;
 }
 
 .page-btn {
-  padding: 0.75em 1em;
-  text-decoration: none;
-  font-size: 0.78em;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #4d647b;
-  font-weight: 700;
-}
-
-.blog-post-luxe {
-  display: grid;
-  grid-template-columns: 1.2fr 0.9fr;
-  align-items: stretch;
-  margin: 0 0 3em 0;
-  background: #f7f9fb;
-  border-radius: 1.75em;
-  overflow: hidden;
-  border: 1px solid rgba(110, 174, 234, 0.14);
-  box-shadow: 0 18px 36px rgba(110, 174, 234, 0.07);
-}
-
-.blog-post-luxe-media {
-  min-height: 32em;
-  overflow: hidden;
-}
-
-.blog-post-luxe-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  filter: brightness(1.03) saturate(0.90) contrast(0.95);
-}
-
-.blog-post-luxe-panel {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 3.5em 3.25em;
-  background: rgba(247, 249, 251, 0.96);
-  border-left: 1px solid rgba(110, 174, 234, 0.12);
-}
-
-.blog-post-luxe-panel h1 {
-  margin: 0 0 0.4em 0;
-  font-size: clamp(2.6rem, 4.5vw, 4.5rem);
-  line-height: 1;
-  letter-spacing: -0.03em;
-  color: var(--kh-text-strong);
-}
-
-.blog-post-meta-luxe {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.2em;
-  margin-top: 1.5em;
-  padding-top: 1.2em;
-  border-top: 1px solid rgba(110, 174, 234, 0.14);
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-size: 0.72em;
-  font-weight: 700;
-  color: #7f97ac;
-}
-
-.blog-post-content-luxe {
-  max-width: 52em;
-  margin: 0 auto 2em auto;
-  padding: 0;
-}
-
-.blog-post-content-luxe p,
-.blog-post-content-luxe ul,
-.blog-post-content-luxe ol {
-  line-height: 1.95;
-  color: var(--kh-text);
-  font-size: 1rem;
-}
-
-.blog-post-content-luxe h2,
-.blog-post-content-luxe h3 {
-  margin-top: 2.3em;
-  margin-bottom: 0.8em;
-  color: var(--kh-text-strong);
-}
-
-.blog-post-content-luxe blockquote {
-  margin: 2em 0;
-  padding: 1.25em 1.5em;
-  border-left: 3px solid var(--kh-blue-deep);
-  background: rgba(255, 255, 255, 0.82);
-  color: #597083;
-  border-radius: 1em;
-}
-
-.blog-post-nav-luxe {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1em;
-  margin-top: 2.5em;
-}
-
-.blog-post-nav-luxe .button {
+  padding: .6em .9em;
+  border: 1px solid var(--border-soft);
   border-radius: 999px;
-  box-shadow: none;
+  background: white;
+  font-size: .8rem;
 }
 
-@media screen and (max-width: 1100px) {
-  .kh-banner,
-  .blog-hero-luxe,
-  .blog-post-luxe {
-    grid-template-columns: 1fr;
-  }
-
-  .blog-hero-media,
-  .blog-post-luxe-media {
-    min-height: 22em;
-  }
-
-  .blog-hero-panel,
-  .blog-post-luxe-panel {
-    padding: 2.75em 2em;
-    border-left: 0;
-    border-top: 1px solid rgba(110, 174, 234, 0.12);
-  }
-
-  .kh-entry {
-    grid-template-columns: 1fr;
-  }
+.page-btn.active {
+  background: var(--accent-soft);
+  color: var(--accent);
 }
 
-@media screen and (max-width: 736px) {
-  .kh-banner {
-    padding: 1.5em;
+/* ===== Forms ===== */
+
+input[type="text"],
+input[type="email"],
+textarea {
+  border-radius: 10px;
+  border: 1px solid var(--border-soft);
+  background: white;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* ===== Contact Card ===== */
+
+.contact-card {
+  max-width: 900px;
+  margin: auto;
+  background: white;
+  padding: 2em;
+  border-radius: 18px;
+  border: 1px solid var(--border-soft);
+}
+
+/* ===== Footer ===== */
+
+#footer {
+  color: var(--text-muted);
+}
+
+/* ===== Mobile ===== */
+
+@media screen and (max-width: 900px) {
+
+  .blog-hero {
+    padding: 2em;
   }
 
-  .kh-shell,
-  .kh-panel,
-  .kh-card,
-  .kh-soft-card,
-  .blog-hero-luxe,
-  .blog-post-luxe {
-    border-radius: 1.25em;
+  .blog-card-image img {
+    height: 180px;
   }
 
-  .blog-hero-media,
-  .blog-post-luxe-media {
-    min-height: 17em;
-  }
-
-  .blog-hero-panel,
-  .blog-post-luxe-panel {
-    padding: 2.2em 1.4em;
-  }
-
-  .blog-hero-panel h1,
-  .blog-post-luxe-panel h1,
-  .kh-title {
-    font-size: 2.3rem;
-  }
-
-  .kh-menu-stack .kh-menu-item {
-    padding-left: 2.8em;
-  }
 }
