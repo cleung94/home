@@ -3249,7 +3249,7 @@ color: #4a6f86;
   flex-direction: column;
   justify-content: center;
   padding: 4.5em 4.25em;
-  background: #e9e1d7;
+  background: #f7f9fb;
   color: #2e2a27;
 }
 
@@ -3268,7 +3268,7 @@ color: #4a6f86;
   font-size: clamp(3rem, 5vw, 5.2rem);
   line-height: 0.96;
   letter-spacing: -0.03em;
-  color: #231f1c;
+  color: #7f888f;
 }
 
 .blog-subtitle-luxe {
@@ -3335,7 +3335,7 @@ color: #4a6f86;
   border: 1px solid rgba(46, 42, 39, 0.12);
   border-radius: 999px;
   padding: 0.7em 1.1em;
-  background: #f5f1eb;
+  background: #f7f9fb;
   color: #5e564e;
   font-size: 0.8em;
   font-weight: 700;
@@ -3348,7 +3348,7 @@ color: #4a6f86;
 .blog-chip.active {
   background: #2e2a27;
   border-color: #2e2a27;
-  color: #f5f1eb !important;
+  color: #f7f9fb !important;
   transform: none;
   box-shadow: none;
 }
@@ -3414,7 +3414,7 @@ color: #4a6f86;
 .blog-card-title {
   font-size: 1.35em;
   line-height: 1.35;
-  color: #231f1c;
+  color: #7f888f;
 }
 
 .blog-card-excerpt {
@@ -3498,7 +3498,7 @@ body.blog-tone #main {
   flex-direction: column;
   justify-content: center;
   padding: 4em 4em 3.5em 4em;
-  background: #e9e1d7;
+  background: #f7f9fb;
   color: #2e2a27;
 }
 
@@ -3507,7 +3507,7 @@ body.blog-tone #main {
   font-size: clamp(2.6rem, 4.5vw, 4.8rem);
   line-height: 1;
   letter-spacing: -0.03em;
-  color: #231f1c;
+  color: #7f888f;
 }
 
 .blog-post-meta-luxe {
@@ -3521,7 +3521,7 @@ body.blog-tone #main {
   letter-spacing: 0.16em;
   font-size: 0.72em;
   font-weight: 700;
-  color: #6c6259;
+  color: #4a6f86;
 }
 
 .blog-post-content-luxe {
@@ -3534,7 +3534,7 @@ body.blog-tone #main {
 .blog-post-content-luxe ul,
 .blog-post-content-luxe ol {
   line-height: 1.95;
-  color: #5d554e;
+  color: #4a6f86;
   font-size: 1rem;
 }
 
@@ -3542,15 +3542,15 @@ body.blog-tone #main {
 .blog-post-content-luxe h3 {
   margin-top: 2.4em;
   margin-bottom: 0.8em;
-  color: #231f1c;
+  color: #7f888f;
 }
 
 .blog-post-content-luxe blockquote {
   margin: 2em 0;
   padding: 1.25em 1.5em;
-  border-left: 2px solid #8d8175;
+  border-left: 2px solid #d4a373;
   background: #f2ece5;
-  color: #4f4740;
+  color: #4a6f86;
 }
 
 .blog-post-nav-luxe {
@@ -3561,13 +3561,13 @@ body.blog-tone #main {
 }
 
 .blog-post-nav-luxe .button {
-  background: #f5f1eb;
+  background: #f7f9fb;
   box-shadow: none;
 }
 
 .blog-post-nav-luxe .button:hover {
   background: #2e2a27;
-  color: #f5f1eb !important;
+  color: #f7f9fb !important;
 }
 
 @media screen and (max-width: 1100px) {
