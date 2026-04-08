@@ -3865,7 +3865,7 @@ font-weight:600;
     position: relative;
     overflow: hidden;
     margin-top: 1.75rem;
-    padding: 4.5rem 3.25rem;
+    padding: 4.75rem 3.25rem 4.5rem 6rem;
     border-radius: 28px;
     border: 1px solid rgba(255,255,255,0.08);
     background:
@@ -4056,10 +4056,12 @@ font-weight:600;
 }
 
 .projects-filter.active {
-  color: #ffffff;
+  color: #FFFFFF !important;
   background: linear-gradient(135deg, #1f4f82 0%, #6ea8d9 100%);
   border-color: transparent;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05), 0 12px 28px rgba(31, 79, 130, 0.25);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.05),
+    0 12px 28px rgba(31,79,130,0.25);
 }
 
 .featured-projects {
