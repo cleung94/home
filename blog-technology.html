@@ -1,114 +1,361 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Technology Blog | Christopher Leung</title>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" href="assets/css/main.css" />
+	<title>Technology Blog | Christopher Leung</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+
+	<style>
+		.blog-grid,
+		#blogGrid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+			gap: 1.6em;
+		}
+
+		.blog-card {
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			overflow: hidden;
+			border-radius: 1em;
+			text-decoration: none;
+			color: inherit;
+			background: linear-gradient(
+				145deg,
+				rgba(255,255,255,0.88) 0%,
+				rgba(245,248,252,0.82) 50%,
+				rgba(232,238,245,0.78) 100%
+			);
+			border: 1px solid rgba(74,111,134,0.16);
+			backdrop-filter: blur(6px);
+			-webkit-backdrop-filter: blur(6px);
+			box-shadow:
+				0 10px 24px rgba(60,80,100,0.06),
+				inset 0 1px 0 rgba(255,255,255,0.45);
+			transition:
+				transform 0.25s ease,
+				box-shadow 0.25s ease,
+				border-color 0.25s ease,
+				background 0.25s ease;
+		}
+
+		.blog-card:hover {
+			transform: translateY(-5px);
+			border-color: rgba(74,111,134,0.28);
+			background: linear-gradient(
+				145deg,
+				rgba(255,255,255,0.94) 0%,
+				rgba(243,247,251,0.90) 50%,
+				rgba(230,236,244,0.86) 100%
+			);
+			box-shadow:
+				0 16px 32px rgba(60,80,100,0.10),
+				inset 0 1px 0 rgba(255,255,255,0.55);
+		}
+
+		.blog-card-image {
+			position: relative;
+			overflow: hidden;
+			min-height: 220px;
+		}
+
+		.blog-card-image img {
+			width: 100%;
+			height: 220px;
+			object-fit: cover;
+			display: block;
+			opacity: 0.94;
+			filter: saturate(0.92) brightness(1.02);
+			transition:
+				transform 0.35s ease,
+				opacity 0.35s ease,
+				filter 0.35s ease;
+		}
+
+		.blog-card:hover .blog-card-image img {
+			transform: scale(1.04);
+			opacity: 1;
+			filter: saturate(0.98) brightness(1.04);
+		}
+
+		.blog-card-image::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(
+				to top,
+				rgba(74,111,134,0.16) 0%,
+				rgba(247,249,251,0.04) 45%,
+				rgba(255,255,255,0.00) 100%
+			);
+			pointer-events: none;
+		}
+
+		.blog-tag-badge {
+			position: absolute;
+			top: 1em;
+			left: 1em;
+			z-index: 2;
+			display: inline-flex;
+			align-items: center;
+			gap: 0.35em;
+			padding: 0.45em 0.8em;
+			border-radius: 999px;
+			background: rgba(255,255,255,0.70);
+			border: 1px solid rgba(74,111,134,0.14);
+			backdrop-filter: blur(6px);
+			-webkit-backdrop-filter: blur(6px);
+			color: #4a6f86;
+			font-size: 0.72rem;
+			font-weight: 700;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+		}
+
+		.blog-card-body {
+			display: flex;
+			flex-direction: column;
+			gap: 0.75em;
+			padding: 1.25em 1.25em 1.4em;
+			flex: 1;
+		}
+
+		.blog-card-meta {
+			margin: 0;
+			color: #7a8b97;
+			font-size: 0.76rem;
+			font-weight: 700;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+		}
+
+		.blog-card-title {
+			margin: 0;
+			color: #3c4a55;
+			line-height: 1.35;
+			font-size: 1.18rem;
+		}
+
+		.blog-card-excerpt {
+			margin: 0;
+			color: #6e7e8b;
+			line-height: 1.75;
+			font-size: 0.96rem;
+		}
+
+		.blog-card-link {
+			margin-top: auto;
+			display: inline-flex;
+			align-items: center;
+			gap: 0.45em;
+			color: #4a6f86;
+			font-weight: 700;
+			letter-spacing: 0.04em;
+			transition: gap 0.2s ease, color 0.2s ease;
+		}
+
+		.blog-card:hover .blog-card-link {
+			gap: 0.65em;
+			color: #2c566f;
+		}
+
+		.blog-empty {
+			margin-top: 1.5em;
+			padding: 1.1em 1.25em;
+			border-radius: 0.85em;
+			background: linear-gradient(
+				145deg,
+				rgba(255,255,255,0.80),
+				rgba(237,242,247,0.72)
+			);
+			border: 1px solid rgba(74,111,134,0.12);
+			color: #7a8b97;
+		}
+
+		#pagination {
+			margin-top: 2.2em;
+		}
+
+		.pagination {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 0.6em;
+			flex-wrap: wrap;
+		}
+
+		.page-btn {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			min-width: 2.7em;
+			height: 2.7em;
+			padding: 0 1em;
+			border-radius: 999px;
+			background: linear-gradient(145deg, #d9e4ec 0%, #b9cad7 100%);
+			border: 1px solid rgba(74, 111, 134, 0.22);
+			color: #23445a !important;
+			text-decoration: none;
+			font-size: 0.82rem;
+			font-weight: 700;
+			box-shadow:
+				0 8px 18px rgba(44, 86, 111, 0.10),
+				inset 0 1px 0 rgba(255,255,255,0.65);
+			transition:
+				transform 0.2s ease,
+				box-shadow 0.2s ease,
+				background 0.2s ease,
+				color 0.2s ease,
+				border-color 0.2s ease;
+		}
+
+		.page-btn:hover {
+			transform: translateY(-2px);
+			background: linear-gradient(145deg, #e4edf3 0%, #c7d6e1 100%);
+			border-color: rgba(44, 86, 111, 0.32);
+			color: #18384d !important;
+		}
+
+		.page-btn.active {
+			background: linear-gradient(145deg, #23445a 0%, #4a6f86 100%);
+			border-color: rgba(255,255,255,0.35);
+			color: #ffffff !important;
+			box-shadow:
+				0 10px 22px rgba(35, 68, 90, 0.22),
+				inset 0 1px 0 rgba(255,255,255,0.10);
+		}
+
+		.page-btn.disabled {
+			opacity: 0.45;
+			pointer-events: none;
+			transform: none;
+			box-shadow: none;
+		}
+
+		.page-btn.ellipsis {
+			pointer-events: none;
+			opacity: 0.9;
+		}
+
+		@media screen and (max-width: 736px) {
+			.blog-card-image,
+			.blog-card-image img {
+				height: 190px;
+				min-height: 190px;
+			}
+
+			.blog-card-body {
+				padding: 1.05em 1.05em 1.2em;
+			}
+
+			.page-btn {
+				min-width: 2.45em;
+				height: 2.45em;
+				padding: 0 0.8em;
+				font-size: 0.78rem;
+			}
+		}
+	</style>
 </head>
 
 <body class="is-preload blog-tone" data-blog-tag="technology">
 
-<div id="wrapper">
+	<div id="wrapper">
 
-<div id="main">
-<div class="inner">
+		<div id="main">
+			<div class="inner">
 
-<header id="header">
-<a href="index.html" class="logo"><strong>Christopher Leung</strong></a>
-<ul class="icons">
-<li><a href="https://github.com/cleung94" class="icon brands fa-github"></a></li>
-<li><a href="https://www.linkedin.com/in/christopher-km-leung/" class="icon brands fa-linkedin"></a></li>
-</ul>
-</header>
+				<header id="header">
+					<a href="index.html" class="logo"><strong>Christopher Leung</strong></a>
+					<ul class="icons">
+						<li><a href="https://github.com/cleung94" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						<li><a href="https://www.linkedin.com/in/christopher-km-leung/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+					</ul>
+				</header>
 
-<section class="blog-hero-luxe">
-<div class="blog-hero-media">
-<img src="blog/photos/blog-technology-image.png" alt="">
-</div>
+				<section class="blog-hero-luxe">
+					<div class="blog-hero-media">
+						<img src="blog/photos/blog-technology-image.png" alt="Technology Blog Image">
+					</div>
 
-<div class="blog-hero-panel">
-<span class="blog-kicker-luxe">Category</span>
-<h1>Technology</h1>
-<p class="blog-subtitle-luxe">
-Systems, troubleshooting, tools, and lessons learned from technical work.
-</p>
+					<div class="blog-hero-panel">
+						<span class="blog-kicker-luxe">Category</span>
+						<h1>Technology</h1>
+						<p class="blog-subtitle-luxe">
+							Systems, troubleshooting, tools, physical security insights, and lessons learned from technical work.
+						</p>
 
-<div class="blog-tag-nav-luxe">
-<a href="blog.html">All</a>
-<a href="blog-technology.html" class="active">Technology</a>
-<a href="blog-healthcare.html">Healthcare</a>
-<a href="blog-restaurant.html">Restaurant</a>
-<a href="blog-hobbies.html">Hobbies</a>
-</div>
-</div>
-</section>
+						<div class="blog-tag-nav-luxe">
+							<a href="blog.html">All</a>
+							<a href="blog-technology.html" class="active">Technology</a>
+							<a href="blog-healthcare.html">Healthcare</a>
+							<a href="blog-restaurant.html">Restaurant</a>
+							<a href="blog-hobbies.html">Hobbies</a>
+						</div>
+					</div>
+				</section>
 
-<section>
+				<section>
+					<div class="blog-grid" id="blogGrid"></div>
 
-<div class="blog-grid" id="tagBlogGrid"></div>
+					<div id="pagination"></div>
 
-<div id="pagination"></div>
+					<div class="blog-empty" id="blogEmpty">
+						No posts in this category yet.
+					</div>
+				</section>
 
-<div class="blog-empty" id="tagBlogEmpty">
-No posts in this category yet.
-</div>
+			</div>
+		</div>
 
-</section>
+		<div id="sidebar">
+			<div class="inner">
 
-</div>
-</div>
+				<section id="search" class="alt">
+					<form method="post" action="#">
+						<input type="text" name="query" id="query" placeholder="Search" />
+					</form>
+				</section>
 
-                <!-- Sidebar -->
-                    <div id="sidebar">
-                        <div class="inner">
+				<nav id="menu">
+					<header class="major">
+						<h2>Menu</h2>
+					</header>
+					<ul>
+						<li><a href="index.html">Homepage</a></li>
+						<li><a href="projects.html">Project Showcase</a></li>
+						<li>
+							<span class="opener">Blog</span>
+							<ul>
+								<li><a href="blog.html">Blog Homepage</a></li>
+								<li><a href="blog-technology.html">Blog - Technology</a></li>
+								<li><a href="blog-healthcare.html">Blog - Healthcare</a></li>
+								<li><a href="blog-restaurant.html">Blog - Restaurant</a></li>
+								<li><a href="blog-hobbies.html">Blog - Hobbies</a></li>
+							</ul>
+						</li>
+						<li><a href="contact-form.html">Contact Me</a></li>
+					</ul>
+				</nav>
 
-                            <!-- Search -->
-                                <section id="search" class="alt">
-                                    <form method="post" action="#">
-                                        <input type="text" name="query" id="query" placeholder="Search" />
-                                    </form>
-                                </section>
+				<footer id="footer">
+					<p class="copyright">&copy; 2026 Christopher Leung. All rights reserved.</p>
+				</footer>
 
-                            <!-- Menu -->
-                                <nav id="menu">
-                                    <header class="major">
-                                        <h2>Menu</h2>
-                                    </header>
-                                    <ul>
-                                        <li><a href="index.html">Homepage</a></li>
-                                        <li><a href="projects.html">Project Showcase</a></li>
-                                        <li>
-                                            <span class="opener">Blog</span>
-                                            <ul>
-                                                <li><a href="blog.html">Blog Homepage</a></li>
-                                                <li><a href="blog-technology.html">Blog - Technology</a></li>
-                                                <li><a href="blog-healthcare.html">Blog - Healthcare</a></li>
-                                                <li><a href="blog-restaurant.html">Blog - Restaurant</a></li>
-                                                <li><a href="blog-hobbies.html">Blog - Hobbies</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="contact-form.html">Contact Me</a></li>
-                                    </ul>
-                                </nav>
+			</div>
+		</div>
 
-                            <!-- Footer -->
-                                <footer id="footer">
-                                    <p class="copyright">&copy; 2026 Christopher Leung. All rights reserved.</p>
-                                </footer>
+	</div>
 
-                        </div>
-                    </div>
-
-</div>
-
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/browser.min.js"></script>
-<script src="assets/js/breakpoints.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
-<script src="assets/js/blog-data.js"></script>
-<script src="assets/js/blog-render.js"></script>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="assets/js/blog-data.js"></script>
+	<script src="assets/js/blog-render.js"></script>
 
 </body>
 </html>
