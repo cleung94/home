@@ -51,16 +51,16 @@
                             </p>
                         </div>
 
-                        <div class="projects-filters">
-                            <span class="projects-filter active">All</span>
-                            <span class="projects-filter">Technology</span>
-                            <span class="projects-filter">Data</span>
-                            <span class="projects-filter">Healthcare</span>
-                            <span class="projects-filter">Creative</span>
+                        <div class="projects-filters" data-project-filters>
+                            <button class="projects-filter active" type="button" data-filter="all">All</button>
+                            <button class="projects-filter" type="button" data-filter="technology">Technology</button>
+                            <button class="projects-filter" type="button" data-filter="data">Data</button>
+                            <button class="projects-filter" type="button" data-filter="healthcare">Healthcare</button>
+                            <button class="projects-filter" type="button" data-filter="creative">Creative</button>
                         </div>
 
                         <div class="featured-projects">
-                            <article class="featured-card tech">
+                            <article class="featured-card tech" data-category="technology">
                                 <div class="featured-meta">
                                     <span class="meta-tag tag-tech">Featured</span>
                                     <span class="meta-tag tag-status">Concept Build</span>
@@ -80,7 +80,7 @@
                                 <a href="#" class="project-link">View project details <span>&rarr;</span></a>
                             </article>
 
-                            <article class="featured-card healthcare">
+                            <article class="featured-card healthcare" data-category="healthcare">
                                 <div class="featured-meta">
                                     <span class="meta-tag tag-health">Featured</span>
                                     <span class="meta-tag tag-status">Concept Build</span>
@@ -101,7 +101,7 @@
                         </div>
 
                         <div class="project-grid">
-                            <article class="project-card tech">
+                            <article class="project-card tech" data-category="technology">
                                 <div class="project-meta">
                                     <span class="meta-tag tag-tech">Technology</span>
                                     <span class="meta-tag tag-status">Planned</span>
@@ -119,7 +119,7 @@
                                 <a href="#" class="project-link">Explore concept <span>&rarr;</span></a>
                             </article>
 
-                            <article class="project-card data">
+                            <article class="project-card data" data-category="data">
                                 <div class="project-meta">
                                     <span class="meta-tag tag-data">Data</span>
                                     <span class="meta-tag tag-status">Planned</span>
@@ -137,7 +137,7 @@
                                 <a href="#" class="project-link">Explore concept <span>&rarr;</span></a>
                             </article>
 
-                            <article class="project-card health">
+                            <article class="project-card health" data-category="healthcare">
                                 <div class="project-meta">
                                     <span class="meta-tag tag-health">Healthcare</span>
                                     <span class="meta-tag tag-status">Planned</span>
@@ -155,7 +155,7 @@
                                 <a href="#" class="project-link">Explore concept <span>&rarr;</span></a>
                             </article>
 
-                            <article class="project-card tech">
+                            <article class="project-card tech" data-category="technology">
                                 <div class="project-meta">
                                     <span class="meta-tag tag-tech">Technology</span>
                                     <span class="meta-tag tag-status">Planned</span>
@@ -173,7 +173,7 @@
                                 <a href="#" class="project-link">Explore concept <span>&rarr;</span></a>
                             </article>
 
-                            <article class="project-card creative">
+                            <article class="project-card creative" data-category="creative">
                                 <div class="project-meta">
                                     <span class="meta-tag tag-creative">Creative</span>
                                     <span class="meta-tag tag-status">In Progress</span>
@@ -191,7 +191,7 @@
                                 <a href="#" class="project-link">Explore concept <span>&rarr;</span></a>
                             </article>
 
-                            <article class="project-card data">
+                            <article class="project-card data" data-category="data">
                                 <div class="project-meta">
                                     <span class="meta-tag tag-data">Data</span>
                                     <span class="meta-tag tag-status">Planned</span>
@@ -222,15 +222,18 @@
                 </div>
             </div>
 
+            <!-- Sidebar -->
             <div id="sidebar">
                 <div class="inner">
 
+                    <!-- Search -->
                     <section id="search" class="alt">
                         <form method="post" action="#">
                             <input type="text" name="query" id="query" placeholder="Search" />
                         </form>
                     </section>
 
+                    <!-- Menu -->
                     <nav id="menu">
                         <header class="major">
                             <h2>Menu</h2>
@@ -252,6 +255,7 @@
                         </ul>
                     </nav>
 
+                    <!-- Footer -->
                     <footer id="footer">
                         <p class="copyright">&copy; 2026 Christopher Leung. All rights reserved.</p>
                     </footer>
@@ -261,11 +265,41 @@
 
         </div>
 
+        <!-- Scripts -->
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/browser.min.js"></script>
         <script src="assets/js/breakpoints.min.js"></script>
         <script src="assets/js/util.js"></script>
         <script src="assets/js/main.js"></script>
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const filterWrap = document.querySelector('[data-project-filters]');
+            if (!filterWrap) return;
+
+            const filterButtons = filterWrap.querySelectorAll('[data-filter]');
+            const projectCards = document.querySelectorAll('.featured-card[data-category], .project-card[data-category]');
+
+            filterButtons.forEach((button) => {
+                button.addEventListener('click', function () {
+                    const selectedFilter = this.getAttribute('data-filter');
+
+                    filterButtons.forEach((btn) => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    projectCards.forEach((card) => {
+                        const category = card.getAttribute('data-category');
+
+                        if (selectedFilter === 'all' || category === selectedFilter) {
+                            card.classList.remove('is-hidden');
+                        } else {
+                            card.classList.add('is-hidden');
+                        }
+                    });
+                });
+            });
+        });
+        </script>
 
     </body>
 </html>
