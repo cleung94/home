@@ -3866,7 +3866,6 @@ font-weight:600;
     overflow: hidden;
     margin-top: 1.75rem;
     padding: 4.5rem 3.25rem 4.5rem 7rem;
-        max-width: 1150px;
     border-radius: 28px;
     border: 1px solid rgba(255,255,255,0.08);
     background:
@@ -3891,7 +3890,6 @@ font-weight:600;
   margin-top: 1.75rem;
   margin-bottom: 3rem;
     padding: 4.5rem 3.25rem 4.5rem 7rem;
-        max-width: 1150px;
   border-radius: 28px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background:
@@ -4350,4 +4348,20 @@ font-weight:600;
 .project-card.is-hidden,
 .featured-card.is-hidden {
   display: none;
+}
+
+.projects-kicker,
+.projects-hero h1,
+.projects-hero p,
+.projects-pill-row {
+  margin-left: 2.5rem;
+}
+
+@media screen and (max-width: 736px) {
+  .projects-kicker,
+  .projects-hero h1,
+  .projects-hero p,
+  .projects-pill-row {
+    margin-left: 1rem;
+  }
 }
