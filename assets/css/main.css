@@ -3865,7 +3865,8 @@ font-weight:600;
     position: relative;
     overflow: hidden;
     margin-top: 1.75rem;
-    padding: 4.75rem 3.25rem 4.5rem 6rem;
+    padding: 4.5rem 3.25rem 4.5rem 7rem;
+        max-width: 1150px;
     border-radius: 28px;
     border: 1px solid rgba(255,255,255,0.08);
     background:
@@ -3889,7 +3890,8 @@ font-weight:600;
   overflow: hidden;
   margin-top: 1.75rem;
   margin-bottom: 3rem;
-  padding: 4.5rem 3.25rem;
+    padding: 4.5rem 3.25rem 4.5rem 7rem;
+        max-width: 1150px;
   border-radius: 28px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background:
