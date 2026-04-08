@@ -4311,3 +4311,20 @@ font-weight:600;
     padding: 1.3rem;
   }
 }
+
+.projects-filter {
+  cursor: pointer;
+  font-family: inherit;
+  outline: none;
+}
+
+.projects-filter:focus-visible {
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.65),
+    0 0 0 4px rgba(31, 79, 130, 0.35);
+}
+
+.project-card.is-hidden,
+.featured-card.is-hidden {
+  display: none;
+}
