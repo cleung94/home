@@ -78,31 +78,40 @@ document.addEventListener("DOMContentLoaded", () => {
 		return button;
 	}
 
-	function renderPagination(totalPosts) {
-		const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
-		pagination.innerHTML = "";
+function renderPagination(totalPosts) {
 
-		if (totalPages <= 1) return;
+	const totalPages = Math.max(1, Math.ceil(totalPosts / POSTS_PER_PAGE));
 
-		const wrapper = document.createElement("div");
-		wrapper.className = "pagination";
+	pagination.innerHTML = "";
+
+	const wrapper = document.createElement("div");
+	wrapper.className = "pagination";
+
+	/* Previous */
+
+	wrapper.appendChild(
+		createPageButton("<", currentPage - 1, false, currentPage === 1)
+	);
+
+	/* Page Numbers */
+
+	for (let i = 1; i <= totalPages; i++) {
 
 		wrapper.appendChild(
-			buildPageButton("<", currentPage - 1, false, currentPage === 1)
+			createPageButton(String(i), i, i === currentPage, false)
 		);
 
-		for (let i = 1; i <= totalPages; i++) {
-			wrapper.appendChild(
-				buildPageButton(String(i), i, i === currentPage, false)
-			);
-		}
-
-		wrapper.appendChild(
-			buildPageButton(">", currentPage + 1, false, currentPage === totalPages)
-		);
-
-		pagination.appendChild(wrapper);
 	}
+
+	/* Next */
+
+	wrapper.appendChild(
+		createPageButton(">", currentPage + 1, false, currentPage === totalPages)
+	);
+
+	pagination.appendChild(wrapper);
+
+}
 
 	function render() {
 		const filteredPosts = getFilteredPosts();
