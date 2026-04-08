@@ -6,11 +6,386 @@
 -->
 <html>
     <head>
-        <title>Christopher Leung</title>
+        <title>Project Showcase | Christopher Leung</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="assets/css/main.css" />
-<body class="is-preload">
+        <style>
+            /* Page-specific styling for Projects */
+            .projects-hero {
+                position: relative;
+                overflow: hidden;
+                padding: 4.5rem 3.25rem;
+                border-radius: 28px;
+                background:
+                    radial-gradient(circle at top left, rgba(110, 168, 217, 0.22), transparent 34%),
+                    radial-gradient(circle at bottom right, rgba(240, 179, 90, 0.18), transparent 28%),
+                    linear-gradient(135deg, #0b1f35 0%, #13395d 45%, #1c4f78 100%);
+                box-shadow:
+                    0 20px 55px rgba(9, 23, 39, 0.28),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+                margin-bottom: 3rem;
+            }
+
+            .projects-hero::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background:
+                    linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+                background-size: 32px 32px;
+                opacity: 0.15;
+                pointer-events: none;
+            }
+
+            .projects-hero > * {
+                position: relative;
+                z-index: 1;
+            }
+
+            .projects-kicker {
+                display: inline-block;
+                margin-bottom: 1rem;
+                padding: 0.45rem 1rem;
+                border-radius: 999px;
+                background: rgba(255, 255, 255, 0.12);
+                color: #e8eef5;
+                font-size: 0.82rem;
+                font-weight: 700;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                box-shadow: 0 0 18px rgba(110, 168, 217, 0.18);
+            }
+
+            .projects-hero h1 {
+                margin: 0 0 1rem 0;
+                color: #ffffff;
+                font-size: 3rem;
+                letter-spacing: -0.02em;
+            }
+
+            .projects-hero p {
+                max-width: 900px;
+                margin: 0;
+                color: rgba(232, 238, 245, 0.9);
+                font-size: 1.05rem;
+                line-height: 1.8;
+            }
+
+            .projects-pill-row {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.75rem;
+                margin-top: 1.75rem;
+            }
+
+            .projects-pill {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 0.7rem 1rem;
+                border-radius: 999px;
+                background: rgba(255,255,255,0.1);
+                border: 1px solid rgba(255,255,255,0.12);
+                color: #f5f9fc;
+                font-size: 0.9rem;
+                font-weight: 600;
+                box-shadow: 0 0 14px rgba(110, 168, 217, 0.14);
+            }
+
+            .projects-section-title {
+                margin-bottom: 1.25rem;
+            }
+
+            .projects-section-title h2 {
+                margin-bottom: 0.35rem;
+            }
+
+            .projects-section-title p {
+                margin: 0;
+                color: #6b7280;
+            }
+
+            .projects-filters {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.85rem;
+                margin: 0 0 2rem 0;
+            }
+
+            .projects-filter {
+                padding: 0.7rem 1.1rem;
+                border-radius: 999px;
+                background: linear-gradient(135deg, rgba(18, 52, 82, 0.08), rgba(39, 93, 133, 0.12));
+                border: 1px solid rgba(80, 122, 160, 0.18);
+                color: #294863;
+                font-size: 0.9rem;
+                font-weight: 700;
+                letter-spacing: 0.02em;
+                transition: all 0.25s ease;
+                box-shadow: 0 8px 20px rgba(31, 79, 130, 0.08);
+            }
+
+            .projects-filter:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 12px 24px rgba(31, 79, 130, 0.12);
+                border-color: rgba(110, 168, 217, 0.4);
+            }
+
+            .projects-filter.active {
+                color: #ffffff;
+                background: linear-gradient(135deg, #1f4f82 0%, #6ea8d9 100%);
+                border-color: transparent;
+                box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 12px 28px rgba(31, 79, 130, 0.25);
+            }
+
+            .featured-projects {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 1.5rem;
+                margin-bottom: 2.25rem;
+            }
+
+            .featured-card,
+            .project-card {
+                position: relative;
+                overflow: hidden;
+                border-radius: 24px;
+                border: 1px solid rgba(97, 130, 163, 0.18);
+                background:
+                    linear-gradient(180deg, rgba(255,255,255,0.88) 0%, rgba(245,248,252,0.95) 100%);
+                box-shadow:
+                    0 14px 36px rgba(10, 35, 66, 0.08),
+                    inset 0 1px 0 rgba(255,255,255,0.85);
+                transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+            }
+
+            .featured-card::before,
+            .project-card::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                opacity: 0;
+                transition: opacity 0.28s ease;
+                pointer-events: none;
+            }
+
+            .featured-card:hover,
+            .project-card:hover {
+                transform: translateY(-6px);
+                border-color: rgba(110, 168, 217, 0.4);
+            }
+
+            .featured-card:hover::before,
+            .project-card:hover::before {
+                opacity: 1;
+            }
+
+            .featured-card {
+                padding: 2rem;
+            }
+
+            .featured-card.tech::before {
+                background: radial-gradient(circle at top left, rgba(110,168,217,0.22), transparent 38%);
+            }
+
+            .featured-card.healthcare::before {
+                background: radial-gradient(circle at bottom right, rgba(70, 190, 180, 0.18), transparent 36%);
+            }
+
+            .featured-card:hover {
+                box-shadow:
+                    0 20px 46px rgba(10, 35, 66, 0.14),
+                    0 0 30px rgba(110, 168, 217, 0.14);
+            }
+
+            .featured-meta,
+            .project-meta {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.65rem;
+                margin-bottom: 1rem;
+            }
+
+            .meta-tag {
+                display: inline-flex;
+                align-items: center;
+                padding: 0.4rem 0.8rem;
+                border-radius: 999px;
+                font-size: 0.78rem;
+                font-weight: 700;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+                border: 1px solid transparent;
+            }
+
+            .tag-tech {
+                background: rgba(31, 79, 130, 0.1);
+                color: #1f4f82;
+                border-color: rgba(31, 79, 130, 0.14);
+            }
+
+            .tag-health {
+                background: rgba(36, 149, 142, 0.1);
+                color: #1f7772;
+                border-color: rgba(36, 149, 142, 0.14);
+            }
+
+            .tag-data {
+                background: rgba(104, 117, 245, 0.1);
+                color: #4454b5;
+                border-color: rgba(104, 117, 245, 0.14);
+            }
+
+            .tag-creative {
+                background: rgba(240, 179, 90, 0.14);
+                color: #a36a12;
+                border-color: rgba(240, 179, 90, 0.18);
+            }
+
+            .tag-status {
+                background: rgba(34, 197, 94, 0.11);
+                color: #177946;
+                border-color: rgba(34, 197, 94, 0.16);
+            }
+
+            .featured-card h3,
+            .project-card h3 {
+                margin-bottom: 0.65rem;
+            }
+
+            .featured-card p,
+            .project-card p {
+                margin-bottom: 1.15rem;
+                color: #5f6c7b;
+            }
+
+            .project-tools {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .tool-pill {
+                padding: 0.38rem 0.7rem;
+                border-radius: 999px;
+                background: #eef4fa;
+                color: #33506c;
+                font-size: 0.8rem;
+                font-weight: 600;
+            }
+
+            .project-link {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.45rem;
+                font-weight: 700;
+                color: #1f4f82;
+                border-bottom: none;
+            }
+
+            .project-link:hover {
+                color: #0a66c2;
+            }
+
+            .project-grid {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 1.4rem;
+            }
+
+            .project-card {
+                padding: 1.5rem;
+            }
+
+            .project-card.tech:hover {
+                box-shadow:
+                    0 20px 40px rgba(31, 79, 130, 0.12),
+                    0 0 24px rgba(110, 168, 217, 0.12);
+            }
+
+            .project-card.data:hover {
+                box-shadow:
+                    0 20px 40px rgba(68, 84, 181, 0.11),
+                    0 0 24px rgba(104, 117, 245, 0.11);
+            }
+
+            .project-card.health:hover {
+                box-shadow:
+                    0 20px 40px rgba(31, 119, 114, 0.11),
+                    0 0 24px rgba(36, 149, 142, 0.11);
+            }
+
+            .project-card.creative:hover {
+                box-shadow:
+                    0 20px 40px rgba(163, 106, 18, 0.1),
+                    0 0 24px rgba(240, 179, 90, 0.11);
+            }
+
+            .projects-note {
+                margin-top: 2.5rem;
+                padding: 1.5rem 1.75rem;
+                border-radius: 22px;
+                background: linear-gradient(135deg, rgba(10, 102, 194, 0.07), rgba(240, 179, 90, 0.08));
+                border: 1px solid rgba(110, 168, 217, 0.18);
+                box-shadow: 0 12px 26px rgba(10, 35, 66, 0.06);
+            }
+
+            .projects-note p {
+                margin: 0;
+                color: #4e5d6e;
+            }
+
+            @media screen and (max-width: 1280px) {
+                .project-grid {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                }
+            }
+
+            @media screen and (max-width: 980px) {
+                .projects-hero {
+                    padding: 3rem 2rem;
+                }
+
+                .projects-hero h1 {
+                    font-size: 2.5rem;
+                }
+
+                .featured-projects,
+                .project-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            @media screen and (max-width: 736px) {
+                .projects-hero {
+                    padding: 2.25rem 1.5rem;
+                    border-radius: 22px;
+                }
+
+                .projects-hero h1 {
+                    font-size: 2rem;
+                }
+
+                .projects-filter {
+                    gap: 0.6rem;
+                }
+
+                .projects-filter,
+                .projects-pill-row {
+                    justify-content: flex-start;
+                }
+
+                .featured-card,
+                .project-card {
+                    padding: 1.3rem;
+                }
+            }
+        </style>
+    </head>
+    <body class="is-preload">
 
         <!-- Wrapper -->
             <div id="wrapper">
@@ -26,103 +401,206 @@
                                         <li><a href="https://www.linkedin.com/in/christopher-km-leung/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
                                     </ul>
                                 </header>
-                            
-                            <!-- Section -->
-                                <section>
-                                    <header class="major">
-                                        <h2>Erat lacinia</h2>
-                                    </header>
-                                    <div class="features">
-                                        <article>
-                                            <span class="icon fa-gem"></span>
-                                            <div class="content">
-                                                <h3>Portitor ullamcorper</h3>
-                                                <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-                                            </div>
-                                        </article>
-                                        <article>
-                                            <span class="icon solid fa-paper-plane"></span>
-                                            <div class="content">
-                                                <h3>Sapien veroeros</h3>
-                                                <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-                                            </div>
-                                        </article>
-                                        <article>
-                                            <span class="icon solid fa-rocket"></span>
-                                            <div class="content">
-                                                <h3>Quam lorem ipsum</h3>
-                                                <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-                                            </div>
-                                        </article>
-                                        <article>
-                                            <span class="icon solid fa-signal"></span>
-                                            <div class="content">
-                                                <h3>Sed magna finibus</h3>
-                                                <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-                                            </div>
-                                        </article>
+
+                            <!-- Hero -->
+                                <section class="projects-hero">
+                                    <span class="projects-kicker">Portfolio · Problem Solving · Curiosity</span>
+                                    <h1>Project Showcase</h1>
+                                    <p>
+                                        Welcome to my project showcase — a collection of ideas, concepts, and practical builds that reflect my background
+                                        across technology, infrastructure, analytics, healthcare operations, and personal creative exploration. This page is designed
+                                        to give visitors a clearer view into how I approach problem solving, how I think through systems, and the different areas
+                                        where I enjoy learning, building, and experimenting.
+                                    </p>
+                                    <div class="projects-pill-row">
+                                        <span class="projects-pill">Technology & Infrastructure</span>
+                                        <span class="projects-pill">Data & Analytics</span>
+                                        <span class="projects-pill">Healthcare & Operations</span>
+                                        <span class="projects-pill">Creative & Personal Projects</span>
                                     </div>
                                 </section>
 
-                            <!-- Section -->
+                            <!-- Intro -->
                                 <section>
-                                    <header class="major">
-                                        <h2>Ipsum sed dolor</h2>
-                                    </header>
-                                    <div class="posts">
-                                        <article>
-                                            <a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>
-                                            <h3>Interdum aenean</h3>
-                                            <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-                                            <ul class="actions">
-                                                <li><a href="#" class="button">More</a></li>
-                                            </ul>
+                                    <div class="projects-section-title">
+                                        <h2>What You’ll Find Here</h2>
+                                        <p>
+                                            Each project highlights a different part of my skill set — from system architecture and workflow thinking to data-driven insights,
+                                            real-world operations, and curiosity-led experiments.
+                                        </p>
+                                    </div>
+
+                                    <div class="projects-filters">
+                                        <span class="projects-filter active">All</span>
+                                        <span class="projects-filter">Technology</span>
+                                        <span class="projects-filter">Data</span>
+                                        <span class="projects-filter">Healthcare</span>
+                                        <span class="projects-filter">Creative</span>
+                                    </div>
+
+                                    <div class="featured-projects">
+                                        <article class="featured-card tech">
+                                            <div class="featured-meta">
+                                                <span class="meta-tag tag-tech">Featured</span>
+                                                <span class="meta-tag tag-status">Concept Build</span>
+                                            </div>
+                                            <h3>Camera Health Monitoring Tool</h3>
+                                            <p>
+                                                A concept for a monitoring and reporting tool designed to evaluate camera infrastructure health through connectivity checks,
+                                                network latency trends, packet stability, and visual reporting. This project reflects my experience with technical systems,
+                                                troubleshooting, and operational visibility.
+                                            </p>
+                                            <div class="project-tools">
+                                                <span class="tool-pill">Python</span>
+                                                <span class="tool-pill">Pandas</span>
+                                                <span class="tool-pill">Networking</span>
+                                                <span class="tool-pill">Dashboards</span>
+                                            </div>
+                                            <a href="#" class="project-link">View project details <span>&rarr;</span></a>
                                         </article>
-                                        <article>
-                                            <a href="#" class="image"><img src="images/pic02.jpg" alt="" /></a>
-                                            <h3>Nulla amet dolore</h3>
-                                            <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-                                            <ul class="actions">
-                                                <li><a href="#" class="button">More</a></li>
-                                            </ul>
+
+                                        <article class="featured-card healthcare">
+                                            <div class="featured-meta">
+                                                <span class="meta-tag tag-health">Featured</span>
+                                                <span class="meta-tag tag-status">Concept Build</span>
+                                            </div>
+                                            <h3>CNA Workflow Optimization Simulator</h3>
+                                            <p>
+                                                A workflow-based project inspired by healthcare operations, focused on organizing patient needs, rounding priorities, and shift
+                                                planning in a way that better visualizes workload distribution. This project combines healthcare awareness with structured problem solving.
+                                            </p>
+                                            <div class="project-tools">
+                                                <span class="tool-pill">Workflow Design</span>
+                                                <span class="tool-pill">Operations</span>
+                                                <span class="tool-pill">Scheduling Logic</span>
+                                                <span class="tool-pill">Visualization</span>
+                                            </div>
+                                            <a href="#" class="project-link">View project details <span>&rarr;</span></a>
                                         </article>
-                                        <article>
-                                            <a href="#" class="image"><img src="images/pic03.jpg" alt="" /></a>
-                                            <h3>Tempus ullamcorper</h3>
-                                            <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-                                            <ul class="actions">
-                                                <li><a href="#" class="button">More</a></li>
-                                            </ul>
+                                    </div>
+
+                                    <div class="project-grid">
+                                        <article class="project-card tech">
+                                            <div class="project-meta">
+                                                <span class="meta-tag tag-tech">Technology</span>
+                                                <span class="meta-tag tag-status">Planned</span>
+                                            </div>
+                                            <h3>Security Systems Architecture Visualizer</h3>
+                                            <p>
+                                                An interactive project concept that maps relationships between servers, panels, field devices, and system dependencies to make
+                                                complex environments easier to understand.
+                                            </p>
+                                            <div class="project-tools">
+                                                <span class="tool-pill">System Design</span>
+                                                <span class="tool-pill">Visualization</span>
+                                                <span class="tool-pill">Architecture</span>
+                                            </div>
+                                            <a href="#" class="project-link">Explore concept <span>&rarr;</span></a>
                                         </article>
-                                        <article>
-                                            <a href="#" class="image"><img src="images/pic04.jpg" alt="" /></a>
-                                            <h3>Sed etiam facilis</h3>
-                                            <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-                                            <ul class="actions">
-                                                <li><a href="#" class="button">More</a></li>
-                                            </ul>
+
+                                        <article class="project-card data">
+                                            <div class="project-meta">
+                                                <span class="meta-tag tag-data">Data</span>
+                                                <span class="meta-tag tag-status">Planned</span>
+                                            </div>
+                                            <h3>Restaurant Sentiment Analysis Dashboard</h3>
+                                            <p>
+                                                A data-driven review analysis concept that explores customer sentiment, recurring dish mentions, service themes, and patterns
+                                                in restaurant feedback using visual summaries.
+                                            </p>
+                                            <div class="project-tools">
+                                                <span class="tool-pill">Python</span>
+                                                <span class="tool-pill">NLP</span>
+                                                <span class="tool-pill">Analytics</span>
+                                            </div>
+                                            <a href="#" class="project-link">Explore concept <span>&rarr;</span></a>
                                         </article>
-                                        <article>
-                                            <a href="#" class="image"><img src="images/pic05.jpg" alt="" /></a>
-                                            <h3>Feugiat lorem aenean</h3>
-                                            <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-                                            <ul class="actions">
-                                                <li><a href="#" class="button">More</a></li>
-                                            </ul>
+
+                                        <article class="project-card health">
+                                            <div class="project-meta">
+                                                <span class="meta-tag tag-health">Healthcare</span>
+                                                <span class="meta-tag tag-status">Planned</span>
+                                            </div>
+                                            <h3>Patient Care Task Flow Tracker</h3>
+                                            <p>
+                                                A project idea focused on visualizing patient care priorities, task timing, and workflow touchpoints to better understand
+                                                how care responsibilities move throughout a shift.
+                                            </p>
+                                            <div class="project-tools">
+                                                <span class="tool-pill">Healthcare Ops</span>
+                                                <span class="tool-pill">Workflow</span>
+                                                <span class="tool-pill">Process Mapping</span>
+                                            </div>
+                                            <a href="#" class="project-link">Explore concept <span>&rarr;</span></a>
                                         </article>
-                                        <article>
-                                            <a href="#" class="image"><img src="images/pic06.jpg" alt="" /></a>
-                                            <h3>Amet varius aliquam</h3>
-                                            <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-                                            <ul class="actions">
-                                                <li><a href="#" class="button">More</a></li>
-                                            </ul>
+
+                                        <article class="project-card tech">
+                                            <div class="project-meta">
+                                                <span class="meta-tag tag-tech">Technology</span>
+                                                <span class="meta-tag tag-status">Planned</span>
+                                            </div>
+                                            <h3>Network Troubleshooting Simulator</h3>
+                                            <p>
+                                                A hands-on concept that simulates common infrastructure issues such as communication loss, offline devices, power delivery
+                                                problems, and misconfigurations for learning and troubleshooting practice.
+                                            </p>
+                                            <div class="project-tools">
+                                                <span class="tool-pill">Networking</span>
+                                                <span class="tool-pill">Diagnostics</span>
+                                                <span class="tool-pill">Training</span>
+                                            </div>
+                                            <a href="#" class="project-link">Explore concept <span>&rarr;</span></a>
                                         </article>
+
+                                        <article class="project-card creative">
+                                            <div class="project-meta">
+                                                <span class="meta-tag tag-creative">Creative</span>
+                                                <span class="meta-tag tag-status">In Progress</span>
+                                            </div>
+                                            <h3>Interactive Blog & Learning Journal</h3>
+                                            <p>
+                                                A personal project built around documenting what I learn, sharing ideas, and creating a space that blends professional interests,
+                                                technical curiosity, and creative expression.
+                                            </p>
+                                            <div class="project-tools">
+                                                <span class="tool-pill">HTML</span>
+                                                <span class="tool-pill">CSS</span>
+                                                <span class="tool-pill">Content Design</span>
+                                            </div>
+                                            <a href="#" class="project-link">Explore concept <span>&rarr;</span></a>
+                                        </article>
+
+                                        <article class="project-card data">
+                                            <div class="project-meta">
+                                                <span class="meta-tag tag-data">Data</span>
+                                                <span class="meta-tag tag-status">Planned</span>
+                                            </div>
+                                            <h3>Gaming Performance Analytics</h3>
+                                            <p>
+                                                A dashboard concept exploring personal gaming trends, match history, performance patterns, and playstyle insights through visual
+                                                analytics and tracked metrics.
+                                            </p>
+                                            <div class="project-tools">
+                                                <span class="tool-pill">Dashboard</span>
+                                                <span class="tool-pill">Data Visualization</span>
+                                                <span class="tool-pill">Analytics</span>
+                                            </div>
+                                            <a href="#" class="project-link">Explore concept <span>&rarr;</span></a>
+                                        </article>
+                                    </div>
+
+                                    <div class="projects-note">
+                                        <p>
+                                            This page is meant to evolve over time. Some entries represent early-stage concepts, while others will grow into more complete project
+                                            builds. Together, they showcase not only what I have worked on, but also the types of problems I enjoy exploring across technology,
+                                            healthcare, analytics, and creative experimentation.
+                                        </p>
                                     </div>
                                 </section>
 
                         </div>
                     </div>
+
                 <!-- Sidebar -->
                     <div id="sidebar">
                         <div class="inner">
@@ -172,3 +650,6 @@
             <script src="assets/js/breakpoints.min.js"></script>
             <script src="assets/js/util.js"></script>
             <script src="assets/js/main.js"></script>
+
+    </body>
+</html>
