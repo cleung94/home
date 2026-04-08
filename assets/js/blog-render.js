@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const pagination = document.getElementById("pagination");
 	const blogEmpty = document.getElementById("blogEmpty");
 
-	if (!blogGrid || typeof BLOG_POSTS === "undefined") return;
+	if (!blogGrid || !pagination || typeof BLOG_POSTS === "undefined") return;
 
 	const POSTS_PER_PAGE = 10;
 	const activeTag = (document.body.dataset.blogTag || "all").toLowerCase();
@@ -45,29 +45,21 @@ document.addEventListener("DOMContentLoaded", () => {
 		`;
 	}
 
-	function renderPosts(posts, page) {
-		const startIndex = (page - 1) * POSTS_PER_PAGE;
-		const endIndex = startIndex + POSTS_PER_PAGE;
-		const pagePosts = posts.slice(startIndex, endIndex);
-
-		blogGrid.innerHTML = pagePosts.map(createBlogCard).join("");
-	}
-
-	function buildPageButton(label, page, isActive = false, isDisabled = false) {
+	function createPageButton(label, page, isActive = false, isDisabled = false, isEllipsis = false) {
 		const button = document.createElement("a");
 		button.href = "#";
 		button.className = "page-btn";
+		button.textContent = label;
 
 		if (isActive) button.classList.add("active");
 		if (isDisabled) button.classList.add("disabled");
+		if (isEllipsis) button.classList.add("ellipsis");
 
-		button.textContent = label;
-
-		if (!isDisabled) {
+		if (!isDisabled && !isEllipsis) {
 			button.addEventListener("click", (e) => {
 				e.preventDefault();
 				currentPage = page;
-				render();
+				renderBlog();
 				window.scrollTo({
 					top: blogGrid.offsetTop - 80,
 					behavior: "smooth"
@@ -78,58 +70,81 @@ document.addEventListener("DOMContentLoaded", () => {
 		return button;
 	}
 
-function renderPagination(totalPosts) {
+	function getVisiblePages(totalPages, currentPage) {
+		if (totalPages <= 7) {
+			return Array.from({ length: totalPages }, (_, i) => i + 1);
+		}
 
-	const totalPages = Math.max(1, Math.ceil(totalPosts / POSTS_PER_PAGE));
+		const pages = [];
 
-	pagination.innerHTML = "";
+		if (currentPage <= 4) {
+			pages.push(1, 2, 3, 4, 5, "...", totalPages);
+		} else if (currentPage >= totalPages - 3) {
+			pages.push(1, "...", totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages);
+		} else {
+			pages.push(1, "...", currentPage - 1, currentPage, currentPage + 1, "...", totalPages);
+		}
 
-	const wrapper = document.createElement("div");
-	wrapper.className = "pagination";
-
-	/* Previous */
-
-	wrapper.appendChild(
-		createPageButton("<", currentPage - 1, false, currentPage === 1)
-	);
-
-	/* Page Numbers */
-
-	for (let i = 1; i <= totalPages; i++) {
-
-		wrapper.appendChild(
-			createPageButton(String(i), i, i === currentPage, false)
-		);
-
+		return pages;
 	}
 
-	/* Next */
+	function renderPagination(totalPosts) {
+		const totalPages = Math.max(1, Math.ceil(totalPosts / POSTS_PER_PAGE));
+		pagination.innerHTML = "";
 
-	wrapper.appendChild(
-		createPageButton(">", currentPage + 1, false, currentPage === totalPages)
-	);
+		const wrapper = document.createElement("div");
+		wrapper.className = "pagination";
 
-	pagination.appendChild(wrapper);
+		wrapper.appendChild(
+			createPageButton("<", currentPage - 1, false, currentPage === 1)
+		);
 
-}
+		const visiblePages = getVisiblePages(totalPages, currentPage);
 
-	function render() {
+		visiblePages.forEach((item) => {
+			if (item === "...") {
+				wrapper.appendChild(
+					createPageButton("...", 0, false, true, true)
+				);
+			} else {
+				wrapper.appendChild(
+					createPageButton(String(item), item, item === currentPage, false)
+				);
+			}
+		});
+
+		wrapper.appendChild(
+			createPageButton(">", currentPage + 1, false, currentPage === totalPages)
+		);
+
+		pagination.appendChild(wrapper);
+	}
+
+	function renderBlog() {
 		const filteredPosts = getFilteredPosts();
 		const totalPages = Math.max(1, Math.ceil(filteredPosts.length / POSTS_PER_PAGE));
 
 		if (currentPage > totalPages) currentPage = totalPages;
-
-		blogEmpty.style.display = filteredPosts.length ? "none" : "block";
-		blogGrid.style.display = filteredPosts.length ? "grid" : "none";
+		if (currentPage < 1) currentPage = 1;
 
 		if (!filteredPosts.length) {
-			pagination.innerHTML = "";
+			blogGrid.innerHTML = "";
+			blogGrid.style.display = "none";
+			blogEmpty.style.display = "block";
+			renderPagination(0);
 			return;
 		}
 
-		renderPosts(filteredPosts, currentPage);
+		blogGrid.style.display = "grid";
+		blogEmpty.style.display = "none";
+
+		const start = (currentPage - 1) * POSTS_PER_PAGE;
+		const end = start + POSTS_PER_PAGE;
+		const postsToShow = filteredPosts.slice(start, end);
+
+		blogGrid.innerHTML = postsToShow.map(createBlogCard).join("");
 		renderPagination(filteredPosts.length);
 	}
 
-	render();
+	renderBlog();
 });
