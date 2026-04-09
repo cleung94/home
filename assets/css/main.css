@@ -4636,3 +4636,94 @@ font-weight:600;
 		grid-template-columns: 1fr;
 	}
 }
+
+/* Projects empty state */
+.projects-empty {
+  display: none;
+  margin-top: 1.5em;
+  padding: 1.1em 1.25em;
+  border-radius: 0.85em;
+  background: linear-gradient(
+    145deg,
+    rgba(255,255,255,0.80),
+    rgba(237,242,247,0.72)
+  );
+  border: 1px solid rgba(74,111,134,0.12);
+  color: #7a8b97;
+}
+
+/* Projects pagination */
+#projectsPagination {
+  margin-top: 2.2em;
+}
+
+#projectsPagination .pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6em;
+  flex-wrap: wrap;
+}
+
+#projectsPagination .page-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.7em;
+  height: 2.7em;
+  padding: 0 1em;
+  border-radius: 999px;
+  background: linear-gradient(145deg, #d9e4ec 0%, #b9cad7 100%);
+  border: 1px solid rgba(74, 111, 134, 0.22);
+  color: #23445a !important;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 700;
+  box-shadow:
+    0 8px 18px rgba(44, 86, 111, 0.10),
+    inset 0 1px 0 rgba(255,255,255,0.65);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+  cursor: pointer;
+}
+
+#projectsPagination .page-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(145deg, #e4edf3 0%, #c7d6e1 100%);
+  border-color: rgba(44, 86, 111, 0.32);
+  color: #18384d !important;
+}
+
+#projectsPagination .page-btn.active {
+  background: linear-gradient(145deg, #23445a 0%, #4a6f86 100%);
+  border-color: rgba(255,255,255,0.35);
+  color: #ffffff !important;
+  box-shadow:
+    0 10px 22px rgba(35, 68, 90, 0.22),
+    inset 0 1px 0 rgba(255,255,255,0.10);
+}
+
+#projectsPagination .page-btn.disabled {
+  opacity: 0.45;
+  pointer-events: none;
+  transform: none;
+  box-shadow: none;
+}
+
+#projectsPagination .page-btn.ellipsis {
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+@media screen and (max-width: 736px) {
+  #projectsPagination .page-btn {
+    min-width: 2.45em;
+    height: 2.45em;
+    padding: 0 0.8em;
+    font-size: 0.78rem;
+  }
+}
