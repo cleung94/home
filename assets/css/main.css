@@ -4833,3 +4833,28 @@ font-weight:600;
     font-size: 0.78rem;
   }
 }
+
+.blog-highlight-quote {
+	border-left: 4px solid #0a66c2;
+	padding: 1.2rem 1.5rem;
+	margin: 2rem 0;
+	background: rgba(10,102,194,0.06);
+	font-style: italic;
+	font-size: 1.15rem;
+}
+
+.image-caption {
+	text-align: center;
+	font-size: 0.85rem;
+	color: #888;
+	margin-top: 0.5rem;
+}
+
+.blog-takeaways {
+	margin-top: 1rem;
+	padding-left: 1.4rem;
+}
+
+.blog-takeaways li {
+	margin-bottom: 0.5rem;
+}
