@@ -1,7 +1,7 @@
 window.BLOG_POSTS = [
   {
     title: "What I Learned From Being Laid Off",
-    slug: "../blog/blog-tech-00001.html",
+    slug: "blog/blog-tech-00001.html",
     tag: "technology",
     tagLabel: "Technology",
     date: "March 2026",
