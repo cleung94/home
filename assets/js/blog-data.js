@@ -1,12 +1,12 @@
 window.BLOG_POSTS = [
   {
-    title: "What Enterprise Security Work Taught Me About Problem Solving",
-    slug: "blog-post-enterprise-security.html",
+    title: "What I Learned From Being Laid Off",
+    slug: "../blog/blog-tech-00001.html",
     tag: "technology",
     tagLabel: "Technology",
-    date: "April 2026",
+    date: "March 2026",
     image: "images/blog-tech-1.jpg",
-    excerpt: "A reflection on technical systems, troubleshooting, standards, and learning from large-scale environments."
+    excerpt: "A surreal moment, a two-week countdown, and the reflection that followed after learning my assignment at Meta was ending."
   },
   {
     title: "Working Nights as a CNA: What I Learned",
