@@ -59,8 +59,9 @@
                             <button class="projects-filter" type="button" data-filter="creative">Creative</button>
                         </div>
 
-                        <div class="featured-projects">
-                            <article class="featured-card healthcare" data-category="healthcare">
+                        <div class="project-grid unified-project-grid" id="projectsGrid">
+
+                            <article class="project-card featured-card healthcare" data-category="healthcare">
                                 <div class="featured-meta">
                                     <span class="meta-tag tag-tech">Featured</span>
                                     <span class="meta-tag tag-status">Design</span>
@@ -77,14 +78,14 @@
                                 <a href="showcase/project-cna-shift-helper.html" class="project-link">View project details <span>&rarr;</span></a>
                             </article>
 
-                            <article class="featured-card healthcare" data-category="healthcare">
+                            <article class="project-card featured-card healthcare" data-category="healthcare">
                                 <div class="featured-meta">
                                     <span class="meta-tag tag-health">Design</span>
                                     <span class="meta-tag tag-status">Creative</span>
                                 </div>
                                 <h3>CNA Workflow Visual</h3>
                                 <p>
-                                    Developed a CNA shift workflow timeline that clarifies task flow, responsibilities, and clinical references across PM and NOC shifts, helping new CNAs onboard more quickly and understand shift expectations.
+                                   Developed a CNA shift workflow timeline that clarifies task flow, responsibilities, and clinical references across PM and NOC shifts, helping new CNAs onboard more quickly and understand shift expectations.
                                 </p>
                                 <div class="project-tools">
                                     <span class="tool-pill">Workflow Design</span>
@@ -94,9 +95,7 @@
                                 </div>
                                 <a href="showcase/project-cna-workflow.html" class="project-link">View project details <span>&rarr;</span></a>
                             </article>
-                        </div>
 
-                        <div class="project-grid">
                             <article class="project-card tech" data-category="technology">
                                 <div class="project-meta">
                                     <span class="meta-tag tag-tech">Technology</span>
@@ -204,6 +203,7 @@
                                 </div>
                                 <a href="#" class="project-link">Explore concept <span>&rarr;</span></a>
                             </article>
+
                         </div>
 
                         <div id="projectsPagination"></div>
@@ -228,12 +228,14 @@
             <div id="sidebar">
                 <div class="inner">
 
+                    <!-- Search -->
                     <section id="search" class="alt">
                         <form method="post" action="#">
                             <input type="text" name="query" id="query" placeholder="Search" />
                         </form>
                     </section>
 
+                    <!-- Menu -->
                     <nav id="menu">
                         <header class="major">
                             <h2>Menu</h2>
@@ -255,6 +257,7 @@
                         </ul>
                     </nav>
 
+                    <!-- Footer -->
                     <footer id="footer">
                         <p class="copyright">&copy; 2026 Christopher Leung. All rights reserved.</p>
                     </footer>
@@ -264,6 +267,7 @@
 
         </div>
 
+        <!-- Scripts -->
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/browser.min.js"></script>
         <script src="assets/js/breakpoints.min.js"></script>
@@ -274,8 +278,10 @@
         document.addEventListener('DOMContentLoaded', function () {
             const ITEMS_PER_PAGE = 10;
             const filterWrap = document.querySelector('[data-project-filters]');
-            const filterButtons = filterWrap ? filterWrap.querySelectorAll('[data-filter]') : [];
-            const allCards = Array.from(document.querySelectorAll('.featured-card[data-category], .project-card[data-category]'));
+            if (!filterWrap) return;
+
+            const filterButtons = filterWrap.querySelectorAll('[data-filter]');
+            const projectCards = Array.from(document.querySelectorAll('#projectsGrid .project-card[data-category]'));
             const paginationEl = document.getElementById('projectsPagination');
             const emptyEl = document.getElementById('projectsEmpty');
 
@@ -283,19 +289,9 @@
             let currentPage = 1;
 
             function getFilteredCards() {
-                return allCards.filter((card) => {
+                return projectCards.filter((card) => {
                     const category = card.getAttribute('data-category');
                     return currentFilter === 'all' || category === currentFilter;
-                });
-            }
-
-            function setCardVisibility(visibleCards) {
-                allCards.forEach((card) => {
-                    if (visibleCards.includes(card)) {
-                        card.classList.remove('is-hidden');
-                    } else {
-                        card.classList.add('is-hidden');
-                    }
                 });
             }
 
@@ -303,14 +299,12 @@
                 const btn = document.createElement('button');
                 btn.type = 'button';
                 btn.className = 'page-btn';
+                btn.textContent = label;
 
                 if (options.active) btn.classList.add('active');
                 if (options.disabled) btn.classList.add('disabled');
-                if (options.ellipsis) btn.classList.add('ellipsis');
 
-                btn.textContent = label;
-
-                if (!options.disabled && !options.ellipsis) {
+                if (!options.disabled) {
                     btn.addEventListener('click', function () {
                         currentPage = page;
                         renderProjects();
@@ -365,16 +359,19 @@
                 const filteredCards = getFilteredCards();
                 const totalPages = Math.max(1, Math.ceil(filteredCards.length / ITEMS_PER_PAGE));
 
-                if (currentPage > totalPages) {
-                    currentPage = 1;
-                }
+                if (currentPage > totalPages) currentPage = 1;
 
                 const start = (currentPage - 1) * ITEMS_PER_PAGE;
                 const end = start + ITEMS_PER_PAGE;
                 const visibleCards = filteredCards.slice(start, end);
 
-                setCardVisibility(visibleCards);
-                renderPagination(totalPages);
+                projectCards.forEach((card) => {
+                    if (visibleCards.includes(card)) {
+                        card.classList.remove('is-hidden');
+                    } else {
+                        card.classList.add('is-hidden');
+                    }
+                });
 
                 if (filteredCards.length === 0) {
                     emptyEl.style.display = 'block';
@@ -383,6 +380,8 @@
                     emptyEl.style.display = 'none';
                     paginationEl.style.display = '';
                 }
+
+                renderPagination(totalPages);
             }
 
             filterButtons.forEach((button) => {
