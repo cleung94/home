@@ -9,13 +9,13 @@ window.BLOG_POSTS = [
     excerpt: "A surreal moment, a two-week countdown, and the reflection that followed after learning my assignment at Meta was ending."
   },
   {
-    title: "Working Nights as a CNA: What I Learned",
-    slug: "blog-post-cna-nights.html",
-    tag: "healthcare",
-    tagLabel: "Healthcare",
+    title: "My First Technical Interview with M.C. Dean",
+    slug: "blog/blog-tech-00002.html",
+    tag: "technology",
+    tagLabel: "Technology",
     date: "April 2026",
     image: "images/blog-healthcare-1.jpg",
-    excerpt: "A post about observation, patience, teamwork, and the meaning I found in patient care."
+    excerpt: "A reflection on my first technical interview with M.C. Dean, covering access control architecture, iSTAR controllers, reader protocols and the lessons I took away from the experience."
   },
   {
     title: "How I Like to Write Restaurant Reviews",
