@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	function createBlogCard(post) {
 		return `
-			<a class="blog-card" href="${post.url}">
+			<a class="blog-card" href="${post.slug}">
 				<div class="blog-card-image">
 					<img src="${post.image}" alt="${post.title}">
 					${post.tagLabel ? `<span class="blog-tag-badge">${post.tagLabel}</span>` : ""}
@@ -130,13 +130,13 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (!filteredPosts.length) {
 			blogGrid.innerHTML = "";
 			blogGrid.style.display = "none";
-			blogEmpty.style.display = "block";
+			if (blogEmpty) blogEmpty.style.display = "block";
 			renderPagination(0);
 			return;
 		}
 
 		blogGrid.style.display = "grid";
-		blogEmpty.style.display = "none";
+		if (blogEmpty) blogEmpty.style.display = "none";
 
 		const start = (currentPage - 1) * POSTS_PER_PAGE;
 		const end = start + POSTS_PER_PAGE;
