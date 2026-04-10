@@ -43,11 +43,11 @@
 					<section class="blog-post-content-luxe">
 
 						<p>
-							Today I had my first interview with M.C. Dean.
+							Today, I had my first interview with M.C. Dean.
 						</p>
 
 						<p>
-							Going into the conversation, I wasn’t completely sure what to expect. Interviews always bring a certain level of uncertainty, especially when they involve technical discussions about systems you've worked with for many years. I spent time reviewing concepts and thinking through how I would explain my experience, but there is always that moment before an interview where you question whether you are truly prepared.
+							Going into the conversation, I wasn’t completely sure what to expect. Interviews always bring a certain level of uncertainty, especially when they involve technical discussions about systems you've worked with for many years. I spent time reviewing concepts and thinking through how I would explain my experience, but there is always that moment before an interview where you question whether you are truly prepared and leaves you in that feeling of nervousness.
 						</p>
 
 						<p>
@@ -73,7 +73,7 @@
 						<h2>How does an iSTAR panel send signals to the access control system?</h2>
 
 						<p>
-							An iSTAR controller acts as an intelligent panel within an access control environment. It communicates with the access control server over the network using TCP/IP. When an event occurs—such as a badge swipe—the controller processes the credential request locally using its cached database. Once processed, the panel sends event information back to the access control system so it can be logged and monitored.
+							An iSTAR controller receives credential data from card readers using Wiegand or OSDP, validates the credential locally using its downloaded access control database, and activates the door relay if access is granted. The controller then generates an event and transmits it to the CCURE server over TCP/IP through the network infrastructure. If the server connection is lost, the controller continues operating locally and stores events until communication is restored.
 						</p>
 
 						<p>
@@ -81,7 +81,7 @@
 						</p>
 
 						<span class="image fit">
-							<img src="images/istar-architecture-diagram.png" alt="iSTAR access control architecture diagram" />
+							<img src="photos/CCure-System-Architecture-general.png" alt="iSTAR access control architecture diagram" />
 						</span>
 
 						<p class="image-caption">
@@ -97,12 +97,12 @@
 						<h2>Can an iSTAR panel have more than two ACM boards?</h2>
 
 						<p>
-							The answer depends on the specific iSTAR model and its expansion capabilities. Access Control Modules (ACMs) allow controllers to support additional doors and reader interfaces. Some configurations allow multiple ACM boards depending on the controller architecture and available expansion slots.
+							Yes. An iSTAR controller (certain models like the iSTAR Ultra G2, although not recommended due to potential poll latency) can support more than two ACM boards depending on the model. The first ACM modules connect directly to the controller through the internal backplane, which provides power and communication with the controller CPU. Additional ACM boards, such as ACM3 and ACM4 on an iSTAR Ultra G2, can be connected through an RS-485 multidrop expansion bus where each module is addressed and polled by the controller. Readers connect to the ACM using Wiegand or OSDP, and the ACM passes credential data to the controller for access decision processing using the CCURE database cache.
 						</p>
-
-						<p>
-							Understanding these hardware limits becomes important when designing or commissioning systems, especially when planning large deployments.
-						</p>
+						
+						<span class="image fit">
+							<img src="photos/Internal-Architecture-ACM3-4.png" alt="iSTAR access control architecture diagram" />
+						</span>
 
 						<h2>Reader Communication Protocols</h2>
 
@@ -113,12 +113,12 @@
 						<h2>What is the difference between an OSDP reader and a Wiegand reader?</h2>
 
 						<p>
-							Wiegand is a traditional communication protocol used between readers and controllers. It sends credential data in a one-way transmission from the reader to the controller. While widely used, it lacks encryption and modern security features.
+						The main difference between Wiegand and OSDP readers is the communication protocol and security. Wiegand uses a one-way communication method where the reader sends credential data through Data0 and Data1 wires as electrical pulses. Because this data is unencrypted and the controller cannot authenticate the reader, Wiegand systems are vulnerable to signal interception and replay attacks where an attacker can mimic the credential pulses to gain access. OSDP uses RS-485 serial communication, which allows secure two-way communication between the reader and the controller. In this architecture the controller, such as an iSTAR controller, acts as the master and continuously polls the reader devices on the bus. Readers respond with credential data or status messages, and communication can be encrypted using secure channel encryption. This provides authentication, device supervision, and protection against tampering.	
 						</p>
-
-						<p>
-							OSDP (Open Supervised Device Protocol), on the other hand, uses RS-485 communication and supports two-way communication between the reader and controller. This enables encryption, supervision of devices, and remote configuration capabilities.
-						</p>
+						
+						<span class="image fit">
+							<img src="photos/Wiegand-OSDP.png" alt="Wiegand OSDP differences diagram" />
+						</span>
 
 						<p>
 							Because of these advantages, many organizations are moving toward OSDP when deploying modern access control systems.
@@ -130,17 +130,22 @@
 							One question that stood out was related to professional growth.
 						</p>
 
-						<h2>What certifications or training would you pursue within the first 90 days?</h2>
+						<h2>What 5 certifications or training would you like to pursue within the first 90 days?</h2>
 
 						<p>
 							This question made me reflect on how I would want to grow in the role if given the opportunity. A few areas immediately came to mind:
 						</p>
 
 						<ul>
-							<li>Advanced CCURE system administration</li>
-							<li>Networking fundamentals related to security infrastructure</li>
-							<li>Access control system architecture and deployment practices</li>
-							<li>Troubleshooting and diagnostics for enterprise security systems</li>
+							<li>Lenel Certified Associate (LCA)</li>
+							<p>I would like to expand my knowledge of access control system architectures beyond CCURE so I can gain exposure to other platforms. Since MC Dean supports a wide range of clients and technologies, I want to become more well-versed in multiple systems and broaden my technical expertise.</p>
+							<li><Genetec - Security Center Enterprise Technical Certification/li>
+								<p>During my time at Meta I was primarily specialized in CCURE systems, so I didn’t get much exposure to Genetec platforms. One of the trainings I’d like to pursue is the Security Center Enterprise Technical Certification so I can better understand Genetec architectures such as multi-server deployments, federation, and high-availability configurations.</p>
+							<li>CompTIA Network+ and CompTIA Security+</li>
+								<p>I would want to pursue CompTIA Network+ because modern access control and video systems rely heavily on IP networking. Understanding networking concepts like VLANs, routing, and PoE helps when troubleshooting controller communication issues, camera connectivity, or server infrastructure problems.</p>
+								<p>I would also want to pursue CompTIA Security+ because physical security systems are increasingly integrated into enterprise IT environments. Understanding cybersecurity concepts like encryption, authentication, and secure network design helps ensure that access control systems and video platforms are deployed securely and protected against vulnerabilities.</p>
+							<li>Cisco Certified Network Associate (CCNA)</li>
+								<p>While I have strong experience working with CCURE systems, I’d like to deepen my networking knowledge because modern physical security systems are heavily integrated with enterprise IT infrastructure. Pursuing the Cisco CCNA would help me better understand networking concepts like switching, routing, VLANs, and network troubleshooting, which are important when supporting access control controllers, cameras, and security servers in large enterprise environments.</p>
 						</ul>
 
 						<p>
@@ -174,7 +179,7 @@
 						<ul class="blog-takeaways">
 							<li>Technical interviews often focus on how clearly you can explain system architecture.</li>
 							<li>Understanding how controllers, readers, and servers communicate is fundamental in access control.</li>
-							<li>Modern deployments are steadily moving from Wiegand toward OSDP.</li>
+							<li>It is important to stay current with modern deployments and how they function.</li>
 							<li>Continuous learning in networking, infrastructure, and security platforms is essential in this field.</li>
 						</ul>
 
