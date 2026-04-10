@@ -5,7 +5,7 @@ window.PROJECTS = [
     tag: "healthcare",
     tagLabel: "Healthcare",
     date: "April 2026",
-    status: ["Featured", "Design", "Creative"],
+    status: ["Featured", "Healthcare"],
     excerpt: "Designed a structured shift tracking sheet to help Certified Nursing Assistants manage resident care, vital signs, inventory tracking, and shift handoffs with more clarity and consistency.",
     tools: ["Canva", "Workflow Design"],
     featured: true
@@ -16,7 +16,7 @@ window.PROJECTS = [
     tag: "healthcare",
     tagLabel: "Healthcare",
     date: "April 2026",
-    status: ["Design", "Creative"],
+    status: ["Healthcare"],
     excerpt: "Developed a CNA shift workflow timeline that clarifies task flow, responsibilities, and clinical references across PM and NOC shifts for faster onboarding and clearer expectations.",
     tools: ["Workflow Design", "Canva", "Scheduling Logic", "Visualization"],
     featured: true
