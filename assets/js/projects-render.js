@@ -1,84 +1,213 @@
-window.PROJECTS = [
-  {
-    title: "CNA Workflow Organizer",
-    slug: "showcase/project-cna-shift-helper.html",
-    tag: "healthcare",
-    tagLabel: "Healthcare",
-    date: "April 2026",
-    status: ["Featured", "Design", "Creative"],
-    excerpt: "Designed a structured shift tracking sheet to help Certified Nursing Assistants manage resident care, vital signs, inventory tracking, and shift handoffs with more clarity and consistency.",
-    tools: ["Canva", "Workflow Design"],
-    featured: true
-  },
-  {
-    title: "CNA Workflow Visual",
-    slug: "showcase/project-cna-workflow.html",
-    tag: "healthcare",
-    tagLabel: "Healthcare",
-    date: "April 2026",
-    status: ["Design", "Creative"],
-    excerpt: "Developed a CNA shift workflow timeline that clarifies task flow, responsibilities, and clinical references across PM and NOC shifts for faster onboarding and clearer expectations.",
-    tools: ["Workflow Design", "Canva", "Scheduling Logic", "Visualization"],
-    featured: true
-  },
-  {
-    title: "Security Systems Architecture Visualizer",
-    slug: "projects/security-systems-architecture-visualizer.html",
-    tag: "technology",
-    tagLabel: "Technology",
-    date: "Planned",
-    status: ["Planned"],
-    excerpt: "An interactive project concept that maps relationships between servers, panels, field devices, and system dependencies to make complex environments easier to understand.",
-    tools: ["System Design", "Visualization", "Architecture"]
-  },
-  {
-    title: "Restaurant Sentiment Analysis Dashboard",
-    slug: "projects/restaurant-sentiment-analysis-dashboard.html",
-    tag: "data",
-    tagLabel: "Data",
-    date: "Planned",
-    status: ["Planned"],
-    excerpt: "A data-driven review analysis concept that explores customer sentiment, recurring dish mentions, service themes, and patterns in restaurant feedback using visual summaries.",
-    tools: ["Python", "NLP", "Analytics"]
-  },
-  {
-    title: "Patient Care Task Flow Tracker",
-    slug: "projects/patient-care-task-flow-tracker.html",
-    tag: "healthcare",
-    tagLabel: "Healthcare",
-    date: "Planned",
-    status: ["Planned"],
-    excerpt: "A project idea focused on visualizing patient care priorities, task timing, and workflow touchpoints to better understand how care responsibilities move throughout a shift.",
-    tools: ["Healthcare Ops", "Workflow", "Process Mapping"]
-  },
-  {
-    title: "Network Troubleshooting Simulator",
-    slug: "projects/network-troubleshooting-simulator.html",
-    tag: "technology",
-    tagLabel: "Technology",
-    date: "Planned",
-    status: ["Planned"],
-    excerpt: "A hands-on concept that simulates common infrastructure issues such as communication loss, offline devices, power delivery problems, and misconfigurations for learning and troubleshooting practice.",
-    tools: ["Networking", "Diagnostics", "Training"]
-  },
-  {
-    title: "Interactive Blog & Learning Journal",
-    slug: "blog.html",
-    tag: "creative",
-    tagLabel: "Creative",
-    date: "In Progress",
-    status: ["In Progress"],
-    excerpt: "A personal project built around documenting what I learn, sharing ideas, and creating a space that blends professional interests, technical curiosity, and creative expression.",
-    tools: ["HTML", "CSS", "Content Design"]
-  },
-  {
-    title: "Gaming Performance Analytics",
-    slug: "projects/gaming-performance-analytics.html",
-    tag: "data",
-    tagLabel: "Data",
-    date: "Planned",
-    status: ["Planned"],
-    excerpt: "A dashboard concept exploring personal gaming trends, match history, performance patterns, and playstyle insights through visual analytics and tracked metrics.",
-    tools: ["Dashboard", "Data Visualization", "Analytics"]
-  }
-];
+document.addEventListener("DOMContentLoaded", () => {
+	const projectsGrid = document.getElementById("projectsGrid");
+	const pagination = document.getElementById("projectsPagination");
+	const projectsEmpty = document.getElementById("projectsEmpty");
+	const filterButtons = document.querySelectorAll("[data-project-filters] [data-filter]");
+
+	if (!projectsGrid || !pagination || typeof PROJECTS === "undefined") return;
+
+	const PROJECTS_PER_PAGE = 10;
+	let currentPage = 1;
+	let activeFilter = "all";
+
+	function normalizeTag(tag) {
+		return String(tag || "").trim().toLowerCase();
+	}
+
+	function getFilteredProjects() {
+		if (activeFilter === "all") return PROJECTS;
+
+		return PROJECTS.filter((project) => {
+			if (!project.tag) return false;
+
+			if (Array.isArray(project.tag)) {
+				return project.tag.map(normalizeTag).includes(activeFilter);
+			}
+
+			return normalizeTag(project.tag) === activeFilter;
+		});
+	}
+
+	function escapeHtml(value) {
+		return String(value ?? "")
+			.replace(/&/g, "&amp;")
+			.replace(/</g, "&lt;")
+			.replace(/>/g, "&gt;")
+			.replace(/"/g, "&quot;")
+			.replace(/'/g, "&#039;");
+	}
+
+	function createMetaTags(project) {
+		const tags = [];
+
+		if (project.tagLabel) {
+			const categoryClass = normalizeTag(project.tag);
+			const categoryClassMap = {
+				technology: "tag-tech",
+				data: "tag-data",
+				healthcare: "tag-health",
+				creative: "tag-creative"
+			};
+
+			tags.push(
+				`<span class="meta-tag ${categoryClassMap[categoryClass] || "tag-status"}">${escapeHtml(project.tagLabel)}</span>`
+			);
+		}
+
+		if (Array.isArray(project.status)) {
+			project.status.forEach((item) => {
+				tags.push(`<span class="meta-tag tag-status">${escapeHtml(item)}</span>`);
+			});
+		} else if (project.status) {
+			tags.push(`<span class="meta-tag tag-status">${escapeHtml(project.status)}</span>`);
+		}
+
+		return tags.join("");
+	}
+
+	function createTools(project) {
+		if (!Array.isArray(project.tools) || !project.tools.length) return "";
+
+		return `
+			<div class="project-tools">
+				${project.tools.map((tool) => `<span class="tool-pill">${escapeHtml(tool)}</span>`).join("")}
+			</div>
+		`;
+	}
+
+	function createProjectCard(project) {
+		const featuredClass = project.featured ? " featured-card" : "";
+		const categoryClass = normalizeTag(project.tag || "");
+
+		return `
+			<article class="project-card${featuredClass} ${categoryClass}" data-category="${escapeHtml(categoryClass)}">
+				<div class="${project.featured ? "featured-meta" : "project-meta"}">
+					${createMetaTags(project)}
+				</div>
+				${project.date ? `<p class="project-card-date">${escapeHtml(project.date)}</p>` : ""}
+				<h3>${escapeHtml(project.title)}</h3>
+				<p>${escapeHtml(project.excerpt || "")}</p>
+				${createTools(project)}
+				<a href="${escapeHtml(project.slug)}" class="project-link">
+					View project details <span>&rarr;</span>
+				</a>
+			</article>
+		`;
+	}
+
+	function createPageButton(label, page, isActive = false, isDisabled = false, isEllipsis = false) {
+		const button = document.createElement("a");
+		button.href = "#";
+		button.className = "page-btn";
+		button.textContent = label;
+
+		if (isActive) button.classList.add("active");
+		if (isDisabled) button.classList.add("disabled");
+		if (isEllipsis) button.classList.add("ellipsis");
+
+		if (!isDisabled && !isEllipsis) {
+			button.addEventListener("click", (e) => {
+				e.preventDefault();
+				currentPage = page;
+				renderProjects();
+				window.scrollTo({
+					top: projectsGrid.offsetTop - 80,
+					behavior: "smooth"
+				});
+			});
+		}
+
+		return button;
+	}
+
+	function getVisiblePages(totalPages, currentPage) {
+		if (totalPages <= 7) {
+			return Array.from({ length: totalPages }, (_, i) => i + 1);
+		}
+
+		const pages = [];
+
+		if (currentPage <= 4) {
+			pages.push(1, 2, 3, 4, 5, "...", totalPages);
+		} else if (currentPage >= totalPages - 3) {
+			pages.push(1, "...", totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages);
+		} else {
+			pages.push(1, "...", currentPage - 1, currentPage, currentPage + 1, "...", totalPages);
+		}
+
+		return pages;
+	}
+
+	function renderPagination(totalProjects) {
+		const totalPages = Math.max(1, Math.ceil(totalProjects / PROJECTS_PER_PAGE));
+		pagination.innerHTML = "";
+
+		const wrapper = document.createElement("div");
+		wrapper.className = "pagination";
+
+		wrapper.appendChild(
+			createPageButton("<", currentPage - 1, false, currentPage === 1)
+		);
+
+		const visiblePages = getVisiblePages(totalPages, currentPage);
+
+		visiblePages.forEach((item) => {
+			if (item === "...") {
+				wrapper.appendChild(createPageButton("...", 0, false, true, true));
+			} else {
+				wrapper.appendChild(createPageButton(String(item), item, item === currentPage, false));
+			}
+		});
+
+		wrapper.appendChild(
+			createPageButton(">", currentPage + 1, false, currentPage === totalPages)
+		);
+
+		pagination.appendChild(wrapper);
+	}
+
+	function updateActiveFilters() {
+		filterButtons.forEach((button) => {
+			const filter = normalizeTag(button.dataset.filter);
+			button.classList.toggle("active", filter === activeFilter);
+		});
+	}
+
+	function renderProjects() {
+		const filteredProjects = getFilteredProjects();
+		const totalPages = Math.max(1, Math.ceil(filteredProjects.length / PROJECTS_PER_PAGE));
+
+		if (currentPage > totalPages) currentPage = totalPages;
+		if (currentPage < 1) currentPage = 1;
+
+		if (!filteredProjects.length) {
+			projectsGrid.innerHTML = "";
+			projectsGrid.style.display = "none";
+			if (projectsEmpty) projectsEmpty.style.display = "block";
+			renderPagination(0);
+			updateActiveFilters();
+			return;
+		}
+
+		projectsGrid.style.display = "grid";
+		if (projectsEmpty) projectsEmpty.style.display = "none";
+
+		const start = (currentPage - 1) * PROJECTS_PER_PAGE;
+		const end = start + PROJECTS_PER_PAGE;
+		const projectsToShow = filteredProjects.slice(start, end);
+
+		projectsGrid.innerHTML = projectsToShow.map(createProjectCard).join("");
+		renderPagination(filteredProjects.length);
+		updateActiveFilters();
+	}
+
+	filterButtons.forEach((button) => {
+		button.addEventListener("click", () => {
+			activeFilter = normalizeTag(button.dataset.filter || "all");
+			currentPage = 1;
+			renderProjects();
+		});
+	});
+
+	renderProjects();
+});
