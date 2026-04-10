@@ -14,7 +14,7 @@ window.BLOG_POSTS = [
     tag: "technology",
     tagLabel: "Technology",
     date: "April 2026",
-    image: "images/blog-healthcare-1.jpg",
+    image: "blog/photos/Interview-Tech00001.png",
     excerpt: "A reflection on my first technical interview with M.C. Dean, covering access control architecture, iSTAR controllers, reader protocols and the lessons I took away from the experience."
   },
   {
