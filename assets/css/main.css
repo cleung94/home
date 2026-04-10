@@ -4860,3 +4860,16 @@ font-weight:600;
 .blog-takeaways li {
 	margin-bottom: 0.5rem;
 }
+
+.project-card-date {
+	margin: 0 0 0.6em 0;
+	color: #7a8b97;
+	font-size: 0.76rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+#projectsPagination {
+	margin-top: 2.2em;
+}
