@@ -18,13 +18,13 @@ window.BLOG_POSTS = [
     excerpt: "A reflection on my first technical interview with M.C. Dean, covering access control architecture, iSTAR controllers, reader protocols and the lessons I took away from the experience."
   },
   {
-    title: "How I Like to Write Restaurant Reviews",
-    slug: "blog-post-restaurant-review-template.html",
-    tag: "restaurant",
-    tagLabel: "Restaurant",
+    title: "Technology vs Healthcare Career",
+    slug: "blog/blog-healthcare-00001.html",
+    tag: "healthcare",
+    tagLabel: "Healthcare",
     date: "April 2026",
     image: "images/blog-restaurant-1.jpg",
-    excerpt: "A clean format for reviewing food, service, atmosphere, and overall experience."
+    excerpt: "A personal reflection on the differences between the technology industry and healthcare, and the lessons each field teaches about problem solving, teamwork, and resilience."
   },
   {
     title: "Why Hobbies Matter More Than People Think",
