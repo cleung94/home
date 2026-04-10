@@ -27,8 +27,8 @@ window.BLOG_POSTS = [
     excerpt: "A personal reflection on the differences between the technology industry and healthcare, and the lessons each field teaches about problem solving, teamwork, and resilience."
   },
   {
-    title: "Why Hobbies Matter More Than People Think",
-    slug: "blog-post-hobbies-balance.html",
+    title: "My Journey Through the World of Genshin Impact",
+    slug: "blog/blog-hobbies-00001.html,
     tag: "hobbies",
     tagLabel: "Hobbies",
     date: "April 2026",
