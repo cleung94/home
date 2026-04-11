@@ -22,13 +22,13 @@ window.PROJECTS = [
     featured: true
   },
   {
-    title: "Security Systems Architecture Visualizer",
-    slug: "projects/security-systems-architecture-visualizer.html",
+    title: "Plangrid Process Infographic",
+    slug: "projects/project-plangrid-process.html",
     tag: "technology",
     tagLabel: "Technology",
-    date: "Planned",
-    status: ["Planned"],
-    excerpt: "An interactive project concept that maps relationships between servers, panels, field devices, and system dependencies to make complex environments easier to understand.",
+    date: "April 2026",
+    status: ["Technology"],
+    excerpt: "Designed a structured QA lifecycle for PlanGrid security infrastructure projects, including an automated intake form, centralized project tracker, and weekly reporting process. The updated workflow improved cross-team communication and significantly shortened project review timelines.",
     tools: ["System Design", "Visualization", "Architecture"]
   },
   {
