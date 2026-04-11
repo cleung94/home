@@ -23,7 +23,7 @@ window.PROJECTS = [
   },
   {
     title: "Plangrid Process Infographic",
-    slug: "projects/project-plangrid-process.html",
+    slug: "showcase/project-plangrid-process.html",
     tag: "technology",
     tagLabel: "Technology",
     date: "April 2026",
