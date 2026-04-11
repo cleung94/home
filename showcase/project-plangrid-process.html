@@ -10,7 +10,6 @@
 
 <div id="wrapper">
 
-<!-- Main -->
 <div id="main">
 <div class="inner">
 
@@ -23,7 +22,6 @@
 </header>
 
 
-<!-- Project Hero -->
 <section class="project-hero">
 
 <div class="project-hero-copy">
@@ -52,19 +50,16 @@ Redesigned the QA review lifecycle for PlanGrid-based security infrastructure pr
 
 
 <div class="project-image-panel">
-<a href="photos/Plangrid-Cover.png" target="_blank">
 <img src="photos/Plangrid-Cover.png"
 alt="PlanGrid Project Timeline Workflow"
 class="clickable-preview"
 />
-</a>
 <p class="image-preview-hint">Click image to enlarge</p>
 </div>
 
 </section>
 
 
-<!-- Overview -->
 <section id="overview" class="project-section">
 
 <div class="section-heading">
@@ -110,7 +105,6 @@ To address these issues, I redesigned the PlanGrid QA process by introducing a s
 
 
 
-<!-- Case Study -->
 <section class="project-section">
 
 <div class="section-heading">
@@ -149,7 +143,6 @@ I developed a new PlanGrid QA process that introduced a defined project timeline
 
 
 
-<!-- Highlights -->
 <section class="project-section">
 
 <div class="section-heading">
@@ -198,7 +191,6 @@ Configured the tracker to generate weekly reporting updates that provide leaders
 
 
 
-<!-- Visual -->
 <section class="project-section">
 
 <div class="section-heading">
@@ -208,13 +200,11 @@ Configured the tracker to generate weekly reporting updates that provide leaders
 
 <div class="project-image-panel">
 
-<a href="photos/Plangrid-Process.png" target="_blank">
 <img
 src="photos/Plangrid-Process.png"
 alt="PlanGrid QA Workflow Timeline"
 class="clickable-preview"
 />
-</a>
 
 <p class="image-preview-hint">Click image to enlarge</p>
 
@@ -224,7 +214,6 @@ class="clickable-preview"
 
 
 
-<!-- Impact -->
 <section class="project-section">
 
 <div class="section-heading">
@@ -252,7 +241,6 @@ As a result, the average QA review timeline was reduced from approximately <stro
 
 
 
-<!-- Navigation -->
 <section class="project-section project-footer-nav">
 <a href="../projects.html" class="button">← Back to Projects</a>
 </section>
@@ -263,7 +251,6 @@ As a result, the average QA review timeline was reduced from approximately <stro
 
 
 
-<!-- Sidebar -->
 <div id="sidebar">
 <div class="inner">
 
@@ -302,6 +289,52 @@ As a result, the average QA review timeline was reduced from approximately <stro
 </div>
 
 </div>
+
+
+<!-- LIGHTBOX (same as CNA project) -->
+<div id="imageLightbox" class="image-lightbox" aria-hidden="true">
+<span class="image-lightbox-close" id="lightboxClose">&times;</span>
+<img class="image-lightbox-content" id="lightboxImage" alt="Expanded project preview" />
+</div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+const previewImages = document.querySelectorAll('.clickable-preview');
+const lightbox = document.getElementById('imageLightbox');
+const lightboxImage = document.getElementById('lightboxImage');
+const lightboxClose = document.getElementById('lightboxClose');
+
+if (!previewImages.length || !lightbox) return;
+
+previewImages.forEach(function (img) {
+img.addEventListener('click', function () {
+lightboxImage.src = img.src;
+lightboxImage.alt = img.alt;
+lightbox.classList.add('is-open');
+document.body.style.overflow = 'hidden';
+});
+});
+
+function closeLightbox() {
+lightbox.classList.remove('is-open');
+document.body.style.overflow = '';
+}
+
+lightboxClose.addEventListener('click', closeLightbox);
+
+lightbox.addEventListener('click', function (e) {
+if (e.target === lightbox) closeLightbox();
+});
+
+document.addEventListener('keydown', function (e) {
+if (e.key === 'Escape') closeLightbox();
+});
+
+});
+</script>
+
 
 <script src="../assets/js/jquery.min.js"></script>
 <script src="../assets/js/browser.min.js"></script>
