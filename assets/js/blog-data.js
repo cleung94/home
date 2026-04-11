@@ -28,7 +28,7 @@ window.BLOG_POSTS = [
   },
   {
     title: "My Journey Through the World of Genshin Impact",
-    slug: "blog/blog-hobbies-00001.html",
+    slug: "blog/Genshin-img.html",
     tag: "hobbies",
     tagLabel: "Hobbies",
     date: "April 2026",
