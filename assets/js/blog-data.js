@@ -5,7 +5,7 @@ window.BLOG_POSTS = [
     tag: "technology",
     tagLabel: "Technology",
     date: "March 2026",
-    image: "images/blog-tech-1.jpg",
+    image: "blog/photos/Meta-image.png",
     excerpt: "A surreal moment, a two-week countdown, and the reflection that followed after learning my assignment at Meta was ending."
   },
   {
