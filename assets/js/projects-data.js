@@ -33,7 +33,7 @@ window.PROJECTS = [
   },
     {
     title: "Physical Security Systems Check",
-    slug: "showcase/project-physica-security-systems-check.html",
+    slug: "showcase/project-physical-security-systems-check.html",
     tag: "technology",
     tagLabel: "Technology",
     date: "April 2026",
