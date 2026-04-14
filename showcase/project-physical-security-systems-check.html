@@ -1,0 +1,635 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Physical Security Systems Audit | Christopher Leung</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../assets/css/main.css" />
+	<style>
+		/* Page-specific only: does not alter header, sidebar, or footer */
+		.audit-hero-note {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.6em;
+			padding: 0.55em 1em;
+			border-radius: 999px;
+			background: rgba(74, 111, 134, 0.08);
+			color: #4a6f86;
+			font-weight: 600;
+			margin-bottom: 1.2em;
+		}
+
+		.metric-strip {
+			display: grid;
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+			gap: 1.25em;
+			margin-top: 2em;
+		}
+
+		.metric-card {
+			background: #ffffff;
+			border: 1px solid rgba(210, 215, 217, 0.75);
+			border-radius: 1em;
+			padding: 1.35em 1.25em;
+			box-shadow: 0 10px 25px rgba(61, 68, 73, 0.06);
+		}
+
+		.metric-card .metric-label {
+			display: block;
+			font-size: 0.85em;
+			text-transform: uppercase;
+			letter-spacing: 0.08em;
+			color: #7f888f;
+			margin-bottom: 0.55em;
+		}
+
+		.metric-card .metric-value {
+			display: block;
+			font-family: "Roboto Slab", serif;
+			font-size: 2em;
+			line-height: 1.1;
+			color: #3d4449;
+		}
+
+		.metric-card .metric-sub {
+			display: block;
+			margin-top: 0.45em;
+			font-size: 0.92em;
+		}
+
+		.process-grid,
+		.results-grid,
+		.code-grid,
+		.dashboard-grid,
+		.link-grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1.5em;
+		}
+
+		.question-list {
+			margin: 0;
+			padding-left: 1.2em;
+		}
+
+		.question-list li {
+			margin-bottom: 0.85em;
+		}
+
+		.audit-callout,
+		.embed-card,
+		.code-card,
+		.result-card {
+			background: #ffffff;
+			border: 1px solid rgba(210, 215, 217, 0.75);
+			border-radius: 1em;
+			padding: 1.5em;
+			box-shadow: 0 10px 25px rgba(61, 68, 73, 0.05);
+		}
+
+		.audit-callout h3,
+		.embed-card h3,
+		.code-card h3,
+		.result-card h3 {
+			margin-bottom: 0.6em;
+		}
+
+		.audit-inline-tags {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.65em;
+			margin-top: 1em;
+		}
+
+		.audit-inline-tags span {
+			background: rgba(74, 111, 134, 0.08);
+			color: #4a6f86;
+			border-radius: 999px;
+			padding: 0.45em 0.9em;
+			font-size: 0.9em;
+			font-weight: 600;
+		}
+
+		.project-image-panel.is-flat {
+			background: #ffffff;
+			padding: 1em;
+			border: 1px solid rgba(210, 215, 217, 0.75);
+			box-shadow: 0 12px 30px rgba(61, 68, 73, 0.07);
+		}
+
+		.project-image-panel.is-flat img {
+			border-radius: 0.75em;
+		}
+
+		.code-card pre {
+			margin: 0;
+		}
+
+		.code-card code {
+			font-size: 0.85em;
+		}
+
+		.link-grid .button {
+			width: 100%;
+			text-align: center;
+		}
+
+		.embed-note {
+			font-size: 0.9em;
+			color: #7f888f;
+			margin-top: 0.8em;
+			margin-bottom: 0;
+		}
+
+		.asset-links {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.75em;
+			margin-top: 1.25em;
+		}
+
+		.asset-links .button {
+			margin: 0;
+		}
+
+		@media screen and (max-width: 980px) {
+			.metric-strip,
+			.process-grid,
+			.results-grid,
+			.code-grid,
+			.dashboard-grid,
+			.link-grid {
+				grid-template-columns: 1fr;
+			}
+		}
+	</style>
+</head>
+<body class="is-preload">
+
+<div id="wrapper">
+
+<div id="main">
+<div class="inner">
+
+<header id="header">
+<a href="../index.html" class="logo"><strong>Christopher Leung</strong></a>
+<ul class="icons">
+<li><a href="https://github.com/cleung94" class="icon brands fa-github"></a></li>
+<li><a href="https://www.linkedin.com/in/christopher-km-leung/" class="icon brands fa-linkedin"></a></li>
+</ul>
+</header>
+
+<section class="project-hero">
+
+<div class="project-hero-copy">
+
+<p class="project-kicker">Data Analytics · Physical Security Systems</p>
+<div class="audit-hero-note">Synthetic CCure + Genetec portfolio case study</div>
+
+<h1>Physical Security Systems Audit</h1>
+
+<p class="project-summary">
+This project simulates a portfolio-ready audit of enterprise physical security data exported from CCure and Genetec. I created a structured mock dataset, applied validation logic against operational standards, queried the data with SQL, analyzed it in Python, and translated the findings into dashboard concepts for both Power BI and Tableau.
+</p>
+
+<div class="project-tags">
+<span>Data Analysis</span>
+<span>SQL</span>
+<span>Python</span>
+<span>Power BI</span>
+<span>Tableau</span>
+</div>
+
+<div class="project-actions">
+<a href="#overview" class="button primary">View Project</a>
+<a href="../projects.html" class="button">Back to Projects</a>
+</div>
+
+</div>
+
+<div class="project-image-panel is-flat">
+<img src="photos/dashboard_comparison.png"
+alt="Power BI and Tableau dashboard comparison for the physical security audit project"
+class="clickable-preview"
+/>
+<p class="image-preview-hint">Click image to enlarge</p>
+</div>
+
+</section>
+
+<section id="overview" class="project-section">
+<div class="section-heading">
+<p class="section-label">Overview</p>
+<h2>Turning raw system exports into an audit story</h2>
+</div>
+
+<div class="project-overview-grid">
+<div class="project-overview-main">
+<p>
+The goal of this project was to create a realistic data workflow that mirrors the kind of review a security operations, systems administration, or infrastructure analytics team might perform after exporting records from an access control platform and a video management platform.
+</p>
+<p>
+Using a synthetic dataset with approximately 140 records, I designed the project to answer operational questions around device health, naming standards, lifecycle compliance, network configuration, and firmware consistency. The result is a single case study that shows data collection logic, QA thinking, technical analysis, and dashboard communication in one place.
+</p>
+<p>
+This project was intentionally built as a portfolio piece for data analyst and data scientist style roles while still reflecting my domain background in physical security systems.
+</p>
+</div>
+
+<div class="project-meta-card">
+<h3>Project Details</h3>
+<ul>
+<li><strong>Systems:</strong> CCure and Genetec</li>
+<li><strong>Records:</strong> 140 synthetic device entries</li>
+<li><strong>Workflow:</strong> CSV export → SQL → Python → BI dashboards</li>
+<li><strong>Audit Date:</strong> 2026-04-14</li>
+<li><strong>Focus:</strong> Quality checks, standards validation, and operational reporting</li>
+</ul>
+</div>
+</div>
+
+<div class="metric-strip">
+<div class="metric-card">
+<span class="metric-label">Total Devices</span>
+<span class="metric-value">140</span>
+<span class="metric-sub">Combined CCure and Genetec records</span>
+</div>
+<div class="metric-card">
+<span class="metric-label">Offline Devices</span>
+<span class="metric-value">13</span>
+<span class="metric-sub">Needing investigation or remediation</span>
+</div>
+<div class="metric-card">
+<span class="metric-label">Naming Issues</span>
+<span class="metric-value">15</span>
+<span class="metric-sub">Violations of the naming convention</span>
+</div>
+<div class="metric-card">
+<span class="metric-label">Out of Standard</span>
+<span class="metric-value">42</span>
+<span class="metric-sub">Products beyond expected standard date</span>
+</div>
+</div>
+</section>
+
+<section class="project-section">
+<div class="section-heading">
+<p class="section-label">Business Questions</p>
+<h2>The audit questions this project answers</h2>
+</div>
+
+<div class="process-grid">
+<div class="audit-callout">
+<h3>Core audit checks</h3>
+<ol class="question-list">
+<li>Are all devices online and configured correctly?</li>
+<li>Do programming names follow the correct naming conventions?</li>
+<li>Are all products currently used within our systems in-standard?</li>
+<li>Are all cameras in Genetec currently using IPv6?</li>
+<li>Are all cameras in Genetec online?</li>
+<li>Are all cameras in Genetec with the correct firmware version?</li>
+</ol>
+</div>
+
+<div class="audit-callout">
+<h3>Naming convention used</h3>
+<p>
+Both systems follow the same format:</p>
+<p><code>SITE CODE (LOCATION) DESCRIPTION [DEVICE REFERENCE NUMBER]</code></p>
+<p>
+Example door:<br />
+<code>SITE01 (FIRST FLOOR) LOBBY DOOR [DR00001]</code>
+</p>
+<p>
+Example camera:<br />
+<code>SITE01 (FIRST FLOOR) LOBBY CAMERA [CAM00001]</code>
+</p>
+<div class="audit-inline-tags">
+<span>Doors</span>
+<span>Readers</span>
+<span>Control Panels</span>
+<span>Cameras</span>
+</div>
+</div>
+</div>
+</section>
+
+<section class="project-section">
+<div class="section-heading">
+<p class="section-label">Process</p>
+<h2>How the project was structured from source to dashboard</h2>
+</div>
+
+<div class="project-image-panel is-flat">
+<img src="process-diagram.svg"
+alt="Process diagram showing the access control audit workflow from exports to SQL, Python, and dashboards"
+class="clickable-preview"
+/>
+<p class="image-preview-hint">Click image to enlarge</p>
+</div>
+
+<div class="asset-links">
+<a href="ccure_export.csv" class="button">CCure Export</a>
+<a href="genetec_export.csv" class="button">Genetec Export</a>
+<a href="access_control_project_showcase.xlsx" class="button">Excel Workbook</a>
+<a href="README.md" class="button">Project README</a>
+</div>
+</section>
+
+<section class="project-section">
+<div class="section-heading">
+<p class="section-label">Workflow</p>
+<h2>From data preparation to insight generation</h2>
+</div>
+
+<div class="case-study-grid">
+<article class="case-card">
+<h3>1. Mock data generation</h3>
+<p>
+I created a synthetic export that resembles the type of fields a team might review in CCure and Genetec, including site code, location, device type, online status, firmware version, IPv6 usage, naming compliance, and lifecycle standard dates.
+</p>
+</article>
+
+<article class="case-card">
+<h3>2. SQL audit logic</h3>
+<p>
+I used SQL to answer the business questions directly from the export tables. This shows how an analyst can turn operational checks into repeatable queries for validation, reporting, and site-level issue summaries.
+</p>
+</article>
+
+<article class="case-card">
+<h3>3. Python summarization</h3>
+<p>
+I used Python and pandas to combine the audit flags into a concise summary table, then created a visualization that ranks issue counts by question to quickly highlight the biggest problem areas.
+</p>
+</article>
+
+<article class="case-card">
+<h3>4. Dashboard storytelling</h3>
+<p>
+Finally, I translated the same findings into BI dashboard layouts for Power BI and Tableau to show how the same dataset can support multiple reporting styles depending on the audience.
+</p>
+</article>
+</div>
+</section>
+
+<section class="project-section">
+<div class="section-heading">
+<p class="section-label">Code</p>
+<h2>Example SQL and Python used in the project</h2>
+</div>
+
+<div class="code-grid">
+<div class="code-card">
+<h3>SQL example</h3>
+<pre><code>SELECT
+  'Products In Standard' AS audit_question,
+  CASE WHEN SUM(issue_count) = 0 THEN 'YES' ELSE 'NO' END AS all_clear,
+  SUM(issue_count) AS issue_count
+FROM (
+  SELECT SUM(Issue_Standard_Flag) AS issue_count FROM ccure_export
+  UNION ALL
+  SELECT SUM(Issue_Standard_Flag) AS issue_count FROM genetec_export
+);</code></pre>
+<p class="embed-note">This query checks whether active products are still within standard based on the expected end-of-standard date.</p>
+<a href="sql_analysis_queries.sql" class="button small">Open SQL File</a>
+</div>
+
+<div class="code-card">
+<h3>Python example</h3>
+<pre><code>answers = pd.DataFrame([
+    {
+        "Question": "Are all Genetec cameras online?",
+        "All Clear": "NO" if genetec["Issue_Offline_Flag"].sum() &gt; 0 else "YES",
+        "Issue Count": int(genetec["Issue_Offline_Flag"].sum())
+    }
+])
+
+plot_df = answers.sort_values("Issue Count")
+plt.figure(figsize=(10, 5))
+plt.barh(plot_df["Question"], plot_df["Issue Count"])
+plt.tight_layout()</code></pre>
+<p class="embed-note">This step summarizes audit outcomes in pandas and visualizes issue volume for fast review.</p>
+<a href="python_analysis_starter.py" class="button small">Open Python File</a>
+</div>
+</div>
+</section>
+
+<section class="project-section">
+<div class="section-heading">
+<p class="section-label">Python Output</p>
+<h2>Example analysis output from the scripted workflow</h2>
+</div>
+
+<div class="results-grid">
+<div class="result-card">
+<h3>Issue count by audit question</h3>
+<p>
+This chart shows which validation areas generated the highest number of exceptions in the synthetic dataset. In this case, lifecycle standard issues represented the largest gap, followed by online and configuration exceptions.
+</p>
+</div>
+<div class="project-image-panel is-flat">
+<img src="photos/python_issue_chart.png"
+alt="Python bar chart showing issue count by audit question"
+class="clickable-preview"
+/>
+<p class="image-preview-hint">Click image to enlarge</p>
+</div>
+</div>
+</section>
+
+<section class="project-section">
+<div class="section-heading">
+<p class="section-label">Results</p>
+<h2>What the synthetic audit revealed</h2>
+</div>
+
+<div class="feature-grid">
+<div class="feature-card">
+<h3>22 devices flagged</h3>
+<p>
+A combined total of 22 devices were not both online and correctly configured, indicating where health and setup checks would need follow-up.
+</p>
+</div>
+<div class="feature-card">
+<h3>15 naming exceptions</h3>
+<p>
+Several device records intentionally failed the expected programming format, making it possible to demonstrate naming governance checks.
+</p>
+</div>
+<div class="feature-card">
+<h3>42 lifecycle issues</h3>
+<p>
+The largest issue category involved products that had passed their expected end-of-standard date, creating a clear reporting story for lifecycle planning.
+</p>
+</div>
+<div class="feature-card">
+<h3>Genetec-specific gaps</h3>
+<p>
+Within the camera data, the project surfaced 10 IPv6 gaps, 8 offline cameras, and 7 firmware mismatches.
+</p>
+</div>
+</div>
+</section>
+
+<section class="project-section">
+<div class="section-heading">
+<p class="section-label">Dashboards</p>
+<h2>How the same findings were presented in Power BI and Tableau</h2>
+</div>
+
+<div class="dashboard-grid">
+<div class="project-image-panel is-flat">
+<img src="photos/powerbi_dashboard_mockup.png"
+alt="Power BI style dashboard mockup for physical security systems audit"
+class="clickable-preview"
+/>
+<p class="image-preview-hint">Click image to enlarge</p>
+</div>
+<div class="project-image-panel is-flat">
+<img src="photos/tableau_dashboard_mockup.png"
+alt="Tableau style dashboard mockup for physical security systems audit"
+class="clickable-preview"
+/>
+<p class="image-preview-hint">Click image to enlarge</p>
+</div>
+</div>
+
+<div class="impact-panel" style="margin-top: 1.5em;">
+<p>
+The Power BI mockup leans into KPI cards and executive-summary visuals, while the Tableau mockup emphasizes exploration and analytical layout. Showing both versions reinforces the idea that the same data can be framed differently depending on stakeholder needs.
+</p>
+</div>
+</section>
+
+<section class="project-section">
+<div class="section-heading">
+<p class="section-label">Live BI Links</p>
+<h2>Embed or publish the final dashboards</h2>
+</div>
+
+<div class="link-grid">
+<div class="embed-card">
+<h3>Power BI</h3>
+<p>
+Replace the button link below with your published Power BI share link after you deploy the dashboard.
+</p>
+<a href="YOUR_POWER_BI_SHARE_LINK_HERE" class="button primary" target="_blank" rel="noopener noreferrer">Open Power BI Dashboard</a>
+<p class="embed-note">Optional: swap this section for an iframe once you have a public or organization share link.</p>
+</div>
+
+<div class="embed-card">
+<h3>Tableau</h3>
+<p>
+Replace the button link below with your Tableau Public or embedded dashboard URL after publishing the workbook.
+</p>
+<a href="YOUR_TABLEAU_SHARE_LINK_HERE" class="button primary" target="_blank" rel="noopener noreferrer">Open Tableau Dashboard</a>
+<p class="embed-note">Optional: embed the published visualization directly if you want it to appear inline on the page.</p>
+</div>
+</div>
+</section>
+
+<section class="project-section">
+<div class="section-heading">
+<p class="section-label">Why This Project Matters</p>
+<h2>A portfolio piece that connects domain knowledge and analytics</h2>
+</div>
+
+<div class="impact-panel">
+<p>
+This project was designed to show more than dashboard styling. It demonstrates how I think through a business question, shape messy system data into structured analysis, apply validation logic, and present results in a way that is useful for technical teams and decision-makers.
+</p>
+<p>
+It also reflects a domain area where I already have practical context. Instead of using a generic public dataset, I built a realistic scenario around security infrastructure operations so the project would feel more aligned with the problems I have actually worked around.
+</p>
+</div>
+</section>
+
+<section class="project-section project-footer-nav">
+<a href="../projects.html" class="button">← Back to Projects</a>
+</section>
+
+</div>
+</div>
+
+<div id="sidebar">
+<div class="inner">
+
+<section id="search" class="alt">
+<form method="post" action="#">
+<input type="text" name="query" id="query" placeholder="Search" />
+</form>
+</section>
+
+<nav id="menu">
+<header class="major">
+<h2>Menu</h2>
+</header>
+<ul>
+<li><a href="../index.html">Homepage</a></li>
+<li><a href="../projects.html">Project Showcase</a></li>
+<li>
+<span class="opener">Blog</span>
+<ul>
+<li><a href="../blog.html">Blog Homepage</a></li>
+<li><a href="../blog-technology.html">Blog - Technology</a></li>
+<li><a href="../blog-healthcare.html">Blog - Healthcare</a></li>
+<li><a href="../blog-restaurant.html">Blog - Restaurant</a></li>
+<li><a href="../blog-hobbies.html">Blog - Hobbies</a></li>
+</ul>
+</li>
+<li><a href="../contact-form.html">Contact Me</a></li>
+</ul>
+</nav>
+
+<footer id="footer">
+<p class="copyright">&copy; 2026 Christopher Leung. All rights reserved.</p>
+</footer>
+
+</div>
+</div>
+
+</div>
+
+<div id="imageLightbox" class="image-lightbox" aria-hidden="true">
+<span class="image-lightbox-close" id="lightboxClose">&times;</span>
+<img class="image-lightbox-content" id="lightboxImage" alt="Expanded project preview" />
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+const previewImages = document.querySelectorAll('.clickable-preview');
+const lightbox = document.getElementById('imageLightbox');
+const lightboxImage = document.getElementById('lightboxImage');
+const lightboxClose = document.getElementById('lightboxClose');
+if (!previewImages.length || !lightbox) return;
+previewImages.forEach(function (img) {
+img.addEventListener('click', function () {
+lightboxImage.src = img.src;
+lightboxImage.alt = img.alt;
+lightbox.classList.add('is-open');
+document.body.style.overflow = 'hidden';
+});
+});
+function closeLightbox() {
+lightbox.classList.remove('is-open');
+document.body.style.overflow = '';
+}
+lightboxClose.addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', function (e) {
+if (e.target === lightbox) closeLightbox();
+});
+document.addEventListener('keydown', function (e) {
+if (e.key === 'Escape') closeLightbox();
+});
+});
+</script>
+
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/browser.min.js"></script>
+<script src="../assets/js/breakpoints.min.js"></script>
+<script src="../assets/js/util.js"></script>
+<script src="../assets/js/main.js"></script>
+
+</body>
+</html>
