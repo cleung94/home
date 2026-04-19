@@ -5028,3 +5028,78 @@ font-weight:600;
 	50% { background-position: 100% 50%; }
 	100% { background-position: 0% 50%; }
 }
+
+/* ===== RESTAURANT HERO IMAGE + GRADIENT BORDER ===== */
+
+/* HERO GRID (image + text side by side) */
+.restaurant-hero-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 2em;
+	align-items: center;
+}
+
+/* IMAGE CONTAINER */
+.restaurant-hero-media {
+	display: flex;
+	justify-content: center;
+}
+
+/* CLEAN 1.5px GRADIENT BORDER */
+.gradient-frame {
+	position: relative;
+	border-radius: 1.2em;
+	display: inline-block;
+}
+
+/* BORDER LAYER */
+.gradient-frame::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	padding: 1.5px;
+
+	background: linear-gradient(
+		135deg,
+		#4a90e2,
+		#6bb6ff,
+		#ff9a3d,
+		#ff7a18
+	);
+
+	-webkit-mask:
+		linear-gradient(#fff 0 0) content-box,
+		linear-gradient(#fff 0 0);
+	-webkit-mask-composite: xor;
+	mask-composite: exclude;
+}
+
+/* IMAGE */
+.gradient-frame img {
+	display: block;
+	width: 100%;
+	max-width: 420px;
+	aspect-ratio: 1 / 1;
+	object-fit: cover;
+	border-radius: 1.2em;
+	background: #fff;
+}
+
+/* OPTIONAL: subtle glow (clean, not overpowering) */
+.gradient-frame {
+	filter: drop-shadow(0 0 6px rgba(74,144,226,0.25))
+	        drop-shadow(0 0 6px rgba(255,122,24,0.2));
+}
+
+/* RESPONSIVE (stack on mobile) */
+@media screen and (max-width: 980px) {
+	.restaurant-hero-grid {
+		grid-template-columns: 1fr;
+		text-align: center;
+	}
+
+	.restaurant-hero-media {
+		order: -1;
+	}
+}
