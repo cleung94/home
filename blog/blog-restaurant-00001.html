@@ -699,6 +699,30 @@
 					}
 				});
 			});
+							// RETURN RATING
+				const returnRating = document.getElementById("returnRating");
+				const returnText = document.getElementById("returnText");
+				
+				if (returnRating && returnText) {
+					const score = parseInt(returnRating.dataset.score);
+				
+					const faces = returnRating.querySelectorAll(".face");
+				
+					const labels = [
+						"No",
+						"Not likely",
+						"Yes",
+						"Yes!"
+					];
+				
+					faces.forEach((face, index) => {
+						if (index < score) {
+							face.classList.add("active");
+						}
+					});
+				
+					returnText.textContent = labels[score] || "Yes";
+				}
 		</script>
 	</body>
 </html>
