@@ -4873,3 +4873,99 @@ font-weight:600;
 #projectsPagination {
 	margin-top: 2.2em;
 }
+
+/* ===== RESTAURANT REVIEW ===== */
+
+.restaurant-rating {
+	display: flex;
+	align-items: center;
+	gap: 1em;
+	margin-top: 1em;
+}
+
+.stars span {
+	color: #ccc;
+	font-size: 1.3em;
+}
+
+.stars span.filled {
+	color: #d4a63c;
+}
+
+.score {
+	font-weight: 700;
+	color: #3d4449;
+}
+
+.review-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1.5em;
+	margin-top: 2em;
+}
+
+.card {
+	background: white;
+	padding: 1.2em;
+	border-radius: 1em;
+	box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+	border: 1px solid rgba(0,0,0,0.05);
+}
+
+.card h4 {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 1em;
+}
+
+.review-point {
+	padding: 0.6em 0.8em;
+	border-radius: 0.6em;
+	margin-bottom: 0.5em;
+	font-size: 0.9em;
+}
+
+/* POSITIVE */
+.review-point.positive {
+	background: rgba(62,141,91,0.1);
+	color: #2d6b48;
+}
+
+.review-point.positive::before {
+	content: "✓ ";
+	color: #3e8d5b;
+	font-weight: bold;
+}
+
+/* NEUTRAL */
+.review-point.neutral {
+	background: rgba(214,164,60,0.15);
+	color: #8a6a1f;
+}
+
+.review-point.neutral::before {
+	content: "• ";
+	font-weight: bold;
+}
+
+/* NEGATIVE */
+.review-point.negative {
+	background: rgba(191,76,76,0.12);
+	color: #8b2c2c;
+}
+
+.review-point.negative::before {
+	content: "✕ ";
+	color: #bf4c4c;
+	font-weight: bold;
+}
+
+.restaurant-details {
+	margin-top: 2em;
+}
+
+.restaurant-links a {
+	display: inline-block;
+	margin-right: 1em;
+	margin-top: 0.5em;
+}
