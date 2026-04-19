@@ -5103,3 +5103,25 @@ font-weight:600;
 		order: -1;
 	}
 }
+
+.restaurant-hero-wrap {
+	display: grid;
+	grid-template-columns: minmax(320px, 520px) minmax(320px, 520px);
+	gap: 2em;
+	align-items: center;
+	justify-content: center;
+	max-width: 1100px;
+	margin: 0 auto;
+}
+
+@media screen and (max-width: 980px) {
+	.restaurant-hero-wrap,
+	.restaurant-meta-grid,
+	.restaurant-review-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.restaurant-hero-media {
+		order: -1;
+	}
+}
