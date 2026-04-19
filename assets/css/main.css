@@ -3484,14 +3484,18 @@ body.blog-tone #main {
 }
 
 .blog-post-luxe-media {
-	max-width: 400px;
-	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	margin-bottom: 1em;
 }
 
 .blog-post-luxe-media img {
+	width: 100%;
+	max-width: 360px;
 	aspect-ratio: 1 / 1;
 	object-fit: cover;
-	border-radius: 1em;
+	border-radius: 1.2em;
+	box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
 
 .blog-post-luxe-panel {
@@ -5005,4 +5009,22 @@ font-weight:600;
 .return-text {
 	font-weight: 700;
 	color: #3d4449;
+}
+
+.gradient-frame {
+	background: linear-gradient(
+		270deg,
+		#00c6ff,
+		#0072ff,
+		#ff7a18,
+		#ffb347
+	);
+	background-size: 300% 300%;
+	animation: gradientShift 6s ease infinite;
+}
+
+@keyframes gradientShift {
+	0% { background-position: 0% 50%; }
+	50% { background-position: 100% 50%; }
+	100% { background-position: 0% 50%; }
 }
