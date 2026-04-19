@@ -5196,10 +5196,10 @@ font-weight:600;
 
 .restaurant-hero-wrap {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 2em;
+	grid-template-columns: minmax(420px, 1.12fr) minmax(320px, 0.88fr);
+	gap: 2.25em;
 	align-items: center;
-	max-width: 1100px;
+	max-width: 1180px;
 	margin: 0 auto;
 }
 
@@ -5216,14 +5216,14 @@ font-weight:600;
 
 .gradient-frame {
 	position: relative;
-	display: inline-block;
+	display: block;
 	width: 100%;
 	border-radius: 1.35em;
 }
 
 .full-width-frame {
 	width: 100%;
-	max-width: 1040px;
+	max-width: 100%;
 }
 
 .gradient-frame::before {
@@ -5262,6 +5262,7 @@ font-weight:600;
 	.restaurant-meta-grid,
 	.restaurant-review-grid {
 		grid-template-columns: 1fr;
+		max-width: 640px;
 	}
 
 	.restaurant-hero-media {
@@ -5269,7 +5270,6 @@ font-weight:600;
 	}
 
 	.full-width-frame {
-		max-width: 520px;
-		margin: 0 auto;
+		max-width: 100%;
 	}
 }
