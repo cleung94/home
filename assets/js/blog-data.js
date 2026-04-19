@@ -34,5 +34,14 @@ window.BLOG_POSTS = [
     date: "April 2026",
     image: "blog/photos/Genshin-img.png",
     excerpt: "A personal piece on games, interests, and why hobbies help keep life balanced and meaningful."
-  }
+  },
+  {
+  title: "Moka & Co Review",
+  slug: "blog/blog-restaurant-00001.html",
+  tag: "restaurant",
+  tagLabel: "Restaurant",
+  date: "April 2026",
+  image: "blog/photos/MokaAndCo.jpg",
+  excerpt: "Moka & Co is a cozy Fremont coffee spot with a calm atmosphere, plenty of seating, and a menu that makes it easy to settle in for a drink and dessert. It is the kind of place that works well for studying, catching up with friends, or enjoying a slower afternoon coffee run."
+}
 ];
