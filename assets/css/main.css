@@ -5125,3 +5125,102 @@ font-weight:600;
 		order: -1;
 	}
 }
+
+/* ===== GLOBAL BLOG HERO PHOTO STYLE ===== */
+
+.blog-post-luxe {
+	max-width: 1100px;
+	margin: 0 auto;
+}
+
+.blog-post-luxe-media {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+	width: 100%;
+}
+
+.blog-post-luxe-media img {
+	display: block;
+	width: 100%;
+	max-width: 520px;
+	aspect-ratio: 1 / 1;
+	object-fit: cover;
+	object-position: center;
+	border-radius: 1.35em;
+	background: #ffffff;
+}
+
+/* Optional framed version for pages that use the gradient wrapper */
+.gradient-frame {
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	max-width: 520px;
+	border-radius: 1.35em;
+	margin: 0 auto;
+}
+
+.gradient-frame::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	padding: 1.5px;
+	background: linear-gradient(
+		135deg,
+		#4a90e2 0%,
+		#6bb6ff 28%,
+		#ff9a3d 72%,
+		#ff7a18 100%
+	);
+	-webkit-mask:
+		linear-gradient(#fff 0 0) content-box,
+		linear-gradient(#fff 0 0);
+	-webkit-mask-composite: xor;
+	mask-composite: exclude;
+	pointer-events: none;
+}
+
+.gradient-frame img {
+	display: block;
+	width: 100%;
+	aspect-ratio: 1 / 1;
+	object-fit: cover;
+	object-position: center;
+	border-radius: 1.35em;
+	background: #ffffff;
+}
+
+/* ===== RESTAURANT HERO CENTERING FIX ===== */
+
+.restaurant-hero-wrap {
+	display: grid;
+	grid-template-columns: minmax(320px, 520px) minmax(320px, 520px);
+	gap: 2em;
+	align-items: center;
+	justify-content: center;
+	max-width: 1100px;
+	margin: 0 auto;
+	width: 100%;
+}
+
+.restaurant-hero-media {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	margin: 0 auto;
+}
+
+@media screen and (max-width: 980px) {
+	.restaurant-hero-wrap {
+		grid-template-columns: 1fr;
+		max-width: 520px;
+	}
+
+	.restaurant-hero-media {
+		order: -1;
+	}
+}
