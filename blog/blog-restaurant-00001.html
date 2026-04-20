@@ -7,6 +7,41 @@
 		<link rel="stylesheet" href="../assets/css/main.css" />
 
 		<style>
+					/* CLEAN THIN GRADIENT BORDER */
+			.gradient-frame {
+				position: relative;
+				display: inline-block;
+				border-radius: 1.35em;
+			}
+			
+			.gradient-frame::before {
+				content: "";
+				position: absolute;
+				inset: 0;
+				border-radius: inherit;
+				padding: 1.5px;
+			
+				background: linear-gradient(
+					135deg,
+					#4a90e2,
+					#6bb6ff,
+					#ff9a3d,
+					#ff7a18
+				);
+			
+				-webkit-mask:
+					linear-gradient(#fff 0 0) content-box,
+					linear-gradient(#fff 0 0);
+				-webkit-mask-composite: xor;
+				mask-composite: exclude;
+			}
+
+.gradient-frame img {
+	display: block;
+	width: 100%;
+	border-radius: 1.35em;
+}
+			
 			.restaurant-review-shell {
 				display: grid;
 				gap: 2em;
