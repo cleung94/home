@@ -14,24 +14,27 @@
 
 			.restaurant-hero-wrap {
 				display: grid;
-				grid-template-columns: minmax(320px, 1fr) minmax(320px, 1fr);
-				gap: 2em;
+				grid-template-columns: 1fr 1fr;
+				gap: 2.5em;
 				align-items: center;
+				max-width: 1100px;
+				margin: 0 auto;
 			}
 
 			.restaurant-hero-media {
 				display: flex;
 				justify-content: center;
 				align-items: center;
+				width: 100%;
 			}
 
 			.gradient-frame {
 				position: relative;
-				display: inline-block;
-				max-width: none;
+				display: block;
 				width: 100%;
-				height: 100%;
+				max-width: 420px;
 				border-radius: 1.35em;
+				overflow: hidden;
 			}
 
 			.gradient-frame::before {
@@ -58,10 +61,15 @@
 			.gradient-frame img {
 				display: block;
 				width: 100%;
-				object-fit: cover;
+				height: auto;
+				object-fit: contain;
 				object-position: center;
 				border-radius: 1.35em;
 				background: #ffffff;
+			}
+
+			.blog-post-luxe-panel {
+				max-width: 420px;
 			}
 
 			.restaurant-rating-hero {
@@ -392,8 +400,16 @@
 					grid-template-columns: 1fr;
 				}
 
+				.restaurant-hero-wrap {
+					text-align: center;
+				}
+
 				.restaurant-hero-media {
 					order: -1;
+				}
+
+				.blog-post-luxe-panel {
+					margin: 0 auto;
 				}
 			}
 
@@ -432,73 +448,64 @@
 						</ul>
 					</header>
 
-✅ 2. UPDATE YOUR HTML (ONLY THIS PART)
+					<section class="blog-post-luxe">
+						<div class="restaurant-hero-wrap">
 
-Replace your hero section with this:
+							<div class="restaurant-hero-media">
+								<div class="gradient-frame">
+									<img src="photos/MokaAndCo.jpg" alt="Moka & Co in Fremont, California" />
+								</div>
+							</div>
 
-<section class="blog-post-luxe">
-	<div class="restaurant-hero-wrap">
+							<div class="blog-post-luxe-panel">
+								<span class="blog-kicker-luxe">Restaurant Review</span>
+								<h1>Moka & Co</h1>
 
-		<!-- IMAGE -->
-		<div class="restaurant-hero-media">
-			<div class="gradient-frame">
-				<img src="photos/MokaAndCo.jpg" alt="Moka & Co in Fremont, California" />
-			</div>
-		</div>
+								<p class="blog-subtitle-luxe">
+									A structured coffeehouse review in Fremont, California, scored like a small market research snapshot across ambience, food, service, menu, and parking.
+								</p>
 
-		<!-- TEXT -->
-		<div class="blog-post-luxe-panel">
-			<span class="blog-kicker-luxe">Restaurant Review</span>
-			<h1>Moka & Co</h1>
+								<div class="blog-post-meta-luxe">
+									<span>April 2026</span>
+									<span>Coffee House Review</span>
+								</div>
 
-			<p class="blog-subtitle-luxe">
-				A structured coffeehouse review in Fremont, California,
-				scored like a small market research snapshot across ambience,
-				food, service, menu, and parking.
-			</p>
+								<div class="restaurant-rating-hero">
+									<div class="restaurant-rating-score">
+										<div class="restaurant-stars" id="overallStars" aria-label="Overall rating stars">
+											<span class="star">★</span>
+											<span class="star">★</span>
+											<span class="star">★</span>
+											<span class="star">★</span>
+											<span class="star">★</span>
+										</div>
 
-			<div class="blog-post-meta-luxe">
-				<span>April 2026</span>
-				<span>Coffee House Review</span>
-			</div>
+										<div class="restaurant-score-text">
+											<span class="restaurant-score-number" id="overallScore">0.0/10</span>
+											<span class="restaurant-score-label">Overall Rating</span>
+										</div>
+									</div>
 
-			<div class="restaurant-rating-hero">
-				<div class="restaurant-rating-score">
-					<div class="restaurant-stars" id="overallStars" aria-label="Overall rating stars">
-						<span class="star">★</span>
-						<span class="star">★</span>
-						<span class="star">★</span>
-						<span class="star">★</span>
-						<span class="star">★</span>
-					</div>
+									<p class="restaurant-score-note">
+										Calculated automatically from five scored categories.
+									</p>
+								</div>
 
-					<div class="restaurant-score-text">
-						<span class="restaurant-score-number" id="overallScore">0.0/10</span>
-						<span class="restaurant-score-label">Overall Rating</span>
-					</div>
-				</div>
+								<div class="return-rating">
+									<span class="return-label">Would I come back?</span>
 
-				<p class="restaurant-score-note">
-					Calculated automatically from five scored categories.
-				</p>
-			</div>
+									<div class="return-icons" id="returnRating" data-score="2" aria-label="Would I come back rating">
+										<span class="face">☹️</span>
+										<span class="face">😐</span>
+										<span class="face">😊</span>
+									</div>
 
-			<div class="return-rating">
-				<span class="return-label">Would I come back?</span>
+									<span class="return-text" id="returnText">Yes</span>
+								</div>
+							</div>
 
-				<div class="return-icons" id="returnRating" data-score="2" aria-label="Would I come back rating">
-					<span class="face">☹️</span>
-					<span class="face">😐</span>
-					<span class="face">😊</span>
-				</div>
-
-				<span class="return-text" id="returnText">Yes</span>
-			</div>
-		</div>
-
-	</div>
-</section>
-				
+						</div>
+					</section>
 
 					<section class="blog-post-content-luxe restaurant-review-shell">
 
