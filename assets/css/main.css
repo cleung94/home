@@ -5468,3 +5468,94 @@ font-weight:600;
 		order: -1;
 	}
 }
+
+/* =========================================
+   FINAL RESTAURANT HERO FIX
+========================================= */
+
+.restaurant-hero-wrap {
+	display: grid !important;
+	grid-template-columns: 1fr 1fr !important;
+	gap: 2.5em !important;
+	align-items: start !important;
+	max-width: 1100px !important;
+	margin: 0 auto !important;
+}
+
+.restaurant-hero-media {
+	display: flex !important;
+	justify-content: center !important;
+	align-items: flex-start !important;
+	width: 100% !important;
+}
+
+/* kill old stretched height rules */
+.full-width-media,
+.full-width-frame,
+.gradient-frame {
+	height: auto !important;
+	min-height: 0 !important;
+	max-height: none !important;
+}
+
+/* actual frame */
+.full-width-frame,
+.gradient-frame {
+	position: relative !important;
+	display: block !important;
+	width: 100% !important;
+	max-width: 420px !important;
+	margin: 0 auto !important;
+	border-radius: 1.35em !important;
+	overflow: hidden !important;
+	background: transparent !important;
+}
+
+/* keep gradient border only */
+.gradient-frame::before {
+	content: "" !important;
+	position: absolute !important;
+	inset: 0 !important;
+	border-radius: inherit !important;
+	padding: 1.5px !important;
+	background: linear-gradient(
+		135deg,
+		#4a90e2 0%,
+		#6bb6ff 28%,
+		#ff9a3d 72%,
+		#ff7a18 100%
+	) !important;
+	-webkit-mask:
+		linear-gradient(#fff 0 0) content-box,
+		linear-gradient(#fff 0 0) !important;
+	-webkit-mask-composite: xor !important;
+	mask-composite: exclude !important;
+	pointer-events: none !important;
+}
+
+/* image should size the frame naturally */
+.full-width-frame img,
+.gradient-frame img {
+	display: block !important;
+	width: 100% !important;
+	height: auto !important;
+	min-height: 0 !important;
+	max-height: none !important;
+	aspect-ratio: auto !important;
+	object-fit: contain !important;
+	object-position: center !important;
+	border-radius: 1.35em !important;
+	background: #ffffff !important;
+}
+
+/* mobile */
+@media screen and (max-width: 980px) {
+	.restaurant-hero-wrap {
+		grid-template-columns: 1fr !important;
+		text-align: center !important;
+	}
+
+	.restaurant-hero-media {
+		order: -1 !important;
+	}
+}
