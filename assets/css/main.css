@@ -5409,3 +5409,62 @@ font-weight:600;
 		margin: 0 auto;
 	}
 }
+
+/* =========================================
+   FINAL FIX — Restaurant Image Cropping
+   Paste at VERY END of main.css
+========================================= */
+
+/* Force restaurant hero layout */
+.restaurant-hero-wrap {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 2.5em;
+	align-items: center;
+	max-width: 1100px;
+	margin: 0 auto;
+}
+
+/* Center image column */
+.restaurant-hero-media {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
+/* Frame sizing */
+.full-width-frame,
+.gradient-frame {
+	width: 100%;
+	max-width: 420px;
+	margin: 0 auto;
+	border-radius: 1.35em;
+	overflow: hidden;
+}
+
+/* 🔥 THIS IS THE IMPORTANT PART (fixes cropping) */
+.full-width-frame img,
+.gradient-frame img {
+	display: block !important;
+	width: 100% !important;
+	height: auto !important;
+	max-width: 100% !important;
+	aspect-ratio: auto !important;
+	object-fit: contain !important;
+	object-position: center !important;
+	border-radius: 1.35em !important;
+	background: #ffffff !important;
+}
+
+/* Mobile fix */
+@media screen and (max-width: 980px) {
+	.restaurant-hero-wrap {
+		grid-template-columns: 1fr;
+		text-align: center;
+	}
+
+	.restaurant-hero-media {
+		order: -1;
+	}
+}
