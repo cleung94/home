@@ -12,66 +12,6 @@
 				gap: 2em;
 			}
 
-			.restaurant-hero-wrap {
-				display: grid;
-				grid-template-columns: 1fr 1fr;
-				gap: 2.5em;
-				align-items: center;
-				max-width: 1100px;
-				margin: 0 auto;
-			}
-
-			.restaurant-hero-media {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				width: 100%;
-			}
-
-			.gradient-frame {
-				position: relative;
-				display: block;
-				width: 100%;
-				max-width: 420px;
-				border-radius: 1.35em;
-				overflow: hidden;
-			}
-
-			.gradient-frame::before {
-				content: "";
-				position: absolute;
-				inset: 0;
-				border-radius: inherit;
-				padding: 1.5px;
-				background: linear-gradient(
-					135deg,
-					#4a90e2 0%,
-					#6bb6ff 28%,
-					#ff9a3d 72%,
-					#ff7a18 100%
-				);
-				-webkit-mask:
-					linear-gradient(#fff 0 0) content-box,
-					linear-gradient(#fff 0 0);
-				-webkit-mask-composite: xor;
-				mask-composite: exclude;
-				pointer-events: none;
-			}
-
-			.gradient-frame img {
-				display: block;
-				width: 100%;
-				height: auto;
-				object-fit: contain;
-				object-position: center;
-				border-radius: 1.35em;
-				background: #ffffff;
-			}
-
-			.blog-post-luxe-panel {
-				max-width: 420px;
-			}
-
 			.restaurant-rating-hero {
 				display: flex;
 				flex-wrap: wrap;
@@ -140,46 +80,6 @@
 				font-size: 0.95rem;
 				color: #6d7c87;
 				margin: 0;
-			}
-
-			.return-rating {
-				margin-top: 0.9em;
-				display: flex;
-				align-items: center;
-				gap: 0.85em;
-				flex-wrap: wrap;
-			}
-
-			.return-label {
-				font-size: 0.78rem;
-				font-weight: 700;
-				letter-spacing: 0.08em;
-				text-transform: uppercase;
-				color: #7a8b97;
-			}
-
-			.return-icons {
-				display: inline-flex;
-				gap: 0.38em;
-				font-size: 1.35rem;
-				line-height: 1;
-			}
-
-			.return-icons .face {
-				opacity: 0.28;
-				transform: scale(1);
-				transition: opacity 0.2s ease, transform 0.2s ease, filter 0.2s ease;
-			}
-
-			.return-icons .face.active {
-				opacity: 1;
-				transform: scale(1.08);
-				filter: saturate(1.05);
-			}
-
-			.return-text {
-				font-weight: 700;
-				color: #3d4449;
 			}
 
 			.restaurant-meta-grid {
@@ -394,22 +294,9 @@
 			}
 
 			@media screen and (max-width: 980px) {
-				.restaurant-hero-wrap,
 				.restaurant-meta-grid,
 				.restaurant-review-grid {
 					grid-template-columns: 1fr;
-				}
-
-				.restaurant-hero-wrap {
-					text-align: center;
-				}
-
-				.restaurant-hero-media {
-					order: -1;
-				}
-
-				.blog-post-luxe-panel {
-					margin: 0 auto;
 				}
 			}
 
@@ -449,61 +336,43 @@
 					</header>
 
 					<section class="blog-post-luxe">
-						<div class="restaurant-hero-wrap">
+						<div class="blog-post-luxe-media">
+							<img src="photos/MokaAndCo.jpg" alt="Moka & Co in Fremont, California" />
+						</div>
 
-<div class="restaurant-hero-media full-width-media">
-	<div class="gradient-frame full-width-frame">
-		<img src="photos/MokaAndCo.jpg" alt="Moka & Co in Fremont, California" />
-	</div>
-</div>
+						<div class="blog-post-luxe-panel">
+							<span class="blog-kicker-luxe">Restaurant Review</span>
+							<h1>Moka & Co</h1>
 
-							<div class="blog-post-luxe-panel">
-								<span class="blog-kicker-luxe">Restaurant Review</span>
-								<h1>Moka & Co</h1>
+							<p class="blog-subtitle-luxe">
+								A structured coffeehouse review in Fremont, California, scored like a small market research snapshot across ambience, food, service, menu, and parking.
+							</p>
 
-								<p class="blog-subtitle-luxe">
-									A structured coffeehouse review in Fremont, California, scored like a small market research snapshot across ambience, food, service, menu, and parking.
-								</p>
-
-								<div class="blog-post-meta-luxe">
-									<span>April 2026</span>
-									<span>Coffee House Review</span>
-								</div>
-
-								<div class="restaurant-rating-hero">
-									<div class="restaurant-rating-score">
-										<div class="restaurant-stars" id="overallStars" aria-label="Overall rating stars">
-											<span class="star">★</span>
-											<span class="star">★</span>
-											<span class="star">★</span>
-											<span class="star">★</span>
-											<span class="star">★</span>
-										</div>
-
-										<div class="restaurant-score-text">
-											<span class="restaurant-score-number" id="overallScore">0.0/10</span>
-											<span class="restaurant-score-label">Overall Rating</span>
-										</div>
-									</div>
-
-									<p class="restaurant-score-note">
-										Calculated automatically from five scored categories.
-									</p>
-								</div>
-
-								<div class="return-rating">
-									<span class="return-label">Would I come back?</span>
-
-									<div class="return-icons" id="returnRating" data-score="2" aria-label="Would I come back rating">
-										<span class="face">☹️</span>
-										<span class="face">😐</span>
-										<span class="face">😊</span>
-									</div>
-
-									<span class="return-text" id="returnText">Yes</span>
-								</div>
+							<div class="blog-post-meta-luxe">
+								<span>April 2026</span>
+								<span>Coffee House Review</span>
 							</div>
 
+							<div class="restaurant-rating-hero">
+								<div class="restaurant-rating-score">
+									<div class="restaurant-stars" id="overallStars" aria-label="Overall rating stars">
+										<span class="star">★</span>
+										<span class="star">★</span>
+										<span class="star">★</span>
+										<span class="star">★</span>
+										<span class="star">★</span>
+									</div>
+
+									<div class="restaurant-score-text">
+										<span class="restaurant-score-number" id="overallScore">0.0/10</span>
+										<span class="restaurant-score-label">Overall Rating</span>
+									</div>
+								</div>
+
+								<p class="restaurant-score-note">
+									Calculated automatically from five scored categories.
+								</p>
+							</div>
 						</div>
 					</section>
 
@@ -581,7 +450,7 @@
 										title="Moka & Co Fremont Map"
 										loading="lazy"
 										referrerpolicy="no-referrer-when-downgrade"
-										src="https://www.google.com/maps?q=40667%20Fremont%20Blvd%2C%20Fremont%20CA%2094538&z=15&output=embed">
+										src="https://www.google.com/maps?q=40667%20Fremont%20Blvd%2C%20Fremont%2C%20CA%2094538&z=15&output=embed">
 									</iframe>
 								</div>
 							</div>
@@ -804,43 +673,24 @@
 				const overallScoreEl = document.getElementById("overallScore");
 				const overallStarsEl = document.getElementById("overallStars");
 
-				if (cards.length && overallScoreEl && overallStarsEl) {
-					const scores = cards.map(card => parseFloat(card.dataset.score) || 0);
-					const total = scores.reduce((sum, value) => sum + value, 0);
-					const average = total / cards.length;
+				if (!cards.length || !overallScoreEl || !overallStarsEl) return;
 
-					overallScoreEl.textContent = `${average.toFixed(1)}/10`;
+				const scores = cards.map(card => parseFloat(card.dataset.score) || 0);
+				const total = scores.reduce((sum, value) => sum + value, 0);
+				const average = total / cards.length;
 
-					const stars = Array.from(overallStarsEl.querySelectorAll(".star"));
-					const filledStars = Math.round(average / 2);
+				overallScoreEl.textContent = `${average.toFixed(1)}/10`;
 
-					stars.forEach((star, index) => {
-						if (index < filledStars) {
-							star.classList.add("filled");
-						} else {
-							star.classList.remove("filled");
-						}
-					});
-				}
+				const stars = Array.from(overallStarsEl.querySelectorAll(".star"));
+				const filledStars = Math.round(average / 2);
 
-				const returnRating = document.getElementById("returnRating");
-				const returnText = document.getElementById("returnText");
-
-				if (returnRating && returnText) {
-					const score = parseInt(returnRating.dataset.score, 10);
-					const faces = Array.from(returnRating.querySelectorAll(".face"));
-					const labels = ["No", "Not likely", "Yes", "Yes!"];
-
-					faces.forEach((face, index) => {
-						if (index < score) {
-							face.classList.add("active");
-						} else {
-							face.classList.remove("active");
-						}
-					});
-
-					returnText.textContent = labels[score] || "Yes";
-				}
+				stars.forEach((star, index) => {
+					if (index < filledStars) {
+						star.classList.add("filled");
+					} else {
+						star.classList.remove("filled");
+					}
+				});
 			});
 		</script>
 	</body>
