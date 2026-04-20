@@ -5448,13 +5448,14 @@ font-weight:600;
 .gradient-frame img {
 	display: block !important;
 	width: 100% !important;
-	height: auto !important;
-	max-width: 100% !important;
-	aspect-ratio: auto !important;
-	object-fit: contain !important;
+	height: 100% !important;
+	object-fit: cover !important;   /* 🔥 THIS FIXES THE SIZE */
 	object-position: center !important;
 	border-radius: 1.35em !important;
-	background: #ffffff !important;
+}
+
+.gradient-frame {
+	height: 520px !important;   /* controls visual size */
 }
 
 /* Mobile fix */
