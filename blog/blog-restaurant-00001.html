@@ -1,733 +1,143 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>Moka & Co Review | Christopher Leung</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="../assets/css/main.css" />
-
-		<style>
-					/* CLEAN THIN GRADIENT BORDER */
-			.gradient-frame {
-				position: relative;
-				display: inline-block;
-				border-radius: 1.35em;
-			}
-			
-			.gradient-frame::before {
-				content: "";
-				position: absolute;
-				inset: 0;
-				border-radius: inherit;
-				padding: 1.5px;
-			
-				background: linear-gradient(
-					135deg,
-					#4a90e2,
-					#6bb6ff,
-					#ff9a3d,
-					#ff7a18
-				);
-			
-				-webkit-mask:
-					linear-gradient(#fff 0 0) content-box,
-					linear-gradient(#fff 0 0);
-				-webkit-mask-composite: xor;
-				mask-composite: exclude;
-			}
-
-.gradient-frame img {
-	display: block;
-	width: 100%;
-	border-radius: 1.35em;
-}
-			
-			.restaurant-review-shell {
-				display: grid;
-				gap: 2em;
-			}
-
-			.restaurant-rating-hero {
-				display: flex;
-				flex-wrap: wrap;
-				align-items: center;
-				gap: 0.85em 1.1em;
-				margin-top: 1.25em;
-			}
-
-			.restaurant-rating-score {
-				display: inline-flex;
-				align-items: center;
-				gap: 0.75em;
-				padding: 0.9em 1.15em;
-				border-radius: 1em;
-				background: linear-gradient(
-					145deg,
-					rgba(255,255,255,0.88) 0%,
-					rgba(245,248,252,0.84) 55%,
-					rgba(232,238,245,0.82) 100%
-				);
-				border: 1px solid rgba(74,111,134,0.16);
-				box-shadow:
-					0 12px 28px rgba(60,80,100,0.08),
-					inset 0 1px 0 rgba(255,255,255,0.45);
-			}
-
-			.restaurant-stars {
-				display: inline-flex;
-				gap: 0.18em;
-				font-size: 1.2rem;
-				letter-spacing: 0.04em;
-			}
-
-			.restaurant-stars .star {
-				color: rgba(191, 199, 208, 0.9);
-				transition: color 0.25s ease, text-shadow 0.25s ease;
-			}
-
-			.restaurant-stars .star.filled {
-				color: #d4a63c;
-				text-shadow: 0 2px 10px rgba(212, 166, 60, 0.22);
-			}
-
-			.restaurant-score-text {
-				display: flex;
-				flex-direction: column;
-				line-height: 1.2;
-			}
-
-			.restaurant-score-number {
-				font-family: "Roboto Slab", serif;
-				font-size: 1.25rem;
-				font-weight: 700;
-				color: #3d4449;
-			}
-
-			.restaurant-score-label {
-				font-size: 0.8rem;
-				letter-spacing: 0.08em;
-				text-transform: uppercase;
-				color: #7a8b97;
-				font-weight: 700;
-			}
-
-			.restaurant-score-note {
-				font-size: 0.95rem;
-				color: #6d7c87;
-				margin: 0;
-			}
-
-			.restaurant-meta-grid {
-				display: grid;
-				grid-template-columns: repeat(2, minmax(0, 1fr));
-				gap: 1.35em;
-			}
-
-			.restaurant-panel {
-				padding: 1.4em 1.4em 1.3em;
-				border-radius: 1.15em;
-				background: linear-gradient(
-					145deg,
-					rgba(255,255,255,0.88) 0%,
-					rgba(244,247,251,0.82) 50%,
-					rgba(233,239,246,0.78) 100%
-				);
-				border: 1px solid rgba(74,111,134,0.14);
-				box-shadow:
-					0 12px 26px rgba(60,80,100,0.06),
-					inset 0 1px 0 rgba(255,255,255,0.45);
-			}
-
-			.restaurant-panel h3,
-			.restaurant-panel h4 {
-				margin-bottom: 0.6em;
-			}
-
-			.restaurant-details-list {
-				display: grid;
-				gap: 0.85em;
-				margin: 0;
-			}
-
-			.restaurant-detail-row {
-				display: grid;
-				grid-template-columns: 120px 1fr;
-				gap: 1em;
-				align-items: start;
-				padding-bottom: 0.75em;
-				border-bottom: 1px solid rgba(125, 142, 154, 0.14);
-			}
-
-			.restaurant-detail-row:last-child {
-				border-bottom: 0;
-				padding-bottom: 0;
-			}
-
-			.restaurant-detail-label {
-				font-size: 0.78rem;
-				font-weight: 700;
-				letter-spacing: 0.08em;
-				text-transform: uppercase;
-				color: #7a8b97;
-			}
-
-			.restaurant-detail-value {
-				color: #3d4449;
-			}
-
-			.restaurant-link-list {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 0.8em;
-				margin-top: 0.9em;
-			}
-
-			.restaurant-link-pill {
-				display: inline-flex;
-				align-items: center;
-				justify-content: center;
-				padding: 0.75em 1.05em;
-				border-radius: 999px;
-				background: linear-gradient(145deg, #d9e4ec 0%, #b9cad7 100%);
-				border: 1px solid rgba(74,111,134,0.2);
-				color: #23445a !important;
-				font-weight: 700;
-				letter-spacing: 0.03em;
-				text-decoration: none;
-				box-shadow:
-					0 8px 18px rgba(44,86,111,0.08),
-					inset 0 1px 0 rgba(255,255,255,0.62);
-				transition: transform 0.2s ease, box-shadow 0.2s ease;
-			}
-
-			.restaurant-link-pill:hover {
-				transform: translateY(-2px);
-				box-shadow:
-					0 12px 22px rgba(44,86,111,0.12),
-					inset 0 1px 0 rgba(255,255,255,0.62);
-			}
-
-			.restaurant-map-frame {
-				overflow: hidden;
-				border-radius: 1em;
-				border: 1px solid rgba(74,111,134,0.14);
-				margin-top: 1em;
-				background: #eef3f7;
-			}
-
-			.restaurant-map-frame iframe {
-				width: 100%;
-				height: 280px;
-				border: 0;
-				display: block;
-			}
-
-			.restaurant-review-grid {
-				display: grid;
-				grid-template-columns: repeat(2, minmax(0, 1fr));
-				gap: 1.35em;
-			}
-
-			.scorecard {
-				padding: 1.35em 1.25em 1.2em;
-				border-radius: 1em;
-				background: rgba(255,255,255,0.78);
-				border: 1px solid rgba(74,111,134,0.14);
-				box-shadow:
-					0 10px 24px rgba(60,80,100,0.05),
-					inset 0 1px 0 rgba(255,255,255,0.4);
-			}
-
-			.scorecard-header {
-				display: flex;
-				align-items: center;
-				justify-content: space-between;
-				gap: 1em;
-				margin-bottom: 0.8em;
-			}
-
-			.scorecard-header h4 {
-				margin: 0;
-			}
-
-			.score-badge {
-				padding: 0.45em 0.75em;
-				border-radius: 999px;
-				background: rgba(74,111,134,0.1);
-				color: #2c566f;
-				font-weight: 700;
-				font-size: 0.86rem;
-			}
-
-			.review-points {
-				display: grid;
-				gap: 0.6em;
-				margin-bottom: 1em;
-			}
-
-			.review-point {
-				display: flex;
-				align-items: flex-start;
-				gap: 0.6em;
-				padding: 0.7em 0.85em;
-				border-radius: 0.7em;
-				font-size: 0.92rem;
-				line-height: 1.6;
-			}
-
-			.review-point::before {
-				font-weight: 700;
-				min-width: 1em;
-			}
-
-			.review-point.positive {
-				background: rgba(62,141,91,0.10);
-				color: #2d6b48;
-			}
-
-			.review-point.positive::before {
-				content: "✓";
-				color: #3e8d5b;
-			}
-
-			.review-point.neutral {
-				background: rgba(214,164,60,0.12);
-				color: #8a6a1f;
-			}
-
-			.review-point.neutral::before {
-				content: "•";
-			}
-
-			.review-point.negative {
-				background: rgba(191,76,76,0.10);
-				color: #8b2c2c;
-			}
-
-			.review-point.negative::before {
-				content: "✕";
-				color: #bf4c4c;
-			}
-
-			.scorecard p:last-child {
-				margin-bottom: 0;
-			}
-
-			.restaurant-summary-box {
-				padding: 1.45em 1.4em;
-				border-radius: 1.1em;
-				background: linear-gradient(
-					145deg,
-					rgba(255,255,255,0.92) 0%,
-					rgba(243,247,251,0.90) 50%,
-					rgba(231,237,244,0.88) 100%
-				);
-				border: 1px solid rgba(74,111,134,0.16);
-				box-shadow:
-					0 14px 30px rgba(60,80,100,0.08),
-					inset 0 1px 0 rgba(255,255,255,0.45);
-			}
-
-			@media screen and (max-width: 980px) {
-				.restaurant-meta-grid,
-				.restaurant-review-grid {
-					grid-template-columns: 1fr;
-				}
-			}
-
-			@media screen and (max-width: 736px) {
-				.restaurant-detail-row {
-					grid-template-columns: 1fr;
-					gap: 0.35em;
-				}
-
-				.restaurant-rating-hero {
-					align-items: flex-start;
-				}
-
-				.restaurant-rating-score {
-					width: 100%;
-				}
-
-				.restaurant-map-frame iframe {
-					height: 240px;
-				}
-			}
-		</style>
-	</head>
-	<body class="is-preload blog-tone">
-
-		<div id="wrapper">
-
-			<div id="main">
-				<div class="inner">
-
-					<header id="header">
-						<a href="../index.html" class="logo"><strong>Christopher Leung</strong></a>
-						<ul class="icons">
-							<li><a href="https://github.com/cleung94" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-							<li><a href="https://www.linkedin.com/in/christopher-km-leung/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-						</ul>
-					</header>
-
-					<section class="blog-post-luxe">
-						<div class="blog-post-luxe-media">
-							<div class="gradient-frame">
-								<img src="photos/MokaAndCo.jpg" />
-							</div>
-						</div>	
-						<div class="blog-post-luxe-panel">
-							<span class="blog-kicker-luxe">Restaurant Review</span>
-							<h1>Moka & Co</h1>
-
-							<p class="blog-subtitle-luxe">
-								A structured coffeehouse review in Fremont, California, scored like a small market research snapshot across ambience, food, service, menu, and parking.
-							</p>
-
-							<div class="blog-post-meta-luxe">
-								<span>April 2026</span>
-								<span>Coffee House Review</span>
-							</div>
-
-							<div class="restaurant-rating-hero">
-								<div class="restaurant-rating-score">
-									<div class="restaurant-stars" id="overallStars" aria-label="Overall rating stars">
-										<span class="star">★</span>
-										<span class="star">★</span>
-										<span class="star">★</span>
-										<span class="star">★</span>
-										<span class="star">★</span>
-									</div>
-
-									<div class="restaurant-score-text">
-										<span class="restaurant-score-number" id="overallScore">0.0/10</span>
-										<span class="restaurant-score-label">Overall Rating</span>
-									</div>
-								</div>
-
-								<p class="restaurant-score-note">
-									Calculated automatically from five scored categories.
-								</p>
-							</div>
-						</div>
-					</section>
-
-					<section class="blog-post-content-luxe restaurant-review-shell">
-
-						<div class="restaurant-meta-grid">
-							<div class="restaurant-panel">
-								<h3>Restaurant Details</h3>
-
-								<div class="restaurant-details-list">
-									<div class="restaurant-detail-row">
-										<div class="restaurant-detail-label">Category</div>
-										<div class="restaurant-detail-value">Yemeni coffee house / dessert café</div>
-									</div>
-
-									<div class="restaurant-detail-row">
-										<div class="restaurant-detail-label">Location</div>
-										<div class="restaurant-detail-value">40667 Fremont Blvd, Fremont, CA 94538</div>
-									</div>
-
-									<div class="restaurant-detail-row">
-										<div class="restaurant-detail-label">Signature Order</div>
-										<div class="restaurant-detail-value">Biscoff latte and tiramisu cheesecake</div>
-									</div>
-
-									<div class="restaurant-detail-row">
-										<div class="restaurant-detail-label">Best For</div>
-										<div class="restaurant-detail-value">Studying, casual conversations, board games, and a calm coffee break</div>
-									</div>
-
-									<div class="restaurant-detail-row">
-										<div class="restaurant-detail-label">Overall Feel</div>
-										<div class="restaurant-detail-value">Spacious, calm, and easy to settle into for a longer visit</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="restaurant-panel">
-								<h3>Links & Directions</h3>
-								<p>
-									Use these quick links to open directions or look up the listing externally.
-								</p>
-
-								<div class="restaurant-link-list">
-									<a
-										class="restaurant-link-pill"
-										href="https://www.google.com/maps/search/?api=1&query=Moka%20%26%20Co%2040667%20Fremont%20Blvd%20Fremont%20CA%2094538"
-										target="_blank"
-										rel="noopener noreferrer"
-									>
-										Open in Google Maps
-									</a>
-
-									<a
-										class="restaurant-link-pill"
-										href="https://www.google.com/maps/dir/?api=1&destination=40667%20Fremont%20Blvd%2C%20Fremont%2C%20CA%2094538"
-										target="_blank"
-										rel="noopener noreferrer"
-									>
-										Get Directions
-									</a>
-
-									<a
-										class="restaurant-link-pill"
-										href="https://www.yelp.com/search?find_desc=Moka+%26+Co&find_loc=Fremont%2C+CA"
-										target="_blank"
-										rel="noopener noreferrer"
-									>
-										View on Yelp
-									</a>
-								</div>
-
-								<div class="restaurant-map-frame">
-									<iframe
-										title="Moka & Co Fremont Map"
-										loading="lazy"
-										referrerpolicy="no-referrer-when-downgrade"
-										src="https://www.google.com/maps?q=40667%20Fremont%20Blvd%2C%20Fremont%2C%20CA%2094538&z=15&output=embed">
-									</iframe>
-								</div>
-							</div>
-						</div>
-
-						<div class="restaurant-summary-box">
-							<h2>Quick Summary</h2>
-							<p>
-								Moka & Co is a strong pick if you want a calm place to sit down, talk, study, or spend a little extra time with coffee and dessert. The environment is one of its strongest qualities, and the parking situation is easier than a lot of busy café spots in the area.
-							</p>
-							<p>
-								The drinks and desserts are good overall, with a few personal preference notes around sweetness and texture. Service is efficient, especially when it is busy, but it feels less guided if you are hoping for suggestions or a warmer recommendation experience.
-							</p>
-						</div>
-
-						<div class="restaurant-review-grid" id="reviewGrid">
-
-							<article class="scorecard" data-score="8">
-								<div class="scorecard-header">
-									<h4>Ambience</h4>
-									<span class="score-badge">8.0 / 10</span>
-								</div>
-
-								<div class="review-points">
-									<div class="review-point positive">
-										Calm environment where people can talk without talking over each other
-									</div>
-									<div class="review-point positive">
-										A lot of tables for studying, hanging out, or playing board games
-									</div>
-									<div class="review-point neutral">
-										Not many plug outlets — bring a power strip if you plan to stay
-									</div>
-								</div>
-
-								<p>
-									This is one of the strongest parts of the café for me. It is easy to settle in here for a longer visit without the space feeling too loud or crowded.
-								</p>
-							</article>
-
-							<article class="scorecard" data-score="7.5">
-								<div class="scorecard-header">
-									<h4>Food Quality</h4>
-									<span class="score-badge">7.5 / 10</span>
-								</div>
-
-								<div class="review-points">
-									<div class="review-point positive">
-										Biscoff latte and tiramisu cheesecake were enjoyable
-									</div>
-									<div class="review-point positive">
-										Desserts felt well made overall
-									</div>
-									<div class="review-point negative">
-										The drink leaned too milky and sweet toward the end
-									</div>
-									<div class="review-point neutral">
-										Crust was crumbly instead of chewy (preference)
-									</div>
-								</div>
-
-								<p>
-									The drinks and desserts are good overall, but a few small preference points kept this from being higher for me.
-								</p>
-							</article>
-
-							<article class="scorecard" data-score="7">
-								<div class="scorecard-header">
-									<h4>Service Quality</h4>
-									<span class="score-badge">7.0 / 10</span>
-								</div>
-
-								<div class="review-points">
-									<div class="review-point positive">
-										Efficient during busy periods
-									</div>
-									<div class="review-point neutral">
-										More direct than welcoming
-									</div>
-									<div class="review-point negative">
-										Does not provide strong recommendations
-									</div>
-								</div>
-
-								<p>
-									The service gets the job done, but it feels more transactional than welcoming.
-								</p>
-							</article>
-
-							<article class="scorecard" data-score="8">
-								<div class="scorecard-header">
-									<h4>Menu</h4>
-									<span class="score-badge">8.0 / 10</span>
-								</div>
-
-								<div class="review-points">
-									<div class="review-point positive">
-										Diverse selection
-									</div>
-									<div class="review-point positive">
-										Covers coffeehouse basics well
-									</div>
-									<div class="review-point neutral">
-										Better if you browse on your own
-									</div>
-								</div>
-
-								<p>
-									This is a well-rounded menu and one of the reasons the place feels easy to revisit.
-								</p>
-							</article>
-
-							<article class="scorecard" data-score="9">
-								<div class="scorecard-header">
-									<h4>Parking</h4>
-									<span class="score-badge">9.0 / 10</span>
-								</div>
-
-								<div class="review-points">
-									<div class="review-point positive">
-										Private lot with plenty of spaces
-									</div>
-									<div class="review-point positive">
-										Safe and easy location
-									</div>
-									<div class="review-point neutral">
-										2–3 minute walk if parking fills up
-									</div>
-								</div>
-
-								<p>
-									Parking is still one of the better parts of the experience here, even with the slight extra walk when it gets busier.
-								</p>
-							</article>
-
-						</div>
-
-						<div class="restaurant-panel">
-							<h2>Final Verdict</h2>
-							<p>
-								Moka & Co is a café I would recommend more for atmosphere and hangout value than for ultra-personalized service. If you want a quieter place to sit down with a drink, dessert, and a little more room to stay awhile, it does a lot of things well.
-							</p>
-							<p>
-								It is especially good for study sessions, casual meetups, and relaxed coffee runs. Just order your drink a little less sweet if that matters to you, and do not count on a lot of outlet access.
-							</p>
-						</div>
-
-						<div class="blog-post-nav-luxe">
-							<a href="../blog.html" class="button">Back to Blog</a>
-							<a href="../blog-restaurant.html" class="button">More in Restaurant</a>
-						</div>
-
-					</section>
-
+<head>
+	<title>Moka & Co Review | Christopher Leung</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../assets/css/main.css" />
+</head>
+
+<body class="is-preload blog-tone">
+
+<div id="wrapper">
+
+<div id="main">
+<div class="inner">
+
+<header id="header">
+	<a href="../index.html" class="logo"><strong>Christopher Leung</strong></a>
+	<ul class="icons">
+		<li><a href="https://github.com/cleung94" class="icon brands fa-github"></a></li>
+		<li><a href="https://www.linkedin.com/in/christopher-km-leung/" class="icon brands fa-linkedin"></a></li>
+	</ul>
+</header>
+
+<!-- HERO -->
+<section class="blog-post-luxe">
+
+	<div class="restaurant-hero-wrap">
+
+		<div class="restaurant-hero-media">
+			<div class="gradient-frame">
+				<img src="photos/MokaAndCo.jpg" alt="Moka & Co in Fremont, California" />
+			</div>
+		</div>
+
+		<div class="blog-post-luxe-panel">
+			<span class="blog-kicker-luxe">Restaurant Review</span>
+			<h1>Moka & Co</h1>
+
+			<p class="blog-subtitle-luxe">
+				A structured coffeehouse review in Fremont, California, scored like a small market research snapshot across ambience, food, service, menu, and parking.
+			</p>
+
+			<div class="blog-post-meta-luxe">
+				<span>April 2026</span>
+				<span>Coffee House Review</span>
+			</div>
+
+			<div class="restaurant-rating-hero">
+				<div class="restaurant-rating-score">
+					<div class="restaurant-stars" id="overallStars">
+						<span class="star">★</span>
+						<span class="star">★</span>
+						<span class="star">★</span>
+						<span class="star">★</span>
+						<span class="star">★</span>
+					</div>
+
+					<div class="restaurant-score-text">
+						<span class="restaurant-score-number" id="overallScore">0.0/10</span>
+						<span class="restaurant-score-label">Overall Rating</span>
+					</div>
 				</div>
 			</div>
 
-			<div id="sidebar">
-				<div class="inner">
+			<div class="return-rating">
+				<span class="return-label">Would I come back?</span>
 
-					<section id="search" class="alt">
-						<form method="post" action="#">
-							<input type="text" name="query" id="query" placeholder="Search" />
-						</form>
-					</section>
-
-					<nav id="menu">
-						<header class="major">
-							<h2>Menu</h2>
-						</header>
-						<ul>
-							<li><a href="../index.html">Homepage</a></li>
-							<li><a href="../projects.html">Project Showcase</a></li>
-							<li>
-								<span class="opener">Blog</span>
-								<ul>
-									<li><a href="../blog.html">Blog Homepage</a></li>
-									<li><a href="../blog-technology.html">Blog - Technology</a></li>
-									<li><a href="../blog-healthcare.html">Blog - Healthcare</a></li>
-									<li><a href="../blog-restaurant.html">Blog - Restaurant</a></li>
-									<li><a href="../blog-hobbies.html">Blog - Hobbies</a></li>
-								</ul>
-							</li>
-							<li><a href="../about.html">About Me</a></li>
-							<li><a href="../contact.html">Contact</a></li>
-						</ul>
-					</nav>
-
-					<section>
-						<header class="major">
-							<h2>Get in touch</h2>
-						</header>
-						<p>
-							Feel free to connect with me through my portfolio, LinkedIn, or GitHub.
-						</p>
-						<ul class="contact">
-							<li class="icon brands fa-linkedin"><a href="https://www.linkedin.com/in/christopher-km-leung/">LinkedIn</a></li>
-							<li class="icon brands fa-github"><a href="https://github.com/cleung94">GitHub</a></li>
-						</ul>
-					</section>
-
-					<footer id="footer">
-						<p class="copyright">&copy; Christopher Leung. All rights reserved.</p>
-					</footer>
-
+				<div id="returnRating" data-score="2" style="display:flex; gap:0.4em;">
+					<span class="face">☹️</span>
+					<span class="face">😐</span>
+					<span class="face">😊</span>
 				</div>
+
+				<span id="returnText">Yes</span>
 			</div>
 
 		</div>
 
-		<script src="../assets/js/jquery.min.js"></script>
-		<script src="../assets/js/browser.min.js"></script>
-		<script src="../assets/js/breakpoints.min.js"></script>
-		<script src="../assets/js/util.js"></script>
-		<script src="../assets/js/main.js"></script>
+	</div>
 
-		<script>
-			document.addEventListener("DOMContentLoaded", () => {
-				const cards = Array.from(document.querySelectorAll(".scorecard"));
-				const overallScoreEl = document.getElementById("overallScore");
-				const overallStarsEl = document.getElementById("overallStars");
+</section>
 
-				if (!cards.length || !overallScoreEl || !overallStarsEl) return;
+<!-- CONTENT -->
+<section class="blog-post-content-luxe">
 
-				const scores = cards.map(card => parseFloat(card.dataset.score) || 0);
-				const total = scores.reduce((sum, value) => sum + value, 0);
-				const average = total / cards.length;
+<!-- keep all your existing review content below unchanged -->
 
-				overallScoreEl.textContent = `${average.toFixed(1)}/10`;
+</section>
 
-				const stars = Array.from(overallStarsEl.querySelectorAll(".star"));
-				const filledStars = Math.round(average / 2);
+</div>
+</div>
 
-				stars.forEach((star, index) => {
-					if (index < filledStars) {
-						star.classList.add("filled");
-					} else {
-						star.classList.remove("filled");
-					}
-				});
-			});
-		</script>
-	</body>
+<!-- SIDEBAR -->
+<div id="sidebar">
+<div class="inner">
+
+<nav id="menu">
+<header class="major"><h2>Menu</h2></header>
+<ul>
+<li><a href="../index.html">Homepage</a></li>
+<li><a href="../blog.html">Blog</a></li>
+</ul>
+</nav>
+
+</div>
+</div>
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+	const cards = document.querySelectorAll(".scorecard");
+	let total = 0;
+
+	cards.forEach(c => total += parseFloat(c.dataset.score));
+	let avg = total / cards.length;
+
+	document.getElementById("overallScore").textContent = avg.toFixed(1) + "/10";
+
+	const stars = document.querySelectorAll("#overallStars .star");
+	let filled = Math.round(avg / 2);
+
+	stars.forEach((s,i)=> {
+		if(i<filled) s.classList.add("filled");
+	});
+
+	const score = parseInt(document.getElementById("returnRating").dataset.score);
+	const faces = document.querySelectorAll(".face");
+	const labels = ["No","Not likely","Yes","Yes!"];
+
+	faces.forEach((f,i)=> {
+		if(i<score) f.style.opacity = "1";
+		else f.style.opacity = "0.3";
+	});
+
+	document.getElementById("returnText").textContent = labels[score];
+});
+</script>
+
+</body>
 </html>
