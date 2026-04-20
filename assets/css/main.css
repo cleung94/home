@@ -5273,3 +5273,77 @@ font-weight:600;
 		max-width: 100%;
 	}
 }
+
+/* =========================================
+   Restaurant review hero overrides
+   Add to bottom of main.css
+========================================= */
+
+.restaurant-hero-wrap {
+	display: grid !important;
+	grid-template-columns: 1.1fr 1fr !important;
+	gap: 2em !important;
+	align-items: stretch !important;
+	max-width: 1100px !important;
+	margin: 0 auto !important;
+	min-height: 520px !important;
+}
+
+.restaurant-hero-media {
+	display: flex !important;
+	justify-content: center !important;
+	align-items: stretch !important;
+	width: 100% !important;
+	height: 100% !important;
+}
+
+.full-width-media,
+.full-width-frame {
+	width: 100% !important;
+	height: 100% !important;
+}
+
+.gradient-frame {
+	position: relative !important;
+	display: block !important;
+	width: 100% !important;
+	height: 100% !important;
+	max-width: none !important;
+	border-radius: 1.35em !important;
+}
+
+.gradient-frame img {
+	display: block !important;
+	width: 100% !important;
+	height: 100% !important;
+	object-fit: cover !important;
+	object-position: center !important;
+	border-radius: 1.35em !important;
+	background: #ffffff !important;
+}
+
+/* Mobile */
+@media screen and (max-width: 980px) {
+	.restaurant-hero-wrap {
+		grid-template-columns: 1fr !important;
+		min-height: auto !important;
+	}
+
+	.restaurant-hero-media {
+		order: -1 !important;
+	}
+
+	.gradient-frame {
+		min-height: 360px !important;
+	}
+}
+
+@media screen and (max-width: 736px) {
+	.restaurant-hero-wrap {
+		gap: 1.5em !important;
+	}
+
+	.gradient-frame {
+		min-height: 300px !important;
+	}
+}
