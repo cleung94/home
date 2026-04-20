@@ -5560,3 +5560,88 @@ font-weight:600;
 		order: -1 !important;
 	}
 }
+
+/* =========================================
+   BLOG IMAGE + GRADIENT (GLOBAL FIX)
+   ========================================= */
+
+/* Ensures blog images behave properly */
+.blog-post-luxe-media {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	margin: 0 auto;
+}
+
+/* Gradient wrapper */
+.gradient-frame {
+	position: relative;
+	display: block;
+	width: 100%;
+	border-radius: 1.35em;
+}
+
+/* Gradient border (blue → orange) */
+.gradient-frame::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	padding: 1.5px;
+
+	background: linear-gradient(
+		135deg,
+		#4a90e2,
+		#6bb6ff,
+		#ff9a3d,
+		#ff7a18
+	);
+
+	-webkit-mask:
+		linear-gradient(#fff 0 0) content-box,
+		linear-gradient(#fff 0 0);
+	-webkit-mask-composite: xor;
+	mask-composite: exclude;
+
+	pointer-events: none;
+}
+
+/* Image inside gradient */
+.gradient-frame img {
+	display: block;
+	width: 100%;
+	border-radius: 1.35em;
+	object-fit: cover;
+}
+
+/* Restaurant hero layout fix */
+.restaurant-hero-wrap {
+	display: grid;
+	grid-template-columns: 1.15fr 0.85fr;
+	gap: 2em;
+	align-items: center;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+/* Make image scale naturally */
+.restaurant-hero-media {
+	width: 100%;
+}
+
+/* Keep square image */
+.restaurant-hero-media img {
+	aspect-ratio: 1 / 1;
+}
+
+/* Mobile fix */
+@media screen and (max-width: 980px) {
+	.restaurant-hero-wrap {
+		grid-template-columns: 1fr;
+	}
+
+	.restaurant-hero-media {
+		order: -1;
+	}
+}
