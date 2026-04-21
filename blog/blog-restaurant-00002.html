@@ -411,6 +411,12 @@
 				width: 100%;
 				height: 240px;
 				object-fit: cover;
+				cursor: pointer;
+				transition: transform 0.25s ease, opacity 0.25s ease;
+			}
+
+			.gallery-card img:hover {
+				transform: scale(1.02);
 			}
 
 			.gallery-card-caption {
@@ -422,6 +428,76 @@
 
 			.gallery-card-caption strong {
 				color: #3d4449;
+			}
+
+			.gallery-lightbox {
+				position: fixed;
+				inset: 0;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 2em;
+				background: rgba(20, 28, 36, 0.88);
+				backdrop-filter: blur(5px);
+				-webkit-backdrop-filter: blur(5px);
+				opacity: 0;
+				visibility: hidden;
+				pointer-events: none;
+				transition: opacity 0.25s ease, visibility 0.25s ease;
+				z-index: 10000;
+			}
+
+			.gallery-lightbox.active {
+				opacity: 1;
+				visibility: visible;
+				pointer-events: auto;
+			}
+
+			.gallery-lightbox-inner {
+				position: relative;
+				max-width: min(1100px, 92vw);
+				max-height: 90vh;
+				display: flex;
+				flex-direction: column;
+				gap: 0.85em;
+				align-items: center;
+			}
+
+			.gallery-lightbox-img {
+				display: block;
+				max-width: 100%;
+				max-height: 78vh;
+				border-radius: 1em;
+				box-shadow: 0 22px 60px rgba(0,0,0,0.35);
+				background: #fff;
+			}
+
+			.gallery-lightbox-caption {
+				color: rgba(255,255,255,0.92);
+				text-align: center;
+				font-size: 0.95rem;
+				line-height: 1.5;
+				max-width: 800px;
+			}
+
+			.gallery-lightbox-close {
+				position: absolute;
+				top: -0.5em;
+				right: -0.5em;
+				width: 2.5em;
+				height: 2.5em;
+				border: 0;
+				border-radius: 999px;
+				background: rgba(255,255,255,0.96);
+				color: #243746;
+				font-size: 1.2rem;
+				font-weight: 700;
+				cursor: pointer;
+				box-shadow: 0 10px 26px rgba(0,0,0,0.2);
+			}
+
+			.gallery-lightbox-close:hover {
+				transform: scale(1.04);
 			}
 
 			@media screen and (max-width: 980px) {
@@ -460,6 +536,15 @@
 
 				.gallery-card img {
 					height: 210px;
+				}
+
+				.gallery-lightbox {
+					padding: 1em;
+				}
+
+				.gallery-lightbox-close {
+					top: -0.25em;
+					right: -0.15em;
 				}
 			}
 		</style>
@@ -618,24 +703,56 @@
 						<div class="gallery-shell">
 							<h2>Gallery</h2>
 							<p>
-								Scroll horizontally to browse more photos from the visit.
+								Scroll horizontally to browse more photos from the visit. Click any photo to view it larger.
 							</p>
 
 							<div class="gallery-scroll-wrap">
 								<div class="gallery-scroll" id="galleryScroll">
 									<figure class="gallery-card">
-										<img src="photos/CQTaste2.png" alt="Infographic of CQ Taste" />
+										<img src="photos/CQTaste-01.jpg" alt="Exterior view of CQ Taste in Cupertino" />
 										<figcaption class="gallery-card-caption">
-											<strong>Infographic</strong><br />
-											Check this out!
+											<strong>Exterior</strong><br />
+											The storefront and first impression from outside.
 										</figcaption>
 									</figure>
 
 									<figure class="gallery-card">
-										<img src="photos/CQTaste.jpg" alt="Beef Stew with Hand Pulled Noodle" />
+										<img src="photos/CQTaste-02.jpg" alt="Interior seating at CQ Taste" />
 										<figcaption class="gallery-card-caption">
-											<strong>Menu Item</strong><br />
-											Beef Stew with Hand Pulled Noodle
+											<strong>Interior Seating</strong><br />
+											A look at the tighter table spacing and fast lunch setup.
+										</figcaption>
+									</figure>
+
+									<figure class="gallery-card">
+										<img src="photos/CQTaste-03.jpg" alt="Blanket noodles served at CQ Taste" />
+										<figcaption class="gallery-card-caption">
+											<strong>Blanket Noodles</strong><br />
+											The signature noodle style that makes the restaurant stand out.
+										</figcaption>
+									</figure>
+
+									<figure class="gallery-card">
+										<img src="photos/CQTaste-04.jpg" alt="Beef stew noodle dish from CQ Taste" />
+										<figcaption class="gallery-card-caption">
+											<strong>Beef Stew Noodle</strong><br />
+											The dish I ordered with hand-pulled noodles.
+										</figcaption>
+									</figure>
+
+									<figure class="gallery-card">
+										<img src="photos/CQTaste-05.jpg" alt="Dining area and ambience at CQ Taste" />
+										<figcaption class="gallery-card-caption">
+											<strong>Dining Area</strong><br />
+											A better sense of the narrow layout and louder environment.
+										</figcaption>
+									</figure>
+
+									<figure class="gallery-card">
+										<img src="photos/CQTaste-06.jpg" alt="Another food or interior photo from CQ Taste" />
+										<figcaption class="gallery-card-caption">
+											<strong>More From the Visit</strong><br />
+											Add any extra food, menu, or ambience photos here.
 										</figcaption>
 									</figure>
 								</div>
@@ -869,6 +986,14 @@
 			</div>
 		</div>
 
+		<div class="gallery-lightbox" id="galleryLightbox" aria-hidden="true">
+			<div class="gallery-lightbox-inner">
+				<button class="gallery-lightbox-close" id="lightboxClose" aria-label="Close image viewer">&times;</button>
+				<img class="gallery-lightbox-img" id="lightboxImg" src="" alt="" />
+				<div class="gallery-lightbox-caption" id="lightboxCaption"></div>
+			</div>
+		</div>
+
 		<script src="../assets/js/jquery.min.js"></script>
 		<script src="../assets/js/browser.min.js"></script>
 		<script src="../assets/js/breakpoints.min.js"></script>
@@ -881,6 +1006,11 @@
 				const overallScoreEl = document.getElementById("overallScore");
 				const overallStarsEl = document.getElementById("overallStars");
 				const gallery = document.getElementById("galleryScroll");
+				const lightbox = document.getElementById("galleryLightbox");
+				const lightboxImg = document.getElementById("lightboxImg");
+				const lightboxCaption = document.getElementById("lightboxCaption");
+				const lightboxClose = document.getElementById("lightboxClose");
+				const galleryImages = Array.from(document.querySelectorAll(".gallery-card img"));
 
 				if (cards.length && overallScoreEl && overallStarsEl) {
 					const scores = cards.map(card => parseFloat(card.dataset.score) || 0);
@@ -931,6 +1061,46 @@
 						gallery.scrollLeft = scrollLeft - walk;
 					});
 				}
+
+				function openLightbox(img) {
+					const caption = img.closest(".gallery-card")?.querySelector(".gallery-card-caption");
+					lightboxImg.src = img.src;
+					lightboxImg.alt = img.alt || "";
+					lightboxCaption.innerHTML = caption ? caption.innerHTML : "";
+					lightbox.classList.add("active");
+					lightbox.setAttribute("aria-hidden", "false");
+					document.body.style.overflow = "hidden";
+				}
+
+				function closeLightbox() {
+					lightbox.classList.remove("active");
+					lightbox.setAttribute("aria-hidden", "true");
+					lightboxImg.src = "";
+					lightboxCaption.innerHTML = "";
+					document.body.style.overflow = "";
+				}
+
+				galleryImages.forEach((img) => {
+					img.addEventListener("click", () => openLightbox(img));
+				});
+
+				if (lightboxClose) {
+					lightboxClose.addEventListener("click", closeLightbox);
+				}
+
+				if (lightbox) {
+					lightbox.addEventListener("click", (e) => {
+						if (e.target === lightbox) {
+							closeLightbox();
+						}
+					});
+				}
+
+				document.addEventListener("keydown", (e) => {
+					if (e.key === "Escape" && lightbox.classList.contains("active")) {
+						closeLightbox();
+					}
+				});
 			});
 		</script>
 	</body>
