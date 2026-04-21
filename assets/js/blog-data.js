@@ -43,5 +43,14 @@ window.BLOG_POSTS = [
   date: "April 2026",
   image: "blog/photos/MokaAndCo.jpg",
   excerpt: "Moka & Co is a cozy Fremont coffee spot with a calm atmosphere, plenty of seating, and a menu that makes it easy to settle in for a drink and dessert. It is the kind of place that works well for studying, catching up with friends, or enjoying a slower afternoon coffee run."
+},
+    {
+  title: "CQ Taste",
+  slug: "blog/blog-restaurant-00002.html",
+  tag: "restaurant",
+  tagLabel: "Restaurant",
+  date: "April 2026",
+  image: "blog/photos/CQTaste.jpg",
+  excerpt: "A review of CQ Taste in Cupertino, a popular lunch spot known for its hand-crafted blanket noodles, spicy flavors, and fast-paced dining style that works best for smaller groups."
 }
 ];
