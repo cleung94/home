@@ -1,0 +1,760 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>CQ Taste Review | Christopher Leung</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+
+		<style>
+			.restaurant-panel > :first-child {
+				margin-top: 0;
+			}
+
+			.restaurant-panel p {
+				margin: 0 0 1em 0;
+			}
+
+			.restaurant-panel h3,
+			.restaurant-panel h4 {
+				margin-top: 0;
+				margin-bottom: 0.6em;
+			}
+
+			.restaurant-summary-box > :first-child {
+				margin-top: 0;
+			}
+
+			.restaurant-summary-box h2,
+			.restaurant-summary-box h3 {
+				margin-top: 0;
+				margin-bottom: 0.6em;
+			}
+
+			.restaurant-summary-box p {
+				margin: 0 0 1em 0;
+			}
+
+			.restaurant-review-shell {
+				display: grid;
+				gap: 2em;
+			}
+
+			.restaurant-rating-hero {
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				gap: 0.85em 1.1em;
+				margin-top: 1.25em;
+			}
+
+			.restaurant-rating-score {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.75em;
+				padding: 0.9em 1.15em;
+				border-radius: 1em;
+				background: linear-gradient(
+					145deg,
+					rgba(255,255,255,0.88) 0%,
+					rgba(245,248,252,0.84) 55%,
+					rgba(232,238,245,0.82) 100%
+				);
+				border: 1px solid rgba(74,111,134,0.16);
+				box-shadow:
+					0 12px 28px rgba(60,80,100,0.08),
+					inset 0 1px 0 rgba(255,255,255,0.45);
+			}
+
+			.restaurant-stars {
+				display: inline-flex;
+				gap: 0.18em;
+				font-size: 1.2rem;
+				letter-spacing: 0.04em;
+			}
+
+			.restaurant-stars .star {
+				color: rgba(191, 199, 208, 0.9);
+				transition: color 0.25s ease, text-shadow 0.25s ease;
+			}
+
+			.restaurant-stars .star.filled {
+				color: #d4a63c;
+				text-shadow: 0 2px 10px rgba(212, 166, 60, 0.22);
+			}
+
+			.restaurant-score-text {
+				display: flex;
+				flex-direction: column;
+				line-height: 1.2;
+			}
+
+			.restaurant-score-number {
+				font-family: "Roboto Slab", serif;
+				font-size: 1.25rem;
+				font-weight: 700;
+				color: #3d4449;
+			}
+
+			.restaurant-score-label {
+				font-size: 0.8rem;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+				color: #7a8b97;
+				font-weight: 700;
+			}
+
+			.restaurant-score-note {
+				font-size: 0.95rem;
+				color: #6d7c87;
+				margin: 0;
+			}
+
+			.restaurant-meta-grid {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 1.35em;
+			}
+
+			.restaurant-panel {
+				padding: 1.4em 1.4em 1.3em;
+				border-radius: 1.15em;
+				background: linear-gradient(
+					145deg,
+					rgba(255,255,255,0.88) 0%,
+					rgba(244,247,251,0.82) 50%,
+					rgba(233,239,246,0.78) 100%
+				);
+				border: 1px solid rgba(74,111,134,0.14);
+				box-shadow:
+					0 12px 26px rgba(60,80,100,0.06),
+					inset 0 1px 0 rgba(255,255,255,0.45);
+			}
+
+			.restaurant-panel h3,
+			.restaurant-panel h4 {
+				margin-bottom: 0.6em;
+			}
+
+			.restaurant-details-list {
+				display: grid;
+				gap: 0.85em;
+				margin: 0;
+			}
+
+			.restaurant-detail-row {
+				display: grid;
+				grid-template-columns: 120px 1fr;
+				gap: 1em;
+				align-items: start;
+				padding-bottom: 0.75em;
+				border-bottom: 1px solid rgba(125, 142, 154, 0.14);
+			}
+
+			.restaurant-detail-row:last-child {
+				border-bottom: 0;
+				padding-bottom: 0;
+			}
+
+			.restaurant-detail-label {
+				font-size: 0.78rem;
+				font-weight: 700;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+				color: #7a8b97;
+			}
+
+			.restaurant-detail-value {
+				color: #3d4449;
+			}
+
+			.restaurant-link-list {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.8em;
+				margin-top: 0.9em;
+			}
+
+			.restaurant-link-pill {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				padding: 0.75em 1.05em;
+				border-radius: 999px;
+				background: linear-gradient(145deg, #d9e4ec 0%, #b9cad7 100%);
+				border: 1px solid rgba(74,111,134,0.2);
+				color: #23445a !important;
+				font-weight: 700;
+				letter-spacing: 0.03em;
+				text-decoration: none;
+				box-shadow:
+					0 8px 18px rgba(44,86,111,0.08),
+					inset 0 1px 0 rgba(255,255,255,0.62);
+				transition: transform 0.2s ease, box-shadow 0.2s ease;
+			}
+
+			.restaurant-link-pill:hover {
+				transform: translateY(-2px);
+				box-shadow:
+					0 12px 22px rgba(44,86,111,0.12),
+					inset 0 1px 0 rgba(255,255,255,0.62);
+			}
+
+			.restaurant-map-frame {
+				overflow: hidden;
+				border-radius: 1em;
+				border: 1px solid rgba(74,111,134,0.14);
+				margin-top: 1em;
+				background: #eef3f7;
+			}
+
+			.restaurant-map-frame iframe {
+				width: 100%;
+				height: 280px;
+				border: 0;
+				display: block;
+			}
+
+			.restaurant-review-grid {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 1.35em;
+			}
+
+			.scorecard {
+				padding: 1.35em 1.25em 1.2em;
+				border-radius: 1em;
+				background: rgba(255,255,255,0.78);
+				border: 1px solid rgba(74,111,134,0.14);
+				box-shadow:
+					0 10px 24px rgba(60,80,100,0.05),
+					inset 0 1px 0 rgba(255,255,255,0.4);
+			}
+
+			.scorecard-header {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 1em;
+				margin-bottom: 0.8em;
+			}
+
+			.scorecard-header h4 {
+				margin: 0;
+			}
+
+			.score-badge {
+				padding: 0.45em 0.75em;
+				border-radius: 999px;
+				background: rgba(74,111,134,0.1);
+				color: #2c566f;
+				font-weight: 700;
+				font-size: 0.86rem;
+			}
+
+			.review-points {
+				display: grid;
+				gap: 0.6em;
+				margin-bottom: 1em;
+			}
+
+			.review-point {
+				display: flex;
+				align-items: flex-start;
+				gap: 0.6em;
+				padding: 0.7em 0.85em;
+				border-radius: 0.7em;
+				font-size: 0.92rem;
+				line-height: 1.6;
+			}
+
+			.review-point::before {
+				font-weight: 700;
+				min-width: 1em;
+			}
+
+			.review-point.positive {
+				background: rgba(62,141,91,0.10);
+				color: #2d6b48;
+			}
+
+			.review-point.positive::before {
+				content: "✓";
+				color: #3e8d5b;
+			}
+
+			.review-point.neutral {
+				background: rgba(214,164,60,0.12);
+				color: #8a6a1f;
+			}
+
+			.review-point.neutral::before {
+				content: "•";
+			}
+
+			.review-point.negative {
+				background: rgba(191,76,76,0.10);
+				color: #8b2c2c;
+			}
+
+			.review-point.negative::before {
+				content: "✕";
+				color: #bf4c4c;
+			}
+
+			.scorecard p:last-child {
+				margin-bottom: 0;
+			}
+
+			.restaurant-summary-box {
+				padding: 1.45em 1.4em;
+				border-radius: 1.1em;
+				background: linear-gradient(
+					145deg,
+					rgba(255,255,255,0.92) 0%,
+					rgba(243,247,251,0.90) 50%,
+					rgba(231,237,244,0.88) 100%
+				);
+				border: 1px solid rgba(74,111,134,0.16);
+				box-shadow:
+					0 14px 30px rgba(60,80,100,0.08),
+					inset 0 1px 0 rgba(255,255,255,0.45);
+			}
+
+			@media screen and (max-width: 980px) {
+				.restaurant-meta-grid,
+				.restaurant-review-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+
+			@media screen and (max-width: 736px) {
+				.restaurant-detail-row {
+					grid-template-columns: 1fr;
+					gap: 0.35em;
+				}
+
+				.restaurant-rating-hero {
+					align-items: flex-start;
+				}
+
+				.restaurant-rating-score {
+					width: 100%;
+				}
+
+				.restaurant-map-frame iframe {
+					height: 240px;
+				}
+			}
+		</style>
+	</head>
+	<body class="is-preload blog-tone">
+
+		<div id="wrapper">
+
+			<div id="main">
+				<div class="inner">
+
+					<header id="header">
+						<a href="../index.html" class="logo"><strong>Christopher Leung</strong></a>
+						<ul class="icons">
+							<li><a href="https://github.com/cleung94" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+							<li><a href="https://www.linkedin.com/in/christopher-km-leung/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+						</ul>
+					</header>
+
+					<section class="blog-post-luxe">
+						<div class="blog-post-luxe-media">
+							<img src="photos/CQTaste.jpg" alt="CQ Taste in Cupertino, California" />
+						</div>
+
+						<div class="blog-post-luxe-panel">
+							<span class="blog-kicker-luxe">Restaurant Review</span>
+							<h1>CQ Taste</h1>
+
+							<p class="blog-subtitle-luxe">
+								A lunch-focused noodle cafe in Cupertino known for its hand-crafted blanket noodles, with a fast-paced layout that works better for small groups than longer, more comfortable dining.
+							</p>
+
+							<div class="blog-post-meta-luxe">
+								<span>April 2026</span>
+								<span>Restaurant Review</span>
+							</div>
+
+							<div class="restaurant-rating-hero">
+								<div class="restaurant-rating-score">
+									<div class="restaurant-stars" id="overallStars" aria-label="Overall rating stars">
+										<span class="star">★</span>
+										<span class="star">★</span>
+										<span class="star">★</span>
+										<span class="star">★</span>
+										<span class="star">★</span>
+									</div>
+
+									<div class="restaurant-score-text">
+										<span class="restaurant-score-number" id="overallScore">0.0 / 10</span>
+										<span class="restaurant-score-label">Overall Rating</span>
+									</div>
+								</div>
+
+								<p class="restaurant-score-note">
+									Calculated automatically from five scored categories.
+								</p>
+							</div>
+						</div>
+					</section>
+
+					<section class="blog-post-content-luxe restaurant-review-shell">
+
+						<div class="restaurant-meta-grid">
+							<div class="restaurant-panel">
+								<h3>Restaurant Details</h3>
+
+								<div class="restaurant-details-list">
+									<div class="restaurant-detail-row">
+										<div class="restaurant-detail-label">Category</div>
+										<div class="restaurant-detail-value">Chinese noodle cafe / lunch spot</div>
+									</div>
+
+									<div class="restaurant-detail-row">
+										<div class="restaurant-detail-label">Location</div>
+										<div class="restaurant-detail-value">Cupertino, California — across the street from Apple</div>
+									</div>
+
+									<div class="restaurant-detail-row">
+										<div class="restaurant-detail-label">Known For</div>
+										<div class="restaurant-detail-value">Hand-crafted blanket noodles and spicy noodle dishes</div>
+									</div>
+
+									<div class="restaurant-detail-row">
+										<div class="restaurant-detail-label">Best For</div>
+										<div class="restaurant-detail-value">Lunch, quick meals, and smaller groups of two to three people</div>
+									</div>
+
+									<div class="restaurant-detail-row">
+										<div class="restaurant-detail-label">Overall Feel</div>
+										<div class="restaurant-detail-value">Efficient, narrow, crowded, and more practical than comfortable</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="restaurant-panel">
+								<h3>Links & Directions</h3>
+								<p>
+									Use these quick links to look up the restaurant or open directions.
+								</p>
+
+								<div class="restaurant-link-list">
+									<a
+										class="restaurant-link-pill"
+										href="https://www.google.com/maps/search/?api=1&query=CQ%20Taste%20Cupertino%20CA"
+										target="_blank"
+										rel="noopener noreferrer"
+									>
+										Open in Google Maps
+									</a>
+
+									<a
+										class="restaurant-link-pill"
+										href="https://www.google.com/maps/dir/?api=1&destination=CQ%20Taste%20Cupertino%20CA"
+										target="_blank"
+										rel="noopener noreferrer"
+									>
+										Get Directions
+									</a>
+
+									<a
+										class="restaurant-link-pill"
+										href="https://www.yelp.com/biz/cq-taste-cupertino"
+										target="_blank"
+										rel="noopener noreferrer"
+									>
+										View on Yelp
+									</a>
+								</div>
+
+								<div class="restaurant-map-frame">
+									<iframe
+										title="CQ Taste Cupertino Map"
+										loading="lazy"
+										referrerpolicy="no-referrer-when-downgrade"
+										src="https://www.google.com/maps?q=CQ%20Taste%20Cupertino%20CA&z=15&output=embed">
+									</iframe>
+								</div>
+							</div>
+						</div>
+
+						<div class="restaurant-summary-box">
+							<h2>Quick Summary</h2>
+							<p>
+								CQ Taste is best approached as a lunch-focused noodle cafe rather than a place to sit, relax, and talk for a long time. Its strongest appeal is the specialty noodle concept, especially the blanket noodles, and the fact that it is convenient for a quick meal in Cupertino.
+							</p>
+							<p>
+								That said, the restaurant feels built for efficiency more than comfort. Seating becomes cramped once the place fills up, conversations can get difficult because sound bounces through the narrow room, and the menu leans heavily toward spicy flavors. For small groups who enjoy that style of meal, it can still be a good stop, but it is not somewhere I would recommend for larger parties or non-spicy eaters.
+							</p>
+						</div>
+
+						<div class="restaurant-review-grid" id="reviewGrid">
+
+							<article class="scorecard" data-score="4">
+								<div class="scorecard-header">
+									<h4>Ambience</h4>
+									<span class="score-badge">4.0 / 10</span>
+								</div>
+
+								<div class="review-points">
+									<div class="review-point positive">
+										Works well as a quick lunch cafe for smaller seating
+									</div>
+									<div class="review-point neutral">
+										Has a practical, Asian-style eat-and-leave flow
+									</div>
+									<div class="review-point negative">
+										Tables feel cramped for groups of four or more
+									</div>
+									<div class="review-point negative">
+										The space is narrow and noise bounces off the walls
+									</div>
+								</div>
+
+								<p>
+									The ambience is the weakest part of the experience for me. The restaurant is set up for turnover and efficiency, not for comfort, culture, or extended conversation.
+								</p>
+							</article>
+
+							<article class="scorecard" data-score="6">
+								<div class="scorecard-header">
+									<h4>Food Quality</h4>
+									<span class="score-badge">6.0 / 10</span>
+								</div>
+
+								<div class="review-points">
+									<div class="review-point positive">
+										Blanket noodles are a rare and interesting specialty
+									</div>
+									<div class="review-point positive">
+										The spice has a flavorful, fragrant quality
+									</div>
+									<div class="review-point neutral">
+										Mild heat feels closer to a 3/10 rather than completely gentle
+									</div>
+									<div class="review-point negative">
+										The beef stew noodle was decent but not memorable enough to finish
+									</div>
+									<div class="review-point negative">
+										Blanket noodles work better in dry spicy dishes than in soup
+									</div>
+								</div>
+
+								<p>
+									The food is decent, but I did not feel the hype fully matched the experience. The craftsmanship is interesting, yet the flavor was not strong enough to make me crave coming back.
+								</p>
+							</article>
+
+							<article class="scorecard" data-score="5">
+								<div class="scorecard-header">
+									<h4>Service Quality</h4>
+									<span class="score-badge">5.0 / 10</span>
+								</div>
+
+								<div class="review-points">
+									<div class="review-point positive">
+										We were seated quickly and the staff were friendly
+									</div>
+									<div class="review-point positive">
+										The experience felt culturally familiar and reminded us of Asia
+									</div>
+									<div class="review-point neutral">
+										Knowing Mandarin helped make the visit easier
+									</div>
+									<div class="review-point negative">
+										The service flow can feel awkward if you do not know the house expectations
+									</div>
+									<div class="review-point negative">
+										Bill handling is not especially clear if you are unfamiliar with the process
+									</div>
+								</div>
+
+								<p>
+									The staff were kind, but the service style assumes a level of familiarity with the restaurant’s cultural rhythm. Once you understand that you pay at the front, the experience makes more sense, but it can feel awkward the first time.
+								</p>
+							</article>
+
+							<article class="scorecard" data-score="6">
+								<div class="scorecard-header">
+									<h4>Menu</h4>
+									<span class="score-badge">6.0 / 10</span>
+								</div>
+
+								<div class="review-points">
+									<div class="review-point positive">
+										The noodle specialty gives the menu a distinct identity
+									</div>
+									<div class="review-point neutral">
+										There are non-spicy options, but the menu still leans spicy overall
+									</div>
+									<div class="review-point neutral">
+										Best value comes from ordering into their signature noodle style
+									</div>
+									<div class="review-point negative">
+										Outside of the specialty noodles, not much stood out as memorable
+									</div>
+								</div>
+
+								<p>
+									The menu is strongest when it focuses on the restaurant’s signature identity. Outside of that, I thought the rest of the selection was fine, but not particularly memorable.
+								</p>
+							</article>
+
+							<article class="scorecard" data-score="6">
+								<div class="scorecard-header">
+									<h4>Spice Accessibility</h4>
+									<span class="score-badge">6.0 / 10</span>
+								</div>
+
+								<div class="review-points">
+									<div class="review-point positive">
+										Good fit for diners who enjoy fragrant, numbing, or mala-style spice
+									</div>
+									<div class="review-point neutral">
+										I separate spice into fragrant heat and burning heat, and this place leans more fragrant
+									</div>
+									<div class="review-point negative">
+										Not a great pick for people who avoid spice entirely
+									</div>
+									<div class="review-point negative">
+										Even some soups include spicy elements like dried peanuts
+									</div>
+								</div>
+
+								<p>
+									If you like spicy noodles, this part of the menu will probably make more sense to you. If you do not, the restaurant feels much more limited, even when it technically offers non-spicy dishes.
+								</p>
+							</article>
+
+						</div>
+
+						<div class="restaurant-panel">
+							<h2>Final Verdict</h2>
+							<p>
+								CQ Taste is a niche lunch spot that makes the most sense for people who specifically want hand-crafted blanket noodles and do not mind a tighter, more fast-paced dining environment. It feels more like a quick specialty stop than a full restaurant experience built around comfort.
+							</p>
+							<p>
+								I would recommend it more for small groups, people who enjoy spicy noodle dishes, and anyone curious about the blanket noodle concept. I would not recommend it for large groups, long conversations, or diners who are sensitive to spice and looking for a more relaxed setting.
+							</p>
+						</div>
+
+						<div class="restaurant-panel">
+							<h2>Disclaimer</h2>
+
+							<p>
+								This review is based on five categories: Ambience, Food Quality, Service Quality, Menu, and Spice Accessibility. I chose these categories because together they reflect both the food itself and the overall experience of eating at this restaurant.
+							</p>
+
+							<p>
+								<strong>Ambience</strong> reflects the comfort of the space, how seating is arranged, how easy it is to talk, and whether the restaurant feels inviting for the type of visit it naturally attracts.
+							</p>
+
+							<p>
+								<strong>Food Quality</strong> focuses on flavor, texture, execution, and whether the meal leaves a lasting impression beyond novelty alone.
+							</p>
+
+							<p>
+								<strong>Service Quality</strong> evaluates speed, friendliness, communication, and how easy it is to understand the dining process from seating to payment.
+							</p>
+
+							<p>
+								<strong>Menu</strong> reflects how strong the overall selection is, whether the signature dishes carry the restaurant, and how memorable the menu feels outside of its most popular items.
+							</p>
+
+							<p>
+								<strong>Spice Accessibility</strong> matters here because spice is a major part of the identity of the restaurant. This category helps measure how approachable the food is for different diners, especially those who do not regularly eat spicy food.
+							</p>
+
+							<p>
+								Each category is scored individually and averaged equally to create the final rating. This keeps the review structured while still allowing the strengths and weaknesses of the restaurant to stand on their own.
+							</p>
+						</div>
+
+						<div class="blog-post-nav-luxe">
+							<a href="../blog.html" class="button">Back to Blog</a>
+							<a href="../blog-restaurant.html" class="button">More in Restaurant</a>
+						</div>
+
+					</section>
+
+				</div>
+			</div>
+
+			<div id="sidebar">
+				<div class="inner">
+
+					<section id="search" class="alt">
+						<form method="post" action="#">
+							<input type="text" name="query" id="query" placeholder="Search" />
+						</form>
+					</section>
+
+					<nav id="menu">
+						<header class="major">
+							<h2>Menu</h2>
+						</header>
+						<ul>
+							<li><a href="../index.html">Homepage</a></li>
+							<li><a href="../projects.html">Project Showcase</a></li>
+							<li>
+								<span class="opener">Blog</span>
+								<ul>
+									<li><a href="../blog.html">Blog Homepage</a></li>
+									<li><a href="../blog-technology.html">Blog - Technology</a></li>
+									<li><a href="../blog-healthcare.html">Blog - Healthcare</a></li>
+									<li><a href="../blog-restaurant.html">Blog - Restaurant</a></li>
+									<li><a href="../blog-hobbies.html">Blog - Hobbies</a></li>
+								</ul>
+							</li>
+							<li><a href="../contact-form.html">Contact Me</a></li>
+						</ul>
+					</nav>
+
+					<footer id="footer">
+						<p class="copyright">&copy; 2026 Christopher Leung. All rights reserved.</p>
+					</footer>
+
+				</div>
+			</div>
+		</div>
+
+		<script src="../assets/js/jquery.min.js"></script>
+		<script src="../assets/js/browser.min.js"></script>
+		<script src="../assets/js/breakpoints.min.js"></script>
+		<script src="../assets/js/util.js"></script>
+		<script src="../assets/js/main.js"></script>
+
+		<script>
+			document.addEventListener("DOMContentLoaded", () => {
+				const cards = Array.from(document.querySelectorAll(".scorecard"));
+				const overallScoreEl = document.getElementById("overallScore");
+				const overallStarsEl = document.getElementById("overallStars");
+
+				if (!cards.length || !overallScoreEl || !overallStarsEl) return;
+
+				const scores = cards.map(card => parseFloat(card.dataset.score) || 0);
+				const total = scores.reduce((sum, value) => sum + value, 0);
+				const average = total / cards.length;
+
+				overallScoreEl.textContent = `${average.toFixed(1)}/10`;
+
+				const stars = Array.from(overallStarsEl.querySelectorAll(".star"));
+				const filledStars = Math.round(average / 2);
+
+				stars.forEach((star, index) => {
+					if (index < filledStars) {
+						star.classList.add("filled");
+					} else {
+						star.classList.remove("filled");
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
