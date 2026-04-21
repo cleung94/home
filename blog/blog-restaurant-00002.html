@@ -321,6 +321,109 @@
 					inset 0 1px 0 rgba(255,255,255,0.45);
 			}
 
+			.gallery-shell {
+				position: relative;
+				padding: 1.45em 1.4em;
+				border-radius: 1.1em;
+				background: linear-gradient(
+					145deg,
+					rgba(255,255,255,0.92) 0%,
+					rgba(243,247,251,0.90) 50%,
+					rgba(231,237,244,0.88) 100%
+				);
+				border: 1px solid rgba(74,111,134,0.16);
+				box-shadow:
+					0 14px 30px rgba(60,80,100,0.08),
+					inset 0 1px 0 rgba(255,255,255,0.45);
+			}
+
+			.gallery-shell > :first-child {
+				margin-top: 0;
+			}
+
+			.gallery-shell p {
+				margin: 0 0 1em 0;
+			}
+
+			.gallery-scroll-wrap {
+				position: relative;
+				margin-top: 1.15em;
+			}
+
+			.gallery-scroll-wrap::before,
+			.gallery-scroll-wrap::after {
+				content: "";
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				width: 4.5em;
+				z-index: 2;
+				pointer-events: none;
+				transition: opacity 0.25s ease;
+			}
+
+			.gallery-scroll-wrap::before {
+				left: 0;
+				background: linear-gradient(to right, rgba(243,247,251,0.98) 0%, rgba(243,247,251,0) 100%);
+			}
+
+			.gallery-scroll-wrap::after {
+				right: 0;
+				background: linear-gradient(to left, rgba(243,247,251,0.98) 0%, rgba(243,247,251,0) 100%);
+			}
+
+			.gallery-scroll {
+				display: flex;
+				gap: 1em;
+				overflow-x: auto;
+				overflow-y: hidden;
+				scroll-behavior: smooth;
+				padding: 0.2em 0.15em 0.75em;
+				scroll-snap-type: x proximity;
+				-webkit-overflow-scrolling: touch;
+				cursor: grab;
+				scrollbar-width: none;
+			}
+
+			.gallery-scroll::-webkit-scrollbar {
+				display: none;
+			}
+
+			.gallery-scroll.dragging {
+				cursor: grabbing;
+				scroll-behavior: auto;
+			}
+
+			.gallery-card {
+				flex: 0 0 clamp(240px, 34vw, 360px);
+				scroll-snap-align: start;
+				border-radius: 1em;
+				overflow: hidden;
+				background: rgba(255,255,255,0.88);
+				border: 1px solid rgba(74,111,134,0.14);
+				box-shadow:
+					0 10px 24px rgba(60,80,100,0.06),
+					inset 0 1px 0 rgba(255,255,255,0.4);
+			}
+
+			.gallery-card img {
+				display: block;
+				width: 100%;
+				height: 240px;
+				object-fit: cover;
+			}
+
+			.gallery-card-caption {
+				padding: 0.9em 1em 1em;
+				font-size: 0.92rem;
+				line-height: 1.55;
+				color: #51616d;
+			}
+
+			.gallery-card-caption strong {
+				color: #3d4449;
+			}
+
 			@media screen and (max-width: 980px) {
 				.restaurant-meta-grid,
 				.restaurant-review-grid {
@@ -344,6 +447,19 @@
 
 				.restaurant-map-frame iframe {
 					height: 240px;
+				}
+
+				.gallery-scroll-wrap::before,
+				.gallery-scroll-wrap::after {
+					width: 2.5em;
+				}
+
+				.gallery-card {
+					flex-basis: 82%;
+				}
+
+				.gallery-card img {
+					height: 210px;
 				}
 			}
 		</style>
@@ -417,6 +533,11 @@
 									</div>
 
 									<div class="restaurant-detail-row">
+										<div class="restaurant-detail-label">Address</div>
+										<div class="restaurant-detail-value">10815 N Wolfe Rd Suite 101B, Cupertino, CA 95014</div>
+									</div>
+
+									<div class="restaurant-detail-row">
 										<div class="restaurant-detail-label">Location</div>
 										<div class="restaurant-detail-value">Cupertino, California — across the street from Apple</div>
 									</div>
@@ -447,7 +568,7 @@
 								<div class="restaurant-link-list">
 									<a
 										class="restaurant-link-pill"
-										href="https://www.google.com/maps/search/?api=1&query=CQ%20Taste%20Cupertino%20CA"
+										href="https://www.google.com/maps/search/?api=1&query=10815%20N%20Wolfe%20Rd%20Suite%20101B%2C%20Cupertino%2C%20CA%2095014"
 										target="_blank"
 										rel="noopener noreferrer"
 									>
@@ -456,7 +577,7 @@
 
 									<a
 										class="restaurant-link-pill"
-										href="https://www.google.com/maps/dir/?api=1&destination=CQ%20Taste%20Cupertino%20CA"
+										href="https://www.google.com/maps/dir/?api=1&destination=10815%20N%20Wolfe%20Rd%20Suite%20101B%2C%20Cupertino%2C%20CA%2095014"
 										target="_blank"
 										rel="noopener noreferrer"
 									>
@@ -478,7 +599,7 @@
 										title="CQ Taste Cupertino Map"
 										loading="lazy"
 										referrerpolicy="no-referrer-when-downgrade"
-										src="https://www.google.com/maps?q=CQ%20Taste%20Cupertino%20CA&z=15&output=embed">
+										src="https://www.google.com/maps?q=10815%20N%20Wolfe%20Rd%20Suite%20101B%2C%20Cupertino%2C%20CA%2095014&z=15&output=embed">
 									</iframe>
 								</div>
 							</div>
@@ -492,6 +613,33 @@
 							<p>
 								That said, the restaurant feels built for efficiency more than comfort. Seating becomes cramped once the place fills up, conversations can get difficult because sound bounces through the narrow room, and the menu leans heavily toward spicy flavors. For small groups who enjoy that style of meal, it can still be a good stop, but it is not somewhere I would recommend for larger parties or non-spicy eaters.
 							</p>
+						</div>
+
+						<div class="gallery-shell">
+							<h2>Gallery</h2>
+							<p>
+								Scroll horizontally to browse more photos from the visit.
+							</p>
+
+							<div class="gallery-scroll-wrap">
+								<div class="gallery-scroll" id="galleryScroll">
+									<figure class="gallery-card">
+										<img src="photos/CQTaste2.jpg" alt="Infographic of CQ Taste" />
+										<figcaption class="gallery-card-caption">
+											<strong>Infographic</strong><br />
+											Check this out!
+										</figcaption>
+									</figure>
+
+									<figure class="gallery-card">
+										<img src="photos/CQTaste.jpg" alt="Beef Stew with Hand Pulled Noodle" />
+										<figcaption class="gallery-card-caption">
+											<strong>Menu Item</strong><br />
+											Beef Stew with Hand Pulled Noodle
+										</figcaption>
+									</figure>
+								</div>
+							</div>
 						</div>
 
 						<div class="restaurant-review-grid" id="reviewGrid">
@@ -606,29 +754,26 @@
 								</p>
 							</article>
 
-							<article class="scorecard" data-score="6">
+							<article class="scorecard" data-score="8">
 								<div class="scorecard-header">
-									<h4>Spice Accessibility</h4>
-									<span class="score-badge">6.0 / 10</span>
+									<h4>Parking</h4>
+									<span class="score-badge">8.0 / 10</span>
 								</div>
 
 								<div class="review-points">
 									<div class="review-point positive">
-										Good fit for diners who enjoy fragrant, numbing, or mala-style spice
+										A couple of convenient parking spaces are usually available out front
+									</div>
+									<div class="review-point positive">
+										There is additional parking near Ranch 99 within the same plaza just a couple of minutes away
 									</div>
 									<div class="review-point neutral">
-										I separate spice into fragrant heat and burning heat, and this place leans more fragrant
-									</div>
-									<div class="review-point negative">
-										Not a great pick for people who avoid spice entirely
-									</div>
-									<div class="review-point negative">
-										Even some soups include spicy elements like dried peanuts
+										Parking is not the main highlight of the restaurant, but it is still manageable for the area
 									</div>
 								</div>
 
 								<p>
-									If you like spicy noodles, this part of the menu will probably make more sense to you. If you do not, the restaurant feels much more limited, even when it technically offers non-spicy dishes.
+									Parking is fairly solid here. The front spaces are convenient if you catch them at the right time, and having extra parking nearby in the same plaza makes the visit easier overall.
 								</p>
 							</article>
 
@@ -648,31 +793,31 @@
 							<h2>Disclaimer</h2>
 
 							<p>
-								This review is based on five categories: Ambience, Food Quality, Service Quality, Menu, and Spice Accessibility. I chose these categories because together they reflect both the food itself and the overall experience of eating at this restaurant.
+								This review is built around five core categories: Ambience, Food Quality, Service Quality, Menu, and Parking. Each category represents a distinct part of the dining experience and is evaluated independently to provide a more balanced and transparent assessment.
 							</p>
 
 							<p>
-								<strong>Ambience</strong> reflects the comfort of the space, how seating is arranged, how easy it is to talk, and whether the restaurant feels inviting for the type of visit it naturally attracts.
+								<strong>Ambience</strong> reflects how comfortable and functional the environment is. This includes noise level, seating layout, table spacing, and how easy it is to enjoy the space for the type of meal the restaurant naturally supports.
 							</p>
 
 							<p>
-								<strong>Food Quality</strong> focuses on flavor, texture, execution, and whether the meal leaves a lasting impression beyond novelty alone.
+								<strong>Food Quality</strong> focuses on taste, spice balance, texture, and overall execution. This category measures whether the food is enjoyable beyond novelty and whether it leaves a strong enough impression to want again.
 							</p>
 
 							<p>
-								<strong>Service Quality</strong> evaluates speed, friendliness, communication, and how easy it is to understand the dining process from seating to payment.
+								<strong>Service Quality</strong> evaluates efficiency, friendliness, clarity, and how easy it is to understand the dining process. This includes seating, communication, and how comfortable the experience feels for first-time visitors.
 							</p>
 
 							<p>
-								<strong>Menu</strong> reflects how strong the overall selection is, whether the signature dishes carry the restaurant, and how memorable the menu feels outside of its most popular items.
+								<strong>Menu</strong> represents variety, clarity, and how strong the restaurant’s signature identity is. A strong menu should stand out for what it specializes in while still feeling worthwhile outside of just one or two popular items.
 							</p>
 
 							<p>
-								<strong>Spice Accessibility</strong> matters here because spice is a major part of the identity of the restaurant. This category helps measure how approachable the food is for different diners, especially those who do not regularly eat spicy food.
+								<strong>Parking</strong> considers accessibility and convenience. While it is not part of the food itself, it affects the overall ease of visiting the restaurant, especially in busy commercial areas where nearby overflow parking can make a difference.
 							</p>
 
 							<p>
-								Each category is scored individually and averaged equally to create the final rating. This keeps the review structured while still allowing the strengths and weaknesses of the restaurant to stand on their own.
+								These five categories are selected because together they represent both the core product and the surrounding experience. The final rating is calculated as an average of all five scores, allowing each category to contribute equally to the overall evaluation.
 							</p>
 						</div>
 
@@ -735,25 +880,57 @@
 				const cards = Array.from(document.querySelectorAll(".scorecard"));
 				const overallScoreEl = document.getElementById("overallScore");
 				const overallStarsEl = document.getElementById("overallStars");
+				const gallery = document.getElementById("galleryScroll");
 
-				if (!cards.length || !overallScoreEl || !overallStarsEl) return;
+				if (cards.length && overallScoreEl && overallStarsEl) {
+					const scores = cards.map(card => parseFloat(card.dataset.score) || 0);
+					const total = scores.reduce((sum, value) => sum + value, 0);
+					const average = total / cards.length;
 
-				const scores = cards.map(card => parseFloat(card.dataset.score) || 0);
-				const total = scores.reduce((sum, value) => sum + value, 0);
-				const average = total / cards.length;
+					overallScoreEl.textContent = `${average.toFixed(1)}/10`;
 
-				overallScoreEl.textContent = `${average.toFixed(1)}/10`;
+					const stars = Array.from(overallStarsEl.querySelectorAll(".star"));
+					const filledStars = Math.round(average / 2);
 
-				const stars = Array.from(overallStarsEl.querySelectorAll(".star"));
-				const filledStars = Math.round(average / 2);
+					stars.forEach((star, index) => {
+						if (index < filledStars) {
+							star.classList.add("filled");
+						} else {
+							star.classList.remove("filled");
+						}
+					});
+				}
 
-				stars.forEach((star, index) => {
-					if (index < filledStars) {
-						star.classList.add("filled");
-					} else {
-						star.classList.remove("filled");
-					}
-				});
+				if (gallery) {
+					let isDown = false;
+					let startX;
+					let scrollLeft;
+
+					gallery.addEventListener("mousedown", (e) => {
+						isDown = true;
+						gallery.classList.add("dragging");
+						startX = e.pageX - gallery.offsetLeft;
+						scrollLeft = gallery.scrollLeft;
+					});
+
+					gallery.addEventListener("mouseleave", () => {
+						isDown = false;
+						gallery.classList.remove("dragging");
+					});
+
+					gallery.addEventListener("mouseup", () => {
+						isDown = false;
+						gallery.classList.remove("dragging");
+					});
+
+					gallery.addEventListener("mousemove", (e) => {
+						if (!isDown) return;
+						e.preventDefault();
+						const x = e.pageX - gallery.offsetLeft;
+						const walk = (x - startX) * 1.2;
+						gallery.scrollLeft = scrollLeft - walk;
+					});
+				}
 			});
 		</script>
 	</body>
