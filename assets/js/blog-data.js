@@ -52,5 +52,14 @@ window.BLOG_POSTS = [
   date: "April 2026",
   image: "blog/photos/CQTaste.jpg",
   excerpt: "A review of CQ Taste in Cupertino, a popular lunch spot known for its hand-crafted blanket noodles, spicy flavors, and fast-paced dining style that works best for smaller groups."
+},
+      {
+  title: "Yumee Katsu",
+  slug: "blog/blog-restaurant-00003.html",
+  tag: "restaurant",
+  tagLabel: "Restaurant",
+  date: "April 2026",
+  image: "blog/photos/YumeeKatsu.jpg",
+  excerpt: "A review of Yumee Katsu in Castro Valley, a standout Bay Area katsu spot known for its excellent service, filling portions, strong curry udon and soba, and comfortable family-friendly atmosphere."
 }
 ];
