@@ -1,0 +1,1133 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Yumee Katsu Review | Christopher Leung</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+
+		<style>
+			.return-score {
+				display: grid;
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: 1em;
+				margin-top: 1em;
+			}
+
+			.return-option {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				gap: 0.45em;
+				padding: 1.1em 0.9em;
+				border-radius: 1em;
+				background: rgba(255,255,255,0.72);
+				border: 1px solid rgba(74,111,134,0.12);
+				box-shadow:
+					0 10px 22px rgba(60,80,100,0.05),
+					inset 0 1px 0 rgba(255,255,255,0.4);
+				opacity: 0.45;
+				transform: scale(0.98);
+				transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+			}
+
+			.return-option.active {
+				opacity: 1;
+				transform: scale(1);
+				border-color: rgba(74,111,134,0.26);
+				box-shadow:
+					0 14px 28px rgba(60,80,100,0.09),
+					inset 0 1px 0 rgba(255,255,255,0.5);
+			}
+
+			.return-emoji {
+				font-size: 2rem;
+				line-height: 1;
+			}
+
+			.return-label {
+				font-size: 0.9rem;
+				font-weight: 700;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+				color: #51616d;
+			}
+
+			.restaurant-panel > :first-child {
+				margin-top: 0;
+			}
+
+			.restaurant-panel p {
+				margin: 0 0 1em 0;
+			}
+
+			.restaurant-panel h3,
+			.restaurant-panel h4 {
+				margin-top: 0;
+				margin-bottom: 0.6em;
+			}
+
+			.restaurant-summary-box > :first-child {
+				margin-top: 0;
+			}
+
+			.restaurant-summary-box h2,
+			.restaurant-summary-box h3 {
+				margin-top: 0;
+				margin-bottom: 0.6em;
+			}
+
+			.restaurant-summary-box p {
+				margin: 0 0 1em 0;
+			}
+
+			.restaurant-review-shell {
+				display: grid;
+				gap: 2em;
+			}
+
+			.restaurant-rating-hero {
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				gap: 0.85em 1.1em;
+				margin-top: 1.25em;
+			}
+
+			.restaurant-rating-score {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.75em;
+				padding: 0.9em 1.15em;
+				border-radius: 1em;
+				background: linear-gradient(
+					145deg,
+					rgba(255,255,255,0.88) 0%,
+					rgba(245,248,252,0.84) 55%,
+					rgba(232,238,245,0.82) 100%
+				);
+				border: 1px solid rgba(74,111,134,0.16);
+				box-shadow:
+					0 12px 28px rgba(60,80,100,0.08),
+					inset 0 1px 0 rgba(255,255,255,0.45);
+			}
+
+			.restaurant-stars {
+				display: inline-flex;
+				gap: 0.18em;
+				font-size: 1.2rem;
+				letter-spacing: 0.04em;
+			}
+
+			.restaurant-stars .star {
+				color: rgba(191, 199, 208, 0.9);
+				transition: color 0.25s ease, text-shadow 0.25s ease;
+			}
+
+			.restaurant-stars .star.filled {
+				color: #d4a63c;
+				text-shadow: 0 2px 10px rgba(212, 166, 60, 0.22);
+			}
+
+			.restaurant-score-text {
+				display: flex;
+				flex-direction: column;
+				line-height: 1.2;
+			}
+
+			.restaurant-score-number {
+				font-family: "Roboto Slab", serif;
+				font-size: 1.25rem;
+				font-weight: 700;
+				color: #3d4449;
+			}
+
+			.restaurant-score-label {
+				font-size: 0.8rem;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+				color: #7a8b97;
+				font-weight: 700;
+			}
+
+			.restaurant-score-note {
+				font-size: 0.95rem;
+				color: #6d7c87;
+				margin: 0;
+			}
+
+			.restaurant-meta-grid {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 1.35em;
+			}
+
+			.restaurant-panel {
+				padding: 1.4em 1.4em 1.3em;
+				border-radius: 1.15em;
+				background: linear-gradient(
+					145deg,
+					rgba(255,255,255,0.88) 0%,
+					rgba(244,247,251,0.82) 50%,
+					rgba(233,239,246,0.78) 100%
+				);
+				border: 1px solid rgba(74,111,134,0.14);
+				box-shadow:
+					0 12px 26px rgba(60,80,100,0.06),
+					inset 0 1px 0 rgba(255,255,255,0.45);
+			}
+
+			.restaurant-panel h3,
+			.restaurant-panel h4 {
+				margin-bottom: 0.6em;
+			}
+
+			.restaurant-details-list {
+				display: grid;
+				gap: 0.85em;
+				margin: 0;
+			}
+
+			.restaurant-detail-row {
+				display: grid;
+				grid-template-columns: 120px 1fr;
+				gap: 1em;
+				align-items: start;
+				padding-bottom: 0.75em;
+				border-bottom: 1px solid rgba(125, 142, 154, 0.14);
+			}
+
+			.restaurant-detail-row:last-child {
+				border-bottom: 0;
+				padding-bottom: 0;
+			}
+
+			.restaurant-detail-label {
+				font-size: 0.78rem;
+				font-weight: 700;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+				color: #7a8b97;
+			}
+
+			.restaurant-detail-value {
+				color: #3d4449;
+			}
+
+			.restaurant-link-list {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.8em;
+				margin-top: 0.9em;
+			}
+
+			.restaurant-link-pill {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				padding: 0.75em 1.05em;
+				border-radius: 999px;
+				background: linear-gradient(145deg, #d9e4ec 0%, #b9cad7 100%);
+				border: 1px solid rgba(74,111,134,0.2);
+				color: #23445a !important;
+				font-weight: 700;
+				letter-spacing: 0.03em;
+				text-decoration: none;
+				box-shadow:
+					0 8px 18px rgba(44,86,111,0.08),
+					inset 0 1px 0 rgba(255,255,255,0.62);
+				transition: transform 0.2s ease, box-shadow 0.2s ease;
+			}
+
+			.restaurant-link-pill:hover {
+				transform: translateY(-2px);
+				box-shadow:
+					0 12px 22px rgba(44,86,111,0.12),
+					inset 0 1px 0 rgba(255,255,255,0.62);
+			}
+
+			.restaurant-map-frame {
+				overflow: hidden;
+				border-radius: 1em;
+				border: 1px solid rgba(74,111,134,0.14);
+				margin-top: 1em;
+				background: #eef3f7;
+			}
+
+			.restaurant-map-frame iframe {
+				width: 100%;
+				height: 280px;
+				border: 0;
+				display: block;
+			}
+
+			.restaurant-review-grid {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 1.35em;
+			}
+
+			.scorecard {
+				padding: 1.35em 1.25em 1.2em;
+				border-radius: 1em;
+				background: rgba(255,255,255,0.78);
+				border: 1px solid rgba(74,111,134,0.14);
+				box-shadow:
+					0 10px 24px rgba(60,80,100,0.05),
+					inset 0 1px 0 rgba(255,255,255,0.4);
+			}
+
+			.scorecard-header {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 1em;
+				margin-bottom: 0.8em;
+			}
+
+			.scorecard-header h4 {
+				margin: 0;
+			}
+
+			.score-badge {
+				padding: 0.45em 0.75em;
+				border-radius: 999px;
+				background: rgba(74,111,134,0.1);
+				color: #2c566f;
+				font-weight: 700;
+				font-size: 0.86rem;
+			}
+
+			.review-points {
+				display: grid;
+				gap: 0.6em;
+				margin-bottom: 1em;
+			}
+
+			.review-point {
+				display: flex;
+				align-items: flex-start;
+				gap: 0.6em;
+				padding: 0.7em 0.85em;
+				border-radius: 0.7em;
+				font-size: 0.92rem;
+				line-height: 1.6;
+			}
+
+			.review-point::before {
+				font-weight: 700;
+				min-width: 1em;
+			}
+
+			.review-point.positive {
+				background: rgba(62,141,91,0.10);
+				color: #2d6b48;
+			}
+
+			.review-point.positive::before {
+				content: "✓";
+				color: #3e8d5b;
+			}
+
+			.review-point.neutral {
+				background: rgba(214,164,60,0.12);
+				color: #8a6a1f;
+			}
+
+			.review-point.neutral::before {
+				content: "•";
+			}
+
+			.review-point.negative {
+				background: rgba(191,76,76,0.10);
+				color: #8b2c2c;
+			}
+
+			.review-point.negative::before {
+				content: "✕";
+				color: #bf4c4c;
+			}
+
+			.scorecard p:last-child {
+				margin-bottom: 0;
+			}
+
+			.restaurant-summary-box {
+				padding: 1.45em 1.4em;
+				border-radius: 1.1em;
+				background: linear-gradient(
+					145deg,
+					rgba(255,255,255,0.92) 0%,
+					rgba(243,247,251,0.90) 50%,
+					rgba(231,237,244,0.88) 100%
+				);
+				border: 1px solid rgba(74,111,134,0.16);
+				box-shadow:
+					0 14px 30px rgba(60,80,100,0.08),
+					inset 0 1px 0 rgba(255,255,255,0.45);
+			}
+
+			.gallery-shell {
+				position: relative;
+				padding: 1.45em 1.4em;
+				border-radius: 1.1em;
+				background: linear-gradient(
+					145deg,
+					rgba(255,255,255,0.92) 0%,
+					rgba(243,247,251,0.90) 50%,
+					rgba(231,237,244,0.88) 100%
+				);
+				border: 1px solid rgba(74,111,134,0.16);
+				box-shadow:
+					0 14px 30px rgba(60,80,100,0.08),
+					inset 0 1px 0 rgba(255,255,255,0.45);
+			}
+
+			.gallery-shell > :first-child {
+				margin-top: 0;
+			}
+
+			.gallery-shell p {
+				margin: 0 0 1em 0;
+			}
+
+			.gallery-scroll-wrap {
+				position: relative;
+				margin-top: 1.15em;
+			}
+
+			.gallery-scroll-wrap::before,
+			.gallery-scroll-wrap::after {
+				content: "";
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				width: 4.5em;
+				z-index: 2;
+				pointer-events: none;
+				transition: opacity 0.25s ease;
+			}
+
+			.gallery-scroll-wrap::before {
+				left: 0;
+				background: linear-gradient(to right, rgba(243,247,251,0.98) 0%, rgba(243,247,251,0) 100%);
+			}
+
+			.gallery-scroll-wrap::after {
+				right: 0;
+				background: linear-gradient(to left, rgba(243,247,251,0.98) 0%, rgba(243,247,251,0) 100%);
+			}
+
+			.gallery-scroll {
+				display: flex;
+				gap: 1em;
+				overflow-x: auto;
+				overflow-y: hidden;
+				scroll-behavior: smooth;
+				padding: 0.2em 0.15em 0.75em;
+				scroll-snap-type: x proximity;
+				-webkit-overflow-scrolling: touch;
+				cursor: grab;
+				scrollbar-width: none;
+			}
+
+			.gallery-scroll::-webkit-scrollbar {
+				display: none;
+			}
+
+			.gallery-scroll.dragging {
+				cursor: grabbing;
+				scroll-behavior: auto;
+			}
+
+			.gallery-card {
+				flex: 0 0 clamp(240px, 34vw, 360px);
+				scroll-snap-align: start;
+				border-radius: 1em;
+				overflow: hidden;
+				background: rgba(255,255,255,0.88);
+				border: 1px solid rgba(74,111,134,0.14);
+				box-shadow:
+					0 10px 24px rgba(60,80,100,0.06),
+					inset 0 1px 0 rgba(255,255,255,0.4);
+			}
+
+			.gallery-card img {
+				display: block;
+				width: 100%;
+				height: 240px;
+				object-fit: cover;
+				object-position: center;
+				cursor: pointer;
+				transition: transform 0.25s ease, opacity 0.25s ease;
+			}
+
+			.gallery-card img:hover {
+				transform: scale(1.02);
+			}
+
+			.gallery-card-caption {
+				padding: 0.9em 1em 1em;
+				font-size: 0.92rem;
+				line-height: 1.55;
+				color: #51616d;
+			}
+
+			.gallery-card-caption strong {
+				color: #3d4449;
+			}
+
+			.gallery-lightbox {
+				position: fixed;
+				inset: 0;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 2em;
+				background: rgba(20, 28, 36, 0.88);
+				backdrop-filter: blur(5px);
+				-webkit-backdrop-filter: blur(5px);
+				opacity: 0;
+				visibility: hidden;
+				pointer-events: none;
+				transition: opacity 0.25s ease, visibility 0.25s ease;
+				z-index: 10000;
+			}
+
+			.gallery-lightbox.active {
+				opacity: 1;
+				visibility: visible;
+				pointer-events: auto;
+			}
+
+			.gallery-lightbox-inner {
+				position: relative;
+				max-width: min(1100px, 92vw);
+				max-height: 90vh;
+				display: flex;
+				flex-direction: column;
+				gap: 0.85em;
+				align-items: center;
+			}
+
+			.gallery-lightbox-img {
+				display: block;
+				max-width: 100%;
+				max-height: 78vh;
+				border-radius: 1em;
+				box-shadow: 0 22px 60px rgba(0,0,0,0.35);
+				background: #fff;
+			}
+
+			.gallery-lightbox-caption {
+				color: rgba(255,255,255,0.92);
+				text-align: center;
+				font-size: 0.95rem;
+				line-height: 1.5;
+				max-width: 800px;
+			}
+
+			.gallery-lightbox-close {
+				position: absolute;
+				top: -0.5em;
+				right: -0.5em;
+				width: 2.5em;
+				height: 2.5em;
+				border: 0;
+				border-radius: 999px;
+				background: rgba(255,255,255,0.96);
+				color: #243746;
+				font-size: 1.2rem;
+				font-weight: 700;
+				cursor: pointer;
+				box-shadow: 0 10px 26px rgba(0,0,0,0.2);
+			}
+
+			.gallery-lightbox-close:hover {
+				transform: scale(1.04);
+			}
+
+			@media screen and (max-width: 980px) {
+				.restaurant-meta-grid,
+				.restaurant-review-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+
+			@media screen and (max-width: 736px) {
+				.return-score {
+					grid-template-columns: 1fr;
+				}
+
+				.restaurant-detail-row {
+					grid-template-columns: 1fr;
+					gap: 0.35em;
+				}
+
+				.restaurant-rating-hero {
+					align-items: flex-start;
+				}
+
+				.restaurant-rating-score {
+					width: 100%;
+				}
+
+				.restaurant-map-frame iframe {
+					height: 240px;
+				}
+
+				.gallery-scroll-wrap::before,
+				.gallery-scroll-wrap::after {
+					width: 2.5em;
+				}
+
+				.gallery-card {
+					flex-basis: 82%;
+				}
+
+				.gallery-card img {
+					height: 210px;
+				}
+
+				.gallery-lightbox {
+					padding: 1em;
+				}
+
+				.gallery-lightbox-close {
+					top: -0.25em;
+					right: -0.15em;
+				}
+			}
+		</style>
+	</head>
+	<body class="is-preload blog-tone">
+
+		<div id="wrapper">
+
+			<div id="main">
+				<div class="inner">
+
+					<header id="header">
+						<a href="../index.html" class="logo"><strong>Christopher Leung</strong></a>
+						<ul class="icons">
+							<li><a href="https://github.com/cleung94" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+							<li><a href="https://www.linkedin.com/in/christopher-km-leung/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+						</ul>
+					</header>
+
+					<section class="blog-post-luxe">
+						<div class="blog-post-luxe-media">
+							<img src="photos/YumeeKatsu.jpg" alt="Yumee Katsu in Castro Valley, California" />
+						</div>
+
+						<div class="blog-post-luxe-panel">
+							<span class="blog-kicker-luxe">Restaurant Review</span>
+							<h1>Yumee Katsu</h1>
+
+							<p class="blog-subtitle-luxe">
+								A structured katsu restaurant review in Castro Valley, California, scored like a small market research snapshot across ambience, food, service, menu, and parking.
+							</p>
+
+							<div class="blog-post-meta-luxe">
+								<span>April 2026</span>
+								<span>Japanese Katsu Review</span>
+							</div>
+
+							<div class="restaurant-rating-hero">
+								<div class="restaurant-rating-score">
+									<div class="restaurant-stars" id="overallStars" aria-label="Overall rating stars">
+										<span class="star">★</span>
+										<span class="star">★</span>
+										<span class="star">★</span>
+										<span class="star">★</span>
+										<span class="star">★</span>
+									</div>
+
+									<div class="restaurant-score-text">
+										<span class="restaurant-score-number" id="overallScore">0.0 / 10</span>
+										<span class="restaurant-score-label">Overall Rating</span>
+									</div>
+								</div>
+
+								<p><strong>Would I come back?</strong></p>
+
+								<div class="return-score" data-return-score="3" aria-label="Would I come again rating">
+									<div class="return-option" data-value="1">
+										<span class="return-emoji" aria-hidden="true">😕</span>
+										<span class="return-label">No</span>
+									</div>
+
+									<div class="return-option" data-value="2">
+										<span class="return-emoji" aria-hidden="true">🙂</span>
+										<span class="return-label">Maybe</span>
+									</div>
+
+									<div class="return-option" data-value="3">
+										<span class="return-emoji" aria-hidden="true">😄</span>
+										<span class="return-label">Yes</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section class="blog-post-content-luxe restaurant-review-shell">
+
+						<div class="restaurant-meta-grid">
+							<div class="restaurant-panel">
+								<h3>Restaurant Details</h3>
+
+								<div class="restaurant-details-list">
+									<div class="restaurant-detail-row">
+										<div class="restaurant-detail-label">Category</div>
+										<div class="restaurant-detail-value">Japanese katsu restaurant</div>
+									</div>
+
+									<div class="restaurant-detail-row">
+										<div class="restaurant-detail-label">Location</div>
+										<div class="restaurant-detail-value">Castro Valley, CA</div>
+									</div>
+
+									<div class="restaurant-detail-row">
+										<div class="restaurant-detail-label">Signature Order</div>
+										<div class="restaurant-detail-value">Curry udon katsu, cold soba, rose tobokki cutlet, and chicken katsu cutlet</div>
+									</div>
+
+									<div class="restaurant-detail-row">
+										<div class="restaurant-detail-label">Best For</div>
+										<div class="restaurant-detail-value">Families, casual lunch outings, kid-friendly dining, and small groups</div>
+									</div>
+
+									<div class="restaurant-detail-row">
+										<div class="restaurant-detail-label">Overall Feel</div>
+										<div class="restaurant-detail-value">Comfortable Japanese decor, family-friendly, and not too loud</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="restaurant-panel">
+								<h3>Links & Directions</h3>
+								<p>
+									Use these quick links to open directions or look up the listing externally.
+								</p>
+
+								<div class="restaurant-link-list">
+									<a
+										class="restaurant-link-pill"
+										href="https://www.google.com/maps/search/?api=1&query=Yumee%20Katsu%20Castro%20Valley%20CA"
+										target="_blank"
+										rel="noopener noreferrer"
+									>
+										Open in Google Maps
+									</a>
+
+									<a
+										class="restaurant-link-pill"
+										href="https://www.google.com/maps/dir/?api=1&destination=Yumee%20Katsu%20Castro%20Valley%20CA"
+										target="_blank"
+										rel="noopener noreferrer"
+									>
+										Get Directions
+									</a>
+
+									<a
+										class="restaurant-link-pill"
+										href="https://www.yelp.com/biz/yumee-katsu-castro-valley-2"
+										target="_blank"
+										rel="noopener noreferrer"
+									>
+										View on Yelp
+									</a>
+								</div>
+
+								<div class="restaurant-map-frame">
+									<iframe
+										title="Yumee Katsu Castro Valley Map"
+										loading="lazy"
+										referrerpolicy="no-referrer-when-downgrade"
+										src="https://www.google.com/maps?q=Yumee%20Katsu%20Castro%20Valley%20CA&z=15&output=embed">
+									</iframe>
+								</div>
+							</div>
+						</div>
+
+						<div class="restaurant-summary-box">
+							<h2>Quick Summary</h2>
+							<p>
+								Yumee Katsu in Castro Valley is one of the better katsu restaurants I have tried in the area, and it feels very similar in quality to their Dublin location. We went on a Saturday afternoon around 11:30 a.m., just a few minutes after opening, and there was no wait when we arrived even though it became busier afterward.
+							</p>
+							<p>
+								The service was one of the best parts of the visit. They explained the menu on the tablet, gave recommendations, and made the ordering process feel easy and user friendly. Between the comfortable decor, strong food quality, and family-friendly atmosphere, this is a place I would gladly come back to.
+							</p>
+						</div>
+
+						<div class="gallery-shell">
+							<h2>Gallery</h2>
+							<div class="gallery-scroll-wrap">
+								<div class="gallery-scroll" id="galleryScroll">
+									<figure class="gallery-card">
+										<img src="photos/YumeeKatsu-Infographic.png" alt="Yumee Katsu infographic review in Castro Valley, California" />
+										<figcaption class="gallery-card-caption">
+											<strong>Infographic</strong><br />
+											The visual restaurant review created for Yumee Katsu.
+										</figcaption>
+									</figure>
+									<figure class="gallery-card">
+										<img src="photos/YumeeKatsu.jpg" alt="Yumee Katsu in Castro Valley, California" />
+										<figcaption class="gallery-card-caption">
+											<strong>Restaurant Visit</strong><br />
+											My photo from Yumee Katsu in Castro Valley.
+										</figcaption>
+									</figure>
+								</div>
+							</div>
+						</div>
+
+						<div class="restaurant-review-grid" id="reviewGrid">
+
+							<article class="scorecard" data-score="9">
+								<div class="scorecard-header">
+									<h4>Ambience</h4>
+									<span class="score-badge">9.0 / 10</span>
+								</div>
+
+								<div class="review-points">
+									<div class="review-point positive">
+										Nice Japanese decor and a comfortable space to sit in
+									</div>
+									<div class="review-point positive">
+										Great place to bring family and it feels kid-friendly
+									</div>
+									<div class="review-point neutral">
+										Not too loud even during a weekend lunch visit
+									</div>
+								</div>
+
+								<p>
+									This was a great dining environment for me. The space felt polished, comfortable, and easy to enjoy with family or a small group.
+								</p>
+							</article>
+
+							<article class="scorecard" data-score="9">
+								<div class="scorecard-header">
+									<h4>Food Quality</h4>
+									<span class="score-badge">9.0 / 10</span>
+								</div>
+
+								<div class="review-points">
+									<div class="review-point positive">
+										The katsu was well breaded without being overly heavy
+									</div>
+									<div class="review-point positive">
+										The curry udon katsu was very filling and delicious
+									</div>
+									<div class="review-point positive">
+										The cold soba was crisp and one of the better sobas I have had in the Bay Area
+									</div>
+									<div class="review-point neutral">
+										I only wished there was a little more curry included
+									</div>
+								</div>
+
+								<p>
+									The food quality was excellent overall. The portions were filling, the flavor was strong, and there was nothing negative to say about the meal itself.
+								</p>
+							</article>
+
+							<article class="scorecard" data-score="9">
+								<div class="scorecard-header">
+									<h4>Service Quality</h4>
+									<span class="score-badge">9.0 / 10</span>
+								</div>
+
+								<div class="review-points">
+									<div class="review-point positive">
+										Staff explained the tablet menu and gave recommendations
+									</div>
+									<div class="review-point positive">
+										Servers were very prompt with requests and water
+									</div>
+									<div class="review-point positive">
+										The restaurant process felt very user friendly
+									</div>
+								</div>
+
+								<p>
+									The service felt smooth from beginning to end. It was attentive, welcoming, and easy to follow even on a busier weekend lunch.
+								</p>
+							</article>
+
+							<article class="scorecard" data-score="8">
+								<div class="scorecard-header">
+									<h4>Menu</h4>
+									<span class="score-badge">8.0 / 10</span>
+								</div>
+
+								<div class="review-points">
+									<div class="review-point positive">
+										Strong core dishes like chicken katsu cutlet, curry udon katsu, cold soba, and rose tobokki cutlet
+									</div>
+									<div class="review-point neutral">
+										It feels like they are still building the menu out
+									</div>
+									<div class="review-point negative">
+										I wish there were more combos or lunch menu options for value and flexibility
+									</div>
+								</div>
+
+								<p>
+									The menu is already solid, but I think it still has room to grow in ways that would make repeat visits even more appealing.
+								</p>
+							</article>
+
+							<article class="scorecard" data-score="6">
+								<div class="scorecard-header">
+									<h4>Parking</h4>
+									<span class="score-badge">6.0 / 10</span>
+								</div>
+
+								<div class="review-points">
+									<div class="review-point positive">
+										There was plenty of parking when we arrived shortly after opening
+									</div>
+									<div class="review-point negative">
+										The plaza is busy and fills up very easily
+									</div>
+									<div class="review-point negative">
+										If you cannot find parking, the next plaza is about a 10-minute walk away
+									</div>
+								</div>
+
+								<p>
+									Parking is the weakest part of the experience. It is fine if you arrive early, but it can become inconvenient once the plaza fills up.
+								</p>
+							</article>
+
+						</div>
+
+						<div class="restaurant-panel">
+							<h2>Final Verdict</h2>
+							<p>
+								Yumee Katsu is one of the better katsu restaurants I have tried in the Bay Area, and the Castro Valley location delivered the same kind of quality I remembered from Dublin. The food quality, service, and overall atmosphere all stood out in a very positive way.
+							</p>
+							<p>
+								I would especially recommend the curry udon katsu, the cold soba on a hot day, and the rose tobokki cutlet if you like spicy food. The biggest drawback is really just the parking situation once the plaza gets busy.
+							</p>
+						</div>
+
+						<div class="restaurant-panel">
+							<h2>Disclaimer</h2>
+
+							<p>
+								This review is built around five core categories: Ambience, Food Quality, Service Quality, Menu, and Parking. Each category represents a distinct part of the dining experience and is evaluated independently to provide a more balanced and transparent assessment.
+							</p>
+
+							<p>
+								<strong>Ambience</strong> reflects how comfortable and functional the environment is. This includes noise level, seating availability, layout, and how easy it is to spend time in the space. A good environment should support the purpose of the visit, whether that is studying, socializing, or relaxing.
+							</p>
+
+							<p>
+								<strong>Food Quality</strong> focuses on taste, consistency, and overall execution. This is the core of the experience, but it is evaluated alongside expectations for the type of establishment rather than against fine dining standards.
+							</p>
+
+							<p>
+								<strong>Service Quality</strong> evaluates efficiency, clarity, and interaction. This includes how well staff communicate, provide recommendations, and manage busy periods. Service does not need to be overly attentive, but it should support the customer experience.
+							</p>
+
+							<p>
+								<strong>Menu</strong> represents variety, clarity, and accessibility. A strong menu should offer enough options to accommodate different preferences while still being easy to understand and navigate without relying heavily on staff guidance.
+							</p>
+
+							<p>
+								<strong>Parking</strong> considers accessibility and convenience. While it is not directly tied to the food itself, it significantly impacts the overall experience, especially for locations with high traffic or limited surrounding infrastructure.
+							</p>
+
+							<p>
+								These five categories are selected because together they represent both the core product and the surrounding experience. The final rating is calculated as an average of all five scores, allowing each category to contribute equally to the overall evaluation.
+							</p>
+						</div>
+
+						<div class="blog-post-nav-luxe">
+							<a href="../blog.html" class="button">Back to Blog</a>
+							<a href="../blog-restaurant.html" class="button">More in Restaurant</a>
+						</div>
+
+					</section>
+
+				</div>
+			</div>
+
+			<div id="sidebar">
+				<div class="inner">
+
+					<section id="search" class="alt">
+						<form method="post" action="#">
+							<input type="text" name="query" id="query" placeholder="Search" />
+						</form>
+					</section>
+
+					<nav id="menu">
+						<header class="major">
+							<h2>Menu</h2>
+						</header>
+						<ul>
+							<li><a href="../index.html">Homepage</a></li>
+							<li><a href="../projects.html">Project Showcase</a></li>
+							<li>
+								<span class="opener">Blog</span>
+								<ul>
+									<li><a href="../blog.html">Blog Homepage</a></li>
+									<li><a href="../blog-technology.html">Blog - Technology</a></li>
+									<li><a href="../blog-healthcare.html">Blog - Healthcare</a></li>
+									<li><a href="../blog-restaurant.html">Blog - Restaurant</a></li>
+									<li><a href="../blog-hobbies.html">Blog - Hobbies</a></li>
+								</ul>
+							</li>
+							<li><a href="../contact-form.html">Contact Me</a></li>
+						</ul>
+					</nav>
+
+					<footer id="footer">
+						<p class="copyright">&copy; 2026 Christopher Leung. All rights reserved.</p>
+					</footer>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="gallery-lightbox" id="galleryLightbox" aria-hidden="true">
+			<div class="gallery-lightbox-inner">
+				<button class="gallery-lightbox-close" id="lightboxClose" aria-label="Close image viewer">&times;</button>
+				<img class="gallery-lightbox-img" id="lightboxImg" src="" alt="" />
+				<div class="gallery-lightbox-caption" id="lightboxCaption"></div>
+			</div>
+		</div>
+
+		<script src="../assets/js/jquery.min.js"></script>
+		<script src="../assets/js/browser.min.js"></script>
+		<script src="../assets/js/breakpoints.min.js"></script>
+		<script src="../assets/js/util.js"></script>
+		<script src="../assets/js/main.js"></script>
+
+		<script>
+			document.addEventListener("DOMContentLoaded", () => {
+				const cards = Array.from(document.querySelectorAll(".scorecard"));
+				const overallScoreEl = document.getElementById("overallScore");
+				const overallStarsEl = document.getElementById("overallStars");
+				const gallery = document.getElementById("galleryScroll");
+				const lightbox = document.getElementById("galleryLightbox");
+				const lightboxImg = document.getElementById("lightboxImg");
+				const lightboxCaption = document.getElementById("lightboxCaption");
+				const lightboxClose = document.getElementById("lightboxClose");
+				const galleryImages = Array.from(document.querySelectorAll(".gallery-card img"));
+				const returnScore = document.querySelector(".return-score");
+
+				if (cards.length && overallScoreEl && overallStarsEl) {
+					const scores = cards.map(card => parseFloat(card.dataset.score) || 0);
+					const total = scores.reduce((sum, value) => sum + value, 0);
+					const average = total / cards.length;
+
+					overallScoreEl.textContent = `${average.toFixed(1)}/10`;
+
+					const stars = Array.from(overallStarsEl.querySelectorAll(".star"));
+					const filledStars = Math.round(average / 2);
+
+					stars.forEach((star, index) => {
+						if (index < filledStars) {
+							star.classList.add("filled");
+						} else {
+							star.classList.remove("filled");
+						}
+					});
+				}
+
+				if (gallery) {
+					let isDown = false;
+					let startX;
+					let scrollLeft;
+
+					gallery.addEventListener("mousedown", (e) => {
+						isDown = true;
+						gallery.classList.add("dragging");
+						startX = e.pageX - gallery.offsetLeft;
+						scrollLeft = gallery.scrollLeft;
+					});
+
+					gallery.addEventListener("mouseleave", () => {
+						isDown = false;
+						gallery.classList.remove("dragging");
+					});
+
+					gallery.addEventListener("mouseup", () => {
+						isDown = false;
+						gallery.classList.remove("dragging");
+					});
+
+					gallery.addEventListener("mousemove", (e) => {
+						if (!isDown) return;
+						e.preventDefault();
+						const x = e.pageX - gallery.offsetLeft;
+						const walk = (x - startX) * 1.2;
+						gallery.scrollLeft = scrollLeft - walk;
+					});
+				}
+
+				function openLightbox(img) {
+					const caption = img.closest(".gallery-card")?.querySelector(".gallery-card-caption");
+					lightboxImg.src = img.src;
+					lightboxImg.alt = img.alt || "";
+					lightboxCaption.innerHTML = caption ? caption.innerHTML : "";
+					lightbox.classList.add("active");
+					lightbox.setAttribute("aria-hidden", "false");
+					document.body.style.overflow = "hidden";
+				}
+
+				function closeLightbox() {
+					lightbox.classList.remove("active");
+					lightbox.setAttribute("aria-hidden", "true");
+					lightboxImg.src = "";
+					lightboxCaption.innerHTML = "";
+					document.body.style.overflow = "";
+				}
+
+				galleryImages.forEach((img) => {
+					img.addEventListener("click", () => openLightbox(img));
+				});
+
+				if (lightboxClose) {
+					lightboxClose.addEventListener("click", closeLightbox);
+				}
+
+				if (lightbox) {
+					lightbox.addEventListener("click", (e) => {
+						if (e.target === lightbox) {
+							closeLightbox();
+						}
+					});
+				}
+
+				document.addEventListener("keydown", (e) => {
+					if (e.key === "Escape" && lightbox.classList.contains("active")) {
+						closeLightbox();
+					}
+				});
+
+				if (returnScore) {
+					const selectedValue = parseInt(returnScore.dataset.returnScore, 10);
+					const options = returnScore.querySelectorAll(".return-option");
+
+					options.forEach((option) => {
+						const value = parseInt(option.dataset.value, 10);
+
+						if (value === selectedValue) {
+							option.classList.add("active");
+						} else {
+							option.classList.remove("active");
+						}
+					});
+				}
+			});
+		</script>
+	</body>
+</html>
