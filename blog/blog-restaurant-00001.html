@@ -7,6 +7,59 @@
 		<link rel="stylesheet" href="../assets/css/main.css" />
 
 		<style>
+					.return-score {
+					display: grid;
+					grid-template-columns: repeat(3, minmax(0, 1fr));
+					gap: 1em;
+					margin-top: 1em;
+				}
+				
+				.return-option {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+					gap: 0.45em;
+					padding: 1.1em 0.9em;
+					border-radius: 1em;
+					background: rgba(255,255,255,0.72);
+					border: 1px solid rgba(74,111,134,0.12);
+					box-shadow:
+						0 10px 22px rgba(60,80,100,0.05),
+						inset 0 1px 0 rgba(255,255,255,0.4);
+					opacity: 0.45;
+					transform: scale(0.98);
+					transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+				}
+				
+				.return-option.active {
+					opacity: 1;
+					transform: scale(1);
+					border-color: rgba(74,111,134,0.26);
+					box-shadow:
+						0 14px 28px rgba(60,80,100,0.09),
+						inset 0 1px 0 rgba(255,255,255,0.5);
+				}
+				
+				.return-emoji {
+					font-size: 2rem;
+					line-height: 1;
+				}
+				
+				.return-label {
+					font-size: 0.9rem;
+					font-weight: 700;
+					letter-spacing: 0.04em;
+					text-transform: uppercase;
+					color: #51616d;
+				}
+				
+				@media screen and (max-width: 736px) {
+					.return-score {
+						grid-template-columns: 1fr;
+					}
+				}
+			
 			.restaurant-panel > :first-child {
 					margin-top: 0;
 				}
@@ -396,10 +449,24 @@
 										<span class="restaurant-score-label">Overall Rating</span>
 									</div>
 								</div>
-
-								<p class="restaurant-score-note">
-									Calculated automatically from five scored categories.
-								</p>
+								<p><strong>Would I come back?</strong></p>
+												<div class="return-score" data-return-score="3" aria-label="Would I come again rating">
+										<div class="return-option" data-value="1">
+											<span class="return-emoji" aria-hidden="true">😕</span>
+											<span class="return-label">No</span>
+										</div>
+								
+										<div class="return-option" data-value="2">
+											<span class="return-emoji" aria-hidden="true">🙂</span>
+											<span class="return-label">Maybe</span>
+										</div>
+								
+										<div class="return-option" data-value="3">
+											<span class="return-emoji" aria-hidden="true">😄</span>
+											<span class="return-label">Yes</span>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</section>
@@ -493,7 +560,22 @@
 								The drinks and desserts are good overall, with a few personal preference notes around sweetness and texture. Service is efficient, especially when it is busy, but it feels less guided if you are hoping for suggestions or a warmer recommendation experience.
 							</p>
 						</div>
-
+						
+						<div class="gallery-shell">
+							<h2>Gallery</h2>
+							<div class="gallery-scroll-wrap">
+								<div class="gallery-scroll" id="galleryScroll">
+									<figure class="gallery-card">
+										<img src="photos/MokaAndCo.jpg" alt="Infographic of CQ Taste" />
+										<figcaption class="gallery-card-caption">
+											<strong>Infographic</strong><br />
+											Check this out! I made this.
+										</figcaption>
+									</figure>
+								</div>
+							</div>
+						</div>
+						
 						<div class="restaurant-review-grid" id="reviewGrid">
 
 							<article class="scorecard" data-score="8">
@@ -710,37 +792,137 @@
                     </div>
 		</div>
 
-		<script src="../assets/js/jquery.min.js"></script>
-		<script src="../assets/js/browser.min.js"></script>
-		<script src="../assets/js/breakpoints.min.js"></script>
-		<script src="../assets/js/util.js"></script>
-		<script src="../assets/js/main.js"></script>
+		<div class="gallery-lightbox" id="galleryLightbox" aria-hidden="true">
+			<div class="gallery-lightbox-inner">
+				<button class="gallery-lightbox-close" id="lightboxClose" aria-label="Close image viewer">&times;</button>
+				<img class="gallery-lightbox-img" id="lightboxImg" src="" alt="" />
+				<div class="gallery-lightbox-caption" id="lightboxCaption"></div>
+			</div>
+		</div>
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/browser.min.js"></script>
+<script src="../assets/js/breakpoints.min.js"></script>
+<script src="../assets/js/util.js"></script>
+<script src="../assets/js/main.js"></script>
 
-		<script>
-			document.addEventListener("DOMContentLoaded", () => {
-				const cards = Array.from(document.querySelectorAll(".scorecard"));
-				const overallScoreEl = document.getElementById("overallScore");
-				const overallStarsEl = document.getElementById("overallStars");
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+		const cards = Array.from(document.querySelectorAll(".scorecard"));
+		const overallScoreEl = document.getElementById("overallScore");
+		const overallStarsEl = document.getElementById("overallStars");
+		const gallery = document.getElementById("galleryScroll");
+		const lightbox = document.getElementById("galleryLightbox");
+		const lightboxImg = document.getElementById("lightboxImg");
+		const lightboxCaption = document.getElementById("lightboxCaption");
+		const lightboxClose = document.getElementById("lightboxClose");
+		const galleryImages = Array.from(document.querySelectorAll(".gallery-card img"));
+		const returnScore = document.querySelector(".return-score");
 
-				if (!cards.length || !overallScoreEl || !overallStarsEl) return;
+		if (cards.length && overallScoreEl && overallStarsEl) {
+			const scores = cards.map(card => parseFloat(card.dataset.score) || 0);
+			const total = scores.reduce((sum, value) => sum + value, 0);
+			const average = total / cards.length;
 
-				const scores = cards.map(card => parseFloat(card.dataset.score) || 0);
-				const total = scores.reduce((sum, value) => sum + value, 0);
-				const average = total / cards.length;
+			overallScoreEl.textContent = `${average.toFixed(1)}/10`;
 
-				overallScoreEl.textContent = `${average.toFixed(1)}/10`;
+			const stars = Array.from(overallStarsEl.querySelectorAll(".star"));
+			const filledStars = Math.round(average / 2);
 
-				const stars = Array.from(overallStarsEl.querySelectorAll(".star"));
-				const filledStars = Math.round(average / 2);
-
-				stars.forEach((star, index) => {
-					if (index < filledStars) {
-						star.classList.add("filled");
-					} else {
-						star.classList.remove("filled");
-					}
-				});
+			stars.forEach((star, index) => {
+				if (index < filledStars) {
+					star.classList.add("filled");
+				} else {
+					star.classList.remove("filled");
+				}
 			});
-		</script>
+		}
+
+		if (gallery) {
+			let isDown = false;
+			let startX;
+			let scrollLeft;
+
+			gallery.addEventListener("mousedown", (e) => {
+				isDown = true;
+				gallery.classList.add("dragging");
+				startX = e.pageX - gallery.offsetLeft;
+				scrollLeft = gallery.scrollLeft;
+			});
+
+			gallery.addEventListener("mouseleave", () => {
+				isDown = false;
+				gallery.classList.remove("dragging");
+			});
+
+			gallery.addEventListener("mouseup", () => {
+				isDown = false;
+				gallery.classList.remove("dragging");
+			});
+
+			gallery.addEventListener("mousemove", (e) => {
+				if (!isDown) return;
+				e.preventDefault();
+				const x = e.pageX - gallery.offsetLeft;
+				const walk = (x - startX) * 1.2;
+				gallery.scrollLeft = scrollLeft - walk;
+			});
+		}
+
+		function openLightbox(img) {
+			const caption = img.closest(".gallery-card")?.querySelector(".gallery-card-caption");
+			lightboxImg.src = img.src;
+			lightboxImg.alt = img.alt || "";
+			lightboxCaption.innerHTML = caption ? caption.innerHTML : "";
+			lightbox.classList.add("active");
+			lightbox.setAttribute("aria-hidden", "false");
+			document.body.style.overflow = "hidden";
+		}
+
+		function closeLightbox() {
+			lightbox.classList.remove("active");
+			lightbox.setAttribute("aria-hidden", "true");
+			lightboxImg.src = "";
+			lightboxCaption.innerHTML = "";
+			document.body.style.overflow = "";
+		}
+
+		galleryImages.forEach((img) => {
+			img.addEventListener("click", () => openLightbox(img));
+		});
+
+		if (lightboxClose) {
+			lightboxClose.addEventListener("click", closeLightbox);
+		}
+
+		if (lightbox) {
+			lightbox.addEventListener("click", (e) => {
+				if (e.target === lightbox) {
+					closeLightbox();
+				}
+			});
+		}
+
+		document.addEventListener("keydown", (e) => {
+			if (e.key === "Escape" && lightbox.classList.contains("active")) {
+				closeLightbox();
+			}
+		});
+
+		if (returnScore) {
+			const selectedValue = parseInt(returnScore.dataset.returnScore, 10);
+			const options = returnScore.querySelectorAll(".return-option");
+
+			options.forEach((option) => {
+				const value = parseInt(option.dataset.value, 10);
+
+				if (value === selectedValue) {
+					option.classList.add("active");
+				} else {
+					option.classList.remove("active");
+				}
+			});
+		}
+	});
+</script>
 </body>
 </html>
