@@ -852,6 +852,538 @@ genetec["System"] = "Genetec"</code></pre>
 </section>
 
 
+<section class="audit-section reveal-on-scroll" id="tableau-process">
+	<div class="audit-section-title">
+		<p class="label">Tableau Build</p>
+		<h2>How I built the Tableau dashboard and logic</h2>
+	</div>
+
+	<div class="audit-timeline">
+
+		<div class="timeline-step">
+			<div class="timeline-number">1</div>
+			<div class="timeline-body">
+				<h3>Connected to the cleaned dataset</h3>
+				<p>
+					I connected Tableau to the cleaned Excel workbook and used the merged audit tab as the primary data source. This dataset already contained normalized failure types and a consistent structure across CCure and Genetec.
+				</p>
+				<p>
+					This ensured that Tableau did not need to perform any additional data reshaping and could focus only on analysis and visualization.
+				</p>
+			</div>
+		</div>
+
+		<div class="timeline-step">
+			<div class="timeline-number">2</div>
+			<div class="timeline-body">
+				<h3>Validated the device count</h3>
+				<p>
+					The first validation step was confirming that Tableau recognized <strong>130 unique devices</strong>. Since devices could appear multiple times after unpivoting failure reasons, I avoided using simple row counts.
+				</p>
+
+				<pre class="audit-code"><code>COUNTD([Device Reference Number])</code></pre>
+
+				<p>
+					<strong>Why this mattered:</strong> This became the foundation for all device-level metrics and ensured that the dashboard was not inflated by duplicate rows.
+				</p>
+			</div>
+		</div>
+
+		<div class="timeline-step">
+			<div class="timeline-number">3</div>
+			<div class="timeline-body">
+				<h3>Created device-level health classification (LOD expression)</h3>
+				<p>
+					Because each device could have multiple rows (one per failure type), I needed a way to evaluate the device as a whole. I used a Level of Detail (LOD) expression to determine whether each device had any failure.
+				</p>
+
+				<pre class="audit-code"><code>{ FIXED [Device Reference Number] :
+    IF MAX(
+        IF [Failure Type] = "No Reason for Failure"
+        THEN 0 ELSE 1 END
+    ) = 1
+    THEN "Failed"
+    ELSE "Healthy"
+END
+}</code></pre>
+
+				<p>
+					<strong>How this works:</strong>
+				</p>
+				<ul>
+					<li><code>FIXED [Device Reference Number]</code> ensures the calculation runs once per device</li>
+					<li><code>IF [Failure Type] = "No Reason for Failure"</code> identifies healthy rows</li>
+					<li><code>MAX()</code> checks if any row for that device contains a failure</li>
+					<li>If any failure exists → device is marked as <strong>Failed</strong></li>
+				</ul>
+
+				<p>
+					<strong>Why this mattered:</strong> This prevented a device with multiple issues from being counted multiple times in the pass/fail summary.
+				</p>
+			</div>
+		</div>
+
+		<div class="timeline-step">
+			<div class="timeline-number">4</div>
+			<div class="timeline-body">
+				<h3>Built KPI metrics</h3>
+				<p>
+					Using the LOD classification, I created KPI values for total devices, passed devices, failed devices, and percentages.
+				</p>
+
+				<pre class="audit-code"><code>COUNTD([Device Reference Number])</code></pre>
+
+				<pre class="audit-code"><code>COUNTD(
+IF [Device Status] = "Failed"
+THEN [Device Reference Number]
+END)</code></pre>
+
+				<p>
+					<strong>Why this mattered:</strong> These KPIs gave a high-level overview of system health before showing detailed breakdowns.
+				</p>
+			</div>
+		</div>
+
+		<div class="timeline-step">
+			<div class="timeline-number">5</div>
+			<div class="timeline-body">
+				<h3>Separated device counts from discrepancy counts</h3>
+				<p>
+					I intentionally separated device-level metrics from discrepancy-level metrics. Device counts use <code>COUNTD</code>, while discrepancies use row counts.
+				</p>
+
+				<pre class="audit-code"><code>COUNT([Failure Type])</code></pre>
+
+				<p>
+					<strong>Why this mattered:</strong> One device can have multiple issues, so discrepancy reporting needed to reflect total findings, not just affected devices.
+				</p>
+			</div>
+		</div>
+
+		<div class="timeline-step">
+			<div class="timeline-number">6</div>
+			<div class="timeline-body">
+				<h3>Built discrepancy breakdown chart</h3>
+				<p>
+					I created a bar chart using <strong>Failure Type</strong> as the dimension and issue counts as the measure, with <strong>System</strong> as the color grouping.
+				</p>
+
+				<p>
+					This showed:
+				</p>
+				<ul>
+					<li>Which failure types occurred most often</li>
+					<li>Whether those failures came from CCure or Genetec</li>
+				</ul>
+
+				<p>
+					<strong>Why this mattered:</strong> It provided insight into what types of issues were driving the audit results.
+				</p>
+			</div>
+		</div>
+
+		<div class="timeline-step">
+			<div class="timeline-number">7</div>
+			<div class="timeline-body">
+				<h3>Created compliance logic using conditional calculations</h3>
+				<p>
+					For each compliance category, I created calculated fields that flagged whether a device had a specific type of issue.
+				</p>
+
+				<pre class="audit-code"><code>IF CONTAINS([Failure Type], "Configured Incorrectly")
+THEN "Fail"
+ELSE "Pass"
+END</code></pre>
+
+				<p>
+					I repeated this pattern for:
+				</p>
+				<ul>
+					<li>Configuration compliance</li>
+					<li>Naming convention compliance</li>
+					<li>Device standard compliance</li>
+					<li>IP address compliance</li>
+					<li>Firmware compliance</li>
+				</ul>
+
+				<p>
+					<strong>Why this mattered:</strong> Each compliance chart answered one of the audit questions directly.
+				</p>
+			</div>
+		</div>
+
+		<div class="timeline-step">
+			<div class="timeline-number">8</div>
+			<div class="timeline-body">
+				<h3>Built system comparison views</h3>
+				<p>
+					I used the <strong>System</strong> field (CCure vs Genetec) in every major chart. This allowed me to compare performance across both systems instead of treating the data as a single group.
+				</p>
+
+				<p>
+					<strong>Why this mattered:</strong> It showed whether issues were isolated to one platform or shared across both.
+				</p>
+			</div>
+		</div>
+
+		<div class="timeline-step">
+			<div class="timeline-number">9</div>
+			<div class="timeline-body">
+				<h3>Designed the dashboard layout</h3>
+				<p>
+					I structured the dashboard in layers:
+				</p>
+
+				<ul>
+					<li>KPI summary (top)</li>
+					<li>System distribution</li>
+					<li>Discrepancy breakdown</li>
+					<li>Compliance checks</li>
+				</ul>
+
+				<p>
+					<strong>Why this mattered:</strong> This layout allows the viewer to understand the overall health first, then drill into specific issues.
+				</p>
+			</div>
+		</div>
+
+		<div class="timeline-step">
+			<div class="timeline-number">10</div>
+			<div class="timeline-body">
+				<h3>Final formatting and validation</h3>
+				<p>
+					I applied consistent colors across the dashboard:
+				</p>
+				<ul>
+					<li>Green = Pass</li>
+					<li>Red = Fail</li>
+					<li>Distinct colors for CCure and Genetec</li>
+				</ul>
+
+				<p>
+					I also verified that:
+				</p>
+				<ul>
+					<li>Device counts always totaled 130</li>
+					<li>Discrepancy counts reflected issue rows</li>
+					<li>All visuals aligned with the audit questions</li>
+				</ul>
+
+				<p>
+					<strong>Why this mattered:</strong> Formatting improved readability, while validation ensured the dashboard was accurate.
+				</p>
+			</div>
+		</div>
+
+	</div>
+</section>
+
+
+<section class="audit-section reveal-on-scroll" id="powerbi-process">
+	<div class="audit-section-title">
+		<p class="label">Power BI Build</p>
+		<h2>How I built the Power BI dashboard and measures</h2>
+	</div>
+
+	<div class="audit-timeline">
+
+		<div class="timeline-step">
+			<div class="timeline-number">1</div>
+			<div class="timeline-body">
+				<h3>Loaded the merged audit workbook</h3>
+				<p>
+					I imported the cleaned Excel workbook into Power BI and used the merged audit table as the main dataset. I renamed the table to <strong>DeviceAudit</strong> so the DAX measures were easier to read, reuse, and troubleshoot.
+				</p>
+				<p>
+					This helped keep the Power BI model organized because all dashboard measures referenced one main audit table.
+				</p>
+			</div>
+		</div>
+
+		<div class="timeline-step">
+			<div class="timeline-number">2</div>
+			<div class="timeline-body">
+				<h3>Validated the imported data</h3>
+				<p>
+					Before creating visuals, I checked that Power BI was reading the dataset correctly. One issue I ran into was that the header row was briefly counted as a device, which caused the total device count to show <strong>131</strong> instead of <strong>130</strong>.
+				</p>
+				<p>
+					I corrected this in Power Query by confirming the first row was promoted as headers and then verified that the final unique device count matched the expected 130 devices.
+				</p>
+			</div>
+		</div>
+
+		<div class="timeline-step">
+			<div class="timeline-number">3</div>
+			<div class="timeline-body">
+				<h3>Created the Total Devices measure</h3>
+				<p>
+					The first measure I created was <strong>Total Devices</strong>. This measure counts unique device reference numbers instead of counting rows.
+				</p>
+				<p>
+					This was important because after splitting and unpivoting the failure reasons, a single unhealthy device could appear on multiple rows. A normal row count would overstate the number of devices.
+				</p>
+
+				<pre class="audit-code"><code>Total Devices =
+DISTINCTCOUNT(DeviceAudit[Device Reference Number])</code></pre>
+
+				<p>
+					<strong>Why this measure mattered:</strong> It became the denominator for the pass rate, fail rate, and compliance calculations. It also acted as a validation check to make sure all dashboard sections still tied back to 130 unique devices.
+				</p>
+			</div>
+		</div>
+
+		<div class="timeline-step">
+			<div class="timeline-number">4</div>
+			<div class="timeline-body">
+				<h3>Created Failed Devices and Passed Devices</h3>
+				<p>
+					Next, I created measures to separate devices that had at least one issue from devices that had no reason for failure.
+				</p>
+				<p>
+					The <strong>Failed Devices</strong> measure counts unique devices where the Failure Type is not equal to <strong>No Reason for Failure</strong>.
+				</p>
+
+				<pre class="audit-code"><code>Failed Devices =
+CALCULATE(
+    DISTINCTCOUNT(DeviceAudit[Device Reference Number]),
+    DeviceAudit[Failure Type] &lt;&gt; "No Reason for Failure"
+)</code></pre>
+
+				<p>
+					Then I calculated passed devices by subtracting failed devices from total devices.
+				</p>
+
+				<pre class="audit-code"><code>Passed Devices =
+[Total Devices] - [Failed Devices]</code></pre>
+
+				<p>
+					<strong>Why this measure mattered:</strong> It created the main health split for the dashboard. Instead of manually filtering healthy and unhealthy devices, Power BI could calculate the counts dynamically based on the current filter context.
+				</p>
+			</div>
+		</div>
+
+		<div class="timeline-step">
+			<div class="timeline-number">5</div>
+			<div class="timeline-body">
+				<h3>Created % Pass and % Fail</h3>
+				<p>
+					After creating the pass and fail counts, I created percentage measures so the dashboard could show overall system health at a glance.
+				</p>
+
+				<pre class="audit-code"><code>% Pass =
+DIVIDE([Passed Devices], [Total Devices])
+
+% Fail =
+DIVIDE([Failed Devices], [Total Devices])</code></pre>
+
+				<p>
+					I used <code>DIVIDE()</code> instead of the normal division operator because it handles divide-by-zero situations more safely.
+				</p>
+
+				<p>
+					<strong>Why this measure mattered:</strong> Counts are useful, but percentages make the result easier to understand quickly. A viewer can immediately see the overall health ratio instead of calculating it mentally.
+				</p>
+			</div>
+		</div>
+
+		<div class="timeline-step">
+			<div class="timeline-number">6</div>
+			<div class="timeline-body">
+				<h3>Created Total Discrepancies</h3>
+				<p>
+					I created a separate measure for discrepancies because discrepancies are different from devices. A device can have more than one issue, so discrepancy reporting should count issue rows instead of unique devices.
+				</p>
+
+				<pre class="audit-code"><code>Total Discrepancies =
+CALCULATE(
+    COUNT(DeviceAudit[Failure Type]),
+    DeviceAudit[Failure Type] &lt;&gt; "No Reason for Failure"
+)</code></pre>
+
+				<p>
+					<strong>Why this measure mattered:</strong> This measure shows the total number of findings, not the number of impacted devices. That distinction helped separate system health from remediation workload.
+				</p>
+
+				<p>
+					For example, one device with three issues should count as one failed device but three discrepancies.
+				</p>
+			</div>
+		</div>
+
+		<div class="timeline-step">
+			<div class="timeline-number">7</div>
+			<div class="timeline-body">
+				<h3>Created Failure Count for the discrepancy chart</h3>
+				<p>
+					When I built the discrepancy breakdown chart, I needed a measure that counted failure rows by failure type while excluding healthy devices.
+				</p>
+
+				<pre class="audit-code"><code>Failure Count =
+CALCULATE(
+    COUNT(DeviceAudit[Failure Type]),
+    DeviceAudit[Failure Type] &lt;&gt; "No Reason for Failure"
+)</code></pre>
+
+				<p>
+					This measure was used in the bar chart with <strong>Failure Type</strong> as the axis and <strong>System</strong> as the legend.
+				</p>
+
+				<p>
+					<strong>Why this measure mattered:</strong> It allowed the dashboard to show which types of problems appeared most often and whether they were coming from CCure, Genetec, or both.
+				</p>
+			</div>
+		</div>
+
+		<div class="timeline-step">
+			<div class="timeline-number">8</div>
+			<div class="timeline-body">
+				<h3>Created device-level compliance measures</h3>
+				<p>
+					The compliance visuals required device-level logic. I could not simply count rows because one device might have multiple failure rows.
+				</p>
+				<p>
+					For each compliance category, I used DAX to check whether each unique device had at least one matching failure type. If it did, the device failed that category. If it did not, the device passed.
+				</p>
+
+				<pre class="audit-code"><code>Config Fail Devices =
+SUMX(
+    VALUES(DeviceAudit[Device Reference Number]),
+    VAR HasConfigIssue =
+        CALCULATE(
+            COUNTROWS(DeviceAudit),
+            KEEPFILTERS(
+                FILTER(
+                    DeviceAudit,
+                    CONTAINSSTRING(DeviceAudit[Failure Type], "Configured Incorrectly")
+                )
+            )
+        )
+    RETURN IF(HasConfigIssue &gt; 0, 1, 0)
+)</code></pre>
+
+				<p>
+					<strong>How this works:</strong>
+				</p>
+
+				<ul>
+					<li><code>VALUES(DeviceAudit[Device Reference Number])</code> creates a list of unique devices in the current filter context.</li>
+					<li><code>SUMX()</code> loops through each device one at a time.</li>
+					<li><code>FILTER()</code> searches that device's rows for the compliance issue.</li>
+					<li><code>CONTAINSSTRING()</code> checks whether the Failure Type contains the target issue text.</li>
+					<li><code>KEEPFILTERS()</code> preserves the current chart filters, such as CCure or Genetec.</li>
+					<li>If the device has at least one matching issue, the measure returns 1 for that device.</li>
+				</ul>
+
+				<p>
+					<strong>Why this measure mattered:</strong> It prevented overcounting and allowed each compliance chart to show accurate device-level pass/fail results.
+				</p>
+			</div>
+		</div>
+
+		<div class="timeline-step">
+			<div class="timeline-number">9</div>
+			<div class="timeline-body">
+				<h3>Created compliance pass measures</h3>
+				<p>
+					After calculating the number of devices that failed a specific compliance check, I created pass measures by subtracting the fail count from total devices.
+				</p>
+
+				<pre class="audit-code"><code>Config Pass Devices =
+[Total Devices] - [Config Fail Devices]</code></pre>
+
+				<p>
+					I reused this same pattern for the other compliance categories:
+				</p>
+
+				<ul>
+					<li><strong>Naming Compliance:</strong> checks for Programming Name issues</li>
+					<li><strong>Device Standard Compliance:</strong> checks for Out of Standard issues</li>
+					<li><strong>IP Compliance:</strong> checks for IPv4 issues</li>
+					<li><strong>Firmware Compliance:</strong> checks for Firmware issues</li>
+				</ul>
+
+				<p>
+					<strong>Why this measure mattered:</strong> It made each compliance visual easy to build. Each chart only needed the system field on the axis and the pass/fail measures as the values.
+				</p>
+			</div>
+		</div>
+
+		<div class="timeline-step">
+			<div class="timeline-number">10</div>
+			<div class="timeline-body">
+				<h3>Repeated the compliance pattern for each audit category</h3>
+				<p>
+					Once the configuration compliance measure worked, I reused the same pattern for the other categories by changing the search condition.
+				</p>
+
+				<pre class="audit-code"><code>-- Naming
+CONTAINSSTRING(DeviceAudit[Failure Type], "Programming Name")
+
+-- Device Standard
+DeviceAudit[Failure Type] = "Out of Standard"
+
+-- IP Address
+CONTAINSSTRING(DeviceAudit[Failure Type], "IPv4")
+
+-- Firmware
+CONTAINSSTRING(DeviceAudit[Failure Type], "Firmware")</code></pre>
+
+				<p>
+					<strong>Why this measure pattern mattered:</strong> Reusing the same structure made the report consistent. Every compliance chart followed the same logic, which made the results easier to validate and explain.
+				</p>
+			</div>
+		</div>
+
+		<div class="timeline-step">
+			<div class="timeline-number">11</div>
+			<div class="timeline-body">
+				<h3>Built the Power BI visuals</h3>
+				<p>
+					After creating the measures, I built the report layout using KPI cards, a system distribution chart, a discrepancy breakdown chart, and clustered column charts for compliance.
+				</p>
+
+				<ul>
+					<li><strong>KPI cards:</strong> Total Devices, % Pass, % Fail, and Total Discrepancies</li>
+					<li><strong>System distribution:</strong> total devices by CCure and Genetec</li>
+					<li><strong>Discrepancy breakdown:</strong> issue count by failure type and system</li>
+					<li><strong>Compliance charts:</strong> pass/fail device counts by system</li>
+				</ul>
+
+				<p>
+					<strong>Why this mattered:</strong> The visuals were designed to move from high-level health to detailed issue categories. This made the dashboard easier to read because the viewer could understand the summary first, then investigate the details.
+				</p>
+			</div>
+		</div>
+
+		<div class="timeline-step">
+			<div class="timeline-number">12</div>
+			<div class="timeline-body">
+				<h3>Formatted and validated the final dashboard</h3>
+				<p>
+					Finally, I formatted the visuals so the report was easier to scan. I used green for pass, red for fail, and separate system colors for CCure and Genetec.
+				</p>
+
+				<p>
+					I also validated that the device-level visuals tied back to 130 total devices, while discrepancy visuals correctly reflected issue counts instead of unique device counts.
+				</p>
+
+				<p>
+					<strong>Why this mattered:</strong> The final dashboard needed to be accurate and readable. Formatting helped with readability, but validation ensured the numbers were trustworthy.
+				</p>
+			</div>
+		</div>
+
+	</div>
+</section>
+
+
+
+
+
+
+
+
 <section class="audit-section">
 	<div class="audit-section-title">
 		<p class="label">Final Dashboards</p>
