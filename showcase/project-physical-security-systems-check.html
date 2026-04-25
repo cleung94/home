@@ -2227,90 +2227,113 @@ SUMX(
 	</div>
 </section>
 
+<section class="project-section project-footer-nav">
+	<a href="../projects.html" class="button">← Back to Projects</a>
+</section>
 
+</div>
+</div>
 
+<div id="sidebar">
+<div class="inner">
 
+<section id="search" class="alt">
+<form method="post" action="#">
+<input type="text" name="query" id="query" placeholder="Search" />
+</form>
+</section>
+
+<nav id="menu">
+<header class="major">
+<h2>Menu</h2>
+</header>
+<ul>
+<li><a href="../index.html">Homepage</a></li>
+<li><a href="../projects.html">Project Showcase</a></li>
+<li>
+<span class="opener">Blog</span>
+<ul>
+<li><a href="../blog.html">Blog Homepage</a></li>
+<li><a href="../blog-technology.html">Blog - Technology</a></li>
+<li><a href="../blog-healthcare.html">Blog - Healthcare</a></li>
+<li><a href="../blog-restaurant.html">Blog - Restaurant</a></li>
+<li><a href="../blog-hobbies.html">Blog - Hobbies</a></li>
+<li><a href="../blog-movies.html">Blog - Movies</a></li>
+</ul>
+</li>
+<li><a href="../contact-form.html">Contact Me</a></li>
+</ul>
+</nav>
+
+<footer id="footer">
+<p class="copyright">&copy; 2026 Christopher Leung. All rights reserved.</p>
+</footer>
 
 </div>
 </div>
 
-
-
-                <!-- Sidebar -->
-                    <div id="sidebar">
-                        <div class="inner">
-
-                            <!-- Search -->
-                                <section id="search" class="alt">
-                                    <form method="post" action="#">
-                                        <input type="text" name="query" id="query" placeholder="Search" />
-                                    </form>
-                                </section>
-
-                            <!-- Menu -->
-                                <nav id="menu">
-                                    <header class="major">
-                                        <h2>Menu</h2>
-                                    </header>
-                                    <ul>
-                                        <li><a href="../index.html">Homepage</a></li>
-                                        <li><a href="../projects.html">Project Showcase</a></li>
-                                        <li>
-                                            <span class="opener">Blog</span>
-                                            <ul>
-                                                <li><a href="../blog.html">Blog Homepage</a></li>
-                                                <li><a href="../blog-technology.html">Blog - Technology</a></li>
-                                                <li><a href="../blog-healthcare.html">Blog - Healthcare</a></li>
-                                                <li><a href="../blog-restaurant.html">Blog - Restaurant</a></li>
-                                                <li><a href="../blog-hobbies.html">Blog - Hobbies</a></li>
-                                                <li><a href="../blog-movies.html">Blog - Movies</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="../contact-form.html">Contact Me</a></li>
-                                    </ul>
-                                </nav>
-
-                            <!-- Footer -->
-                                <footer id="footer">
-                                    <p class="copyright">&copy; 2026 Christopher Leung. All rights reserved.</p>
-                                </footer>
-
-                        </div>
-                    </div>
-
 </div>
 
-<div class="lightbox" id="lightbox">
+<div id="imageLightbox" class="lightbox" aria-hidden="true">
 	<span class="lightbox-close" id="lightboxClose">&times;</span>
-	<img id="lightboxImg">
+	<img id="lightboxImage" alt="Expanded project preview" />
 </div>
 
 <script>
-const carousel = document.getElementById("auditCarousel");
+document.addEventListener('DOMContentLoaded', function () {
+	const carousel = document.getElementById('auditCarousel');
+	const previousButton = document.querySelector('[data-carousel-prev]');
+	const nextButton = document.querySelector('[data-carousel-next]');
 
-document.querySelector("[data-carousel-next]").onclick = () => {
-	carousel.scrollBy({ left: 600, behavior: "smooth" });
-};
+	if (carousel && previousButton) {
+		previousButton.addEventListener('click', function () {
+			carousel.scrollBy({ left: -600, behavior: 'smooth' });
+		});
+	}
 
-document.querySelector("[data-carousel-prev]").onclick = () => {
-	carousel.scrollBy({ left: -600, behavior: "smooth" });
-};
+	if (carousel && nextButton) {
+		nextButton.addEventListener('click', function () {
+			carousel.scrollBy({ left: 600, behavior: 'smooth' });
+		});
+	}
 
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightboxImg");
+	const previewImages = document.querySelectorAll('.clickable-preview');
+	const lightbox = document.getElementById('imageLightbox');
+	const lightboxImage = document.getElementById('lightboxImage');
+	const lightboxClose = document.getElementById('lightboxClose');
 
-document.querySelectorAll(".clickable-preview").forEach(img => {
-	img.onclick = () => {
-		lightbox.classList.add("active");
-		lightboxImg.src = img.src;
-	};
+	if (!previewImages.length || !lightbox || !lightboxImage || !lightboxClose) return;
+
+	previewImages.forEach(function (img) {
+		img.addEventListener('click', function () {
+			lightboxImage.src = img.src;
+			lightboxImage.alt = img.alt || 'Expanded project preview';
+			lightbox.classList.add('active');
+			lightbox.setAttribute('aria-hidden', 'false');
+			document.body.style.overflow = 'hidden';
+		});
+	});
+
+	function closeLightbox() {
+		lightbox.classList.remove('active');
+		lightbox.setAttribute('aria-hidden', 'true');
+		lightboxImage.src = '';
+		document.body.style.overflow = '';
+	}
+
+	lightboxClose.addEventListener('click', closeLightbox);
+
+	lightbox.addEventListener('click', function (e) {
+		if (e.target === lightbox) closeLightbox();
+	});
+
+	document.addEventListener('keydown', function (e) {
+		if (e.key === 'Escape') closeLightbox();
+	});
 });
-
-lightbox.onclick = () => {
-	lightbox.classList.remove("active");
-};
 </script>
-	<script src="../assets/js/jquery.min.js"></script>
+
+<script src="../assets/js/jquery.min.js"></script>
 <script src="../assets/js/browser.min.js"></script>
 <script src="../assets/js/breakpoints.min.js"></script>
 <script src="../assets/js/util.js"></script>
