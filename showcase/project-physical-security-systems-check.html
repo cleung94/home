@@ -685,12 +685,172 @@ Device A | Firmware Issue</code></pre>
 
 		</div>
 
-		<div class="carousel-controls">
-			<button class="carousel-btn" data-carousel-prev>← Previous</button>
-			<button class="carousel-btn" data-carousel-next>Next →</button>
+</section>
+<section class="audit-section reveal-on-scroll" id="python">
+	<div class="audit-section-title">
+		<p class="label">Automation</p>
+		<h2>Generating the audit workbook with Python</h2>
+	</div>
+
+	<div class="audit-grid-2">
+
+		<div class="audit-card">
+			<h3>Why I used Python for this step</h3>
+			<p>
+				Before building the Tableau and Power BI dashboards, I needed a repeatable way to create the audit workbook. The goal was not only to combine CCure and Genetec data, but to generate a structured Excel file that could support analysis, cleanup, and dashboard reporting.
+			</p>
+
+			<p>
+				Python helped automate the workbook creation process so I did not have to manually rebuild the same Excel structure every time the source data changed. This made the project more consistent and easier to reproduce.
+			</p>
 		</div>
+
+		<div class="audit-card">
+			<h3>What the Python script produced</h3>
+			<ul>
+				<li>A combined audit workbook containing both CCure and Genetec records</li>
+				<li>A merged tab used as the main dashboard dataset</li>
+				<li>Consistent column names across both systems</li>
+				<li>A clear <strong>System</strong> field to separate CCure from Genetec</li>
+				<li>A structured Excel output that could be cleaned further with Power Query</li>
+			</ul>
+		</div>
+
+	</div>
+
+	<div class="audit-card" style="margin-top: 1.5em;">
+		<h3>Python script</h3>
+
+		<pre class="audit-code"><code>import pandas as pd
+
+# Load the source system exports
+ccure = pd.read_excel("ccure_export.xlsx")
+genetec = pd.read_excel("genetec_export.xlsx")
+
+# Add a system identifier before combining the data
+ccure["System"] = "CCure"
+genetec["System"] = "Genetec"
+
+# Combine both systems into one audit dataset
+merged = pd.concat([ccure, genetec], ignore_index=True)
+
+# Keep only the fields needed for audit analysis
+merged = merged[[
+    "System",
+    "Site Code",
+    "Location",
+    "Device Type",
+    "Device Reference Number",
+    "Programming Name",
+    "Reason for Failure"
+]]
+
+# Make healthy devices explicit
+merged["Reason for Failure"] = merged["Reason for Failure"].fillna("No Reason for Failure")
+
+# Export the cleaned structure into an Excel workbook
+with pd.ExcelWriter("access_control_audit_results.xlsx", engine="openpyxl") as writer:
+    ccure.to_excel(writer, sheet_name="CCure Export", index=False)
+    genetec.to_excel(writer, sheet_name="Genetec Export", index=False)
+    merged.to_excel(writer, sheet_name="Merged", index=False)
+
+print("Audit workbook generated successfully.")</code></pre>
+	</div>
+
+	<div class="audit-grid-2" style="margin-top: 1.5em;">
+
+		<div class="audit-card">
+			<h3>Key point: adding the System field</h3>
+			<p>
+				Before combining the data, I added a <strong>System</strong> column to both exports. This was important because once the records were merged together, I still needed to know whether each device came from CCure or Genetec.
+			</p>
+
+			<p>
+				This decision allowed the dashboards to compare both systems side by side instead of treating all devices as one generic dataset.
+			</p>
+
+			<pre class="audit-code"><code>ccure["System"] = "CCure"
+genetec["System"] = "Genetec"</code></pre>
+		</div>
+
+		<div class="audit-card">
+			<h3>Key point: merging both exports</h3>
+			<p>
+				I used <code>pd.concat()</code> to stack the CCure and Genetec records into one merged dataset. This is similar to an append or union operation.
+			</p>
+
+			<p>
+				This was the correct approach because both systems represented device records. I did not want to join the tables side by side; I wanted one combined list of devices.
+			</p>
+
+			<pre class="audit-code"><code>merged = pd.concat([ccure, genetec], ignore_index=True)</code></pre>
+		</div>
+
+		<div class="audit-card">
+			<h3>Key point: selecting only useful audit fields</h3>
+			<p>
+				After merging the data, I narrowed the dataset to the columns needed for the audit. This helped remove unnecessary fields and kept the final workbook focused.
+			</p>
+
+			<p>
+				The selected fields supported the main dashboard questions: which system the device belonged to, where it was located, what type of device it was, how it was programmed, and why it failed.
+			</p>
+
+			<pre class="audit-code"><code>merged = merged[[
+    "System",
+    "Site Code",
+    "Location",
+    "Device Type",
+    "Device Reference Number",
+    "Programming Name",
+    "Reason for Failure"
+]]</code></pre>
+		</div>
+
+		<div class="audit-card">
+			<h3>Key point: making healthy devices explicit</h3>
+			<p>
+				Blank failure values can be confusing in analysis because they may look like missing data instead of healthy devices. To avoid that, I replaced blank failure reasons with <strong>No Reason for Failure</strong>.
+			</p>
+
+			<p>
+				This made it easier to separate healthy devices from failed devices later in Tableau and Power BI.
+			</p>
+
+			<pre class="audit-code"><code>merged["Reason for Failure"] =
+    merged["Reason for Failure"].fillna("No Reason for Failure")</code></pre>
+		</div>
+
+		<div class="audit-card">
+			<h3>Key point: exporting multiple workbook tabs</h3>
+			<p>
+				I kept the original CCure and Genetec exports as separate tabs while also creating a merged tab. This preserved the source data while giving the dashboards a clean combined dataset to use.
+			</p>
+
+			<p>
+				This structure made the workbook easier to review because the original system exports stayed available as reference tabs.
+			</p>
+
+			<pre class="audit-code"><code>with pd.ExcelWriter("access_control_audit_results.xlsx", engine="openpyxl") as writer:
+    ccure.to_excel(writer, sheet_name="CCure Export", index=False)
+    genetec.to_excel(writer, sheet_name="Genetec Export", index=False)
+    merged.to_excel(writer, sheet_name="Merged", index=False)</code></pre>
+		</div>
+
+		<div class="audit-card">
+			<h3>Why this mattered later</h3>
+			<p>
+				The Python-generated workbook became the foundation for the rest of the project. Once the merged tab existed, I could continue shaping the data with Power Query, split the failure reasons, unpivot the issue columns, and load the cleaned result into Tableau and Power BI.
+			</p>
+
+			<p>
+				This step made the workflow more reliable because the dashboard was not built from scattered files. It was built from a structured audit workbook.
+			</p>
+		</div>
+
 	</div>
 </section>
+
 
 <section class="audit-section">
 	<div class="audit-section-title">
