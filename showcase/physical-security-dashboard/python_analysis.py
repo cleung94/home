@@ -15,7 +15,7 @@ standards = pd.read_csv("device_standards.csv")
 # -------------------------------------------------------------------
 # Set a fixed project date so the standards check is reproducible.
 # -------------------------------------------------------------------
-today = pd.Timestamp("2026-04-15")
+today = pd.to_datetime("today").normalize()
 
 # -------------------------------------------------------------------
 # Build lookup dictionaries from the standards sheet.
