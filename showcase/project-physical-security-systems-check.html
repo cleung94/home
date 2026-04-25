@@ -1377,6 +1377,197 @@ CONTAINSSTRING(DeviceAudit[Failure Type], "Firmware")</code></pre>
 	</div>
 </section>
 
+<section class="audit-section reveal-on-scroll" id="tool-comparison">
+	<div class="audit-section-title">
+		<p class="label">Tool Comparison</p>
+		<h2>Comparing Tableau and Power BI for the same audit dataset</h2>
+	</div>
+
+	<div class="audit-grid-2">
+
+		<div class="audit-card">
+			<h3>Why I built the dashboard in both tools</h3>
+			<p>
+				I wanted to understand how the same cleaned dataset would behave in both Tableau and Power BI. Since the data questions were the same, the comparison helped me focus on how each tool handles calculations, layout, interactivity, and dashboard design.
+			</p>
+			<p>
+				Building both versions also helped me better understand the difference between Tableau’s visual-first workflow and Power BI’s measure-driven workflow.
+			</p>
+		</div>
+
+		<div class="audit-card">
+			<h3>Main difference I noticed</h3>
+			<p>
+				Tableau felt faster for visual exploration and layout testing. Power BI required more setup through DAX measures, but once the measures were created, the dashboard logic felt more reusable and structured.
+			</p>
+			<p>
+				The biggest difference was how each tool handled device-level logic. Tableau used LOD expressions, while Power BI used DAX measures with <code>SUMX</code>, <code>VALUES</code>, and filter context.
+			</p>
+		</div>
+
+	</div>
+
+	<div class="audit-card" style="margin-top: 1.5em;">
+		<h3>Side-by-side comparison</h3>
+
+		<div style="overflow-x: auto;">
+			<table>
+				<thead>
+					<tr>
+						<th>Area</th>
+						<th>Tableau</th>
+						<th>Power BI</th>
+						<th>What I learned</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><strong>Data preparation</strong></td>
+						<td>
+							Tableau worked well once the data was already cleaned, but it was not the best place for the split/unpivot transformation I needed.
+						</td>
+						<td>
+							Power BI also benefited from having the data cleaned before import, though Power Query gave me strong transformation options inside the Power BI workflow.
+						</td>
+						<td>
+							For this project, the best approach was to clean and reshape the data first, then use the BI tools for reporting.
+						</td>
+					</tr>
+
+					<tr>
+						<td><strong>Device-level logic</strong></td>
+						<td>
+							Tableau used FIXED LOD expressions to classify each device once, even if the device appeared on multiple failure rows.
+						</td>
+						<td>
+							Power BI used DAX measures with <code>SUMX</code>, <code>VALUES</code>, <code>FILTER</code>, and <code>KEEPFILTERS</code> to evaluate devices one by one.
+						</td>
+						<td>
+							Both tools can solve the same problem, but they require different ways of thinking about calculation context.
+						</td>
+					</tr>
+
+					<tr>
+						<td><strong>Discrepancy counts</strong></td>
+						<td>
+							Tableau made it easy to count failure rows for discrepancy reporting after the data was unpivoted.
+						</td>
+						<td>
+							Power BI required a separate failure count measure to avoid conflicts when using Failure Type on both the axis and values.
+						</td>
+						<td>
+							This reinforced the difference between counting affected devices and counting total findings.
+						</td>
+					</tr>
+
+					<tr>
+						<td><strong>Dashboard layout</strong></td>
+						<td>
+							Tableau allowed quick visual experimentation, but sizing and containers required extra adjustment.
+						</td>
+						<td>
+							Power BI felt more structured for KPI cards and grid-style dashboard layouts.
+						</td>
+						<td>
+							Tableau was helpful for exploration, while Power BI felt strong for standardized reporting.
+						</td>
+					</tr>
+
+					<tr>
+						<td><strong>Measure reuse</strong></td>
+						<td>
+							Tableau calculations worked well inside the workbook, especially for LOD-based views.
+						</td>
+						<td>
+							Power BI measures were reusable across multiple cards and visuals, which made the report easier to maintain.
+						</td>
+						<td>
+							Reusable measures helped keep the Power BI dashboard consistent.
+						</td>
+					</tr>
+
+					<tr>
+						<td><strong>Best use in this project</strong></td>
+						<td>
+							Best for exploring dashboard layout, comparing visual options, and building an operational review page.
+						</td>
+						<td>
+							Best for KPI cards, reusable compliance measures, and structured dashboard reporting.
+						</td>
+						<td>
+							Using both tools gave me a better understanding of how the same analysis can be communicated in different BI environments.
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="audit-grid-2" style="margin-top: 1.5em;">
+
+		<div class="audit-card">
+			<h3>Tableau calculation approach</h3>
+			<p>
+				In Tableau, the most important concept was using LOD expressions to control the level of detail. Since the dataset had multiple rows per device after unpivoting, I used a FIXED calculation to classify each device once.
+			</p>
+
+			<pre class="audit-code"><code>{ FIXED [Device Reference Number] :
+    IF MAX(
+        IF [Failure Type] = "No Reason for Failure"
+        THEN 0 ELSE 1 END
+    ) = 1
+    THEN "Failed"
+    ELSE "Healthy"
+END
+}</code></pre>
+
+			<p>
+				This made Tableau better at answering the question: <strong>Is this device healthy or failed?</strong>
+			</p>
+		</div>
+
+		<div class="audit-card">
+			<h3>Power BI calculation approach</h3>
+			<p>
+				In Power BI, the same device-level logic was handled through DAX. The measure loops through each unique device, checks whether the device has a matching failure type, and returns a pass/fail count.
+			</p>
+
+			<pre class="audit-code"><code>Config Fail Devices =
+SUMX(
+    VALUES(DeviceAudit[Device Reference Number]),
+    VAR HasConfigIssue =
+        CALCULATE(
+            COUNTROWS(DeviceAudit),
+            KEEPFILTERS(
+                FILTER(
+                    DeviceAudit,
+                    CONTAINSSTRING(DeviceAudit[Failure Type], "Configured Incorrectly")
+                )
+            )
+        )
+    RETURN IF(HasConfigIssue &gt; 0, 1, 0)
+)</code></pre>
+
+			<p>
+				This made Power BI better at creating reusable compliance measures across multiple visuals.
+			</p>
+		</div>
+
+	</div>
+
+	<div class="audit-card" style="margin-top: 1.5em;">
+		<h3>Final takeaway</h3>
+		<p>
+			The biggest lesson from building both versions was that dashboard accuracy depends on understanding the grain of the data. A row-level issue count and a device-level health count are not the same thing.
+		</p>
+		<p>
+			Tableau and Power BI both solved the problem, but each required a different approach. Tableau relied on LOD expressions, while Power BI relied on DAX measures and filter context. Building both versions helped me better understand how to translate the same business logic across different BI tools.
+		</p>
+	</div>
+</section>
+
+
+
 
 
 
