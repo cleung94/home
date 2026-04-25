@@ -376,6 +376,54 @@
 			margin: 0;
 		}
 
+		/* Prevent wide project content from pushing the sidebar out */
+		#main {
+			min-width: 0;
+		}
+
+		.audit-section,
+		.audit-card,
+		.timeline-body,
+		.embed-card,
+		.visual-carousel-wrap {
+			max-width: 100%;
+			min-width: 0;
+			box-sizing: border-box;
+		}
+
+		.audit-code {
+			max-width: 100%;
+			box-sizing: border-box;
+			white-space: pre;
+		}
+
+		.visual-carousel {
+			max-width: 100%;
+		}
+
+		.visual-slide {
+			flex: 0 0 min(760px, 100%);
+			min-width: 0;
+			box-sizing: border-box;
+		}
+
+		.embed-preview,
+		.visual-slide img {
+			max-width: 100%;
+		}
+
+		.audit-table-scroll,
+		.table-wrapper {
+			width: 100%;
+			max-width: 100%;
+			overflow-x: auto;
+		}
+
+		.audit-table-scroll table,
+		.table-wrapper table {
+			min-width: 760px;
+		}
+
 		@media screen and (max-width: 1280px) {
 			.metric-strip,
 			.audit-grid-3 {
@@ -1945,6 +1993,7 @@ CONTAINSSTRING(DeviceAudit[Failure Type], "Firmware")</code></pre>
 		<h3>Side-by-side comparison</h3>
 
 		<div style="overflow-x: auto;">
+				<div class="audit-table-scroll">
 			<table>
 				<thead>
 					<tr>
@@ -2034,6 +2083,7 @@ CONTAINSSTRING(DeviceAudit[Failure Type], "Firmware")</code></pre>
 					</tr>
 				</tbody>
 			</table>
+				</div>
 		</div>
 	</div>
 
@@ -2279,6 +2329,7 @@ SUMX(
 </div>
 
 </div>
+
 
 <div id="imageLightbox" class="lightbox" aria-hidden="true">
 	<span class="lightbox-close" id="lightboxClose">&times;</span>
