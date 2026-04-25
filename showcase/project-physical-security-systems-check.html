@@ -67,6 +67,89 @@
 			background: #3d5f73;
 		}
 
+		.audit-section-nav {
+			margin: 2em 0 0;
+			padding: 1.1em;
+			border-radius: 1.15em;
+			background: linear-gradient(
+				145deg,
+				rgba(255,255,255,0.88) 0%,
+				rgba(245,248,252,0.82) 50%,
+				rgba(232,238,245,0.78) 100%
+			);
+			border: 1px solid rgba(74,111,134,0.16);
+			box-shadow:
+				0 10px 24px rgba(60,80,100,0.06),
+				inset 0 1px 0 rgba(255,255,255,0.45);
+		}
+
+		.audit-section-nav .nav-label {
+			margin: 0 0 0.8em;
+			color: #7a8b97;
+			font-size: 0.76rem;
+			font-weight: 800;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+		}
+
+		.audit-section-links {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-wrap: wrap;
+			gap: 0.65em;
+		}
+
+		.audit-section-links a {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			min-height: 2.7em;
+			padding: 0 1em;
+			border-radius: 999px;
+			background: linear-gradient(145deg, #d9e4ec 0%, #b9cad7 100%);
+			border: 1px solid rgba(74, 111, 134, 0.22);
+			color: #23445a !important;
+			text-decoration: none;
+			font-size: 0.82rem;
+			font-weight: 700;
+			text-align: center;
+			box-shadow:
+				0 8px 18px rgba(44, 86, 111, 0.10),
+				inset 0 1px 0 rgba(255,255,255,0.65);
+			transition:
+				transform 0.2s ease,
+				box-shadow 0.2s ease,
+				background 0.2s ease,
+				color 0.2s ease,
+				border-color 0.2s ease;
+		}
+
+		.audit-section-links a:hover {
+			transform: translateY(-2px);
+			background: linear-gradient(145deg, #e4edf3 0%, #c7d6e1 100%);
+			border-color: rgba(44, 86, 111, 0.32);
+			color: #18384d !important;
+		}
+
+		.audit-section-links a.featured {
+			background: linear-gradient(145deg, #23445a 0%, #4a6f86 100%);
+			border-color: rgba(255,255,255,0.35);
+			color: #ffffff !important;
+			box-shadow:
+				0 10px 22px rgba(35, 68, 90, 0.22),
+				inset 0 1px 0 rgba(255,255,255,0.10);
+		}
+
+		html {
+			scroll-behavior: smooth;
+		}
+
+		.audit-section,
+		.audit-hero {
+			scroll-margin-top: 2em;
+		}
+
 		.audit-section {
 			margin: 3em 0;
 		}
@@ -543,9 +626,26 @@
 			<span class="metric-sub">Issue-level findings</span>
 		</div>
 	</div>
+
+	<nav class="audit-section-nav" aria-label="Project section navigation">
+		<p class="nav-label">Jump to Section</p>
+		<div class="audit-section-links">
+			<a href="#audit-questions" class="featured">Audit Questions</a>
+			<a href="#process">Process</a>
+			<a href="#challenges">Challenges</a>
+			<a href="#planning-visuals">Planning Visuals</a>
+			<a href="#python">Automation</a>
+			<a href="#tableau-process">Tableau</a>
+			<a href="#powerbi-process">Power BI</a>
+			<a href="#dashboards">Dashboards</a>
+			<a href="#project-files">Files</a>
+			<a href="#reflection">Reflection</a>
+		</div>
+	</nav>
+
 </section>
 
-<section class="audit-section">
+<section class="audit-section" id="audit-questions">
 	<div class="audit-section-title">
 		<p class="label">Audit Questions</p>
 		<h2>What I wanted the analysis to answer</h2>
@@ -572,7 +672,7 @@
 	</div>
 </section>
 
-<section class="audit-section">
+<section class="audit-section" id="process">
 	<div class="audit-section-title">
 		<p class="label">Process</p>
 		<h2>How I built the audit from raw exports to dashboards</h2>
@@ -666,7 +766,7 @@ Device A | Firmware Issue</code></pre>
 
 	</div>
 </section>
-<section class="audit-section">
+<section class="audit-section" id="challenges">
 	<div class="audit-section-title">
 		<p class="label">Challenges</p>
 		<h2>Pain points and how I solved them</h2>
@@ -717,7 +817,7 @@ Device A | Firmware Issue</code></pre>
 	</div>
 </section>
 
-<section class="audit-section">
+<section class="audit-section" id="planning-visuals">
 	<div class="audit-section-title">
 		<p class="label">Planning Visuals</p>
 		<h2>Mockups, diagrams, and analysis visuals</h2>
@@ -1932,7 +2032,7 @@ CONTAINSSTRING(DeviceAudit[Failure Type], "Firmware")</code></pre>
 </section>
 
 
-<section class="audit-section">
+<section class="audit-section" id="dashboards">
 	<div class="audit-section-title">
 		<p class="label">Final Dashboards</p>
 		<h2>Tableau and Power BI outputs</h2>
@@ -1965,7 +2065,7 @@ CONTAINSSTRING(DeviceAudit[Failure Type], "Firmware")</code></pre>
 	</div>
 </section>
 
-<section class="audit-section">
+<section class="audit-section" id="project-files">
 	<div class="audit-section-title">
 		<p class="label">Project Files</p>
 		<h2>Supporting materials</h2>
