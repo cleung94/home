@@ -1,4 +1,13 @@
 window.BLOG_POSTS = [
+{
+    title: "Understanding LOD and DAX",
+    slug: "blog/blog-tech-00003.html",
+    tag: "technology",
+    tagLabel: "Technology",
+    date: "April 2026",
+    image: "blog/photos/Meta-image.png",
+    excerpt: "What I learned about Tableau LOD expressions and Power BI DAX, and how they helped me understand data grain, device-level logic, and building accurate dashboards."
+  },
   {
     title: "What I Learned From Being Laid Off",
     slug: "blog/blog-tech-00001.html",
