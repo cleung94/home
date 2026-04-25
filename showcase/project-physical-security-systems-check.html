@@ -289,16 +289,26 @@
 		}
 
 		.carousel-btn {
-			border: 0;
+			display: inline-flex;              /* KEY FIX */
+			align-items: center;               /* vertical center */
+			justify-content: center;           /* horizontal center */
+		
+			padding: 0.6em 1.4em;
 			border-radius: 999px;
+		
 			background: #4a6f86;
-			color: #ffffff;
-			font-weight: 700;
-			padding: 0.55em 1em;
+			color: #FFFFFF !important;         /* FORCE white text */
+		
+			font-weight: 600;
+			font-size: 0.9em;
+			text-align: center;
+		
+			border: none;
 			cursor: pointer;
-			transition: transform 0.2s ease, background 0.2s ease;
+		
+			min-width: 110px;                  /* keeps pill shape balanced */
 		}
-
+		
 		.carousel-btn:hover {
 			background: #3d5f73;
 			transform: translateY(-1px);
