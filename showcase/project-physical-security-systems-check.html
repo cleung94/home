@@ -1624,6 +1624,150 @@ SUMX(
 	</div>
 </section>
 
+
+
+
+<section class="audit-section reveal-on-scroll" id="reflection">
+	<div class="audit-section-title">
+		<p class="label">Reflection</p>
+		<h2>What I learned and how I would improve the next iteration</h2>
+	</div>
+
+	<div class="audit-grid-2">
+
+		<div class="audit-card">
+			<h3>What worked well</h3>
+			<p>
+				This project successfully transformed raw system exports into a structured audit dataset and dashboard. One of the most important outcomes was separating <strong>device-level health</strong> from <strong>issue-level discrepancies</strong>. This allowed the dashboard to clearly answer both high-level health questions and detailed operational questions.
+			</p>
+
+			<p>
+				The workflow I built — planning, cleaning, transforming, and then visualizing — created a repeatable process that could be reused for similar datasets in the future.
+			</p>
+		</div>
+
+		<div class="audit-card">
+			<h3>Key lessons learned</h3>
+			<ul>
+				<li>Data structure matters more than visualization</li>
+				<li>Row-level data and entity-level data must be handled differently</li>
+				<li>Upfront data cleanup simplifies dashboard logic significantly</li>
+				<li>Each audit question should map directly to a calculation or visual</li>
+			</ul>
+		</div>
+
+	</div>
+
+	<div class="audit-card" style="margin-top: 1.5em;">
+		<h3>Limitations of the current version</h3>
+		<p>
+			The current version of the dashboard provides a <strong>snapshot view</strong> of system health at a single point in time. While this is useful for identifying current issues, it does not show how system health changes over time.
+		</p>
+
+		<p>
+			Because the dataset is based on a single export, it cannot answer questions such as:
+		</p>
+
+		<ul>
+			<li>Are systems improving or degrading over time?</li>
+			<li>Which issues are recurring vs newly introduced?</li>
+			<li>Are remediation efforts reducing discrepancies?</li>
+		</ul>
+	</div>
+
+	<div class="audit-card" style="margin-top: 1.5em;">
+		<h3>Next iteration: adding trend analysis</h3>
+		<p>
+			If this project were extended, the next step would be to introduce a <strong>time-based data model</strong> to support trend analysis. This would allow the dashboard to move from a static audit report to a monitoring tool.
+		</p>
+
+		<p>
+			Instead of working with a single dataset, I would collect and store multiple audit snapshots over time.
+		</p>
+
+		<ul>
+			<li>Add a <strong>snapshot date</strong> column to each dataset</li>
+			<li>Store historical audit results instead of overwriting them</li>
+			<li>Track device status changes between snapshots</li>
+			<li>Measure how discrepancy counts change over time</li>
+		</ul>
+	</div>
+
+	<div class="audit-grid-2" style="margin-top: 1.5em;">
+
+		<div class="audit-card">
+			<h3>Trend metrics I would introduce</h3>
+			<ul>
+				<li>Device health trend (% pass over time)</li>
+				<li>Total discrepancies trend</li>
+				<li>New vs resolved issues</li>
+				<li>Compliance trend by category</li>
+				<li>System-level comparison over time (CCure vs Genetec)</li>
+			</ul>
+
+			<p>
+				These metrics would help answer whether the environment is improving or declining instead of only showing the current state.
+			</p>
+		</div>
+
+		<div class="audit-card">
+			<h3>Visualization improvements</h3>
+			<p>
+				To support trend analysis, I would add:
+			</p>
+
+			<ul>
+				<li>Line charts showing pass rate over time</li>
+				<li>Stacked area charts for issue distribution</li>
+				<li>Monthly or weekly breakdowns of discrepancies</li>
+				<li>Filters for date ranges and system comparison</li>
+			</ul>
+
+			<p>
+				This would allow users to move from a static report to an interactive monitoring dashboard.
+			</p>
+		</div>
+
+	</div>
+
+	<div class="audit-card" style="margin-top: 1.5em;">
+		<h3>Data pipeline improvements</h3>
+		<p>
+			To support ongoing analysis, I would improve the data pipeline by automating data collection and storage.
+		</p>
+
+		<ul>
+			<li>Automate export ingestion from CCure and Genetec</li>
+			<li>Store historical data in a database instead of flat Excel files</li>
+			<li>Schedule regular data refreshes</li>
+			<li>Create a structured data model for reporting</li>
+		</ul>
+
+		<p>
+			This would reduce manual work and ensure the dashboard always reflects the most recent data.
+		</p>
+	</div>
+
+	<div class="audit-card" style="margin-top: 1.5em;">
+		<h3>Final reflection</h3>
+		<p>
+			This project started as a static audit exercise but highlighted how important data modeling and transformation are in building meaningful dashboards. The biggest improvement for the next iteration would be shifting from a one-time analysis to a continuous monitoring solution.
+		</p>
+
+		<p>
+			Adding time-based tracking, automation, and trend analysis would make the dashboard more valuable for ongoing decision-making instead of only point-in-time reporting.
+		</p>
+	</div>
+</section>
+
+
+
+
+
+
+
+
+
 </div>
 </div>
 
