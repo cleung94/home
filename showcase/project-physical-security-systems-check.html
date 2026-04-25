@@ -652,41 +652,47 @@ Device A | Firmware Issue</code></pre>
 	</div>
 
 	<div class="visual-carousel-wrap">
+
 		<div class="visual-carousel" id="auditCarousel">
 
 			<div class="visual-slide">
-				<img src="physical-security-dashboard/process_diagram.png" class="clickable-preview">
+				<img src="physical-security-dashboard/process_diagram.png" alt="Workflow diagram showing the project process from raw exports to dashboards" class="clickable-preview">
 				<h3>Workflow Diagram</h3>
 				<p>End-to-end process from raw exports to final dashboards.</p>
 			</div>
 
 			<div class="visual-slide">
-				<img src="physical-security-dashboard/dashboard_comparison.png" class="clickable-preview">
+				<img src="physical-security-dashboard/dashboard_comparison.png" alt="Dashboard comparison between Tableau and Power BI" class="clickable-preview">
 				<h3>Dashboard Comparison</h3>
 				<p>Comparing Tableau and Power BI layouts.</p>
 			</div>
 
 			<div class="visual-slide">
-				<img src="physical-security-dashboard/powerbi_dashboard_mockup.png" class="clickable-preview">
+				<img src="physical-security-dashboard/powerbi_dashboard_mockup.png" alt="Power BI dashboard mockup" class="clickable-preview">
 				<h3>Power BI Mockup</h3>
 				<p>Initial KPI and layout planning.</p>
 			</div>
 
 			<div class="visual-slide">
-				<img src="physical-security-dashboard/tableau_dashboard_mockup.png" class="clickable-preview">
+				<img src="physical-security-dashboard/tableau_dashboard_mockup.png" alt="Tableau dashboard mockup" class="clickable-preview">
 				<h3>Tableau Mockup</h3>
 				<p>Early visualization structure.</p>
 			</div>
 
 			<div class="visual-slide">
-				<img src="physical-security-dashboard/issues_by_site.png" class="clickable-preview">
+				<img src="physical-security-dashboard/issues_by_site.png" alt="Issues by site analysis visual" class="clickable-preview">
 				<h3>Issues by Site</h3>
 				<p>Identifying where failures were concentrated.</p>
 			</div>
 
 		</div>
-	</div>
 
+		<div class="carousel-controls">
+			<button class="carousel-btn" type="button" data-prev>← Previous</button>
+			<button class="carousel-btn" type="button" data-next>Next →</button>
+		</div>
+
+	</div>
 </section>
 
 <section class="audit-section reveal-on-scroll" id="python">
@@ -2281,22 +2287,23 @@ SUMX(
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-	const carousel = document.getElementById('auditCarousel');
-	const previousButton = document.querySelector('[data-carousel-prev]');
-	const nextButton = document.querySelector('[data-carousel-next]');
 
-	if (carousel && previousButton) {
-		previousButton.addEventListener('click', function () {
+	// ===== CAROUSEL =====
+	const carousel = document.getElementById('auditCarousel');
+	const prevBtn = document.querySelector('[data-prev]');
+	const nextBtn = document.querySelector('[data-next]');
+
+	if (carousel && prevBtn && nextBtn) {
+		prevBtn.addEventListener('click', function () {
 			carousel.scrollBy({ left: -600, behavior: 'smooth' });
 		});
-	}
 
-	if (carousel && nextButton) {
-		nextButton.addEventListener('click', function () {
+		nextBtn.addEventListener('click', function () {
 			carousel.scrollBy({ left: 600, behavior: 'smooth' });
 		});
 	}
 
+	// ===== LIGHTBOX =====
 	const previewImages = document.querySelectorAll('.clickable-preview');
 	const lightbox = document.getElementById('imageLightbox');
 	const lightboxImage = document.getElementById('lightboxImage');
