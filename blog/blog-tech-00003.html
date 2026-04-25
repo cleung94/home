@@ -1,0 +1,826 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Understanding LOD and DAX | Christopher Leung</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+	</head>
+	<body class="is-preload blog-tone">
+
+		<div id="wrapper">
+
+			<div id="main">
+				<div class="inner">
+
+					<header id="header">
+						<a href="../index.html" class="logo"><strong>Christopher Leung</strong></a>
+						<ul class="icons">
+							<li><a href="https://github.com/cleung94" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+							<li><a href="https://www.linkedin.com/in/christopher-km-leung/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+						</ul>
+					</header>
+
+					<section class="blog-post-luxe">
+						<div class="blog-post-luxe-media">
+							<img src="photos/Interview-Tech00001.png" alt="LOD and DAX blog visual" />
+						</div>
+
+						<div class="blog-post-luxe-panel">
+							<span class="blog-kicker-luxe">Technology</span>
+							<h1>Understanding LOD and DAX: Two Ways to Think About Data</h1>
+							<p class="blog-subtitle-luxe">
+								A beginner-friendly explanation of Tableau LOD expressions, Power BI DAX measures, how they are different, and how I used both in a physical security systems dashboard project.
+							</p>
+
+							<div class="blog-post-meta-luxe">
+								<span>April 2026</span>
+								<span>15 min read</span>
+							</div>
+						</div>
+					</section>
+
+					<section class="blog-post-content-luxe">
+
+						<p>
+							When I started building my Physical Security Systems Health KPI project, I thought the hardest part would be making the dashboard look clean. I quickly learned that the real challenge was not the dashboard design. It was the logic behind the numbers.
+						</p>
+
+						<p>
+							The dataset looked simple at first. I had devices from two systems, CCure and Genetec, and each device could either be healthy or have one or more issues. But once I started cleaning the data, I ran into a very common analytics problem:
+						</p>
+
+						<blockquote class="blog-highlight-quote">
+							<p>
+								One device can appear on multiple rows, but it should not always be counted multiple times.
+							</p>
+						</blockquote>
+
+						<p>
+							That single idea forced me to learn two important concepts: <strong>LOD expressions</strong> in Tableau and <strong>DAX measures</strong> in Power BI.
+						</p>
+
+						<p>
+							Both LOD and DAX helped me answer the same core question:
+						</p>
+
+						<p>
+							<strong>How do I count devices correctly when the data has multiple rows per device?</strong>
+						</p>
+
+						<h2>The Problem: Row-Level Data vs Device-Level Questions</h2>
+
+						<p>
+							Before talking about LOD and DAX, it helps to understand the problem they were solving.
+						</p>
+
+						<p>
+							In my project, each device could have multiple reasons for failure. For example, one camera might be:
+						</p>
+
+						<ul>
+							<li>Offline</li>
+							<li>Out of Standard</li>
+							<li>Using the wrong firmware</li>
+						</ul>
+
+						<p>
+							After cleaning the data, that one device could appear on three rows:
+						</p>
+
+						<pre><code>Device Reference Number | Failure Type
+CAM00001                | Offline
+CAM00001                | Out of Standard
+CAM00001                | Incorrect Firmware Version</code></pre>
+
+						<p>
+							This is good for counting issues, because I can count each failure separately. But it creates a problem when I want to count devices.
+						</p>
+
+						<p>
+							If I use a regular row count, Power BI or Tableau might count <strong>CAM00001</strong> three times. But for system health, that device should only count as <strong>one failed device</strong>.
+						</p>
+
+						<h2>The Big Lesson: Always Know the Grain of Your Data</h2>
+
+						<p>
+							The word <strong>grain</strong> means the level of detail in your dataset.
+						</p>
+
+						<p>
+							In simple terms:
+						</p>
+
+						<ul>
+							<li><strong>Device-level grain:</strong> one row per device</li>
+							<li><strong>Issue-level grain:</strong> one row per issue</li>
+						</ul>
+
+						<p>
+							My cleaned dataset became issue-level because each row represented one failure type. That was useful for discrepancy reporting, but not enough for device health reporting.
+						</p>
+
+						<p>
+							That is where LOD and DAX came in.
+						</p>
+
+						<h2>What Is LOD in Tableau?</h2>
+
+						<p>
+							LOD stands for <strong>Level of Detail</strong>.
+						</p>
+
+						<p>
+							In Tableau, an LOD expression lets you tell Tableau:
+						</p>
+
+						<blockquote class="blog-highlight-quote">
+							<p>
+								Calculate this at this specific level, even if the chart is showing something else.
+							</p>
+						</blockquote>
+
+						<p>
+							In my case, I wanted Tableau to calculate device health at the device level, even though the dataset had multiple rows per device.
+						</p>
+
+						<p>
+							The basic idea is:
+						</p>
+
+						<pre><code>{ FIXED [Device Reference Number] : calculation }</code></pre>
+
+						<p>
+							This tells Tableau:
+						</p>
+
+						<p>
+							<strong>For each Device Reference Number, calculate one result.</strong>
+						</p>
+
+						<h2>LOD Example From My Project</h2>
+
+						<p>
+							This is the type of LOD logic I used to classify a device as healthy or failed:
+						</p>
+
+						<pre><code>{ FIXED [Device Reference Number] :
+    IF MAX(
+        IF [Failure Type] = "No Reason for Failure"
+        THEN 0 ELSE 1 END
+    ) = 1
+    THEN "Failed"
+    ELSE "Healthy"
+END
+}</code></pre>
+
+						<p>
+							At first, this looks intimidating. But it becomes easier when broken down.
+						</p>
+
+						<h2>Breaking Down the LOD Expression</h2>
+
+						<h3>1. FIXED Device Reference Number</h3>
+
+						<pre><code>{ FIXED [Device Reference Number] : ... }</code></pre>
+
+						<p>
+							This tells Tableau to evaluate the calculation once per device. It does not matter how many rows that device has.
+						</p>
+
+						<p>
+							Think of it like saying:
+						</p>
+
+						<p>
+							<strong>“Group everything by device first, then run the logic.”</strong>
+						</p>
+
+						<h3>2. Convert failure rows into numbers</h3>
+
+						<pre><code>IF [Failure Type] = "No Reason for Failure"
+THEN 0 ELSE 1 END</code></pre>
+
+						<p>
+							This part changes the failure text into a simple flag.
+						</p>
+
+						<ul>
+							<li>No Reason for Failure = 0</li>
+							<li>Any actual failure = 1</li>
+						</ul>
+
+						<p>
+							So if a device has three rows, Tableau might see:
+						</p>
+
+						<pre><code>Offline                  = 1
+Out of Standard          = 1
+Incorrect Firmware       = 1</code></pre>
+
+						<p>
+							Or for a healthy device:
+						</p>
+
+						<pre><code>No Reason for Failure    = 0</code></pre>
+
+						<h3>3. Use MAX to check if any issue exists</h3>
+
+						<pre><code>MAX(...)</code></pre>
+
+						<p>
+							The MAX function looks at all rows for the device.
+						</p>
+
+						<p>
+							If any row is 1, the max is 1. That means the device has at least one failure.
+						</p>
+
+						<p>
+							If all rows are 0, the max is 0. That means the device is healthy.
+						</p>
+
+						<h3>4. Return Failed or Healthy</h3>
+
+						<pre><code>IF MAX(...) = 1
+THEN "Failed"
+ELSE "Healthy"
+END</code></pre>
+
+						<p>
+							This converts the result into a label that can be used in the dashboard.
+						</p>
+
+						<p>
+							So the final logic becomes:
+						</p>
+
+						<ul>
+							<li>If the device has at least one issue → Failed</li>
+							<li>If the device has no issues → Healthy</li>
+						</ul>
+
+						<h2>A Simple Way to Remember LOD</h2>
+
+						<p>
+							Here is the easiest way I remember LOD:
+						</p>
+
+						<blockquote class="blog-highlight-quote">
+							<p>
+								LOD tells Tableau what level to think at.
+							</p>
+						</blockquote>
+
+						<p>
+							If the chart is messy, but I need the calculation to happen at the device level, I use LOD.
+						</p>
+
+						<h2>When Would You Use LOD?</h2>
+
+						<p>
+							LOD is useful when you need to calculate something at a different level than what the chart is showing.
+						</p>
+
+						<p>
+							Good use cases include:
+						</p>
+
+						<ul>
+							<li>Counting one result per device</li>
+							<li>Calculating customer-level metrics from order-level data</li>
+							<li>Finding the first or last date per user</li>
+							<li>Calculating totals that should not change when the chart changes</li>
+							<li>Creating fixed pass/fail classifications</li>
+						</ul>
+
+						<p>
+							In my project, I used LOD because I needed device-level logic while working with issue-level rows.
+						</p>
+
+						<h2>What Is DAX in Power BI?</h2>
+
+						<p>
+							DAX stands for <strong>Data Analysis Expressions</strong>.
+						</p>
+
+						<p>
+							DAX is the formula language used in Power BI to create calculated columns, measures, and tables.
+						</p>
+
+						<p>
+							If LOD tells Tableau what level to calculate at, DAX tells Power BI:
+						</p>
+
+						<blockquote class="blog-highlight-quote">
+							<p>
+								Calculate this based on the current filter context.
+							</p>
+						</blockquote>
+
+						<p>
+							Filter context means the filters currently affecting the visual. This can include slicers, chart selections, page filters, or the fields inside the visual itself.
+						</p>
+
+						<h2>DAX Example From My Project</h2>
+
+						<p>
+							Here is the DAX measure I used for configuration compliance:
+						</p>
+
+						<pre><code>Config Fail Devices =
+SUMX(
+    VALUES(DeviceAudit[Device Reference Number]),
+    VAR HasConfigIssue =
+        CALCULATE(
+            COUNTROWS(DeviceAudit),
+            KEEPFILTERS(
+                FILTER(
+                    DeviceAudit,
+                    CONTAINSSTRING(DeviceAudit[Failure Type], "Configured Incorrectly")
+                )
+            )
+        )
+    RETURN IF(HasConfigIssue &gt; 0, 1, 0)
+)</code></pre>
+
+						<p>
+							This measure looks more complex than the Tableau LOD expression, but it is doing a similar job.
+						</p>
+
+						<p>
+							It checks each unique device and asks:
+						</p>
+
+						<p>
+							<strong>Does this device have a configuration issue?</strong>
+						</p>
+
+						<p>
+							If yes, count it as 1 failed device. If no, count it as 0.
+						</p>
+
+						<h2>Breaking Down the DAX Measure</h2>
+
+						<h3>1. VALUES creates a list of unique devices</h3>
+
+						<pre><code>VALUES(DeviceAudit[Device Reference Number])</code></pre>
+
+						<p>
+							This creates a temporary list of unique devices based on the current filters.
+						</p>
+
+						<p>
+							If the visual is filtered to CCure only, then the list contains CCure devices. If it is filtered to Genetec, it contains Genetec devices.
+						</p>
+
+						<h3>2. SUMX loops through each device</h3>
+
+						<pre><code>SUMX(...)</code></pre>
+
+						<p>
+							SUMX is an iterator. That means it goes row by row through a table and calculates something for each row.
+						</p>
+
+						<p>
+							In this case, it loops through each unique device.
+						</p>
+
+						<p>
+							Think of it like Power BI asking:
+						</p>
+
+						<p>
+							<strong>“For each device in this list, should I count it as failed?”</strong>
+						</p>
+
+						<h3>3. VAR stores a temporary result</h3>
+
+						<pre><code>VAR HasConfigIssue = ...</code></pre>
+
+						<p>
+							VAR creates a temporary variable. This makes the measure easier to read.
+						</p>
+
+						<p>
+							Here, the variable stores whether the current device has a configuration issue.
+						</p>
+
+						<h3>4. CALCULATE changes the context</h3>
+
+						<pre><code>CALCULATE(...)</code></pre>
+
+						<p>
+							CALCULATE is one of the most important functions in DAX. It evaluates an expression under specific filter conditions.
+						</p>
+
+						<p>
+							In this measure, CALCULATE checks the rows for the current device and applies the filter for configuration issues.
+						</p>
+
+						<h3>5. FILTER searches for the issue</h3>
+
+						<pre><code>FILTER(
+    DeviceAudit,
+    CONTAINSSTRING(DeviceAudit[Failure Type], "Configured Incorrectly")
+)</code></pre>
+
+						<p>
+							This searches the Failure Type field and checks whether it contains the text <strong>Configured Incorrectly</strong>.
+						</p>
+
+						<p>
+							If it finds that text, the device has a configuration issue.
+						</p>
+
+						<h3>6. KEEPFILTERS preserves the visual context</h3>
+
+						<pre><code>KEEPFILTERS(...)</code></pre>
+
+						<p>
+							KEEPFILTERS prevents the measure from ignoring existing filters.
+						</p>
+
+						<p>
+							This mattered because I wanted the measure to respect filters like:
+						</p>
+
+						<ul>
+							<li>System = CCure</li>
+							<li>System = Genetec</li>
+							<li>Specific site or device type filters</li>
+						</ul>
+
+						<h3>7. Return 1 or 0</h3>
+
+						<pre><code>RETURN IF(HasConfigIssue &gt; 0, 1, 0)</code></pre>
+
+						<p>
+							If the device has at least one configuration issue, return 1. If not, return 0.
+						</p>
+
+						<p>
+							SUMX then adds up all the 1s to produce the total number of failed devices.
+						</p>
+
+						<h2>A Simple Way to Remember DAX</h2>
+
+						<p>
+							Here is how I think about DAX:
+						</p>
+
+						<blockquote class="blog-highlight-quote">
+							<p>
+								DAX asks, “Given the filters right now, what should this number be?”
+							</p>
+						</blockquote>
+
+						<p>
+							DAX is powerful because it reacts to slicers, filters, and visuals dynamically.
+						</p>
+
+						<h2>When Would You Use DAX?</h2>
+
+						<p>
+							DAX is useful when you need reusable measures that respond to dashboard filters.
+						</p>
+
+						<p>
+							Good use cases include:
+						</p>
+
+						<ul>
+							<li>KPI cards</li>
+							<li>Pass/fail measures</li>
+							<li>Percentages</li>
+							<li>Year-over-year calculations</li>
+							<li>Running totals</li>
+							<li>Dynamic compliance checks</li>
+						</ul>
+
+						<p>
+							In my project, I used DAX to create reusable measures for:
+						</p>
+
+						<ul>
+							<li>Total devices</li>
+							<li>Passed devices</li>
+							<li>Failed devices</li>
+							<li>Percent pass</li>
+							<li>Percent fail</li>
+							<li>Total discrepancies</li>
+							<li>Configuration compliance</li>
+							<li>Naming compliance</li>
+							<li>Firmware compliance</li>
+							<li>IP compliance</li>
+							<li>Device standard compliance</li>
+						</ul>
+
+						<h2>LOD vs DAX: The Main Difference</h2>
+
+						<p>
+							LOD and DAX can solve similar problems, but they think differently.
+						</p>
+
+						<span class="image fit">
+							<img src="photos/LOD-DAX-Comparison.png" alt="LOD and DAX comparison diagram" />
+						</span>
+
+						<p class="image-caption">
+							A simple way to compare Tableau LOD and Power BI DAX: LOD fixes the calculation level, while DAX responds to filter context.
+						</p>
+
+						<h2>Tableau LOD Thinks Like This</h2>
+
+						<p>
+							Tableau LOD says:
+						</p>
+
+						<pre><code>Calculate this at the device level.</code></pre>
+
+						<p>
+							It is very direct. You tell Tableau the level of detail you want.
+						</p>
+
+						<h2>Power BI DAX Thinks Like This</h2>
+
+						<p>
+							Power BI DAX says:
+						</p>
+
+						<pre><code>Based on the current filters, loop through the devices and calculate the result.</code></pre>
+
+						<p>
+							It is more context-driven. The answer changes depending on filters and visuals.
+						</p>
+
+						<h2>Comparison Table</h2>
+
+						<table>
+							<thead>
+								<tr>
+									<th>Concept</th>
+									<th>Tableau LOD</th>
+									<th>Power BI DAX</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Main purpose</td>
+									<td>Control level of aggregation</td>
+									<td>Create reusable calculations and measures</td>
+								</tr>
+								<tr>
+									<td>Best for</td>
+									<td>Fixed calculations at a specific grain</td>
+									<td>Dynamic calculations based on filters</td>
+								</tr>
+								<tr>
+									<td>Common use</td>
+									<td>Per-device or per-customer calculations</td>
+									<td>KPI cards, ratios, compliance measures</td>
+								</tr>
+								<tr>
+									<td>How it thinks</td>
+									<td>“Calculate at this level”</td>
+									<td>“Calculate based on the current context”</td>
+								</tr>
+								<tr>
+									<td>Project example</td>
+									<td>Classify each device as healthy or failed</td>
+									<td>Count failed devices by compliance category</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<h2>Why This Was Hard at First</h2>
+
+						<p>
+							The hardest part was not writing the formula. The hardest part was understanding what I was actually trying to count.
+						</p>
+
+						<p>
+							At different times, I needed different answers:
+						</p>
+
+						<ul>
+							<li>How many unique devices exist?</li>
+							<li>How many devices failed?</li>
+							<li>How many total issues exist?</li>
+							<li>How many devices failed a specific compliance category?</li>
+						</ul>
+
+						<p>
+							Those are not the same question.
+						</p>
+
+						<p>
+							Once I understood that, the formulas started to make more sense.
+						</p>
+
+						<h2>Device Counts vs Issue Counts</h2>
+
+						<p>
+							This was probably the most important lesson of the whole project.
+						</p>
+
+						<p>
+							If I am measuring system health, I should count devices:
+						</p>
+
+						<pre><code>COUNTD([Device Reference Number])</code></pre>
+
+						<p>
+							or in Power BI:
+						</p>
+
+						<pre><code>Total Devices =
+DISTINCTCOUNT(DeviceAudit[Device Reference Number])</code></pre>
+
+						<p>
+							But if I am measuring total discrepancies, I should count issue rows:
+						</p>
+
+						<pre><code>COUNT([Failure Type])</code></pre>
+
+						<p>
+							or in Power BI:
+						</p>
+
+						<pre><code>Total Discrepancies =
+CALCULATE(
+    COUNT(DeviceAudit[Failure Type]),
+    DeviceAudit[Failure Type] &lt;&gt; "No Reason for Failure"
+)</code></pre>
+
+						<p>
+							One device can have three issues. That means:
+						</p>
+
+						<ul>
+							<li>Device count = 1</li>
+							<li>Issue count = 3</li>
+						</ul>
+
+						<p>
+							That difference matters a lot in dashboard reporting.
+						</p>
+
+						<h2>How This Helped My Dashboard</h2>
+
+						<p>
+							Once I understood LOD and DAX, I was able to build dashboards that answered different levels of questions.
+						</p>
+
+						<h3>High-level questions</h3>
+
+						<ul>
+							<li>What is the overall pass rate?</li>
+							<li>What is the overall fail rate?</li>
+							<li>How many total devices are in the environment?</li>
+						</ul>
+
+						<h3>Operational questions</h3>
+
+						<ul>
+							<li>Which failure types are most common?</li>
+							<li>Which system has more discrepancies?</li>
+							<li>Which compliance category has the most failures?</li>
+						</ul>
+
+						<h3>Technical questions</h3>
+
+						<ul>
+							<li>Are devices configured correctly?</li>
+							<li>Are devices in standard?</li>
+							<li>Are cameras using IPv4?</li>
+							<li>Are firmware versions correct?</li>
+						</ul>
+
+						<p>
+							LOD and DAX helped me move from raw data to meaningful answers.
+						</p>
+
+						<h2>Common Mistakes I Ran Into</h2>
+
+						<h3>1. Counting rows when I meant to count devices</h3>
+
+						<p>
+							This caused inflated numbers because one device could appear multiple times.
+						</p>
+
+						<h3>2. Counting devices when I meant to count issues</h3>
+
+						<p>
+							This made discrepancy totals too low because multiple issues on the same device were collapsed.
+						</p>
+
+						<h3>3. Forgetting filter context in Power BI</h3>
+
+						<p>
+							Some DAX measures initially ignored the system filter, which made CCure and Genetec numbers look wrong.
+						</p>
+
+						<h3>4. Assuming Tableau and Power BI think the same way</h3>
+
+						<p>
+							They can produce the same answer, but the calculation logic is written differently.
+						</p>
+
+						<h2>Final Takeaway</h2>
+
+						<p>
+							Learning LOD and DAX helped me understand that dashboards are not just about visuals. The real work is making sure the numbers mean what they are supposed to mean.
+						</p>
+
+						<p>
+							LOD taught me how to control the level of detail in Tableau. DAX taught me how to create reusable measures in Power BI that respond to filters and context.
+						</p>
+
+						<p>
+							The biggest lesson was this:
+						</p>
+
+						<blockquote class="blog-highlight-quote">
+							<p>
+								Before building a dashboard, understand what each row represents and what each metric is supposed to count.
+							</p>
+						</blockquote>
+
+						<p>
+							Once that clicked, the formulas became less intimidating. They became tools for answering better questions.
+						</p>
+
+						<h2>Key Takeaways</h2>
+
+						<ul class="blog-takeaways">
+							<li>LOD expressions in Tableau control the level at which a calculation happens.</li>
+							<li>DAX measures in Power BI calculate values dynamically based on filter context.</li>
+							<li>LOD is useful when you need fixed calculations, such as one result per device.</li>
+							<li>DAX is useful when you need reusable KPI and compliance measures.</li>
+							<li>Device counts and issue counts are different and should be handled separately.</li>
+							<li>The most important part of dashboard logic is understanding the grain of the data.</li>
+						</ul>
+
+						<div class="blog-post-nav-luxe">
+							<a href="../blog.html" class="button">Back to Blog</a>
+							<a href="../blog-technology.html" class="button">More in Technology</a>
+						</div>
+
+					</section>
+
+				</div>
+			</div>
+
+		<!-- Sidebar -->
+			<div id="sidebar">
+				<div class="inner">
+
+					<!-- Search -->
+						<section id="search" class="alt">
+							<form method="post" action="#">
+								<input type="text" name="query" id="query" placeholder="Search" />
+							</form>
+						</section>
+
+					<!-- Menu -->
+						<nav id="menu">
+							<header class="major">
+								<h2>Menu</h2>
+							</header>
+							<ul>
+								<li><a href="../index.html">Homepage</a></li>
+								<li><a href="../projects.html">Project Showcase</a></li>
+								<li>
+									<span class="opener">Blog</span>
+									<ul>
+										<li><a href="../blog.html">Blog Homepage</a></li>
+										<li><a href="../blog-technology.html">Blog - Technology</a></li>
+										<li><a href="../blog-healthcare.html">Blog - Healthcare</a></li>
+										<li><a href="../blog-restaurant.html">Blog - Restaurant</a></li>
+										<li><a href="../blog-hobbies.html">Blog - Hobbies</a></li>
+										<li><a href="../blog-movies.html">Blog - Movies</a></li>
+									</ul>
+								</li>
+								<li><a href="../contact-form.html">Contact Me</a></li>
+							</ul>
+						</nav>
+
+					<!-- Footer -->
+						<footer id="footer">
+							<p class="copyright">&copy; 2026 Christopher Leung. All rights reserved.</p>
+						</footer>
+
+				</div>
+			</div>
+
+		</div>
+
+		<script src="../assets/js/jquery.min.js"></script>
+		<script src="../assets/js/browser.min.js"></script>
+		<script src="../assets/js/breakpoints.min.js"></script>
+		<script src="../assets/js/util.js"></script>
+		<script src="../assets/js/main.js"></script>
+
+	</body>
+</html>
