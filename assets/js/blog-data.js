@@ -5,17 +5,8 @@ window.BLOG_POSTS = [
     tag: "technology",
     tagLabel: "Technology",
     date: "April 2026",
-    image: "blog/photos/Meta-image.png",
+    image: "blog/photos/LODnDAX.png",
     excerpt: "What I learned about Tableau LOD expressions and Power BI DAX, and how they helped me understand data grain, device-level logic, and building accurate dashboards."
-  },
-  {
-    title: "What I Learned From Being Laid Off",
-    slug: "blog/blog-tech-00001.html",
-    tag: "technology",
-    tagLabel: "Technology",
-    date: "March 2026",
-    image: "blog/photos/Meta-image.png",
-    excerpt: "A surreal moment, a two-week countdown, and the reflection that followed after learning my assignment at Meta was ending."
   },
   {
     title: "My First Technical Interview with M.C. Dean",
@@ -70,5 +61,14 @@ window.BLOG_POSTS = [
   date: "April 2026",
   image: "blog/photos/YumeeKatsu.jpg",
   excerpt: "A review of Yumee Katsu in Castro Valley, a standout Bay Area katsu spot known for its excellent service, filling portions, strong curry udon and soba, and comfortable family-friendly atmosphere."
-}
+},
+      {
+    title: "What I Learned From Being Laid Off",
+    slug: "blog/blog-tech-00001.html",
+    tag: "technology",
+    tagLabel: "Technology",
+    date: "March 2026",
+    image: "blog/photos/Meta-image.png",
+    excerpt: "A surreal moment, a two-week countdown, and the reflection that followed after learning my assignment at Meta was ending."
+  }
 ];
