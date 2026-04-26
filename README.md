@@ -133,6 +133,7 @@ home/
 ├── showcase/      # Project pages
 └── index.html
 
+```
 ---
 
 ## 🎯 Purpose
