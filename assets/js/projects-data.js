@@ -37,7 +37,7 @@ window.PROJECTS = [
     tag: "technology",
     tagLabel: "Technology",
     date: "April 2026",
-    status: ["Technology"],
+    status: ["Technology","Featured"],
     excerpt: "Designed a structured QA lifecycle for PlanGrid security infrastructure projects, including an automated intake form, centralized project tracker, and weekly reporting process. The updated workflow improved cross-team communication and significantly shortened project review timelines.",
     tools: ["System Design", "Visualization", "Architecture"]
   }
