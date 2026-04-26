@@ -125,10 +125,12 @@ The goal is to keep learning visible and approachable.
 ---
 
 ## 📁 Project Structure
+
+```bash
 home/
-├── assets/ # CSS, JS, images
-├── blog/ # Blog pages
-├── showcase/ # Project pages
+├── assets/        # CSS, JS, images
+├── blog/          # Blog pages
+├── showcase/      # Project pages
 └── index.html
 
 ---
