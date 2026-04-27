@@ -541,26 +541,37 @@
 				max-width: 800px;
 			}
 
-			.gallery-lightbox-close {
-				position: absolute;
-				top: -0.5em;
-				right: -0.5em;
-				width: 2.5em;
-				height: 2.5em;
-				border: 0;
-				border-radius: 999px;
-				background: rgba(255,255,255,0.96);
-				color: #243746;
-				font-size: 1.2rem;
-				font-weight: 700;
-				cursor: pointer;
-				box-shadow: 0 10px 26px rgba(0,0,0,0.2);
-			}
+.gallery-lightbox-close {
+	position: absolute;
+	top: 0.75em;
+	right: 0.75em;
 
-			.gallery-lightbox-close:hover {
-				transform: scale(1.04);
-			}
+	width: 2.6em;
+	height: 2.6em;
 
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	border: 0;
+	border-radius: 50%;
+	background: rgba(255,255,255,0.95);
+	color: #243746;
+
+	font-size: 1.2rem;
+	font-weight: 700;
+	line-height: 1;
+
+	cursor: pointer;
+
+	box-shadow: 0 10px 26px rgba(0,0,0,0.2);
+	transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.gallery-lightbox-close:hover {
+	transform: scale(1.08);
+	background: #ffffff;
+}
 			@media screen and (max-width: 980px) {
 				.restaurant-meta-grid,
 				.restaurant-review-grid {
