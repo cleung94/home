@@ -5859,15 +5859,17 @@ font-weight:600;
 	margin-right: auto !important;
 }
 
-/* “Would I come back?” section sits cleanly on the right side */
+/* “Would I come back?” section — STACK TEXT + EMOJIS */
 .return-rating,
 .restaurant-return-rating,
 .restaurant-verdict,
 .comeback-rating {
-	justify-self: center !important;
-	margin-left: auto !important;
-	margin-right: auto !important;
+	display: flex !important;
+	flex-direction: column !important;   /* KEY FIX */
+	align-items: center !important;
+	justify-content: center !important;
 	text-align: center !important;
+	gap: 1rem;
 }
 
 /* Center the question text */
@@ -5907,4 +5909,10 @@ font-weight:600;
 		width: 100% !important;
 		justify-content: center !important;
 	}
+}
+
+.return-icons,
+.restaurant-return-icons,
+.comeback-icons {
+	margin-top: 0.5rem;
 }
