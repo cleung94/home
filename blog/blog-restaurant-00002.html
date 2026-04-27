@@ -8,11 +8,11 @@
 
 		<style>
 			.return-score {
-					display: grid;
-					grid-template-columns: repeat(3, minmax(0, 1fr));
-					gap: 1em;
-					margin-top: 1em;
-				}
+				display: grid;
+				grid-template-columns: repeat(3, minmax(90px, 1fr));
+				gap: 1em;
+				margin-top: 0.75em;
+			}
 				
 				.return-option {
 					display: flex;
@@ -94,10 +94,23 @@
 
 			.restaurant-rating-hero {
 				display: flex;
-				flex-wrap: wrap;
+				justify-content: center;
 				align-items: center;
-				gap: 0.85em 1.1em;
+				gap: 3rem;
+				flex-wrap: wrap;
 				margin-top: 1.25em;
+			}
+
+			.restaurant-return-block {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				text-align: center;
+				gap: 0.5em;
+			}
+
+			.return-question {
+				margin: 0;
 			}
 
 			.restaurant-rating-score {
@@ -533,23 +546,31 @@
 			}
 
 			.gallery-lightbox-close {
-				position: absolute;
-				top: -0.5em;
-				right: -0.5em;
-				width: 2.5em;
-				height: 2.5em;
+				position: fixed;
+				top: 1.5em;
+				right: 1.5em;
+				padding: 0.6em 1.2em;
+				height: auto;
+				width: auto;
+				display: flex;
+				align-items: center;
+				justify-content: center;
 				border: 0;
 				border-radius: 999px;
-				background: rgba(255,255,255,0.96);
+				background: rgba(255,255,255,0.95);
 				color: #243746;
-				font-size: 1.2rem;
+				font-size: 0.95rem;
 				font-weight: 700;
+				line-height: 1;
 				cursor: pointer;
-				box-shadow: 0 10px 26px rgba(0,0,0,0.2);
+				box-shadow: 0 10px 26px rgba(0,0,0,0.25);
+				transition: transform 0.2s ease, background 0.2s ease;
+				z-index: 10001;
 			}
 
 			.gallery-lightbox-close:hover {
-				transform: scale(1.04);
+				transform: scale(1.08);
+				background: #ffffff;
 			}
 
 			@media screen and (max-width: 980px) {
@@ -566,7 +587,7 @@
 				}
 
 				.restaurant-rating-hero {
-					align-items: flex-start;
+					align-items: center;
 				}
 
 				.restaurant-rating-score {
@@ -595,8 +616,8 @@
 				}
 
 				.gallery-lightbox-close {
-					top: -0.25em;
-					right: -0.15em;
+					top: 1em;
+					right: 1em;
 				}
 			}
 		</style>
@@ -649,8 +670,10 @@
 										<span class="restaurant-score-label">Overall Rating</span>
 									</div>
 								</div>
-								<p><strong>Would I come back?</strong></p>
-												<div class="return-score" data-return-score="2" aria-label="Would I come again rating">
+								<div class="restaurant-return-block">
+									<p class="return-question"><strong>Would I come back?</strong></p>
+
+									<div class="return-score" data-return-score="2" aria-label="Would I come again rating">
 										<div class="return-option" data-value="1">
 											<span class="return-emoji" aria-hidden="true">😕</span>
 											<span class="return-label">No</span>
@@ -666,6 +689,7 @@
 											<span class="return-label">Yes</span>
 										</div>
 									</div>
+								</div>
 								</div>
 						</div>
 					</section>
