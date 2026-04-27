@@ -5917,3 +5917,72 @@ font-weight:600;
 .comeback-icons {
 	margin-top: 0.5rem;
 }
+
+/* ===== FINAL RESTAURANT RATING LAYOUT FIX ===== */
+
+.restaurant-review-summary,
+.restaurant-summary-box,
+.restaurant-rating-row,
+.restaurant-score-row,
+.restaurant-verdict-row {
+	display: grid !important;
+	grid-template-columns: minmax(260px, 340px) minmax(360px, 520px) !important;
+	grid-template-rows: auto auto !important;
+	justify-content: center !important;
+	align-items: center !important;
+	column-gap: 4rem !important;
+	row-gap: 1rem !important;
+	text-align: center !important;
+}
+
+/* Rating card on the left */
+.restaurant-rating,
+.restaurant-rating-card,
+.rating-card {
+	grid-column: 1 !important;
+	grid-row: 1 / span 2 !important;
+	justify-self: center !important;
+}
+
+/* “Would I come back?” text on top right */
+.restaurant-review-summary h3,
+.restaurant-summary-box h3,
+.restaurant-verdict-row h3 {
+	grid-column: 2 !important;
+	grid-row: 1 !important;
+	justify-self: center !important;
+	text-align: center !important;
+	margin: 0 !important;
+}
+
+/* Emojis directly under the question */
+.return-rating,
+.restaurant-return-rating,
+.restaurant-verdict,
+.comeback-rating,
+.return-icons,
+.restaurant-return-icons,
+.comeback-icons {
+	grid-column: 2 !important;
+	grid-row: 2 !important;
+	justify-self: center !important;
+
+	display: flex !important;
+	justify-content: center !important;
+	align-items: center !important;
+	gap: 1rem !important;
+	text-align: center !important;
+}
+
+/* Mobile stack */
+@media screen and (max-width: 736px) {
+	.restaurant-review-summary,
+	.restaurant-summary-box,
+	.restaurant-rating-row,
+	.restaurant-score-row,
+	.restaurant-verdict-row {
+		display: flex !important;
+		flex-direction: column !important;
+		gap: 1.5rem !important;
+	}
+}
