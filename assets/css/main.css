@@ -5742,3 +5742,82 @@ font-weight:600;
 .blog-post-luxe-panel h1 {
     max-width: 1000px;
 }
+
+/* ===== CENTER DATE + READ TIME (ALL BLOGS ONLY) ===== */
+
+/* Targets the meta line under blog titles */
+.blog-post-luxe-panel .meta,
+.blog-post-luxe-panel .post-meta,
+.blog-post-luxe-panel p:last-of-type {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* If it's using inline elements (like spans) */
+.blog-post-luxe-panel .meta span,
+.blog-post-luxe-panel .post-meta span {
+    display: inline-block;
+    text-align: center;
+}
+
+/* ===== RESTAURANT BLOG HEADER ALIGNMENT FIX ===== */
+
+/* Center restaurant meta/date line */
+.restaurant-meta,
+.restaurant-hero-meta,
+.restaurant-post-meta,
+.restaurant-review-meta {
+	text-align: center !important;
+	justify-content: center !important;
+	align-items: center !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	width: 100% !important;
+}
+
+/* Center restaurant rating + return section */
+.restaurant-rating-row,
+.restaurant-score-row,
+.restaurant-verdict-row,
+.restaurant-review-summary,
+.restaurant-summary-box {
+	display: flex !important;
+	justify-content: center !important;
+	align-items: center !important;
+	text-align: center !important;
+	gap: 2.5em;
+	flex-wrap: wrap;
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
+/* Keep the rating card and yes/maybe/no group balanced */
+.rating-card,
+.restaurant-rating-card,
+.return-card,
+.restaurant-return-card,
+.comeback-card,
+.verdict-card {
+	text-align: center !important;
+}
+
+/* Center any divider lines inside restaurant header */
+.restaurant-hero-wrap hr,
+.restaurant-summary-box hr,
+.restaurant-review-summary hr {
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
+/* Mobile: stack neatly */
+@media screen and (max-width: 736px) {
+	.restaurant-rating-row,
+	.restaurant-score-row,
+	.restaurant-verdict-row,
+	.restaurant-review-summary,
+	.restaurant-summary-box {
+		flex-direction: column !important;
+		gap: 1.5em;
+	}
+}
