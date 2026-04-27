@@ -5645,3 +5645,48 @@ font-weight:600;
 		order: -1;
 	}
 }
+
+/* ===== FULL-BLEED BLOG HERO OVERRIDE ===== */
+
+.blog-post-luxe {
+  width: 100vw;
+  max-width: none;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-bottom: 3.5em;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  background: #f7f9fb;
+  overflow: hidden;
+}
+
+.blog-post-luxe-media {
+  width: 100%;
+  margin: 0;
+  display: block;
+}
+
+.blog-post-luxe-media img {
+  width: 100%;
+  max-width: none;
+  height: clamp(320px, 48vw, 620px);
+  aspect-ratio: auto;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.blog-post-luxe-panel {
+  width: min(1100px, calc(100% - 3rem));
+  margin: 0 auto;
+  padding: 3.5em 0 3em 0;
+  background: #f7f9fb;
+}
+
+.blog-post-luxe-panel h1 {
+  max-width: 100%;
+  font-size: clamp(2.4rem, 5vw, 4.8rem);
+  line-height: 1.05;
+}
