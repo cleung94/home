@@ -5832,130 +5832,59 @@ font-weight:600;
 	margin-left: auto !important;
 	margin-right: auto !important;
 }
-/* ===== RESTAURANT RATING + RETURN ALIGNMENT FIX ===== */
+/* ===== RESTAURANT RATING + RETURN CLEAN FIX ===== */
 
-/* Main restaurant review summary area */
 .restaurant-review-summary,
 .restaurant-summary-box,
 .restaurant-rating-row,
 .restaurant-score-row,
 .restaurant-verdict-row {
+	display: flex !important;
+	justify-content: center !important;
+	align-items: center !important;
+	gap: 4rem !important;
+	flex-wrap: wrap !important;
+	text-align: center !important;
 	max-width: 1050px !important;
 	margin-left: auto !important;
 	margin-right: auto !important;
-
-	display: flex !important;              /* CHANGE FROM GRID → FLEX */
-	justify-content: space-between !important;
-	align-items: flex-start !important;
-	gap: 3rem;
-	flex-wrap: wrap;                      /* allows stacking if needed */
 }
 
-/* Rating card sits cleanly on the left side of the centered group */
+/* Rating block */
 .restaurant-rating,
 .restaurant-rating-card,
 .rating-card {
-	justify-self: center !important;
-	margin-left: auto !important;
-	margin-right: auto !important;
+	text-align: center !important;
 }
 
-/* “Would I come back?” section — STACK TEXT + EMOJIS */
+/* Come-back block */
 .return-rating,
 .restaurant-return-rating,
 .restaurant-verdict,
 .comeback-rating {
 	display: flex !important;
-	flex-direction: column !important;   /* KEY FIX */
+	flex-direction: column !important;
 	align-items: center !important;
 	justify-content: center !important;
 	text-align: center !important;
-	gap: 1rem;
+	gap: 0.5rem !important;
 }
 
-/* Center the question text */
-.restaurant-review-summary h3,
-.restaurant-summary-box h3,
-.restaurant-verdict-row h3 {
-	text-align: center !important;
-	margin: 0 auto !important;
-}
-
-/* Keep emoji options centered */
+/* Emojis under the text */
 .return-icons,
 .restaurant-return-icons,
 .comeback-icons {
 	display: flex !important;
 	justify-content: center !important;
 	align-items: center !important;
-	gap: 1rem !important;
+	gap: 0.5rem !important;
+	margin-top: 0.25rem !important;
 }
 
-/* Mobile: stack neatly */
-@media screen and (max-width: 736px) {
-	.restaurant-review-summary,
-	.restaurant-summary-box,
-	.restaurant-rating-row,
-	.restaurant-score-row,
-	.restaurant-verdict-row {
-		display: flex !important;
-		flex-direction: column !important;
-		gap: 1.5rem !important;
-	}
-
-	.restaurant-rating,
-	.return-rating,
-	.restaurant-rating-card,
-	.restaurant-return-rating {
-		width: 100% !important;
-		justify-content: center !important;
-	}
-}
-
-.return-icons,
-.restaurant-return-icons,
-.comeback-icons {
-	margin-top: 0.5rem;
-}
-
-/* ===== FINAL RESTAURANT RATING LAYOUT FIX ===== */
-
-.restaurant-review-summary,
-.restaurant-summary-box,
-.restaurant-rating-row,
-.restaurant-score-row,
-.restaurant-verdict-row {
-	display: grid !important;
-	grid-template-columns: minmax(260px, 340px) minmax(360px, 520px) !important;
-	grid-template-rows: auto auto !important;
-	justify-content: center !important;
-	align-items: center !important;
-	column-gap: 4rem !important;
-	row-gap: 1rem !important;
-	text-align: center !important;
-}
-
-/* Rating card on the left */
+/* Prevent old grid placement from sticking */
 .restaurant-rating,
 .restaurant-rating-card,
-.rating-card {
-	grid-column: 1 !important;
-	grid-row: 1 / span 2 !important;
-	justify-self: center !important;
-}
-
-/* “Would I come back?” text on top right */
-.restaurant-review-summary h3,
-.restaurant-summary-box h3,
-.restaurant-verdict-row h3 {
-	grid-column: 2 !important;
-	grid-row: 1 !important;
-	justify-self: center !important;
-	text-align: center !important;
-	margin: 0 !important;
-}
-
-/* Emojis directly under the question */
+.rating-card,
 .return-rating,
 .restaurant-return-rating,
 .restaurant-verdict,
@@ -5963,26 +5892,7 @@ font-weight:600;
 .return-icons,
 .restaurant-return-icons,
 .comeback-icons {
-	grid-column: 2 !important;
-	grid-row: 2 !important;
-	justify-self: center !important;
-
-	display: flex !important;
-	justify-content: center !important;
-	align-items: center !important;
-	gap: 1rem !important;
-	text-align: center !important;
-}
-
-/* Mobile stack */
-@media screen and (max-width: 736px) {
-	.restaurant-review-summary,
-	.restaurant-summary-box,
-	.restaurant-rating-row,
-	.restaurant-score-row,
-	.restaurant-verdict-row {
-		display: flex !important;
-		flex-direction: column !important;
-		gap: 1.5rem !important;
-	}
+	grid-column: auto !important;
+	grid-row: auto !important;
+	justify-self: auto !important;
 }
