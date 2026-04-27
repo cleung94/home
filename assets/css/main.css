@@ -5721,3 +5721,29 @@ font-weight:600;
   width: 100%;
   line-height: 1.1;
 }
+
+/* Center blog content */
+#main > .inner {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Remove extra vertical space in hero */
+.blog-post-luxe {
+    margin-bottom: 2em; /* reduce spacing */
+}
+
+/* Prevent forced tall empty space */
+.blog-post-luxe-media {
+    min-height: unset !important;
+    height: auto !important;
+}
+
+/* Tighten spacing under intro */
+.blog-post-luxe-panel {
+    padding-bottom: 1.5em;
+}
+
+.blog-post-content-luxe {
+    margin-top: 1.5em;
+}
