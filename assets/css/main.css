@@ -5690,3 +5690,34 @@ font-weight:600;
   font-size: clamp(2.4rem, 5vw, 4.8rem);
   line-height: 1.05;
 }
+
+/* ===== FIX IMAGE CROPPING (ALL BLOGS) ===== */
+
+.blog-post-luxe-media img,
+.restaurant-hero-media img,
+.gradient-frame img,
+.full-width-frame img {
+  object-fit: cover;
+  object-position: center center; /* keeps subject centered */
+}
+
+/* Optional: show a little more of the image vertically */
+.blog-post-luxe-media img {
+  height: clamp(380px, 52vw, 700px); /* slightly taller = less aggressive crop */
+}
+
+
+/* ===== FIX TITLE WIDTH (SUBTLE, NOT FULL BLEED) ===== */
+
+/* widen the text container a bit */
+.blog-post-luxe-panel {
+  max-width: 1100px; /* increase from default */
+  width: 100%;
+}
+
+/* let the title use full space */
+.blog-post-luxe-panel h1 {
+  max-width: none;
+  width: 100%;
+  line-height: 1.1;
+}
