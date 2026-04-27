@@ -1,4 +1,13 @@
 window.BLOG_POSTS = [
+    {
+    title: "Using Kaggle to Stay Sharp, Broaden My Thinking, and Keep Growing as a Data Analyst",
+    slug: "blog/blog-tech-00004.html",
+    tag: "technology",
+    tagLabel: "Technology",
+    date: "April 2026",
+    image: "blog/photos/blog-tech-00004.png",
+    excerpt: "Exploring Kaggle as a space to learn, share ideas, and challenge how I think about data beyond my usual scope."
+  },
 {
     title: "Understanding LOD and DAX",
     slug: "blog/blog-tech-00003.html",
