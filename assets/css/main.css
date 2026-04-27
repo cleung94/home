@@ -5706,3 +5706,39 @@ font-weight:600;
   height: clamp(380px, 52vw, 700px); /* slightly taller = less aggressive crop */
 }
 
+/* ===== BLOG HEADER ONLY FIX ===== */
+
+/* Center ONLY blog hero content (not whole site) */
+.blog-post-luxe-panel {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Make title slightly wider + cleaner */
+.blog-post-luxe-panel h1 {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.1;
+}
+
+/* Center subtitle text */
+.blog-post-luxe-panel p {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Reduce that big empty space under header */
+.blog-post-luxe {
+    margin-bottom: 1.5em;
+}
+
+.blog-post-luxe-panel {
+    padding-bottom: 1.5em;
+}
+
+.blog-post-luxe-panel h1 {
+    max-width: 1000px;
+}
