@@ -5821,3 +5821,90 @@ font-weight:600;
 		gap: 1.5em;
 	}
 }
+
+/* ===== CENTER DATE + READ TIME — ALL BLOGS ===== */
+
+/* Tech / standard blog posts */
+.blog-post-meta-luxe {
+	justify-content: center !important;
+	text-align: center !important;
+	width: 100% !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+/* ===== RESTAURANT RATING + RETURN ALIGNMENT FIX ===== */
+
+/* Main restaurant review summary area */
+.restaurant-review-summary,
+.restaurant-summary-box,
+.restaurant-rating-row,
+.restaurant-score-row,
+.restaurant-verdict-row {
+	max-width: 1050px !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	display: grid !important;
+	grid-template-columns: 1fr auto 1fr !important;
+	align-items: center !important;
+	column-gap: 3rem !important;
+	text-align: center !important;
+}
+
+/* Rating card sits cleanly on the left side of the centered group */
+.restaurant-rating,
+.restaurant-rating-card,
+.rating-card {
+	justify-self: center !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
+/* “Would I come back?” section sits cleanly on the right side */
+.return-rating,
+.restaurant-return-rating,
+.restaurant-verdict,
+.comeback-rating {
+	justify-self: center !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	text-align: center !important;
+}
+
+/* Center the question text */
+.restaurant-review-summary h3,
+.restaurant-summary-box h3,
+.restaurant-verdict-row h3 {
+	text-align: center !important;
+	margin: 0 auto !important;
+}
+
+/* Keep emoji options centered */
+.return-icons,
+.restaurant-return-icons,
+.comeback-icons {
+	display: flex !important;
+	justify-content: center !important;
+	align-items: center !important;
+	gap: 1rem !important;
+}
+
+/* Mobile: stack neatly */
+@media screen and (max-width: 736px) {
+	.restaurant-review-summary,
+	.restaurant-summary-box,
+	.restaurant-rating-row,
+	.restaurant-score-row,
+	.restaurant-verdict-row {
+		display: flex !important;
+		flex-direction: column !important;
+		gap: 1.5rem !important;
+	}
+
+	.restaurant-rating,
+	.return-rating,
+	.restaurant-rating-card,
+	.restaurant-return-rating {
+		width: 100% !important;
+		justify-content: center !important;
+	}
+}
