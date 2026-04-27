@@ -5732,11 +5732,11 @@ font-weight:600;
 
 /* Reduce that big empty space under header */
 .blog-post-luxe {
-    margin-bottom: 1.5em;
+    margin-bottom: 0.5em;
 }
 
 .blog-post-luxe-panel {
-    padding-bottom: 1.5em;
+    padding-bottom: 0.5em;
 }
 
 .blog-post-luxe-panel h1 {
