@@ -620,6 +620,41 @@
 					right: 1em;
 				}
 			}
+
+			/* ===== GALLERY ARROWS ===== */
+			.gallery-arrow {
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				width: 42px;
+				height: 42px;
+				border-radius: 50%;
+				border: none;
+				background: rgba(35, 68, 90, 0.9);
+				color: #fff;
+				font-size: 1.6rem;
+				font-weight: 700;
+				cursor: pointer;
+				z-index: 3;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+				transition: transform 0.2s ease, background 0.2s ease;
+			}
+			
+			.gallery-arrow:hover {
+				transform: translateY(-50%) scale(1.1);
+				background: rgba(35, 68, 90, 1);
+			}
+			
+			.gallery-arrow.left {
+				left: 8px;
+			}
+			
+			.gallery-arrow.right {
+				right: 8px;
+			}
 		</style>
 	</head>
 	<body class="is-preload blog-tone">
@@ -787,8 +822,20 @@
 
 						<div class="gallery-shell">
 							<h2>Gallery</h2>
+						
 							<div class="gallery-scroll-wrap">
+						
+								<button class="gallery-arrow left" id="galleryLeft">‹</button>
+						
 								<div class="gallery-scroll" id="galleryScroll">
+									<figure class="gallery-card">
+										<img src="photos/blog-restaurant-00001-05.png" alt="Chengdu Memory Infographic" />
+										<figcaption class="gallery-card-caption">
+											<strong>Chengdu Memory Infographic</strong><br />
+											Check this out!
+										</figcaption>
+									</figure>
+									
 									<figure class="gallery-card">
 										<img src="photos/blog-restaurant-00004-01.jpg" alt="Chengdu Memory restaurant and hot pot spread in Fremont, California" />
 										<figcaption class="gallery-card-caption">
@@ -796,6 +843,7 @@
 											A cultural hot pot setting built for shared meals.
 										</figcaption>
 									</figure>
+						
 									<figure class="gallery-card">
 										<img src="photos/blog-restaurant-00004-02.jpg" alt="Chengdu Memory hot pot broth and table setup" />
 										<figcaption class="gallery-card-caption">
@@ -803,6 +851,7 @@
 											We chose two soup bases: bone broth and Chengdu spicy soup.
 										</figcaption>
 									</figure>
+						
 									<figure class="gallery-card">
 										<img src="photos/blog-restaurant-00004-03.jpg" alt="Chengdu Memory meat platter served around the hot pot" />
 										<figcaption class="gallery-card-caption">
@@ -810,6 +859,7 @@
 											A generous circular platter arranged beautifully around the hot pot.
 										</figcaption>
 									</figure>
+						
 									<figure class="gallery-card">
 										<img src="photos/blog-restaurant-00004-04.jpg" alt="Chengdu Memory sauce station and hot pot dining experience" />
 										<figcaption class="gallery-card-caption">
@@ -818,6 +868,9 @@
 										</figcaption>
 									</figure>
 								</div>
+						
+								<button class="gallery-arrow right" id="galleryRight">›</button>
+						
 							</div>
 						</div>
 
