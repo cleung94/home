@@ -1,4 +1,13 @@
 window.BLOG_POSTS = [
+        {
+    title: "Chengdu Memory",
+    slug: "blog/blog-restaurant-00004.html",
+    tag: "restaurant",
+    tagLabel: "Restaurant",
+    date: "April 2026",
+    image: "blog/photos/blog-restaurant-00002.jpg",
+    excerpt: "A flavorful Chengdu-style hot pot experience in Fremont with generous portions, cultural ambience, and a setup perfect for sharing."
+  },
     {
     title: "Using Kaggle to Stay Sharp, Broaden My Thinking, and Keep Growing as a Data Analyst",
     slug: "blog/blog-tech-00004.html",
