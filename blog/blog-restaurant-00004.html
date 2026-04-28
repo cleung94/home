@@ -568,6 +568,47 @@
 				transform: scale(1.08);
 				background: #ffffff;
 			}
+			/* ===== GALLERY ARROWS ===== */
+			.gallery-arrow {
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				width: 46px;
+				height: 46px;
+				border-radius: 0.75em;
+				border: 1px solid rgba(74,111,134,0.18);
+				background: rgba(255,255,255,0.96);
+				color: #23445a;
+				font-size: 1.8rem;
+				font-weight: 800;
+				cursor: pointer;
+				z-index: 5;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				box-shadow:
+					0 10px 24px rgba(60,80,100,0.18),
+					inset 0 1px 0 rgba(255,255,255,0.7);
+				transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+			}
+
+			.gallery-arrow:hover {
+				transform: translateY(-50%) scale(1.06);
+				background: #ffffff;
+				color: #0a66c2;
+				box-shadow:
+					0 14px 28px rgba(60,80,100,0.24),
+					inset 0 1px 0 rgba(255,255,255,0.8);
+			}
+
+			.gallery-arrow.left {
+				left: -23px;
+			}
+
+			.gallery-arrow.right {
+				right: -23px;
+			}
+
 
 			@media screen and (max-width: 980px) {
 				.restaurant-meta-grid,
@@ -619,43 +660,23 @@
 					top: 1em;
 					right: 1em;
 				}
-			}
 
-			/* ===== GALLERY ARROWS ===== */
-			.gallery-arrow {
-				position: absolute;
-				top: 50%;
-				transform: translateY(-50%);
-				width: 42px;
-				height: 42px;
-				border-radius: 50%;
-				border: none;
-				background: rgba(35, 68, 90, 0.9);
-				color: #fff;
-				font-size: 1.6rem;
-				font-weight: 700;
-				cursor: pointer;
-				z-index: 3;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				box-shadow: 0 8px 18px rgba(0,0,0,0.25);
-				transition: transform 0.2s ease, background 0.2s ease;
+				.gallery-arrow {
+					width: 40px;
+					height: 40px;
+					font-size: 1.5rem;
+					border-radius: 0.65em;
+				}
+
+				.gallery-arrow.left {
+					left: -10px;
+				}
+
+				.gallery-arrow.right {
+					right: -10px;
+				}
 			}
-			
-			.gallery-arrow:hover {
-				transform: translateY(-50%) scale(1.1);
-				background: rgba(35, 68, 90, 1);
-			}
-			
-			.gallery-arrow.left {
-				left: 8px;
-			}
-			
-			.gallery-arrow.right {
-				right: 8px;
-			}
-		</style>
+</style>
 	</head>
 	<body class="is-preload blog-tone">
 
