@@ -573,28 +573,30 @@
 				position: absolute;
 				top: 50%;
 				transform: translateY(-50%);
-				width: 12px;
-				height: 48px;
 			
-				border-radius: 6px; /* small corner, looks like a box */
-				/* OR use 0px for perfect sharp square */
+				width: 32px;
+				height: 32px;
 			
+				padding: 0;              /* 🔥 removes default button padding */
+				line-height: 1;          /* 🔥 removes vertical stretch */
+				font-size: 18px;
+			
+				border-radius: 6px;
 				border: 1px solid rgba(74,111,134,0.18);
 				background: #ffffff;
 			
-				color: #0a66c2; /* blue arrow */
-				font-size: 1.6rem;
-				font-weight: 800;
-			
-				cursor: pointer;
-				z-index: 5;
+				color: #0a66c2;
+				font-weight: 700;
 			
 				display: flex;
 				align-items: center;
 				justify-content: center;
 			
+				cursor: pointer;
+				z-index: 5;
+			
 				box-shadow:
-					0 10px 24px rgba(60,80,100,0.18),
+					0 6px 14px rgba(60,80,100,0.15),
 					inset 0 1px 0 rgba(255,255,255,0.7);
 			
 				transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
