@@ -5,7 +5,7 @@ window.BLOG_POSTS = [
     tag: "restaurant",
     tagLabel: "Restaurant",
     date: "April 2026",
-    image: "blog/photos/blog-restaurant-00002.jpg",
+    image: "blog/photos/blog-restaurant-00004-02.jpg",
     excerpt: "A flavorful Chengdu-style hot pot experience in Fremont with generous portions, cultural ambience, and a setup perfect for sharing."
   },
     {
