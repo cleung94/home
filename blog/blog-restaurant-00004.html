@@ -1100,124 +1100,147 @@
 		<script src="../assets/js/util.js"></script>
 		<script src="../assets/js/main.js"></script>
 
-		<script>
-			document.addEventListener("DOMContentLoaded", () => {
-				const cards = Array.from(document.querySelectorAll(".scorecard"));
-				const overallScoreEl = document.getElementById("overallScore");
-				const overallStarsEl = document.getElementById("overallStars");
-				const gallery = document.getElementById("galleryScroll");
-				const lightbox = document.getElementById("galleryLightbox");
-				const lightboxImg = document.getElementById("lightboxImg");
-				const lightboxCaption = document.getElementById("lightboxCaption");
-				const lightboxClose = document.getElementById("lightboxClose");
-				const galleryImages = Array.from(document.querySelectorAll(".gallery-card img"));
-				const returnScore = document.querySelector(".return-score");
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+		const cards = Array.from(document.querySelectorAll(".scorecard"));
+		const overallScoreEl = document.getElementById("overallScore");
+		const overallStarsEl = document.getElementById("overallStars");
+		const gallery = document.getElementById("galleryScroll");
+		const galleryLeft = document.getElementById("galleryLeft");
+		const galleryRight = document.getElementById("galleryRight");
+		const lightbox = document.getElementById("galleryLightbox");
+		const lightboxImg = document.getElementById("lightboxImg");
+		const lightboxCaption = document.getElementById("lightboxCaption");
+		const lightboxClose = document.getElementById("lightboxClose");
+		const galleryImages = Array.from(document.querySelectorAll(".gallery-card img"));
+		const returnScore = document.querySelector(".return-score");
 
-				if (cards.length && overallScoreEl && overallStarsEl) {
-					const scores = cards.map(card => parseFloat(card.dataset.score) || 0);
-					const total = scores.reduce((sum, value) => sum + value, 0);
-					const average = total / cards.length;
+		if (cards.length && overallScoreEl && overallStarsEl) {
+			const scores = cards.map(card => parseFloat(card.dataset.score) || 0);
+			const total = scores.reduce((sum, value) => sum + value, 0);
+			const average = total / cards.length;
 
-					overallScoreEl.textContent = `${average.toFixed(1)}/10`;
+			overallScoreEl.textContent = `${average.toFixed(1)}/10`;
 
-					const stars = Array.from(overallStarsEl.querySelectorAll(".star"));
-					const filledStars = Math.round(average / 2);
+			const stars = Array.from(overallStarsEl.querySelectorAll(".star"));
+			const filledStars = Math.round(average / 2);
 
-					stars.forEach((star, index) => {
-						if (index < filledStars) {
-							star.classList.add("filled");
-						} else {
-							star.classList.remove("filled");
-						}
-					});
-				}
-
-				if (gallery) {
-					let isDown = false;
-					let startX;
-					let scrollLeft;
-
-					gallery.addEventListener("mousedown", (e) => {
-						isDown = true;
-						gallery.classList.add("dragging");
-						startX = e.pageX - gallery.offsetLeft;
-						scrollLeft = gallery.scrollLeft;
-					});
-
-					gallery.addEventListener("mouseleave", () => {
-						isDown = false;
-						gallery.classList.remove("dragging");
-					});
-
-					gallery.addEventListener("mouseup", () => {
-						isDown = false;
-						gallery.classList.remove("dragging");
-					});
-
-					gallery.addEventListener("mousemove", (e) => {
-						if (!isDown) return;
-						e.preventDefault();
-						const x = e.pageX - gallery.offsetLeft;
-						const walk = (x - startX) * 1.2;
-						gallery.scrollLeft = scrollLeft - walk;
-					});
-				}
-
-				function openLightbox(img) {
-					const caption = img.closest(".gallery-card")?.querySelector(".gallery-card-caption");
-					lightboxImg.src = img.src;
-					lightboxImg.alt = img.alt || "";
-					lightboxCaption.innerHTML = caption ? caption.innerHTML : "";
-					lightbox.classList.add("active");
-					lightbox.setAttribute("aria-hidden", "false");
-					document.body.style.overflow = "hidden";
-				}
-
-				function closeLightbox() {
-					lightbox.classList.remove("active");
-					lightbox.setAttribute("aria-hidden", "true");
-					lightboxImg.src = "";
-					lightboxCaption.innerHTML = "";
-					document.body.style.overflow = "";
-				}
-
-				galleryImages.forEach((img) => {
-					img.addEventListener("click", () => openLightbox(img));
-				});
-
-				if (lightboxClose) {
-					lightboxClose.addEventListener("click", closeLightbox);
-				}
-
-				if (lightbox) {
-					lightbox.addEventListener("click", (e) => {
-						if (e.target === lightbox) {
-							closeLightbox();
-						}
-					});
-				}
-
-				document.addEventListener("keydown", (e) => {
-					if (e.key === "Escape" && lightbox.classList.contains("active")) {
-						closeLightbox();
-					}
-				});
-
-				if (returnScore) {
-					const selectedValue = parseInt(returnScore.dataset.returnScore, 10);
-					const options = returnScore.querySelectorAll(".return-option");
-
-					options.forEach((option) => {
-						const value = parseInt(option.dataset.value, 10);
-
-						if (value === selectedValue) {
-							option.classList.add("active");
-						} else {
-							option.classList.remove("active");
-						}
-					});
+			stars.forEach((star, index) => {
+				if (index < filledStars) {
+					star.classList.add("filled");
+				} else {
+					star.classList.remove("filled");
 				}
 			});
-		</script>
+		}
+
+		if (gallery) {
+			let isDown = false;
+			let startX;
+			let scrollLeft;
+
+			gallery.addEventListener("mousedown", (e) => {
+				isDown = true;
+				gallery.classList.add("dragging");
+				startX = e.pageX - gallery.offsetLeft;
+				scrollLeft = gallery.scrollLeft;
+			});
+
+			gallery.addEventListener("mouseleave", () => {
+				isDown = false;
+				gallery.classList.remove("dragging");
+			});
+
+			gallery.addEventListener("mouseup", () => {
+				isDown = false;
+				gallery.classList.remove("dragging");
+			});
+
+			gallery.addEventListener("mousemove", (e) => {
+				if (!isDown) return;
+				e.preventDefault();
+				const x = e.pageX - gallery.offsetLeft;
+				const walk = (x - startX) * 1.2;
+				gallery.scrollLeft = scrollLeft - walk;
+			});
+
+			if (galleryLeft && galleryRight) {
+				const getScrollAmount = () => {
+					const card = gallery.querySelector(".gallery-card");
+					return card ? card.offsetWidth + 16 : 320;
+				};
+
+				galleryLeft.addEventListener("click", () => {
+					gallery.scrollBy({
+						left: -getScrollAmount(),
+						behavior: "smooth"
+					});
+				});
+
+				galleryRight.addEventListener("click", () => {
+					gallery.scrollBy({
+						left: getScrollAmount(),
+						behavior: "smooth"
+					});
+				});
+			}
+		}
+
+		function openLightbox(img) {
+			const caption = img.closest(".gallery-card")?.querySelector(".gallery-card-caption");
+			lightboxImg.src = img.src;
+			lightboxImg.alt = img.alt || "";
+			lightboxCaption.innerHTML = caption ? caption.innerHTML : "";
+			lightbox.classList.add("active");
+			lightbox.setAttribute("aria-hidden", "false");
+			document.body.style.overflow = "hidden";
+		}
+
+		function closeLightbox() {
+			lightbox.classList.remove("active");
+			lightbox.setAttribute("aria-hidden", "true");
+			lightboxImg.src = "";
+			lightboxCaption.innerHTML = "";
+			document.body.style.overflow = "";
+		}
+
+		galleryImages.forEach((img) => {
+			img.addEventListener("click", () => openLightbox(img));
+		});
+
+		if (lightboxClose) {
+			lightboxClose.addEventListener("click", closeLightbox);
+		}
+
+		if (lightbox) {
+			lightbox.addEventListener("click", (e) => {
+				if (e.target === lightbox) {
+					closeLightbox();
+				}
+			});
+		}
+
+		document.addEventListener("keydown", (e) => {
+			if (e.key === "Escape" && lightbox.classList.contains("active")) {
+				closeLightbox();
+			}
+		});
+
+		if (returnScore) {
+			const selectedValue = parseInt(returnScore.dataset.returnScore, 10);
+			const options = returnScore.querySelectorAll(".return-option");
+
+			options.forEach((option) => {
+				const value = parseInt(option.dataset.value, 10);
+
+				if (value === selectedValue) {
+					option.classList.add("active");
+				} else {
+					option.classList.remove("active");
+				}
+			});
+		}
+	});
+</script>
 	</body>
 </html>
