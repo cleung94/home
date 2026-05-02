@@ -274,6 +274,11 @@
                                         <li><a href="blog.html" class="button big">Blogs</a></li>
                                         <li><a href="contact-form.html" class="button big">Contact Me</a></li>
                                     </ul>
+                                        <div class="homepage-jump-nav">
+                                      <a href="#work-experience" class="page-btn">Work</a>
+                                      <a href="#credentials-skills" class="page-btn">Skills</a>
+                                      <a href="#testimonials" class="page-btn">Testimonials</a>
+                                    </div>
                                     </div>
                                     <span class="image object">
                                         <img src="images/professionalpic.jpg" alt="" />
@@ -789,6 +794,82 @@
     </div>
   </div>
 </section>
+                            <!-- Testimonials -->
+<section id="testimonials" class="testimonials-section">
+  <div class="testimonials-card">
+    <div class="testimonials-header">
+      <p class="experience-kicker">Kind Words</p>
+      <h2 class="experience-title" style="color:#4a6f86;">Testimonials</h2>
+      <p class="experience-subtitle">
+        A few notes from people I have worked with across technology, operations, and healthcare.
+      </p>
+    </div>
+
+    <div class="testimonial-carousel-wrap">
+      <button class="testimonial-arrow" type="button" data-testimonial-scroll="left" aria-label="Scroll testimonials left">
+        ‹
+      </button>
+
+      <div class="testimonial-carousel" id="testimonialCarousel">
+        <article class="testimonial-bubble-card">
+          <div class="message-bubble">
+            <p>“Chris is reliable, detail-oriented, and always willing to support the team when something needs to get done.”</p>
+          </div>
+          <div class="testimonial-person">
+            <span class="testimonial-avatar">QA</span>
+            <div>
+              <strong>Project Team Member</strong>
+              <small>Quality Assurance / Operations</small>
+            </div>
+          </div>
+        </article>
+
+        <article class="testimonial-bubble-card">
+          <div class="message-bubble alt">
+            <p>“He brings structure to messy workflows and makes processes easier for everyone to follow.”</p>
+          </div>
+          <div class="testimonial-person">
+            <span class="testimonial-avatar">PM</span>
+            <div>
+              <strong>Project Coordinator</strong>
+              <small>Security Infrastructure</small>
+            </div>
+          </div>
+        </article>
+
+        <article class="testimonial-bubble-card">
+          <div class="message-bubble">
+            <p>“Chris is someone the team can count on. He communicates clearly and follows through.”</p>
+          </div>
+          <div class="testimonial-person">
+            <span class="testimonial-avatar">TM</span>
+            <div>
+              <strong>Team Member</strong>
+              <small>Cross-Functional Partner</small>
+            </div>
+          </div>
+        </article>
+
+        <article class="testimonial-bubble-card">
+          <div class="message-bubble alt">
+            <p>“He shows patience, care, and strong situational awareness when supporting residents and coworkers.”</p>
+          </div>
+          <div class="testimonial-person">
+            <span class="testimonial-avatar">HC</span>
+            <div>
+              <strong>Healthcare Coworker</strong>
+              <small>Skilled Nursing Facility</small>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <button class="testimonial-arrow" type="button" data-testimonial-scroll="right" aria-label="Scroll testimonials right">
+        ›
+      </button>
+    </div>
+  </div>
+</section>
                         </div>
                     </div>
                 <!-- Sidebar -->
@@ -841,8 +922,8 @@
             <script src="assets/js/breakpoints.min.js"></script>
             <script src="assets/js/util.js"></script>
             <script src="assets/js/main.js"></script>
-        
 <script>
+  // ===== TABS (your existing code) =====
   document.querySelectorAll('[data-tabs-root]').forEach((tabRoot) => {
     const buttons = tabRoot.querySelectorAll('[data-tab]');
     const panels = tabRoot.querySelectorAll('.tab-panel, .credentials-tab-panel');
@@ -870,6 +951,21 @@
         if (targetPanel) {
           targetPanel.classList.add('active');
         }
+      });
+    });
+  });
+
+  // ===== TESTIMONIAL CAROUSEL =====
+  document.querySelectorAll('[data-testimonial-scroll]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const carousel = document.getElementById('testimonialCarousel');
+      if (!carousel) return;
+
+      const direction = button.dataset.testimonialScroll === 'right' ? 1 : -1;
+
+      carousel.scrollBy({
+        left: direction * 360,
+        behavior: 'smooth'
       });
     });
   });
