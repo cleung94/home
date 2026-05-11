@@ -1,4 +1,13 @@
 window.BLOG_POSTS = [
+                {
+    title: "Understanding the Hantavirus",
+    slug: "blog/blog-healthcare-00002.html",
+    tag: "healthcare",
+    tagLabel: "Healthcare",
+    date: "May 2026",
+    image: "blog/photos/blog-healthcare-00002.png",
+    excerpt: "A healthcare worker’s reflection on hantavirus, its risks, transmission, and the lessons we can carry forward from the COVID-19 pandemic."
+  },
         {
     title: "Chengdu Memory",
     slug: "blog/blog-restaurant-00004.html",
