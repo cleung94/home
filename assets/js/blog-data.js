@@ -1,4 +1,13 @@
 window.BLOG_POSTS = [
+                 {
+    title: "The Devil Wears Prada 2",
+    slug: "blog/blog-movie-00001.jpg",
+    tag: "movies",
+    tagLabel: "Movies",
+    date: "May 2026",
+    image: "blog/photos/blog-movie-00001.jpg",
+    excerpt: "Twenty years after redefining fashion cinema, The Devil Wears Prada 2 reunites Miranda, Andy, Emily, and Nigel for a stylish return to Runway Magazine as the fashion world struggles to survive a rapidly changing media landscape."
+  },
                 {
     title: "Understanding the Hantavirus",
     slug: "blog/blog-healthcare-00002.html",
