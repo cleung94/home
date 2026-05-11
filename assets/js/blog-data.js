@@ -1,7 +1,7 @@
 window.BLOG_POSTS = [
                  {
     title: "The Devil Wears Prada 2",
-    slug: "blog/blog-movie-00001.jpg",
+    slug: "blog/blog-movie-00001.html",
     tag: "movies",
     tagLabel: "Movies",
     date: "May 2026",
