@@ -1,4 +1,13 @@
 window.BLOG_POSTS = [
+                   {
+    title: "What It’s Like Working as a NOC Shift CNA",
+    slug: "blog/blog-healthcare-00003.html",
+    tag: "healthcare",
+    tagLabel: "Healthcare",
+    date: "May 2026",
+    image: "blog/photos/blog-healthcare-00003.png",
+    excerpt: "A reflective look into the realities of working as a NOC shift CNA — balancing patient care, teamwork, time management, and compassion while supporting residents through the night."
+  },
                  {
     title: "The Devil Wears Prada 2",
     slug: "blog/blog-movie-00001.html",
