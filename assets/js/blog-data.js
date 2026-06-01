@@ -1,7 +1,7 @@
 window.BLOG_POSTS = [
                      {
     title: "Andaman Thai Restaurant",
-    slug: "blog/blog-restaurant-00005.html",
+    slug: "blog/blog-restaurant-00005-02.html",
     tag: "restaurant",
     tagLabel: "Restaurant",
     date: "May 2026",
