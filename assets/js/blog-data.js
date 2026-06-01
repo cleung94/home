@@ -5,7 +5,7 @@ window.BLOG_POSTS = [
     tag: "restaurant",
     tagLabel: "Restaurant",
     date: "May 2026",
-    image: "blog/photos/blog-healthcare-00005-02.jpg",
+    image: "blog/photos/blog-restaurant-00005-02.jpg",
     excerpt: "A warm and inviting Thai restaurant in San Ramon serving generous portions, flavorful dishes, and attentive service at a price point that makes it easy to share with family and friends."
   },
                    {
