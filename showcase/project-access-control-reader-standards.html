@@ -1,0 +1,885 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Access Control Reader Standards & Workflow Documentation | Christopher Leung</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../assets/css/main.css" />
+
+	<style>
+		/* === ACCESS CONTROL STANDARDS PROJECT PAGE ONLY === */
+
+		html { scroll-behavior: smooth; }
+
+		.project-hero {
+			padding: 3em 0 2em;
+		}
+
+		.project-kicker {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.5em;
+			padding: 0.55em 1em;
+			border-radius: 999px;
+			background: rgba(74,111,134,0.09);
+			color: #4a6f86;
+			font-weight: 700;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+			font-size: 0.85em;
+			margin-bottom: 1.25em;
+		}
+
+		.project-hero h1 {
+			margin-bottom: 0.35em;
+		}
+
+		.project-hero p {
+			max-width: 980px;
+		}
+
+		.project-tags {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.65em;
+			margin-top: 1.25em;
+		}
+
+		.project-tags span {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			padding: 0.5em 1em;
+			border-radius: 999px;
+			background: #4a6f86;
+			color: #ffffff;
+			font-size: 0.9em;
+			font-weight: 700;
+			border: none;
+			box-shadow: 0 8px 18px rgba(61,68,73,0.08);
+		}
+
+		.project-section-nav {
+			margin: 2em 0 0;
+			padding: 1.1em;
+			border-radius: 1.15em;
+			background: linear-gradient(
+				145deg,
+				rgba(255,255,255,0.88) 0%,
+				rgba(245,248,252,0.82) 50%,
+				rgba(232,238,245,0.78) 100%
+			);
+			border: 1px solid rgba(74,111,134,0.16);
+			box-shadow:
+				0 10px 24px rgba(60,80,100,0.06),
+				inset 0 1px 0 rgba(255,255,255,0.45);
+		}
+
+		.project-section-nav .nav-label {
+			margin: 0 0 0.8em;
+			color: #7a8b97;
+			font-size: 0.76rem;
+			font-weight: 800;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+		}
+
+		.project-section-links {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-wrap: wrap;
+			gap: 0.65em;
+		}
+
+		.project-section-links a {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			min-height: 2.7em;
+			padding: 0 1em;
+			border-radius: 999px;
+			background: linear-gradient(145deg, #d9e4ec 0%, #b9cad7 100%);
+			border: 1px solid rgba(74, 111, 134, 0.22);
+			color: #23445a !important;
+			text-decoration: none;
+			font-size: 0.82rem;
+			font-weight: 700;
+			text-align: center;
+			box-shadow:
+				0 8px 18px rgba(44, 86, 111, 0.10),
+				inset 0 1px 0 rgba(255,255,255,0.65);
+			transition:
+				transform 0.2s ease,
+				box-shadow 0.2s ease,
+				background 0.2s ease,
+				color 0.2s ease,
+				border-color 0.2s ease;
+		}
+
+		.project-section-links a:hover {
+			transform: translateY(-2px);
+			background: linear-gradient(145deg, #e4edf3 0%, #c7d6e1 100%);
+			border-color: rgba(44, 86, 111, 0.32);
+			color: #18384d !important;
+		}
+
+		.project-section-links a.featured {
+			background: linear-gradient(145deg, #23445a 0%, #4a6f86 100%);
+			border-color: rgba(255,255,255,0.35);
+			color: #ffffff !important;
+			box-shadow:
+				0 10px 22px rgba(35, 68, 90, 0.22),
+				inset 0 1px 0 rgba(255,255,255,0.10);
+		}
+
+		.project-section,
+		.project-hero {
+			scroll-margin-top: 2em;
+		}
+
+		.project-section {
+			margin: 3em 0;
+		}
+
+		.project-section-title {
+			margin-bottom: 1.5em;
+		}
+
+		.project-section-title .label {
+			color: #4a6f86;
+			font-weight: 800;
+			text-transform: uppercase;
+			letter-spacing: 0.08em;
+			font-size: 0.82em;
+			margin-bottom: 0.35em;
+		}
+
+		.project-card {
+			background: linear-gradient(145deg, #ffffff 0%, #f7fafc 100%);
+			border: 1px solid rgba(210,215,217,0.85);
+			border-radius: 1.15em;
+			padding: 1.5em;
+			box-shadow: 0 14px 34px rgba(61,68,73,0.06);
+		}
+
+		.project-card h3 {
+			margin-bottom: 0.55em;
+		}
+
+		.project-card p:last-child,
+		.project-card ul:last-child,
+		.project-card ol:last-child {
+			margin-bottom: 0;
+		}
+
+		.metric-strip {
+			display: grid;
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+			gap: 1.1em;
+			margin-top: 2em;
+		}
+
+		.metric-card {
+			background: #ffffff;
+			border: 1px solid rgba(210,215,217,0.85);
+			border-radius: 1.15em;
+			padding: 1.35em;
+			box-shadow: 0 14px 34px rgba(61,68,73,0.06);
+			position: relative;
+			overflow: hidden;
+		}
+
+		.metric-card:before {
+			content: "";
+			position: absolute;
+			inset: 0 auto 0 0;
+			width: 5px;
+			background: #4a6f86;
+		}
+
+		.metric-label {
+			display: block;
+			font-size: 0.76em;
+			text-transform: uppercase;
+			letter-spacing: 0.08em;
+			font-weight: 800;
+			color: #7f888f;
+			margin-bottom: 0.55em;
+		}
+
+		.metric-value {
+			display: block;
+			font-family: "Roboto Slab", serif;
+			font-size: 1.65em;
+			line-height: 1.15;
+			color: #3d4449;
+			font-weight: 700;
+		}
+
+		.metric-sub {
+			display: block;
+			margin-top: 0.5em;
+			font-size: 0.9em;
+			color: #7f888f;
+		}
+
+		.project-grid-2 {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1.4em;
+		}
+
+		.project-grid-3 {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 1.4em;
+		}
+
+		.project-timeline {
+			display: grid;
+			gap: 1.2em;
+			position: relative;
+		}
+
+		.timeline-step {
+			display: grid;
+			grid-template-columns: 54px 1fr;
+			gap: 1em;
+			align-items: start;
+		}
+
+		.timeline-number {
+			width: 54px;
+			height: 54px;
+			border-radius: 50%;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			background: #4a6f86;
+			color: #ffffff;
+			font-family: "Roboto Slab", serif;
+			font-weight: 700;
+			box-shadow: 0 10px 24px rgba(74,111,134,0.25);
+		}
+
+		.timeline-body {
+			background: #ffffff;
+			border: 1px solid rgba(210,215,217,0.85);
+			border-radius: 1.15em;
+			padding: 1.35em 1.45em;
+			box-shadow: 0 12px 28px rgba(61,68,73,0.05);
+		}
+
+		.timeline-body h3 {
+			margin-bottom: 0.5em;
+		}
+
+		.table-wrapper {
+			width: 100%;
+			max-width: 100%;
+			overflow-x: auto;
+		}
+
+		.table-wrapper table {
+			min-width: 760px;
+		}
+
+		.asset-links {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.75em;
+			margin-top: 1em;
+		}
+
+		.asset-links .button {
+			margin: 0;
+		}
+
+		.pdf-frame {
+			width: 100%;
+			height: 875px;
+			border: 1px solid rgba(210,215,217,0.85);
+			border-radius: 1em;
+			background: #f7f9fb;
+			margin-top: 1.5em;
+		}
+
+		.reference-image {
+			width: 100%;
+			border-radius: 1em;
+			border: 1px solid rgba(210,215,217,0.85);
+			background: #f7f9fb;
+			cursor: zoom-in;
+			display: block;
+		}
+
+		.workflow-code {
+			background: #263238;
+			color: #f4f7f8;
+			border-radius: 0.85em;
+			padding: 1em 1.15em;
+			overflow-x: auto;
+			margin: 1em 0;
+			font-size: 0.88em;
+			white-space: pre;
+		}
+
+		.workflow-code code {
+			background: transparent;
+			border: 0;
+			color: inherit;
+			padding: 0;
+			margin: 0;
+		}
+
+		.lightbox {
+			display: none;
+			position: fixed;
+			z-index: 99999;
+			inset: 0;
+			background: rgba(18,24,30,0.88);
+			align-items: center;
+			justify-content: center;
+			padding: 2em;
+		}
+
+		.lightbox.active {
+			display: flex;
+		}
+
+		.lightbox img {
+			max-width: 94vw;
+			max-height: 90vh;
+			border-radius: 0.8em;
+			background: #ffffff;
+			box-shadow: 0 20px 70px rgba(0,0,0,0.45);
+		}
+
+		.lightbox-close {
+			position: fixed;
+			top: 0.7em;
+			right: 1em;
+			color: #ffffff;
+			font-size: 2.4em;
+			cursor: pointer;
+		}
+
+		#main {
+			min-width: 0;
+		}
+
+		.project-section,
+		.project-card,
+		.timeline-body {
+			max-width: 100%;
+			min-width: 0;
+			box-sizing: border-box;
+		}
+
+		@media screen and (max-width: 1280px) {
+			.metric-strip,
+			.project-grid-3 {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
+		}
+
+		@media screen and (max-width: 980px) {
+			.metric-strip,
+			.project-grid-2,
+			.project-grid-3 {
+				grid-template-columns: 1fr;
+			}
+
+			.timeline-step {
+				grid-template-columns: 1fr;
+			}
+
+			.pdf-frame {
+				height: 560px;
+			}
+		}
+	</style>
+</head>
+
+<body class="is-preload">
+
+<div id="wrapper">
+
+<div id="main">
+<div class="inner">
+
+<header id="header">
+<a href="../index.html" class="logo"><strong>Christopher Leung</strong></a>
+<ul class="icons">
+<li><a href="https://github.com/cleung94" class="icon brands fa-github"></a></li>
+<li><a href="https://www.linkedin.com/in/christopher-km-leung/" class="icon brands fa-linkedin"></a></li>
+</ul>
+</header>
+
+<section class="project-hero">
+	<p class="project-kicker">Technical Writing · Physical Security Standards</p>
+
+	<h1>Access Control Reader Standards & Workflow Documentation</h1>
+
+	<p>
+		This project demonstrates how I would create technical standards, workflow documentation, supplemental visual references, and change-control artifacts for a physical security program. The purpose of this showcase is to demonstrate how I organize complex security system information into documentation that is clear, repeatable, teachable, auditable, and sustainable.
+	</p>
+
+	<p>
+		The example focuses on an access control card reader badge sequence of operations. It explains how a credential is presented, validated, approved or denied, logged, monitored, and reported. In a real enterprise environment, this type of documentation would help align Physical Security, Workplace Technology, IT, Project Management, vendors, integrators, and operations teams around a consistent standard.
+	</p>
+
+	<div class="project-tags">
+		<span>Technical Writing</span>
+		<span>Workflow Documentation</span>
+		<span>Access Control</span>
+		<span>Standardization</span>
+		<span>Change Control</span>
+		<span>Risk-Based Process</span>
+		<span>Program Sustainment</span>
+	</div>
+
+	<div class="metric-strip">
+		<div class="metric-card">
+			<span class="metric-label">Document Type</span>
+			<span class="metric-value">Technical Standard</span>
+			<span class="metric-sub">Access control reader workflow</span>
+		</div>
+
+		<div class="metric-card">
+			<span class="metric-label">Audience</span>
+			<span class="metric-value">Cross-Functional</span>
+			<span class="metric-sub">Security, IT, PMs, vendors</span>
+		</div>
+
+		<div class="metric-card">
+			<span class="metric-label">Purpose</span>
+			<span class="metric-value">Standardization</span>
+			<span class="metric-sub">Repeatable workflow practice</span>
+		</div>
+
+		<div class="metric-card">
+			<span class="metric-label">Supplement</span>
+			<span class="metric-value">Visual SOO</span>
+			<span class="metric-sub">Quick-reference diagram</span>
+		</div>
+	</div>
+
+	<nav class="project-section-nav" aria-label="Project section navigation">
+		<p class="nav-label">Jump to Section</p>
+		<div class="project-section-links">
+			<a href="#overview" class="featured">Overview</a>
+			<a href="#why-documentation-matters">Why It Matters</a>
+			<a href="#workflow-approach">Workflow Approach</a>
+			<a href="#document-preview">PDF Document</a>
+			<a href="#quick-reference">Visual Reference</a>
+			<a href="#changelog">Changelog</a>
+			<a href="#governance">Governance</a>
+			<a href="#reflection">Reflection</a>
+		</div>
+	</nav>
+</section>
+
+<section class="project-section" id="overview">
+	<div class="project-section-title">
+		<p class="label">Project Overview</p>
+		<h2>What this documentation project is meant to show</h2>
+	</div>
+
+	<div class="project-grid-2">
+		<div class="project-card">
+			<h3>Purpose</h3>
+			<p>
+				The purpose of this project is to show how I would write a formal technical standard for a physical security workflow. Instead of only explaining what an access control reader does, the document is structured to show the full operating sequence, expected system behavior, key responsibilities, possible outcomes, and audit considerations.
+			</p>
+			<p>
+				This is the type of documentation I would create to support a growing security program that needs clear standards and consistent workflow practices.
+			</p>
+		</div>
+
+		<div class="project-card">
+			<h3>Intended audience</h3>
+			<p>
+				The document is written for both technical and non-technical stakeholders. A security systems administrator may use it to understand expected access control behavior, while a project manager or business partner may use it to understand process ownership, handoff points, and what should be validated before a project is accepted.
+			</p>
+			<p>
+				My goal with this type of writing is to make the standard useful across teams, not limited to one technical group.
+			</p>
+		</div>
+	</div>
+</section>
+
+<section class="project-section" id="why-documentation-matters">
+	<div class="project-section-title">
+		<p class="label">Program Sustainment</p>
+		<h2>Why technical documentation matters</h2>
+	</div>
+
+	<div class="project-card">
+		<p>
+			In physical security, a system can be installed correctly but still become difficult to sustain if standards are unclear. Documentation creates shared expectations for how systems should be designed, configured, validated, maintained, and audited. Without a clear standard, teams may rely on tribal knowledge, inconsistent practices, or individual interpretation.
+		</p>
+
+		<p>
+			Strong documentation helps prevent that. It provides a common reference point for project teams, vendors, operations, and leadership. It also makes it easier to onboard new team members, review project quality, investigate issues, and improve standards over time.
+		</p>
+
+		<p>
+			This project reflects how I approach documentation from a sustainment mindset. The goal is not just to write a document. The goal is to create a repeatable workflow that supports accountability, long-term ownership, change management, and continuous improvement.
+		</p>
+	</div>
+</section>
+
+<section class="project-section" id="workflow-approach">
+	<div class="project-section-title">
+		<p class="label">Workflow Practice</p>
+		<h2>How I would structure the standardization process</h2>
+	</div>
+
+	<div class="project-timeline">
+		<div class="timeline-step">
+			<div class="timeline-number">1</div>
+			<div class="timeline-body">
+				<h3>Define the operational workflow</h3>
+				<p>
+					I would begin by mapping the end-to-end sequence of operations. For an access control reader, that means documenting what happens from the moment a credential is presented to the moment the event is logged and monitored.
+				</p>
+				<pre class="workflow-code"><code>Credential Presented → Credential Validated → Access Decision → Access Granted or Denied → Door Monitoring → Event Logging → Monitoring & Notification</code></pre>
+			</div>
+		</div>
+
+		<div class="timeline-step">
+			<div class="timeline-number">2</div>
+			<div class="timeline-body">
+				<h3>Identify stakeholders and ownership</h3>
+				<p>
+					A technical standard should make ownership clear. In a real environment, Physical Security may own the standard, IT may support infrastructure, vendors may perform installation, and project managers may coordinate delivery. The document should clarify responsibilities so teams know where their handoff points begin and end.
+				</p>
+			</div>
+		</div>
+
+		<div class="timeline-step">
+			<div class="timeline-number">3</div>
+			<div class="timeline-body">
+				<h3>Document expected system behavior</h3>
+				<p>
+					Each step should explain what the system is expected to do. For example, the reader should detect the credential, the controller should validate permissions, the system should return a grant or deny decision, and the monitoring system should retain event history for audit and reporting.
+				</p>
+			</div>
+		</div>
+
+		<div class="timeline-step">
+			<div class="timeline-number">4</div>
+			<div class="timeline-body">
+				<h3>Define acceptable outcomes and exceptions</h3>
+				<p>
+					A useful standard should also explain possible outcomes. Access may be granted, denied, alarmed, or escalated depending on conditions such as expired credentials, invalid access levels, door forced open, door held open, tamper, offline devices, or communication failure.
+				</p>
+			</div>
+		</div>
+
+		<div class="timeline-step">
+			<div class="timeline-number">5</div>
+			<div class="timeline-body">
+				<h3>Create supplemental references</h3>
+				<p>
+					Not every stakeholder will read a full standard before a project meeting. I would include a one-page visual reference to summarize the workflow quickly. This makes the standard easier to understand, easier to share, and easier to reinforce during stakeholder discussions.
+				</p>
+			</div>
+		</div>
+
+		<div class="timeline-step">
+			<div class="timeline-number">6</div>
+			<div class="timeline-body">
+				<h3>Maintain change control</h3>
+				<p>
+					Standards should evolve as systems, risks, and business needs change. I would maintain a changelog to track revisions, ownership, approvals, and implementation status. This helps teams understand what changed, why it changed, and whether the standard is still current.
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="project-section" id="document-preview">
+	<div class="project-section-title">
+		<p class="label">Technical Standard Document</p>
+		<h2>Access Control Standards PDF</h2>
+	</div>
+
+	<div class="project-card">
+		<p>
+			The embedded document below is a sample technical standard. It is intended to demonstrate how I would structure a formal workflow document for physical security operations. The PDF viewer should allow page-by-page viewing, and hyperlinks inside the PDF should remain interactive if supported by the browser's built-in PDF viewer.
+		</p>
+
+		<p>
+			I would use this type of document as the primary standard and pair it with supplemental materials such as a changelog and a visual sequence-of-operations reference.
+		</p>
+
+		<div class="asset-links">
+			<a href="access-control-reader-standards/Access-Control-Standards.pdf" class="button primary" target="_blank">
+				Open PDF
+			</a>
+			<a href="access-control-reader-standards/Access-Control-Standards.pdf" class="button" download>
+				Download PDF
+			</a>
+		</div>
+
+		<iframe
+			class="pdf-frame"
+			src="access-control-reader-standards/Access-Control-Standards.pdf"
+			title="Access Control Standards PDF">
+		</iframe>
+
+		<p style="margin-top: 1em;">
+			<strong>Note:</strong> If the embedded PDF does not load on a specific browser, use the Open PDF or Download PDF buttons above.
+		</p>
+	</div>
+</section>
+
+<section class="project-section" id="quick-reference">
+	<div class="project-section-title">
+		<p class="label">Supplemental Reference</p>
+		<h2>Card Reader Badge Sequence of Operations</h2>
+	</div>
+
+	<div class="project-card">
+		<p>
+			This visual reference is an example of how I would support a technical standard with a quick-reference diagram. The goal is to help stakeholders quickly understand the badge reader workflow without needing to read the entire document first.
+		</p>
+
+		<p>
+			A visual like this can be useful during design reviews, vendor coordination meetings, training, troubleshooting, and project closeout discussions.
+		</p>
+
+		<img
+			src="access-control-reader-standards/Access-Control-Reader-SOO.png"
+			alt="Access Control Card Reader Badge Sequence of Operations"
+			class="reference-image clickable-preview"
+		/>
+
+		<div class="asset-links">
+			<a href="access-control-reader-standards/Access-Control-Reader-SOO.png" class="button" target="_blank">
+				Open Visual Reference
+			</a>
+			<a href="access-control-reader-standards/Access-Control-Reader-SOO.png" class="button" download>
+				Download PNG
+			</a>
+		</div>
+	</div>
+</section>
+
+<section class="project-section" id="changelog">
+	<div class="project-section-title">
+		<p class="label">Change Control</p>
+		<h2>Example supplemental changelog</h2>
+	</div>
+
+	<div class="project-card">
+		<p>
+			For formal standards, I would maintain a changelog as a supplemental item. This helps track version history, document ownership, approvals, and future updates. A changelog is especially important when standards are used across multiple teams or sites because it gives stakeholders visibility into what changed and when.
+		</p>
+
+		<div class="table-wrapper">
+			<table>
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Date</th>
+						<th>Change Summary</th>
+						<th>Owner</th>
+						<th>Approval Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>0.1</td>
+						<td>2026-06-02</td>
+						<td>Initial working draft created to define the access control reader badge sequence of operations.</td>
+						<td>Physical Security</td>
+						<td>Draft</td>
+					</tr>
+					<tr>
+						<td>0.2</td>
+						<td>TBD</td>
+						<td>Added stakeholder feedback, clarified terminology, and expanded monitoring and event logging sections.</td>
+						<td>Security Operations</td>
+						<td>Pending Review</td>
+					</tr>
+					<tr>
+						<td>0.3</td>
+						<td>TBD</td>
+						<td>Added supplemental visual reference and aligned documentation with project handoff requirements.</td>
+						<td>Workplace Technology / Physical Security</td>
+						<td>Pending Review</td>
+					</tr>
+					<tr>
+						<td>1.0</td>
+						<td>TBD</td>
+						<td>Approved baseline standard for use in design review, implementation, validation, and sustainment workflows.</td>
+						<td>Global Security</td>
+						<td>Approved</td>
+					</tr>
+					<tr>
+						<td>1.1</td>
+						<td>TBD</td>
+						<td>Future update to include system-specific configuration notes, regional exceptions, and audit requirements.</td>
+						<td>Physical Security Standards Owner</td>
+						<td>Future Revision</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</section>
+
+<section class="project-section" id="governance">
+	<div class="project-section-title">
+		<p class="label">Governance</p>
+		<h2>How I would manage ownership and adoption</h2>
+	</div>
+
+	<div class="project-grid-2">
+		<div class="project-card">
+			<h3>Documentation ownership</h3>
+			<p>
+				A standard should have a clear owner. That owner is responsible for maintaining the document, reviewing feedback, coordinating approvals, and making sure updates are communicated to impacted teams.
+			</p>
+			<p>
+				Without ownership, standards can become outdated or inconsistently applied.
+			</p>
+		</div>
+
+		<div class="project-card">
+			<h3>Review cadence</h3>
+			<p>
+				I would recommend reviewing standards on a recurring basis, such as annually or after significant system, vendor, or operational changes. This keeps documentation aligned with current technology, current risks, and current business needs.
+			</p>
+		</div>
+
+		<div class="project-card">
+			<h3>Stakeholder adoption</h3>
+			<p>
+				A standard is only useful if people understand it and use it. I would support adoption through stakeholder review, training, quick-reference materials, and feedback loops.
+			</p>
+		</div>
+
+		<div class="project-card">
+			<h3>Exception handling</h3>
+			<p>
+				In a global environment, not every site may be able to follow the same standard exactly. Any exception should be documented, justified, approved, and reviewed periodically to confirm it is still valid.
+			</p>
+		</div>
+	</div>
+</section>
+
+<section class="project-section" id="reflection">
+	<div class="project-section-title">
+		<p class="label">Reflection</p>
+		<h2>What this project represents</h2>
+	</div>
+
+	<div class="project-card">
+		<p>
+			This project represents how I think about technical writing in a physical security program. Documentation should not simply explain a system after it has already been built. It should help guide design decisions, align stakeholders, support quality assurance, simplify training, and create a sustainable reference for future operations.
+		</p>
+
+		<p>
+			My experience in Quality Assurance taught me that standards are most effective when they are clear, measurable, practical, and easy to follow. A good standard helps teams understand what is expected, why it matters, and how to verify that the system is working as intended.
+		</p>
+
+		<p>
+			For a sustainment-focused role, this type of documentation is important because it reduces dependency on tribal knowledge and creates a repeatable process that can scale as the organization grows.
+		</p>
+	</div>
+</section>
+
+</div>
+</div>
+
+<div id="sidebar">
+<div class="inner">
+
+<nav id="menu">
+<header class="major">
+<h2>Menu</h2>
+</header>
+<ul>
+<li><a href="../index.html">Homepage</a></li>
+<li><a href="../projects.html">Project Showcase</a></li>
+<li>
+<span class="opener">Blog</span>
+<ul>
+<li><a href="../blog.html">Blog Homepage</a></li>
+<li><a href="../blog-technology.html">Blog - Technology</a></li>
+<li><a href="../blog-healthcare.html">Blog - Healthcare</a></li>
+<li><a href="../blog-restaurant.html">Blog - Restaurant</a></li>
+<li><a href="../blog-hobbies.html">Blog - Hobbies</a></li>
+<li><a href="../blog-movies.html">Blog - Movies</a></li>
+</ul>
+</li>
+<li><a href="../contact-form.html">Contact Me</a></li>
+</ul>
+</nav>
+
+<footer id="footer">
+<p class="copyright">&copy; 2026 Christopher Leung. All rights reserved.</p>
+</footer>
+
+</div>
+</div>
+
+</div>
+
+<div id="imageLightbox" class="lightbox" aria-hidden="true">
+	<span class="lightbox-close" id="lightboxClose">&times;</span>
+	<img id="lightboxImage" alt="Expanded project preview" />
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+	const previewImages = document.querySelectorAll('.clickable-preview');
+	const lightbox = document.getElementById('imageLightbox');
+	const lightboxImage = document.getElementById('lightboxImage');
+	const lightboxClose = document.getElementById('lightboxClose');
+
+	if (!previewImages.length || !lightbox || !lightboxImage || !lightboxClose) return;
+
+	previewImages.forEach(function (img) {
+		img.addEventListener('click', function () {
+			lightboxImage.src = img.src;
+			lightboxImage.alt = img.alt || 'Expanded project preview';
+			lightbox.classList.add('active');
+			lightbox.setAttribute('aria-hidden', 'false');
+			document.body.style.overflow = 'hidden';
+		});
+	});
+
+	function closeLightbox() {
+		lightbox.classList.remove('active');
+		lightbox.setAttribute('aria-hidden', 'true');
+		lightboxImage.src = '';
+		document.body.style.overflow = '';
+	}
+
+	lightboxClose.addEventListener('click', closeLightbox);
+
+	lightbox.addEventListener('click', function (e) {
+		if (e.target === lightbox) closeLightbox();
+	});
+
+	document.addEventListener('keydown', function (e) {
+		if (e.key === 'Escape') closeLightbox();
+	});
+});
+</script>
+
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/browser.min.js"></script>
+<script src="../assets/js/breakpoints.min.js"></script>
+<script src="../assets/js/util.js"></script>
+<script src="../assets/js/main.js"></script>
+
+</body>
+</html>
