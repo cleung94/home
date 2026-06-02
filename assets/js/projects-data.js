@@ -1,4 +1,15 @@
 window.PROJECTS = [
+    {
+    title: "Access Control Reader Standards & Workflow Documentation",
+    slug: "showcase/project-access-control-reader-standards.html",
+    tag: "technology",
+    tagLabel: "Technology",
+    date: "June 2026",
+    status: ["Featured", "Technology"],
+    excerpt: "This project demonstrates how I would create technical standards, workflow documentation, supplemental visual references, and change-control artifacts to support a scalable and sustainable physical security program.",
+    tools: ["Canva", "Workflow Design", "Word"],
+    featured: true
+  },
   {
     title: "CNA Workflow Organizer",
     slug: "showcase/project-cna-shift-helper.html",
