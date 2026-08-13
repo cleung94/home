@@ -1,7 +1,16 @@
 window.BLOG_POSTS = [
+                       {
+    title: "Finding Direction Again: My Next Step Toward Project Management",
+    slug: "blog/blog-tech-00005.html",
+    tag: "Technology",
+    tagLabel: "Technology",
+    date: "August 2026",
+    image: "blog/photos/blog-tech-00005-01.png",
+    excerpt: "After taking some time away from blogging to navigate the challenges of job searching and refocus on family, I’m finding my direction again. I’m beginning a new chapter by pursuing the Google Project Management Certificate, rebuilding my confidence, and working toward my long-term goal of earning the PMP and transitioning into project management."
+  },
                      {
     title: "Andaman Thai Restaurant",
-    slug: "blog/blog-restaurant-00005-02.html",
+    slug: "blog/blog-restaurant-00005.html",
     tag: "restaurant",
     tagLabel: "Restaurant",
     date: "May 2026",
