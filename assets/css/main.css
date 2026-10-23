@@ -6079,3 +6079,24 @@ font-weight:600;
     min-height: 130px;
   }
 }
+
+
+@media screen and (max-width: 1280px) {
+
+    #sidebar {
+        width: 24em;
+        margin-left: 0;
+    }
+
+    #sidebar > .inner {
+        width: 24em;
+    }
+
+    #sidebar.inactive {
+        margin-left: -24em;
+    }
+
+    #sidebar .toggle {
+        left: 24em;
+    }
+}
