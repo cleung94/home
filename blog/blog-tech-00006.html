@@ -1,0 +1,445 @@
+```html
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Understanding the C•CURE 9000 Certification Path | Christopher Leung</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+
+		<!--
+			Page-specific styles only.
+			Global blog layout, typography, hero, sidebar, buttons,
+			quotes and navigation are handled by main.css.
+		-->
+		<style>
+			/* =========================================
+			   C•CURE TRAINING PATHWAY
+			   ========================================= */
+
+			.ccure-pathway-intro {
+				margin: 2.5em 0;
+				padding: 1.4em 1.6em;
+				background: rgba(74, 111, 134, 0.06);
+				border-left: 4px solid #4a6f86;
+				border-radius: 0.6em;
+			}
+
+			.ccure-pathway-intro p:last-child {
+				margin-bottom: 0;
+			}
+
+			/* Progress overview */
+
+			.ccure-progress {
+				display: flex;
+				align-items: stretch;
+				justify-content: center;
+				gap: 0.8em;
+				margin: 2.5em 0 3.5em 0;
+			}
+
+			.ccure-progress-item {
+				flex: 1;
+				padding: 1.2em 1em;
+				border: 1px solid rgba(74, 111, 134, 0.18);
+				border-radius: 1em;
+				background: #ffffff;
+				text-align: center;
+				box-shadow: 0 8px 20px rgba(60, 80, 100, 0.05);
+			}
+
+			.ccure-progress-item.complete {
+				background: rgba(74, 111, 134, 0.07);
+			}
+
+			.ccure-progress-item.next {
+				border: 2px solid #4a6f86;
+				background: linear-gradient(
+					145deg,
+					rgba(255, 255, 255, 0.96),
+					rgba(232, 238, 245, 0.92)
+				);
+			}
+
+			.ccure-progress-level {
+				display: block;
+				margin-bottom: 0.35em;
+				color: #7f888f;
+				font-size: 0.72rem;
+				font-weight: 700;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+			}
+
+			.ccure-progress-item strong {
+				display: block;
+				margin-bottom: 0.2em;
+				font-family: "Roboto Slab", serif;
+				font-size: 1.1rem;
+			}
+
+			.ccure-progress-arrow {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: #4a6f86;
+				font-size: 1.5em;
+				font-weight: 700;
+			}
+
+			/* Timeline */
+
+			.ccure-timeline {
+				position: relative;
+				margin: 3em 0 4em 0;
+				padding-left: 3.5em;
+			}
+
+			.ccure-timeline::before {
+				content: "";
+				position: absolute;
+				top: 1em;
+				bottom: 1em;
+				left: 1.05em;
+				width: 2px;
+				background: rgba(74, 111, 134, 0.25);
+			}
+
+			.ccure-timeline-item {
+				position: relative;
+				margin-bottom: 2.5em;
+			}
+
+			.ccure-timeline-item:last-child {
+				margin-bottom: 0;
+			}
+
+			.ccure-timeline-marker {
+				position: absolute;
+				top: 1.3em;
+				left: -3.5em;
+				z-index: 2;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 2.2em;
+				height: 2.2em;
+				border: 2px solid #4a6f86;
+				border-radius: 50%;
+				background: #f7f9fb;
+				color: #4a6f86;
+				font-weight: 700;
+			}
+
+			/* Course cards */
+
+			.ccure-course-card {
+				padding: 1.8em;
+				border: 1px solid rgba(74, 111, 134, 0.16);
+				border-radius: 1em;
+				background: linear-gradient(
+					145deg,
+					rgba(255, 255, 255, 0.94) 0%,
+					rgba(245, 248, 252, 0.90) 100%
+				);
+				box-shadow: 0 10px 24px rgba(60, 80, 100, 0.06);
+			}
+
+			.ccure-course-card.next-course {
+				border: 2px solid rgba(74, 111, 134, 0.55);
+				box-shadow: 0 14px 30px rgba(60, 80, 100, 0.10);
+			}
+
+			.ccure-course-header {
+				display: flex;
+				align-items: flex-start;
+				justify-content: space-between;
+				gap: 1em;
+				margin-bottom: 1.2em;
+			}
+
+			.ccure-course-code {
+				display: block;
+				margin-bottom: 0.4em;
+				color: #4a6f86;
+				font-size: 0.72rem;
+				font-weight: 700;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+			}
+
+			.ccure-course-header h3 {
+				margin: 0;
+			}
+
+			.ccure-status {
+				display: inline-block;
+				flex-shrink: 0;
+				padding: 0.45em 0.8em;
+				border-radius: 999px;
+				background: rgba(74, 111, 134, 0.10);
+				color: #4a6f86;
+				font-size: 0.68rem;
+				font-weight: 700;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+			}
+
+			.ccure-status.next {
+				background: #4a6f86;
+				color: #ffffff;
+			}
+
+			/* Course metadata */
+
+			.ccure-meta-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 0.9em;
+				margin: 1.5em 0;
+			}
+
+			.ccure-meta-box {
+				padding: 1em;
+				border-radius: 0.7em;
+				background: rgba(74, 111, 134, 0.06);
+			}
+
+			.ccure-meta-label {
+				display: block;
+				margin-bottom: 0.25em;
+				color: #7f888f;
+				font-size: 0.68rem;
+				font-weight: 700;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+			}
+
+			.ccure-meta-value {
+				color: #3d4449;
+				font-weight: 600;
+			}
+
+			/* Lists inside course cards */
+
+			.ccure-course-card ul {
+				margin-bottom: 1.5em;
+				padding-left: 1.4em;
+				list-style: disc;
+			}
+
+			.ccure-course-card ul li {
+				margin-bottom: 0.4em;
+				padding-left: 0.2em;
+			}
+
+			.ccure-course-card p:last-of-type {
+				margin-bottom: 1.4em;
+			}
+
+			/* Comparison table */
+
+			.ccure-table-wrap {
+				width: 100%;
+				margin: 2em 0 3em 0;
+				overflow-x: auto;
+				border: 1px solid rgba(74, 111, 134, 0.15);
+				border-radius: 1em;
+				background: #ffffff;
+			}
+
+			.ccure-comparison-table {
+				width: 100%;
+				min-width: 800px;
+				margin: 0;
+			}
+
+			.ccure-comparison-table thead {
+				background: rgba(74, 111, 134, 0.09);
+			}
+
+			.ccure-comparison-table th {
+				color: #3d4449;
+				font-weight: 700;
+			}
+
+			.ccure-comparison-table th,
+			.ccure-comparison-table td {
+				padding: 1em;
+				vertical-align: top;
+			}
+
+			.ccure-comparison-table tbody tr:nth-child(even) {
+				background: rgba(74, 111, 134, 0.025);
+			}
+
+			/* Specialized courses */
+
+			.ccure-specialty-grid {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 1.4em;
+				margin: 2em 0 3em 0;
+			}
+
+			.ccure-specialty-card {
+				display: flex;
+				flex-direction: column;
+				padding: 1.5em;
+				border: 1px solid rgba(74, 111, 134, 0.16);
+				border-radius: 1em;
+				background: linear-gradient(
+					145deg,
+					rgba(255, 255, 255, 0.94),
+					rgba(245, 248, 252, 0.88)
+				);
+				box-shadow: 0 8px 20px rgba(60, 80, 100, 0.05);
+			}
+
+			.ccure-specialty-card h3 {
+				margin-top: 0;
+			}
+
+			.ccure-specialty-card .button {
+				margin-top: auto;
+				align-self: flex-start;
+			}
+
+			.ccure-price {
+				margin-bottom: 1em !important;
+				color: #4a6f86 !important;
+				font-size: 1.15rem !important;
+				font-weight: 700;
+			}
+
+			/* Source note */
+
+			.ccure-source-note {
+				margin: 3em 0;
+				padding: 1.5em;
+				border: 1px solid rgba(74, 111, 134, 0.15);
+				border-radius: 1em;
+				background: rgba(74, 111, 134, 0.04);
+			}
+
+			.ccure-source-note p:last-of-type {
+				margin-bottom: 1.2em;
+			}
+
+			/* Responsive */
+
+			@media screen and (max-width: 736px) {
+
+				.ccure-progress {
+					flex-direction: column;
+				}
+
+				.ccure-progress-arrow {
+					transform: rotate(90deg);
+				}
+
+				.ccure-meta-grid {
+					grid-template-columns: 1fr;
+				}
+
+				.ccure-specialty-grid {
+					grid-template-columns: 1fr;
+				}
+
+				.ccure-course-header {
+					flex-direction: column;
+				}
+
+				.ccure-timeline {
+					padding-left: 2.8em;
+				}
+
+				.ccure-timeline-marker {
+					left: -2.8em;
+				}
+			}
+		</style>
+	</head>
+
+	<body class="is-preload blog-tone">
+
+		<div id="wrapper">
+
+			<div id="main">
+				<div class="inner">
+
+					<header id="header">
+						<a href="../index.html" class="logo"><strong>Christopher Leung</strong></a>
+						<ul class="icons">
+							<li>
+								<a href="https://github.com/cleung94" class="icon brands fa-github">
+									<span class="label">GitHub</span>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.linkedin.com/in/christopher-km-leung/" class="icon brands fa-linkedin">
+									<span class="label">LinkedIn</span>
+								</a>
+							</li>
+						</ul>
+					</header>
+
+					<!-- Blog Hero -->
+					<section class="blog-post-luxe">
+
+						<div class="blog-post-luxe-media">
+							<img
+								src="photos/blog-tech-00006-01.png"
+								alt="C-CURE 9000 certification and enterprise security training pathway"
+							/>
+						</div>
+
+						<div class="blog-post-luxe-panel">
+
+							<span class="blog-kicker-luxe">Technology</span>
+
+							<h1>Understanding the C•CURE 9000 Certification Path</h1>
+
+							<p class="blog-subtitle-luxe">
+								A practical guide to the Software House C•CURE 9000 Integrator
+								training pathway—from Installer/Maintainer through Advanced
+								Integrator and Enterprise Architecture—and how each course
+								builds toward supporting larger enterprise security systems.
+							</p>
+
+							<div class="blog-post-meta-luxe">
+								<span>October 2026</span>
+								<span>10 min read</span>
+							</div>
+
+						</div>
+
+					</section>
+
+					<!-- Blog Content -->
+					<section class="blog-post-content-luxe">
+
+						<p>
+							One of the things I have learned while working with enterprise
+							physical security systems is that knowing how to operate a platform
+							and understanding how that platform is engineered are two very
+							different levels of knowledge.
+						</p>
+
+						<p>
+							With a platform as large as C•CURE 9000, the training pathway
+							reflects that progression.
+						</p>
+
+						<p>
+							Recently, I was tasked with researching the next C•CURE course I
+							should take so that my certifications and technical knowledge would
+							continue to align with the systems I support at work. I had already
+							completed the Installer/Maintainer and Advanced Integrator training,
+							so I wanted to answer a fairly straightforward question:
+							<strong>what comes next?</strong>
+						</p>
+
+						<p>
+							That research eventually became
