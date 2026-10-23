@@ -1,85 +1,82 @@
-```html
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Understanding the C•CURE 9000 Certification Path | Christopher Leung</title>
+		<title>C•CURE 9000 Training Pathway: What to Take and When | Christopher Leung</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../assets/css/main.css" />
 
-		<!--
-			Page-specific styles only.
-			Global blog layout, typography, hero, sidebar, buttons,
-			quotes and navigation are handled by main.css.
-		-->
+		<!-- Page-specific C•CURE pathway styles -->
 		<style>
+
 			/* =========================================
 			   C•CURE TRAINING PATHWAY
+			   Uses existing main.css color language
 			   ========================================= */
 
-			.ccure-pathway-intro {
-				margin: 2.5em 0;
-				padding: 1.4em 1.6em;
+			.ccure-note {
+				margin: 2em 0;
+				padding: 1.4em 1.5em;
 				background: rgba(74, 111, 134, 0.06);
 				border-left: 4px solid #4a6f86;
 				border-radius: 0.6em;
 			}
 
-			.ccure-pathway-intro p:last-child {
+			.ccure-note p:last-child {
 				margin-bottom: 0;
 			}
 
-			/* Progress overview */
 
-			.ccure-progress {
-				display: flex;
+			/* ===== PATH OVERVIEW ===== */
+
+			.ccure-path-overview {
+				display: grid;
+				grid-template-columns: 1fr auto 1fr auto 1fr;
 				align-items: stretch;
-				justify-content: center;
 				gap: 0.8em;
 				margin: 2.5em 0 3.5em 0;
 			}
 
-			.ccure-progress-item {
-				flex: 1;
-				padding: 1.2em 1em;
+			.ccure-path-box {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				min-height: 150px;
+				padding: 1.25em;
+				background: #ffffff;
 				border: 1px solid rgba(74, 111, 134, 0.18);
 				border-radius: 1em;
-				background: #ffffff;
 				text-align: center;
 				box-shadow: 0 8px 20px rgba(60, 80, 100, 0.05);
 			}
 
-			.ccure-progress-item.complete {
-				background: rgba(74, 111, 134, 0.07);
-			}
-
-			.ccure-progress-item.next {
+			.ccure-path-box.current-next {
 				border: 2px solid #4a6f86;
 				background: linear-gradient(
 					145deg,
-					rgba(255, 255, 255, 0.96),
-					rgba(232, 238, 245, 0.92)
+					rgba(255,255,255,0.98),
+					rgba(232,238,245,0.92)
 				);
 			}
 
-			.ccure-progress-level {
+			.ccure-path-level {
 				display: block;
-				margin-bottom: 0.35em;
-				color: #7f888f;
+				margin-bottom: 0.4em;
+				color: #4a6f86;
 				font-size: 0.72rem;
 				font-weight: 700;
 				letter-spacing: 0.12em;
 				text-transform: uppercase;
 			}
 
-			.ccure-progress-item strong {
+			.ccure-path-box strong {
 				display: block;
-				margin-bottom: 0.2em;
-				font-family: "Roboto Slab", serif;
-				font-size: 1.1rem;
+				margin-bottom: 0.25em;
+				color: #3d4449;
+				font-size: 1.15rem;
 			}
 
-			.ccure-progress-arrow {
+			.ccure-path-arrow {
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -88,7 +85,8 @@
 				font-weight: 700;
 			}
 
-			/* Timeline */
+
+			/* ===== TIMELINE ===== */
 
 			.ccure-timeline {
 				position: relative;
@@ -99,11 +97,11 @@
 			.ccure-timeline::before {
 				content: "";
 				position: absolute;
-				top: 1em;
-				bottom: 1em;
+				top: 1.5em;
+				bottom: 1.5em;
 				left: 1.05em;
 				width: 2px;
-				background: rgba(74, 111, 134, 0.25);
+				background: rgba(74, 111, 134, 0.24);
 			}
 
 			.ccure-timeline-item {
@@ -120,48 +118,53 @@
 				top: 1.3em;
 				left: -3.5em;
 				z-index: 2;
+
 				display: flex;
 				align-items: center;
 				justify-content: center;
+
 				width: 2.2em;
 				height: 2.2em;
+
+				background: #f7f9fb;
 				border: 2px solid #4a6f86;
 				border-radius: 50%;
-				background: #f7f9fb;
+
 				color: #4a6f86;
 				font-weight: 700;
 			}
 
-			/* Course cards */
+
+			/* ===== COURSE CARDS ===== */
 
 			.ccure-course-card {
 				padding: 1.8em;
-				border: 1px solid rgba(74, 111, 134, 0.16);
-				border-radius: 1em;
 				background: linear-gradient(
 					145deg,
-					rgba(255, 255, 255, 0.94) 0%,
-					rgba(245, 248, 252, 0.90) 100%
+					rgba(255,255,255,0.96),
+					rgba(245,248,252,0.90)
 				);
-				box-shadow: 0 10px 24px rgba(60, 80, 100, 0.06);
+				border: 1px solid rgba(74,111,134,0.16);
+				border-radius: 1em;
+				box-shadow: 0 10px 24px rgba(60,80,100,0.06);
 			}
 
 			.ccure-course-card.next-course {
-				border: 2px solid rgba(74, 111, 134, 0.55);
-				box-shadow: 0 14px 30px rgba(60, 80, 100, 0.10);
+				border: 2px solid rgba(74,111,134,0.55);
+				box-shadow: 0 14px 30px rgba(60,80,100,0.10);
 			}
 
 			.ccure-course-header {
 				display: flex;
-				align-items: flex-start;
 				justify-content: space-between;
+				align-items: flex-start;
 				gap: 1em;
 				margin-bottom: 1.2em;
 			}
 
 			.ccure-course-code {
 				display: block;
-				margin-bottom: 0.4em;
+				margin-bottom: 0.35em;
 				color: #4a6f86;
 				font-size: 0.72rem;
 				font-weight: 700;
@@ -173,44 +176,45 @@
 				margin: 0;
 			}
 
-			.ccure-status {
+			.ccure-badge {
 				display: inline-block;
 				flex-shrink: 0;
 				padding: 0.45em 0.8em;
+				background: rgba(74,111,134,0.10);
 				border-radius: 999px;
-				background: rgba(74, 111, 134, 0.10);
 				color: #4a6f86;
-				font-size: 0.68rem;
+				font-size: 0.67rem;
 				font-weight: 700;
 				letter-spacing: 0.08em;
 				text-transform: uppercase;
 			}
 
-			.ccure-status.next {
+			.ccure-badge.next {
 				background: #4a6f86;
 				color: #ffffff;
 			}
 
-			/* Course metadata */
+
+			/* ===== COURSE META ===== */
 
 			.ccure-meta-grid {
 				display: grid;
 				grid-template-columns: repeat(3, 1fr);
-				gap: 0.9em;
+				gap: 0.8em;
 				margin: 1.5em 0;
 			}
 
-			.ccure-meta-box {
+			.ccure-meta {
 				padding: 1em;
+				background: rgba(74,111,134,0.06);
 				border-radius: 0.7em;
-				background: rgba(74, 111, 134, 0.06);
 			}
 
 			.ccure-meta-label {
 				display: block;
 				margin-bottom: 0.25em;
 				color: #7f888f;
-				font-size: 0.68rem;
+				font-size: 0.66rem;
 				font-weight: 700;
 				letter-spacing: 0.1em;
 				text-transform: uppercase;
@@ -221,87 +225,35 @@
 				font-weight: 600;
 			}
 
-			/* Lists inside course cards */
 
-			.ccure-course-card ul {
-				margin-bottom: 1.5em;
-				padding-left: 1.4em;
-				list-style: disc;
-			}
+			/* ===== SPECIALIZED BRANCHES ===== */
 
-			.ccure-course-card ul li {
-				margin-bottom: 0.4em;
-				padding-left: 0.2em;
-			}
-
-			.ccure-course-card p:last-of-type {
-				margin-bottom: 1.4em;
-			}
-
-			/* Comparison table */
-
-			.ccure-table-wrap {
-				width: 100%;
-				margin: 2em 0 3em 0;
-				overflow-x: auto;
-				border: 1px solid rgba(74, 111, 134, 0.15);
-				border-radius: 1em;
-				background: #ffffff;
-			}
-
-			.ccure-comparison-table {
-				width: 100%;
-				min-width: 800px;
-				margin: 0;
-			}
-
-			.ccure-comparison-table thead {
-				background: rgba(74, 111, 134, 0.09);
-			}
-
-			.ccure-comparison-table th {
-				color: #3d4449;
-				font-weight: 700;
-			}
-
-			.ccure-comparison-table th,
-			.ccure-comparison-table td {
-				padding: 1em;
-				vertical-align: top;
-			}
-
-			.ccure-comparison-table tbody tr:nth-child(even) {
-				background: rgba(74, 111, 134, 0.025);
-			}
-
-			/* Specialized courses */
-
-			.ccure-specialty-grid {
+			.ccure-branch-grid {
 				display: grid;
-				grid-template-columns: repeat(2, minmax(0, 1fr));
-				gap: 1.4em;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 1.2em;
 				margin: 2em 0 3em 0;
 			}
 
-			.ccure-specialty-card {
+			.ccure-branch-card {
 				display: flex;
 				flex-direction: column;
 				padding: 1.5em;
-				border: 1px solid rgba(74, 111, 134, 0.16);
-				border-radius: 1em;
 				background: linear-gradient(
 					145deg,
-					rgba(255, 255, 255, 0.94),
-					rgba(245, 248, 252, 0.88)
+					rgba(255,255,255,0.96),
+					rgba(245,248,252,0.90)
 				);
-				box-shadow: 0 8px 20px rgba(60, 80, 100, 0.05);
+				border: 1px solid rgba(74,111,134,0.16);
+				border-radius: 1em;
+				box-shadow: 0 8px 20px rgba(60,80,100,0.05);
 			}
 
-			.ccure-specialty-card h3 {
+			.ccure-branch-card h3 {
 				margin-top: 0;
 			}
 
-			.ccure-specialty-card .button {
+			.ccure-branch-card .button {
 				margin-top: auto;
 				align-self: flex-start;
 			}
@@ -309,41 +261,80 @@
 			.ccure-price {
 				margin-bottom: 1em !important;
 				color: #4a6f86 !important;
-				font-size: 1.15rem !important;
+				font-size: 1.1rem !important;
 				font-weight: 700;
 			}
 
-			/* Source note */
 
-			.ccure-source-note {
+			/* ===== COMPARISON TABLE ===== */
+
+			.ccure-table-wrap {
+				width: 100%;
+				margin: 2em 0 3em 0;
+				overflow-x: auto;
+				background: #ffffff;
+				border: 1px solid rgba(74,111,134,0.15);
+				border-radius: 1em;
+			}
+
+			.ccure-table {
+				width: 100%;
+				min-width: 850px;
+				margin: 0;
+			}
+
+			.ccure-table thead {
+				background: rgba(74,111,134,0.09);
+			}
+
+			.ccure-table th,
+			.ccure-table td {
+				padding: 1em;
+				vertical-align: top;
+			}
+
+			.ccure-table th {
+				color: #3d4449;
+				font-weight: 700;
+			}
+
+			.ccure-table tbody tr:nth-child(even) {
+				background: rgba(74,111,134,0.025);
+			}
+
+
+			/* ===== SOURCE BOX ===== */
+
+			.ccure-source-box {
 				margin: 3em 0;
 				padding: 1.5em;
-				border: 1px solid rgba(74, 111, 134, 0.15);
+				background: rgba(74,111,134,0.04);
+				border: 1px solid rgba(74,111,134,0.15);
 				border-radius: 1em;
-				background: rgba(74, 111, 134, 0.04);
 			}
 
-			.ccure-source-note p:last-of-type {
-				margin-bottom: 1.2em;
-			}
 
-			/* Responsive */
+			/* ===== RESPONSIVE ===== */
+
+			@media screen and (max-width: 980px) {
+
+				.ccure-branch-grid {
+					grid-template-columns: 1fr;
+				}
+
+			}
 
 			@media screen and (max-width: 736px) {
 
-				.ccure-progress {
-					flex-direction: column;
+				.ccure-path-overview {
+					grid-template-columns: 1fr;
 				}
 
-				.ccure-progress-arrow {
+				.ccure-path-arrow {
 					transform: rotate(90deg);
 				}
 
 				.ccure-meta-grid {
-					grid-template-columns: 1fr;
-				}
-
-				.ccure-specialty-grid {
 					grid-template-columns: 1fr;
 				}
 
@@ -358,7 +349,9 @@
 				.ccure-timeline-marker {
 					left: -2.8em;
 				}
+
 			}
+
 		</style>
 	</head>
 
@@ -371,12 +364,14 @@
 
 					<header id="header">
 						<a href="../index.html" class="logo"><strong>Christopher Leung</strong></a>
+
 						<ul class="icons">
 							<li>
 								<a href="https://github.com/cleung94" class="icon brands fa-github">
 									<span class="label">GitHub</span>
 								</a>
 							</li>
+
 							<li>
 								<a href="https://www.linkedin.com/in/christopher-km-leung/" class="icon brands fa-linkedin">
 									<span class="label">LinkedIn</span>
@@ -385,13 +380,14 @@
 						</ul>
 					</header>
 
-					<!-- Blog Hero -->
+
+					<!-- BLOG HERO -->
 					<section class="blog-post-luxe">
 
 						<div class="blog-post-luxe-media">
 							<img
 								src="photos/blog-tech-00006-01.png"
-								alt="C-CURE 9000 certification and enterprise security training pathway"
+								alt="C-CURE 9000 technical training and certification pathway"
 							/>
 						</div>
 
@@ -399,47 +395,1229 @@
 
 							<span class="blog-kicker-luxe">Technology</span>
 
-							<h1>Understanding the C•CURE 9000 Certification Path</h1>
+							<h1>
+								Understanding the C•CURE 9000 Training Pathway
+							</h1>
 
 							<p class="blog-subtitle-luxe">
 								A practical guide to the Software House C•CURE 9000 Integrator
-								training pathway—from Installer/Maintainer through Advanced
-								Integrator and Enterprise Architecture—and how each course
-								builds toward supporting larger enterprise security systems.
+								training path—what each course teaches, when to take it, and
+								how the certifications build toward supporting enterprise
+								physical security systems.
 							</p>
 
 							<div class="blog-post-meta-luxe">
 								<span>October 2026</span>
-								<span>10 min read</span>
+								<span>12 min read</span>
 							</div>
 
 						</div>
 
 					</section>
 
-					<!-- Blog Content -->
+
+					<!-- BLOG CONTENT -->
 					<section class="blog-post-content-luxe">
 
 						<p>
-							One of the things I have learned while working with enterprise
-							physical security systems is that knowing how to operate a platform
-							and understanding how that platform is engineered are two very
-							different levels of knowledge.
+							One of the things I was recently tasked with was researching
+							the next C•CURE 9000 training course I should take and making
+							sure my certifications continue to align with the systems and
+							responsibilities I support professionally.
 						</p>
 
 						<p>
-							With a platform as large as C•CURE 9000, the training pathway
-							reflects that progression.
+							I had already completed C•CURE 9000 Installer/Maintainer and
+							Advanced Integrator training, so what initially sounded like a
+							simple question—<strong>what class comes next?</strong>—turned
+							into a deeper look at how the entire Software House Integrator
+							training catalog is structured.
 						</p>
 
 						<p>
-							Recently, I was tasked with researching the next C•CURE course I
-							should take so that my certifications and technical knowledge would
-							continue to align with the systems I support at work. I had already
-							completed the Installer/Maintainer and Advanced Integrator training,
-							so I wanted to answer a fairly straightforward question:
-							<strong>what comes next?</strong>
+							The catalog contains several C•CURE courses, but they do not all
+							form one long certification ladder. Some represent the main
+							progression of technical knowledge, while others are specialized
+							courses intended for specific products or deployment types.
+						</p>
+
+						<blockquote class="blog-highlight-quote">
+							<p>
+								The C•CURE training path makes more sense when you separate
+								the core technical progression from the specialized courses
+								you take based on the environment you actually support.
+							</p>
+						</blockquote>
+
+
+						<div class="ccure-note">
+							<strong>About this guide</strong>
+
+							<p>
+								This article is an independent overview based on the publicly
+								available Software House / Johnson Controls Integrator training
+								catalog reviewed in October 2026. Course schedules, pricing,
+								prerequisites, and availability can change, so current course
+								information should always be verified before registration.
+							</p>
+						</div>
+
+
+						<h2>The C•CURE 9000 Integrator Training Catalog</h2>
+
+						<p>
+							The current Integrator catalog lists six C•CURE-specific
+							technician courses:
+						</p>
+
+						<ul>
+							<li>AC9001 – C•CURE 9000 Installer Maintainer Certification</li>
+							<li>AC9003 – C•CURE IQ Installer Course for Integrators</li>
+							<li>AC9005 – C•CURE 9000 Advanced Integrator Certification</li>
+							<li>AC9444 – C•CURE 9000 Enterprise Architecture Certification</li>
+							<li>AC9201 – C•CURE 9000 Visitor Management Certification</li>
+							<li>AC9202 – C•CURE 9000 High Assurance with Innometriks</li>
+						</ul>
+
+						<p>
+							However, if the goal is to understand the primary technical
+							certification progression, three courses stand out:
+						</p>
+
+
+						<!-- CORE PATH VISUAL -->
+
+						<div class="ccure-path-overview">
+
+							<div class="ccure-path-box">
+								<span class="ccure-path-level">Level 1</span>
+								<strong>AC9001</strong>
+								<span>Installer / Maintainer</span>
+							</div>
+
+							<div class="ccure-path-arrow">→</div>
+
+							<div class="ccure-path-box">
+								<span class="ccure-path-level">Level 2</span>
+								<strong>AC9005</strong>
+								<span>Advanced Integrator</span>
+							</div>
+
+							<div class="ccure-path-arrow">→</div>
+
+							<div class="ccure-path-box current-next">
+								<span class="ccure-path-level">Level 3</span>
+								<strong>AC9444</strong>
+								<span>Enterprise Architecture</span>
+							</div>
+
+						</div>
+
+
+						<h2>The Core Integrator Pathway</h2>
+
+						<p>
+							The following three courses provide the clearest progression
+							from learning how to install and maintain an individual C•CURE
+							9000 system to understanding how multiple C•CURE application
+							servers operate together in an enterprise environment.
+						</p>
+
+
+						<div class="ccure-timeline">
+
+
+							<!-- =========================================
+							     AC9001
+							     ========================================= -->
+
+							<div class="ccure-timeline-item">
+
+								<div class="ccure-timeline-marker">1</div>
+
+								<div class="ccure-course-card">
+
+									<div class="ccure-course-header">
+
+										<div>
+											<span class="ccure-course-code">
+												AC9001 • LEVEL 1
+											</span>
+
+											<h3>
+												C•CURE 9000 System Installer/Maintainer
+											</h3>
+										</div>
+
+										<span class="ccure-badge">
+											Foundation
+										</span>
+
+									</div>
+
+
+									<p>
+										AC9001 is the foundation of the technical Integrator
+										pathway. The course is designed to teach Integrator
+										technicians how to install, configure, and maintain a
+										C•CURE 9000 server and client system.
+									</p>
+
+
+									<div class="ccure-meta-grid">
+
+										<div class="ccure-meta">
+											<span class="ccure-meta-label">Cost</span>
+											<span class="ccure-meta-value">$2,055 USD MSRP</span>
+										</div>
+
+										<div class="ccure-meta">
+											<span class="ccure-meta-label">Duration</span>
+											<span class="ccure-meta-value">4 Days*</span>
+										</div>
+
+										<div class="ccure-meta">
+											<span class="ccure-meta-label">Certification</span>
+											<span class="ccure-meta-value">Level 1</span>
+										</div>
+
+									</div>
+
+
+									<p><strong>What the course covers:</strong></p>
+
+									<ul>
+										<li>C•CURE 9000 installation and licensing</li>
+										<li>Software upgrades</li>
+										<li>Server Configuration Application</li>
+										<li>Administration Station and Monitoring Station</li>
+										<li>Hardware architecture</li>
+										<li>iSTAR controllers</li>
+										<li>Clusters and controllers</li>
+										<li>Expansion modules and readers</li>
+										<li>I/8 and R8 boards</li>
+										<li>RM readers</li>
+										<li>Door access configuration</li>
+										<li>Card formats and personnel</li>
+										<li>Events and alarm automation</li>
+										<li>Maps</li>
+										<li>Holidays and schedules</li>
+										<li>Groups and Dynamic Views</li>
+										<li>Queries and reports</li>
+										<li>Operators and privileges</li>
+										<li>Log management</li>
+										<li>Database management</li>
+										<li>Backup and restore</li>
+										<li>Badging</li>
+									</ul>
+
+
+									<p>
+										<strong>Who is it for?</strong><br />
+										Field installation and service technicians who need to
+										install, configure, troubleshoot, and maintain C•CURE
+										9000 systems.
+									</p>
+
+
+									<p>
+										<strong>When should you take it?</strong><br />
+										This is the starting point if you are entering the
+										technical C•CURE Integrator pathway. It establishes the
+										foundation required before moving into Advanced
+										Integrator.
+									</p>
+
+
+									<p>
+										<strong>Prerequisites:</strong><br />
+										Familiarity with Windows, TCP/IP networking, basic
+										access-control concepts, and low-voltage electronic
+										devices such as controllers and readers. Basic SQL
+										knowledge is recommended but not required.
+									</p>
+
+
+									<p>
+										<em>
+											*The official course page states that the previous
+											five-day course moves to a four-day format beginning
+											with October 2026 sessions.
+										</em>
+									</p>
+
+
+									<a
+										href="https://www.solutionwhere.com/ww/Aspx/Public/Search/ShowCourse.aspx?cId=131&courseNum=80&pcId=0"
+										target="_blank"
+										rel="noopener"
+										class="button small"
+									>
+										View Official Course
+									</a>
+
+								</div>
+
+							</div>
+
+
+							<!-- =========================================
+							     AC9005
+							     ========================================= -->
+
+							<div class="ccure-timeline-item">
+
+								<div class="ccure-timeline-marker">2</div>
+
+								<div class="ccure-course-card">
+
+									<div class="ccure-course-header">
+
+										<div>
+											<span class="ccure-course-code">
+												AC9005 • LEVEL 2
+											</span>
+
+											<h3>
+												C•CURE 9000 Advanced Integrator
+											</h3>
+										</div>
+
+										<span class="ccure-badge">
+											Advanced
+										</span>
+
+									</div>
+
+
+									<p>
+										AC9005 picks up where Installer/Maintainer ends. It is
+										designed for senior technical personnel involved in the
+										design and implementation of security systems and moves
+										deeper into advanced administration, reporting, video
+										integration, and troubleshooting.
+									</p>
+
+
+									<div class="ccure-meta-grid">
+
+										<div class="ccure-meta">
+											<span class="ccure-meta-label">Cost</span>
+											<span class="ccure-meta-value">
+												Check Current Session
+											</span>
+										</div>
+
+										<div class="ccure-meta">
+											<span class="ccure-meta-label">Duration</span>
+											<span class="ccure-meta-value">5 Days</span>
+										</div>
+
+										<div class="ccure-meta">
+											<span class="ccure-meta-label">Certification</span>
+											<span class="ccure-meta-value">Level 2</span>
+										</div>
+
+									</div>
+
+
+									<p><strong>What the course covers:</strong></p>
+
+									<ul>
+										<li>Advanced C•CURE 9000 administration</li>
+										<li>Keypad commands</li>
+										<li>Intrusion Zones</li>
+										<li>Partitioning</li>
+										<li>Automated import</li>
+										<li>Web Client</li>
+										<li>Video server integration concepts</li>
+										<li>IP cameras</li>
+										<li>CCTV switchers</li>
+										<li>Video Tours and Views</li>
+										<li>Detailed queries and reports</li>
+										<li>Advanced troubleshooting techniques</li>
+									</ul>
+
+
+									<p>
+										<strong>Who is it for?</strong><br />
+										Senior personnel responsible for designing and
+										implementing end-user security systems and personnel
+										who supervise or support Installer/Maintainer-level
+										technicians.
+									</p>
+
+
+									<p>
+										<strong>When should you take it?</strong><br />
+										Take Advanced Integrator after you are comfortable with
+										the fundamentals of installing and maintaining C•CURE
+										9000 and your responsibilities are moving toward more
+										complex configuration, design, administration, or
+										technical troubleshooting.
+									</p>
+
+
+									<p>
+										<strong>Prerequisites:</strong><br />
+										Successful completion of AC9001, experience with access
+										control and Windows, and approval as a Software House
+										Integrator.
+									</p>
+
+
+									<a
+										href="https://www.solutionwhere.com/ww/Aspx/Public/Search/ShowCourse.aspx?cId=131&courseNum=146&pcId=0"
+										target="_blank"
+										rel="noopener"
+										class="button small"
+									>
+										View Official Course
+									</a>
+
+								</div>
+
+							</div>
+
+
+							<!-- =========================================
+							     AC9444
+							     ========================================= -->
+
+							<div class="ccure-timeline-item">
+
+								<div class="ccure-timeline-marker">3</div>
+
+								<div class="ccure-course-card next-course">
+
+									<div class="ccure-course-header">
+
+										<div>
+											<span class="ccure-course-code">
+												AC9444 • LEVEL 3
+											</span>
+
+											<h3>
+												C•CURE 9000 Enterprise Architecture
+											</h3>
+										</div>
+
+										<span class="ccure-badge next">
+											My Next Step
+										</span>
+
+									</div>
+
+
+									<p>
+										AC9444 moves the training path from advanced
+										administration into enterprise system architecture.
+										C•CURE 9000 Enterprise Architecture allows multiple
+										C•CURE servers to communicate with a Master Application
+										Server.
+									</p>
+
+									<p>
+										The Master Application Server, or MAS, provides a
+										platform for global management of personnel, video, and
+										access-security objects across one or more Satellite
+										Application Servers, or SAS.
+									</p>
+
+
+									<div class="ccure-meta-grid">
+
+										<div class="ccure-meta">
+											<span class="ccure-meta-label">Cost</span>
+											<span class="ccure-meta-value">
+												Check Current Session
+											</span>
+										</div>
+
+										<div class="ccure-meta">
+											<span class="ccure-meta-label">Duration</span>
+											<span class="ccure-meta-value">2 Days</span>
+										</div>
+
+										<div class="ccure-meta">
+											<span class="ccure-meta-label">Certification</span>
+											<span class="ccure-meta-value">Integrator Level 3</span>
+										</div>
+
+									</div>
+
+
+									<p><strong>What the course covers:</strong></p>
+
+									<ul>
+										<li>MAS/SAS Enterprise theory of operation</li>
+										<li>Preparing MAS and SAS systems for installation</li>
+										<li>Installing Windows Server on the MAS</li>
+										<li>Installing SQL Server on the MAS</li>
+										<li>Installing C•CURE 9000 on the MAS</li>
+										<li>Installing C•CURE 9000 and SQL on SAS systems</li>
+										<li>MAS and SAS configuration</li>
+										<li>MAS and SAS operation</li>
+										<li>Enterprise synchronization</li>
+										<li>Synchronization conflict resolution</li>
+										<li>Server and network communication concepts</li>
+									</ul>
+
+
+									<p>
+										<strong>Who is it for?</strong><br />
+										Technical partners who design, install, configure, and
+										maintain C•CURE Enterprise Architecture environments.
+										The course is specifically focused on application
+										servers and network communications rather than
+										end-user operator functions.
+									</p>
+
+
+									<p>
+										<strong>When should you take it?</strong><br />
+										This is the logical next step when your responsibilities
+										extend beyond an individual C•CURE server and into
+										multi-server enterprise environments. It is particularly
+										relevant when you need to understand MAS/SAS design,
+										global objects, synchronization, SQL, and the
+										communication between enterprise application servers.
+									</p>
+
+
+									<p>
+										<strong>Prerequisites:</strong><br />
+										Successful completion of C•CURE 9000 Advanced Integrator
+										or C•CURE 9000 Advanced System Manager, Microsoft
+										Networking Essentials or equivalent knowledge, and
+										familiarity with installing SQL.
+									</p>
+
+
+									<a
+										href="https://www.solutionwhere.com/ww/Aspx/Public/Search/ShowCourse.aspx?cId=131&courseNum=99&pcId=0"
+										target="_blank"
+										rel="noopener"
+										class="button small"
+									>
+										View Official Course
+									</a>
+
+								</div>
+
+							</div>
+
+						</div>
+
+
+						<h2>How the Three Core Courses Differ</h2>
+
+						<p>
+							The progression becomes clearer when the three core courses are
+							compared side-by-side.
+						</p>
+
+
+						<div class="ccure-table-wrap">
+
+							<table class="ccure-table">
+
+								<thead>
+									<tr>
+										<th>Area</th>
+										<th>AC9001</th>
+										<th>AC9005</th>
+										<th>AC9444</th>
+									</tr>
+								</thead>
+
+								<tbody>
+
+									<tr>
+										<td><strong>Level</strong></td>
+										<td>Level 1</td>
+										<td>Level 2</td>
+										<td>Level 3</td>
+									</tr>
+
+									<tr>
+										<td><strong>Main Focus</strong></td>
+										<td>Installation & maintenance</td>
+										<td>Advanced administration & design</td>
+										<td>Enterprise architecture</td>
+									</tr>
+
+									<tr>
+										<td><strong>Typical Scope</strong></td>
+										<td>Individual C•CURE system</td>
+										<td>Complex C•CURE deployment</td>
+										<td>Multi-server enterprise</td>
+									</tr>
+
+									<tr>
+										<td><strong>iSTAR / Hardware</strong></td>
+										<td>Major focus</td>
+										<td>Builds on existing knowledge</td>
+										<td>Not the primary focus</td>
+									</tr>
+
+									<tr>
+										<td><strong>Administration</strong></td>
+										<td>Core administration</td>
+										<td>Advanced administration</td>
+										<td>Enterprise configuration</td>
+									</tr>
+
+									<tr>
+										<td><strong>Queries / Reports</strong></td>
+										<td>Fundamentals</td>
+										<td>Detailed / advanced</td>
+										<td>Not primary focus</td>
+									</tr>
+
+									<tr>
+										<td><strong>Video Integration</strong></td>
+										<td>Foundation</td>
+										<td>Expanded coverage</td>
+										<td>Enterprise object management</td>
+									</tr>
+
+									<tr>
+										<td><strong>Networking</strong></td>
+										<td>TCP/IP knowledge expected</td>
+										<td>Troubleshooting context</td>
+										<td>Server/network communications</td>
+									</tr>
+
+									<tr>
+										<td><strong>SQL</strong></td>
+										<td>Basic knowledge recommended</td>
+										<td>SQL-backed system knowledge</td>
+										<td>SQL installation knowledge expected</td>
+									</tr>
+
+									<tr>
+										<td><strong>MAS / SAS</strong></td>
+										<td>—</td>
+										<td>—</td>
+										<td>Core topic</td>
+									</tr>
+
+									<tr>
+										<td><strong>Synchronization</strong></td>
+										<td>—</td>
+										<td>—</td>
+										<td>Core topic</td>
+									</tr>
+
+									<tr>
+										<td><strong>Duration</strong></td>
+										<td>4 days*</td>
+										<td>5 days</td>
+										<td>2 days</td>
+									</tr>
+
+									<tr>
+										<td><strong>Published Cost</strong></td>
+										<td>$2,055</td>
+										<td>Check current session</td>
+										<td>Check current session</td>
+									</tr>
+
+								</tbody>
+
+							</table>
+
+						</div>
+
+
+						<blockquote class="blog-highlight-quote">
+							<p>
+								A simple way I think about the progression is:
+								AC9001 teaches you how to work on the system,
+								AC9005 teaches you how to work deeper within the system,
+								and AC9444 teaches you how the system operates at
+								enterprise scale.
+							</p>
+						</blockquote>
+
+
+						<h2>The Specialized C•CURE Courses</h2>
+
+						<p>
+							The other C•CURE courses in the Integrator catalog are better
+							understood as specialized branches. They are valuable, but they
+							are not simply Level 4, Level 5, and Level 6 after Enterprise
+							Architecture.
 						</p>
 
 						<p>
-							That research eventually became
+							Which one makes sense depends on the technology deployed in the
+							environment you support.
+						</p>
+
+
+						<div class="ccure-branch-grid">
+
+
+							<!-- AC9003 -->
+
+							<div class="ccure-branch-card">
+
+								<span class="ccure-course-code">AC9003</span>
+
+								<h3>
+									C•CURE IQ Installer Course for Integrators
+								</h3>
+
+								<p class="ccure-price">
+									$1,620 USD
+								</p>
+
+								<p>
+									A hands-on course designed for technicians, integrators,
+									and IT/Facilities personnel who need to install, configure,
+									and validate C•CURE IQ Security Intelligence and Incident
+									Workflow on an existing C•CURE 9000 system.
+								</p>
+
+								<p><strong>Topics include:</strong></p>
+
+								<ul>
+									<li>Server and client components</li>
+									<li>Licensing</li>
+									<li>Site and project setup</li>
+									<li>Device and reader configuration</li>
+									<li>User management</li>
+									<li>Web Views</li>
+									<li>Maintenance</li>
+									<li>Backup and restoration</li>
+									<li>Basic troubleshooting</li>
+								</ul>
+
+								<p>
+									<strong>Current session length:</strong><br />
+									3 days.
+								</p>
+
+								<p>
+									<strong>When should you take it?</strong><br />
+									When your responsibilities include deploying,
+									commissioning, or maintaining C•CURE IQ.
+								</p>
+
+								<a
+									href="https://www.solutionwhere.com/ww/Aspx/Public/Search/ShowCourse.aspx?cId=131&courseNum=171&pcId=0"
+									target="_blank"
+									rel="noopener"
+									class="button small"
+								>
+									View Official Course
+								</a>
+
+							</div>
+
+
+							<!-- AC9201 -->
+
+							<div class="ccure-branch-card">
+
+								<span class="ccure-course-code">AC9201</span>
+
+								<h3>
+									C•CURE 9000 Visitor Management
+								</h3>
+
+								<p class="ccure-price">
+									Check Current Session
+								</p>
+
+								<p>
+									A certification course covering the installation,
+									licensing, configuration, and operation of C•CURE 9000
+									Visitor Management, Web Portal, Visit/Kiosk, and related
+									visitor-management functionality.
+								</p>
+
+								<p><strong>Topics include:</strong></p>
+
+								<ul>
+									<li>Visitor Management software</li>
+									<li>Web Portal installation</li>
+									<li>Licensing</li>
+									<li>Web Portal configuration</li>
+									<li>Personnel importing</li>
+									<li>Visit sites</li>
+									<li>Host creation</li>
+									<li>Email configuration</li>
+									<li>Bulk visitor creation</li>
+									<li>C•CURE Kiosk</li>
+									<li>Kiosk user accounts</li>
+									<li>Kiosk object programming</li>
+								</ul>
+
+								<p>
+									<strong>Duration:</strong><br />
+									2 days.
+								</p>
+
+								<p>
+									<strong>Prerequisite:</strong><br />
+									AC9001 Installer/Maintainer or AC9410 System Manager,
+									plus access-control and Windows experience.
+								</p>
+
+								<p>
+									<strong>When should you take it?</strong><br />
+									When you are responsible for deploying, configuring,
+									or maintaining C•CURE Visitor Management.
+								</p>
+
+								<a
+									href="https://www.solutionwhere.com/ww/Aspx/Public/Search/ShowCourse.aspx?cId=131&courseNum=116&pcId=0"
+									target="_blank"
+									rel="noopener"
+									class="button small"
+								>
+									View Official Course
+								</a>
+
+							</div>
+
+
+							<!-- AC9202 -->
+
+							<div class="ccure-branch-card">
+
+								<span class="ccure-course-code">AC9202</span>
+
+								<h3>
+									C•CURE 9000 High Assurance with Innometriks
+								</h3>
+
+								<p class="ccure-price">
+									$1,620 USD
+								</p>
+
+								<p>
+									A specialized course covering the configuration,
+									management, and operation of C•CURE High Assurance for
+									FICAM-compliant electronic physical access control
+									environments.
+								</p>
+
+								<p><strong>Topics include:</strong></p>
+
+								<ul>
+									<li>High Assurance architecture</li>
+									<li>FICAM concepts</li>
+									<li>FPKI</li>
+									<li>PIV/CAC/TWIC/PIV-I credentials</li>
+									<li>Credential validation</li>
+									<li>C•CURE High Assurance Services</li>
+									<li>iSTAR Ultra controllers</li>
+									<li>Innometriks readers</li>
+									<li>OSDP reader configuration</li>
+									<li>Enrollment-only configurations</li>
+									<li>Full High Assurance operation</li>
+								</ul>
+
+								<p>
+									<strong>Duration:</strong><br />
+									3 days.
+								</p>
+
+								<p>
+									<strong>Prerequisite:</strong><br />
+									AC9001 Installer/Maintainer and basic knowledge of
+									PIV and smart-card credentials.
+								</p>
+
+								<p>
+									<strong>When should you take it?</strong><br />
+									When you support high-assurance, federal, PIV/CAC,
+									smart-card, or FICAM-related access-control environments.
+								</p>
+
+								<a
+									href="https://www.solutionwhere.com/ww/Aspx/Public/Search/ShowCourse.aspx?cId=131&courseNum=157&pcId=0"
+									target="_blank"
+									rel="noopener"
+									class="button small"
+								>
+									View Official Course
+								</a>
+
+							</div>
+
+						</div>
+
+
+						<h2>So, What Should You Take and When?</h2>
+
+						<p>
+							Looking at the catalog as a whole, I would not approach it as a
+							checklist where every technician needs to complete every course.
+						</p>
+
+						<p>
+							Instead, the training should follow the type of work you are
+							actually responsible for.
+						</p>
+
+
+						<h3>Start with AC9001</h3>
+
+						<p>
+							If you are entering the technical Integrator path, AC9001 gives
+							you the foundation. You need to understand the application,
+							hardware, controllers, readers, personnel, events, schedules,
+							privileges, logs, and database fundamentals before advanced
+							topics become meaningful.
+						</p>
+
+
+						<h3>Move to AC9005 as Your Responsibility Grows</h3>
+
+						<p>
+							Advanced Integrator makes sense when you are no longer only
+							installing or maintaining equipment. If you are supporting
+							system design, advanced administration, integrations, reporting,
+							or more complicated troubleshooting, the Level 2 material becomes
+							much more relevant.
+						</p>
+
+
+						<h3>Take AC9444 When Your Scope Becomes Enterprise</h3>
+
+						<p>
+							Enterprise Architecture becomes important when one C•CURE
+							application server is no longer the entire environment.
+						</p>
+
+						<p>
+							Once multiple SAS systems, a MAS, SQL, server communications,
+							global objects, and synchronization are involved, understanding
+							the architecture becomes just as important as understanding
+							individual C•CURE objects.
+						</p>
+
+
+						<h3>Add Specialized Training When the Technology Requires It</h3>
+
+						<p>
+							If your organization deploys C•CURE IQ, Visitor Management, or
+							High Assurance, those specialized courses become relevant based
+							on the technologies you actually support.
+						</p>
+
+						<p>
+							That is a more practical approach than collecting certifications
+							without having an environment where the knowledge can be applied.
+						</p>
+
+
+						<h2>Why Enterprise Architecture Is My Next Step</h2>
+
+						<p>
+							For my own path, this research answered the question I originally
+							set out to solve.
+						</p>
+
+						<p>
+							I have already completed both the C•CURE 9000
+							Installer/Maintainer and Advanced Integrator training. My
+							professional experience has also increasingly involved
+							enterprise physical security environments rather than isolated
+							single-site systems.
+						</p>
+
+						<p>
+							That makes AC9444 Enterprise Architecture the most logical
+							next step.
+						</p>
+
+						<p>
+							The areas I am particularly interested in are the MAS/SAS
+							architecture, synchronization, conflict resolution, SQL, and
+							server communication portions of the course.
+						</p>
+
+						<p>
+							Those concepts answer a different category of question than
+							learning how to configure an individual reader, event, schedule,
+							or privilege.
+						</p>
+
+						<blockquote class="blog-highlight-quote">
+							<p>
+								The next stage of learning is not only knowing how to
+								configure C•CURE. It is understanding why an enterprise
+								C•CURE environment is architected the way it is and how
+								changes move throughout that architecture.
+							</p>
+						</blockquote>
+
+
+						<h2>Certification Expiration Is Also Changing</h2>
+
+						<p>
+							Another important part of the current Integrator training page
+							is the introduction of certification expiration dates beginning
+							in 2028.
+						</p>
+
+						<ul>
+							<li>
+								C•CURE 9000 certifications obtained before July 1, 2025
+								will expire July 1, 2028.
+							</li>
+
+							<li>
+								C•CURE 9000 certifications obtained after July 1, 2025
+								will expire three years after their issue date.
+							</li>
+
+							<li>
+								Software House states that its recertification process will
+								be announced closer to the July 1, 2028 expiration date.
+							</li>
+						</ul>
+
+						<p>
+							This means certification planning is becoming an ongoing part
+							of maintaining technical readiness rather than something that
+							can simply be completed once and forgotten.
+						</p>
+
+
+						<h2>A Simple Way to Remember the Path</h2>
+
+
+						<div class="ccure-path-overview">
+
+							<div class="ccure-path-box">
+								<span class="ccure-path-level">AC9001</span>
+								<strong>Learn the System</strong>
+								<span>Install & Maintain</span>
+							</div>
+
+							<div class="ccure-path-arrow">→</div>
+
+							<div class="ccure-path-box">
+								<span class="ccure-path-level">AC9005</span>
+								<strong>Go Deeper</strong>
+								<span>Advanced Integration</span>
+							</div>
+
+							<div class="ccure-path-arrow">→</div>
+
+							<div class="ccure-path-box current-next">
+								<span class="ccure-path-level">AC9444</span>
+								<strong>Think Enterprise</strong>
+								<span>MAS / SAS Architecture</span>
+							</div>
+
+						</div>
+
+
+						<p>
+							From there, specialized courses can be added according to the
+							environment:
+						</p>
+
+						<ul>
+							<li>
+								<strong>AC9003:</strong> when supporting C•CURE IQ.
+							</li>
+
+							<li>
+								<strong>AC9201:</strong> when supporting Visitor Management,
+								Web Portal, or Kiosk deployments.
+							</li>
+
+							<li>
+								<strong>AC9202:</strong> when supporting High Assurance,
+								PIV/CAC, smart-card, or FICAM environments.
+							</li>
+						</ul>
+
+
+						<h2>Key Takeaways</h2>
+
+						<ul class="blog-takeaways">
+
+							<li>
+								AC9001 is the Level 1 foundation of the C•CURE 9000
+								Integrator pathway.
+							</li>
+
+							<li>
+								AC9005 is the Level 2 Advanced Integrator course and
+								requires AC9001.
+							</li>
+
+							<li>
+								AC9444 is the Level 3 Enterprise Architecture course and
+								follows Advanced Integrator or Advanced System Manager.
+							</li>
+
+							<li>
+								The clearest core technical progression is
+								AC9001 → AC9005 → AC9444.
+							</li>
+
+							<li>
+								AC9003, AC9201, and AC9202 are better understood as
+								specialized branches based on the technology being deployed.
+							</li>
+
+							<li>
+								AC9001 currently lists an MSRP of $2,055.
+							</li>
+
+							<li>
+								AC9003 and AC9202 currently list prices of $1,620.
+							</li>
+
+							<li>
+								The currently accessible course pages for AC9005,
+								AC9444, and AC9201 do not publish a course price, so
+								current session pricing should be verified before registration.
+							</li>
+
+							<li>
+								C•CURE certifications are moving to an expiration model,
+								making certification tracking and recertification increasingly
+								important.
+							</li>
+
+							<li>
+								For my own training path, AC9444 Enterprise Architecture
+								is the logical next step.
+							</li>
+
+						</ul>
+
+
+						<div class="ccure-source-box">
+
+							<h3>Source & Pricing Note</h3>
+
+							<p>
+								The course information in this article was researched from
+								the publicly available Software House / Johnson Controls
+								Integrator training catalog and individual course pages in
+								October 2026.
+							</p>
+
+							<p>
+								Only prices explicitly displayed by the current public course
+								pages are shown as dollar amounts in this article. Courses
+								without a publicly displayed price are marked "Check Current
+								Session" rather than estimating a cost.
+							</p>
+
+							<p>
+								Course schedules, delivery methods, pricing, prerequisites,
+								and certification requirements may change. The official
+								training catalog should always be checked before registration.
+							</p>
+
+							<a
+								href="https://www.solutionwhere.com/WW/tsptraining/SWH_Integrator.aspx"
+								target="_blank"
+								rel="noopener"
+								class="button"
+							>
+								View Official Integrator Catalog
+							</a>
+
+						</div>
+
+
+						<div class="blog-post-nav-luxe">
+							<a href="../blog.html" class="button">Back to Blog</a>
+							<a href="../blog-technology.html" class="button">More in Technology</a>
+						</div>
+
+					</section>
+
+				</div>
+			</div>
+
+
+			<!-- Sidebar -->
+			<div id="sidebar">
+				<div class="inner">
+
+					<!-- Search -->
+					<section id="search" class="alt">
+						<form method="post" action="#">
+							<input type="text" name="query" id="query" placeholder="Search" />
+						</form>
+					</section>
+
+
+					<!-- Menu -->
+					<nav id="menu">
+
+						<header class="major">
+							<h2>Menu</h2>
+						</header>
+
+						<ul>
+
+							<li>
+								<a href="../index.html">Homepage</a>
+							</li>
+
+							<li>
+								<a href="../projects.html">Project Showcase</a>
+							</li>
+
+							<li>
+
+								<span class="opener">Blog</span>
+
+								<ul>
+									<li><a href="../blog.html">Blog Homepage</a></li>
+									<li><a href="../blog-technology.html">Blog - Technology</a></li>
+									<li><a href="../blog-healthcare.html">Blog - Healthcare</a></li>
+									<li><a href="../blog-restaurant.html">Blog - Restaurant</a></li>
+									<li><a href="../blog-hobbies.html">Blog - Hobbies</a></li>
+									<li><a href="../blog-movies.html">Blog - Movies</a></li>
+								</ul>
+
+							</li>
+
+							<li>
+								<a href="../contact-form.html">Contact Me</a>
+							</li>
+
+						</ul>
+
+					</nav>
+
+
+					<!-- Footer -->
+					<footer id="footer">
+						<p class="copyright">
+							&copy; 2026 Christopher Leung. All rights reserved.
+						</p>
+					</footer>
+
+				</div>
+			</div>
+
+		</div>
+
+
+		<script src="../assets/js/jquery.min.js"></script>
+		<script src="../assets/js/browser.min.js"></script>
+		<script src="../assets/js/breakpoints.min.js"></script>
+		<script src="../assets/js/util.js"></script>
+		<script src="../assets/js/main.js"></script>
+
+	</body>
+</html>
