@@ -1,4 +1,13 @@
 window.BLOG_POSTS = [
+                         {
+    title: "Understanding the CCURE 9000 Training Pathway ",
+    slug: "blog/blog-tech-00006.html",
+    tag: "Technology",
+    tagLabel: "Technology",
+    date: "October 2026",
+    image: "blog/photos/blog-tech-00006-01.png",
+    excerpt: "CCURE 9000 training pathways explained—from foundational system skills to advanced integration and enterprise architecture, with guidance on what to take, when, and why."
+  },
                        {
     title: "Finding Direction Again: My Next Step Toward Project Management",
     slug: "blog/blog-tech-00005.html",
