@@ -27,6 +27,142 @@
 			}
 
 
+			/* ===== QUICK NAVIGATION ===== */
+
+			.ccure-section-nav {
+				margin: 2em 0 2.5em 0;
+				padding: 1.4em 1.5em;
+				background: rgba(74,111,134,0.045);
+				border: 1px solid rgba(74,111,134,0.14);
+				border-radius: 1em;
+			}
+
+			.ccure-section-nav-label {
+				display: block;
+				margin-bottom: 0.85em;
+				color: #7f888f;
+				font-size: 0.68rem;
+				font-weight: 700;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+			}
+
+			.ccure-section-nav-links {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.65em;
+			}
+
+			.ccure-section-nav a {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				padding: 0.58em 1em;
+				border: 1px solid rgba(74,111,134,0.22);
+				border-radius: 999px;
+				background: #ffffff;
+				color: #4a6f86 !important;
+				font-size: 0.76rem;
+				font-weight: 700;
+				letter-spacing: 0.035em;
+				text-decoration: none;
+				transition:
+					transform 0.2s ease,
+					background 0.2s ease,
+					border-color 0.2s ease,
+					box-shadow 0.2s ease;
+			}
+
+			.ccure-section-nav a:hover {
+				transform: translateY(-2px);
+				background: rgba(74,111,134,0.08);
+				border-color: rgba(74,111,134,0.38);
+				box-shadow: 0 6px 14px rgba(60,80,100,0.08);
+			}
+
+			.ccure-anchor-section {
+				scroll-margin-top: 2em;
+			}
+
+
+			/* ===== TRAINING CONTACT CARD ===== */
+
+			.ccure-contact-card {
+				display: grid;
+				grid-template-columns: auto 1fr;
+				gap: 1.4em;
+				align-items: center;
+				margin: 2em 0 3em 0;
+				padding: 1.6em 1.8em;
+				background: linear-gradient(
+					145deg,
+					rgba(255,255,255,0.98),
+					rgba(240,245,249,0.92)
+				);
+				border: 1px solid rgba(74,111,134,0.18);
+				border-radius: 1em;
+				box-shadow: 0 10px 24px rgba(60,80,100,0.06);
+			}
+
+			.ccure-contact-icon {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 3.8em;
+				height: 3.8em;
+				background: rgba(74,111,134,0.10);
+				border-radius: 50%;
+				color: #4a6f86;
+				font-size: 1.25em;
+			}
+
+			.ccure-contact-content h3 {
+				margin: 0 0 0.35em 0;
+				color: #3d4449;
+			}
+
+			.ccure-contact-content > p {
+				margin-bottom: 1em;
+			}
+
+			.ccure-contact-details {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.7em 1.5em;
+				margin-bottom: 1.2em;
+			}
+
+			.ccure-contact-item {
+				display: flex;
+				align-items: center;
+				gap: 0.45em;
+			}
+
+			.ccure-contact-label {
+				color: #7f888f;
+				font-size: 0.72rem;
+				font-weight: 700;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+			}
+
+			.ccure-contact-item a {
+				color: #4a6f86;
+				font-weight: 600;
+				text-decoration: none;
+			}
+
+			.ccure-contact-item a:hover {
+				color: #2c566f;
+			}
+
+			.ccure-contact-actions {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.7em;
+			}
+
+
 			/* ===== PATH OVERVIEW ===== */
 
 			.ccure-path-overview {
@@ -326,6 +462,29 @@
 
 			@media screen and (max-width: 736px) {
 
+				.ccure-contact-card {
+					grid-template-columns: 1fr;
+				}
+
+				.ccure-contact-icon {
+					width: 3.2em;
+					height: 3.2em;
+				}
+
+				.ccure-contact-details {
+					flex-direction: column;
+					gap: 0.6em;
+				}
+
+				.ccure-section-nav-links {
+					gap: 0.5em;
+				}
+
+				.ccure-section-nav a {
+					font-size: 0.72rem;
+					padding: 0.55em 0.85em;
+				}
+
 				.ccure-path-overview {
 					grid-template-columns: 1fr;
 				}
@@ -463,7 +622,90 @@
 						</div>
 
 
-						<h2>The CCure 9000 Integrator Training Catalog</h2>
+						<!-- SOFTWARE HOUSE TRAINING CONTACT -->
+
+						<div class="ccure-contact-card">
+
+							<div class="ccure-contact-icon">
+								<span class="icon solid fa-graduation-cap"></span>
+							</div>
+
+							<div class="ccure-contact-content">
+
+								<span class="ccure-course-code">
+									TRAINING & REGISTRATION
+								</span>
+
+								<h3>Interested in a Software House Training Course?</h3>
+
+								<p>
+									If you are planning to attend a CCure training course,
+									check the official Software House training catalog for
+									current class dates, locations, availability, and
+									registration information.
+								</p>
+
+								<div class="ccure-contact-details">
+
+									<div class="ccure-contact-item">
+										<span class="ccure-contact-label">Phone</span>
+										<a href="tel:+19785774000">+1 978-577-4000</a>
+									</div>
+
+									<div class="ccure-contact-item">
+										<span class="ccure-contact-label">Location</span>
+										<span>Westford, Massachusetts</span>
+									</div>
+
+								</div>
+
+								<div class="ccure-contact-actions">
+
+									<a href="tel:+19785774000" class="button small">
+										Call Software House
+									</a>
+
+									<a
+										href="https://www.solutionwhere.com/WW/tsptraining/SWH_Integrator.aspx"
+										target="_blank"
+										rel="noopener"
+										class="button small"
+									>
+										View Training Catalog
+									</a>
+
+								</div>
+
+							</div>
+
+						</div>
+
+
+						<!-- QUICK SECTION NAVIGATION -->
+
+						<nav class="ccure-section-nav" aria-label="CCure training guide sections">
+
+							<span class="ccure-section-nav-label">
+								Jump to a Section
+							</span>
+
+							<div class="ccure-section-nav-links">
+								<a href="#training-catalog">Training Catalog</a>
+								<a href="#core-pathway">Core Pathway</a>
+								<a href="#course-comparison">Compare Courses</a>
+								<a href="#specialized-courses">Specialized Courses</a>
+								<a href="#what-to-take">What to Take</a>
+								<a href="#my-next-step">My Next Step</a>
+								<a href="#certification-expiration">Certification Expiration</a>
+								<a href="#path-summary">Path Summary</a>
+								<a href="#key-takeaways">Key Takeaways</a>
+								<a href="#sources">Sources</a>
+							</div>
+
+						</nav>
+
+
+						<h2 id="training-catalog" class="ccure-anchor-section">The CCure 9000 Integrator Training Catalog</h2>
 
 						<p>
 							The current Integrator catalog lists six CCure-specific
@@ -514,7 +756,7 @@
 						</div>
 
 
-						<h2>The Core Integrator Pathway</h2>
+						<h2 id="core-pathway" class="ccure-anchor-section">The Core Integrator Pathway</h2>
 
 						<p>
 							The following three courses provide the clearest progression
@@ -910,7 +1152,7 @@
 						</div>
 
 
-						<h2>How the Three Core Courses Differ</h2>
+						<h2 id="course-comparison" class="ccure-anchor-section">How the Three Core Courses Differ</h2>
 
 						<p>
 							The progression becomes clearer when the three core courses are
@@ -1042,7 +1284,7 @@
 						</blockquote>
 
 
-						<h2>The Specialized CCure Courses</h2>
+						<h2 id="specialized-courses" class="ccure-anchor-section">The Specialized CCure Courses</h2>
 
 						<p>
 							The other CCure courses in the Integrator catalog are better
@@ -1253,7 +1495,7 @@
 						</div>
 
 
-						<h2>So, What Should You Take and When?</h2>
+						<h2 id="what-to-take" class="ccure-anchor-section">So, What Should You Take and When?</h2>
 
 						<p>
 							Looking at the catalog as a whole, I would not approach it as a
@@ -1317,7 +1559,7 @@
 						</p>
 
 
-						<h2>Why Enterprise Architecture Is My Next Step</h2>
+						<h2 id="my-next-step" class="ccure-anchor-section">Why Enterprise Architecture Is My Next Step</h2>
 
 						<p>
 							For my own path, this research answered the question I originally
@@ -1359,7 +1601,7 @@
 						</blockquote>
 
 
-						<h2>Certification Expiration Is Also Changing</h2>
+						<h2 id="certification-expiration" class="ccure-anchor-section">Certification Expiration Is Also Changing</h2>
 
 						<p>
 							Another important part of the current Integrator training page
@@ -1391,7 +1633,7 @@
 						</p>
 
 
-						<h2>A Simple Way to Remember the Path</h2>
+						<h2 id="path-summary" class="ccure-anchor-section">A Simple Way to Remember the Path</h2>
 
 
 						<div class="ccure-path-overview">
@@ -1443,7 +1685,7 @@
 						</ul>
 
 
-						<h2>Key Takeaways</h2>
+						<h2 id="key-takeaways" class="ccure-anchor-section">Key Takeaways</h2>
 
 						<ul class="blog-takeaways">
 
@@ -1500,7 +1742,7 @@
 						</ul>
 
 
-						<div class="ccure-source-box">
+						<div id="sources" class="ccure-source-box ccure-anchor-section">
 
 							<h3>Source & Pricing Note</h3>
 
